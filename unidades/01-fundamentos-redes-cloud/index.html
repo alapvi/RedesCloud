@@ -9,7 +9,7 @@
         <meta name="description" content="Material del modulo de Administracion de redes en la nube">
       
       
-        <meta name="author" content="Departamento de Informatica">
+        <meta name="author" content="Material docente">
       
       
       
@@ -27,7 +27,7 @@
     
     
       
-        <title>01. Fundamentos de redes cloud - Administracion de redes en la nube</title>
+        <title>Introducción al networking en Proxmox VE - Administracion de redes en la nube</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#01-fundamentos-de-redes-cloud" class="md-skip">
+        <a href="#introduccion-al-networking-en-proxmox-ve" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              01. Fundamentos de redes cloud
+              Introducción al networking en Proxmox VE
             
           </span>
         </div>
@@ -416,6 +416,9 @@
   
 
     
+      <br>
+      <small>Bloque de networking · Curso de Especialización</small>
+    
   </span>
   
   
@@ -433,6 +436,9 @@
     01. Fundamentos de redes cloud
   
 
+    
+      <br>
+      <small>Bloque de networking · Curso de Especialización</small>
     
   </span>
   
@@ -456,10 +462,110 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptos-clave" class="md-nav__link">
+  <a href="#0-ficha-de-la-unidad" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conceptos clave
+        0. Ficha de la unidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. Ficha de la unidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finalidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conocimientos-previos-recomendados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conocimientos previos recomendados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribucion-temporal-orientativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distribución temporal orientativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-escenario-de-laboratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Escenario de laboratorio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Escenario de laboratorio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escenario-a-proxmox-instalado-directamente-sobre-un-servidor-fisico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escenario A. Proxmox instalado directamente sobre un servidor físico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escenario-b-proxmox-virtualizado-para-cada-alumno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escenario B. Proxmox virtualizado para cada alumno
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursos-minimos-por-alumno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursos mínimos por alumno
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-el-problema-que-resuelve-el-networking-de-un-hipervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. El problema que resuelve el networking de un hipervisor
       
     </span>
   </a>
@@ -467,10 +573,143 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#competencias" class="md-nav__link">
+  <a href="#3-componentes-de-red-en-proxmox-ve" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Competencias
+        3. Componentes de red en Proxmox VE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Componentes de red en Proxmox VE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-interfaz-de-red-fisica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Interfaz de red física
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-linux-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Linux bridge
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2. Linux bridge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-bridge-conectado-a-una-interfaz-fisica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Bridge conectado a una interfaz física
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-bridge-aislado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Bridge aislado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-bridge-con-direccion-ip-del-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Bridge con dirección IP del host
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-interfaces-virtuales-de-maquinas-kvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Interfaces virtuales de máquinas KVM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-interfaces-virtuales-de-contenedores-lxc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Interfaces virtuales de contenedores LXC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-tarjeta-de-red-que-ve-el-sistema-invitado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Tarjeta de red que ve el sistema invitado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-direccion-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Dirección MAC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-direccion-ip-gateway-y-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7. Dirección IP, gateway y DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-recorrido-de-una-trama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Recorrido de una trama
       
     </span>
   </a>
@@ -478,10 +717,690 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#secuencia-de-trabajo" class="md-nav__link">
+  <a href="#5-configuracion-de-red-del-nodo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Secuencia de trabajo
+        5. Configuración de red del nodo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Configuración de red del nodo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-interfaz-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Interfaz web
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-archivo-etcnetworkinterfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Archivo /etc/network/interfaces
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2. Archivo /etc/network/interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lectura-linea-a-linea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lectura línea a línea
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copia-de-seguridad-antes-de-modificar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copia de seguridad antes de modificar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validacion-visual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validación visual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicacion-desde-consola" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicación desde consola
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-herramientas-basicas-de-observacion-y-diagnostico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Herramientas básicas de observación y diagnóstico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Herramientas básicas de observación y diagnóstico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-estado-resumido-de-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Estado resumido de interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-tabla-de-rutas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Tabla de rutas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-puertos-de-los-bridges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Puertos de los bridges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-tabla-mac-del-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. Tabla MAC del bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-vecinos-arpnd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. Vecinos ARP/ND
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-pruebas-de-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6. Pruebas de conectividad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-captura-de-trafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7. Captura de tráfico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#68-configuracion-de-red-de-una-vm-o-contenedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.8. Configuración de red de una VM o contenedor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-practica-guiada-1-inventario-de-la-red-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Práctica guiada 1: inventario de la red inicial
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Práctica guiada 1: inventario de la red inicial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-precauciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. Precauciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-paso-1-acceder-al-panel-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3. Paso 1. Acceder al panel de red
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-paso-2-consultar-interfaces-desde-la-consola" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4. Paso 2. Consultar interfaces desde la consola
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-paso-3-consultar-la-ruta-predeterminada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5. Paso 3. Consultar la ruta predeterminada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-paso-4-leer-el-archivo-de-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6. Paso 4. Leer el archivo de configuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77-paso-5-dibujar-la-topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7. Paso 5. Dibujar la topología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#78-evidencias-a-entregar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.8. Evidencias a entregar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-practica-guiada-2-red-virtual-aislada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Práctica guiada 2: red virtual aislada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Práctica guiada 2: red virtual aislada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. Topología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-paso-0-preparar-las-maquinas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3. Paso 0. Preparar las máquinas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-paso-1-crear-vmbr1-desde-la-interfaz-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4. Paso 1. Crear vmbr1 desde la interfaz web
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-paso-2-revisar-la-configuracion-generada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5. Paso 2. Revisar la configuración generada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-paso-3-verificar-el-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6. Paso 3. Verificar el bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87-paso-4-conectar-las-maquinas-virtuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7. Paso 4. Conectar las máquinas virtuales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88-paso-5-encender-las-vms-y-observar-interfaces-tap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.8. Paso 5. Encender las VMs y observar interfaces tap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#89-paso-6-configurar-ip-temporal-dentro-de-las-vms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9. Paso 6. Configurar IP temporal dentro de las VMs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#810-paso-7-probar-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10. Paso 7. Probar conectividad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#811-paso-8-consultar-la-tabla-de-vecinos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.11. Paso 8. Consultar la tabla de vecinos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#812-paso-9-observar-arp-e-icmp-desde-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.12. Paso 9. Observar ARP e ICMP desde Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#813-paso-10-verificar-aprendizaje-de-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.13. Paso 10. Verificar aprendizaje de MAC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#814-configuracion-persistente-en-debian-mediante-systemd-networkd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.14. Configuración persistente en Debian mediante systemd-networkd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#815-preguntas-de-reflexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.15. Preguntas de reflexión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#816-evidencias-a-entregar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.16. Evidencias a entregar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-practica-guiada-3-conexion-controlada-a-una-red-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Práctica guiada 3: conexión controlada a una red externa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Práctica guiada 3: conexión controlada a una red externa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-finalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1. Finalidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2. Topología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-comprobaciones-previas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3. Comprobaciones previas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-paso-1-examinar-vmbr0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4. Paso 1. Examinar vmbr0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-paso-2-conectar-una-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5. Paso 2. Conectar una VM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#96-paso-3a-obtener-direccion-por-dhcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.6. Paso 3A. Obtener dirección por DHCP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#97-paso-3b-configuracion-estatica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.7. Paso 3B. Configuración estática
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#98-paso-4-pruebas-por-niveles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.8. Paso 4. Pruebas por niveles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.8. Paso 4. Pruebas por niveles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nivel-1-enlace-e-interfaz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 1. Enlace e interfaz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nivel-2-direccion-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 2. Dirección local
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nivel-3-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 3. Gateway
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nivel-4-direccion-remota" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 4. Dirección remota
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nivel-5-resolucion-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 5. Resolución DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nivel-6-servicio-de-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 6. Servicio de aplicación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#99-alternativa-segura-para-entornos-anidados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.9. Alternativa segura para entornos anidados
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-diferencia-entre-red-de-gestion-y-redes-de-maquinas-virtuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Diferencia entre red de gestión y redes de máquinas virtuales
       
     </span>
   </a>
@@ -489,10 +1408,386 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#contenidos-orientativos-del-bloque-proxmox" class="md-nav__link">
+  <a href="#11-errores-frecuentes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Contenidos orientativos del bloque Proxmox
+        11. Errores frecuentes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Errores frecuentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-asignar-la-ip-a-la-interfaz-fisica-y-al-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1. Asignar la IP a la interfaz física y al bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-configurar-dos-gateways-predeterminados-sin-planificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2. Configurar dos gateways predeterminados sin planificación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-confundir-bridge-con-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3. Confundir bridge con router
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-anadir-gateway-a-una-red-aislada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4. Añadir gateway a una red aislada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-configurar-dos-nic-de-una-vm-en-la-misma-subred" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5. Configurar dos NIC de una VM en la misma subred
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-olvidar-que-el-firewall-puede-filtrar-trafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6. Olvidar que el firewall puede filtrar tráfico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#117-cambiar-la-red-de-gestion-sin-consola" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.7. Cambiar la red de gestión sin consola
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#118-no-comprobar-el-nombre-real-de-la-interfaz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.8. No comprobar el nombre real de la interfaz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#119-utilizar-una-direccion-ya-ocupada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.9. Utilizar una dirección ya ocupada
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-metodo-sistematico-de-resolucion-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Método sistemático de resolución de problemas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Método sistemático de resolución de problemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-definir-el-alcance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1. Definir el alcance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-comprobar-el-estado-de-la-interfaz-dentro-de-la-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2. Comprobar el estado de la interfaz dentro de la VM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-comprobar-direccionamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3. Comprobar direccionamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-comprobar-rutas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 4. Comprobar rutas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5-comprobar-la-configuracion-de-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 5. Comprobar la configuración de Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6-comprobar-el-puerto-virtual-en-el-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 6. Comprobar el puerto virtual en el host
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-7-observar-arp-y-trafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 7. Observar ARP y tráfico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-8-comparar-con-una-maquina-que-funcione" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 8. Comparar con una máquina que funcione
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-9-revisar-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 9. Revisar firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-10-documentar-la-causa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 10. Documentar la causa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-actividades-de-consolidacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Actividades de consolidación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Actividades de consolidación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actividad-1-clasificacion-de-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 1. Clasificación de elementos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-2-reconstruccion-de-topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 2. Reconstrucción de topología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-3-deteccion-de-errores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 3. Detección de errores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-4-prediccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 4. Predicción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-5-captura-razonada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 5. Captura razonada
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-reto-final-de-la-unidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Reto final de la unidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Reto final de la unidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enunciado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enunciado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entregables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entregables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incidencias-que-puede-introducir-el-docente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incidencias que puede introducir el docente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rubrica-orientativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rúbrica orientativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-cuestionario-de-autoevaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Cuestionario de autoevaluación
       
     </span>
   </a>
@@ -500,10 +1795,154 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conexion-con-aws" class="md-nav__link">
+  <a href="#16-soluciones-orientativas-para-el-profesorado" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conexion con AWS
+        16. Soluciones orientativas para el profesorado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Soluciones orientativas para el profesorado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#161-ideas-clave-del-cuestionario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.1. Ideas clave del cuestionario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#162-explicacion-esperada-ip-en-el-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.2. Explicación esperada: IP en el bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#163-diagnostico-del-caso-de-bridges-diferentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3. Diagnóstico del caso de bridges diferentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-plantilla-de-documentacion-del-alumno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Plantilla de documentación del alumno
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Plantilla de documentación del alumno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identificación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabla-de-direccionamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla de direccionamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración del bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pruebas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incidencia-resuelta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incidencia resuelta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusión
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-chuleta-de-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Chuleta de comandos
       
     </span>
   </a>
@@ -511,10 +1950,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#actividades" class="md-nav__link">
+  <a href="#19-glosario" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Actividades
+        19. Glosario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-transicion-al-siguiente-bloque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Transición al siguiente bloque
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-referencias-oficiales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Referencias oficiales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nota-de-seguridad-para-el-laboratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nota de seguridad para el laboratorio
       
     </span>
   </a>
@@ -962,10 +2434,110 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptos-clave" class="md-nav__link">
+  <a href="#0-ficha-de-la-unidad" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conceptos clave
+        0. Ficha de la unidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. Ficha de la unidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finalidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conocimientos-previos-recomendados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conocimientos previos recomendados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribucion-temporal-orientativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distribución temporal orientativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-escenario-de-laboratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Escenario de laboratorio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Escenario de laboratorio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escenario-a-proxmox-instalado-directamente-sobre-un-servidor-fisico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escenario A. Proxmox instalado directamente sobre un servidor físico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escenario-b-proxmox-virtualizado-para-cada-alumno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escenario B. Proxmox virtualizado para cada alumno
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursos-minimos-por-alumno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursos mínimos por alumno
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-el-problema-que-resuelve-el-networking-de-un-hipervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. El problema que resuelve el networking de un hipervisor
       
     </span>
   </a>
@@ -973,10 +2545,143 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#competencias" class="md-nav__link">
+  <a href="#3-componentes-de-red-en-proxmox-ve" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Competencias
+        3. Componentes de red en Proxmox VE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Componentes de red en Proxmox VE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-interfaz-de-red-fisica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Interfaz de red física
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-linux-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Linux bridge
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2. Linux bridge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-bridge-conectado-a-una-interfaz-fisica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Bridge conectado a una interfaz física
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-bridge-aislado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Bridge aislado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-bridge-con-direccion-ip-del-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Bridge con dirección IP del host
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-interfaces-virtuales-de-maquinas-kvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Interfaces virtuales de máquinas KVM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-interfaces-virtuales-de-contenedores-lxc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Interfaces virtuales de contenedores LXC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-tarjeta-de-red-que-ve-el-sistema-invitado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Tarjeta de red que ve el sistema invitado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-direccion-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Dirección MAC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-direccion-ip-gateway-y-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7. Dirección IP, gateway y DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-recorrido-de-una-trama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Recorrido de una trama
       
     </span>
   </a>
@@ -984,10 +2689,690 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#secuencia-de-trabajo" class="md-nav__link">
+  <a href="#5-configuracion-de-red-del-nodo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Secuencia de trabajo
+        5. Configuración de red del nodo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Configuración de red del nodo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-interfaz-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Interfaz web
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-archivo-etcnetworkinterfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Archivo /etc/network/interfaces
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2. Archivo /etc/network/interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lectura-linea-a-linea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lectura línea a línea
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copia-de-seguridad-antes-de-modificar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copia de seguridad antes de modificar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validacion-visual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validación visual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicacion-desde-consola" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicación desde consola
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-herramientas-basicas-de-observacion-y-diagnostico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Herramientas básicas de observación y diagnóstico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Herramientas básicas de observación y diagnóstico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-estado-resumido-de-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Estado resumido de interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-tabla-de-rutas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Tabla de rutas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-puertos-de-los-bridges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Puertos de los bridges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-tabla-mac-del-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. Tabla MAC del bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-vecinos-arpnd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. Vecinos ARP/ND
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-pruebas-de-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6. Pruebas de conectividad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-captura-de-trafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7. Captura de tráfico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#68-configuracion-de-red-de-una-vm-o-contenedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.8. Configuración de red de una VM o contenedor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-practica-guiada-1-inventario-de-la-red-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Práctica guiada 1: inventario de la red inicial
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Práctica guiada 1: inventario de la red inicial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-precauciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. Precauciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-paso-1-acceder-al-panel-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3. Paso 1. Acceder al panel de red
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-paso-2-consultar-interfaces-desde-la-consola" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4. Paso 2. Consultar interfaces desde la consola
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-paso-3-consultar-la-ruta-predeterminada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5. Paso 3. Consultar la ruta predeterminada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-paso-4-leer-el-archivo-de-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6. Paso 4. Leer el archivo de configuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77-paso-5-dibujar-la-topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7. Paso 5. Dibujar la topología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#78-evidencias-a-entregar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.8. Evidencias a entregar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-practica-guiada-2-red-virtual-aislada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Práctica guiada 2: red virtual aislada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Práctica guiada 2: red virtual aislada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. Topología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-paso-0-preparar-las-maquinas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3. Paso 0. Preparar las máquinas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-paso-1-crear-vmbr1-desde-la-interfaz-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4. Paso 1. Crear vmbr1 desde la interfaz web
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-paso-2-revisar-la-configuracion-generada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5. Paso 2. Revisar la configuración generada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-paso-3-verificar-el-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6. Paso 3. Verificar el bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87-paso-4-conectar-las-maquinas-virtuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7. Paso 4. Conectar las máquinas virtuales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88-paso-5-encender-las-vms-y-observar-interfaces-tap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.8. Paso 5. Encender las VMs y observar interfaces tap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#89-paso-6-configurar-ip-temporal-dentro-de-las-vms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9. Paso 6. Configurar IP temporal dentro de las VMs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#810-paso-7-probar-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10. Paso 7. Probar conectividad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#811-paso-8-consultar-la-tabla-de-vecinos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.11. Paso 8. Consultar la tabla de vecinos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#812-paso-9-observar-arp-e-icmp-desde-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.12. Paso 9. Observar ARP e ICMP desde Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#813-paso-10-verificar-aprendizaje-de-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.13. Paso 10. Verificar aprendizaje de MAC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#814-configuracion-persistente-en-debian-mediante-systemd-networkd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.14. Configuración persistente en Debian mediante systemd-networkd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#815-preguntas-de-reflexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.15. Preguntas de reflexión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#816-evidencias-a-entregar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.16. Evidencias a entregar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-practica-guiada-3-conexion-controlada-a-una-red-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Práctica guiada 3: conexión controlada a una red externa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Práctica guiada 3: conexión controlada a una red externa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-finalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1. Finalidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2. Topología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-comprobaciones-previas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3. Comprobaciones previas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-paso-1-examinar-vmbr0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4. Paso 1. Examinar vmbr0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-paso-2-conectar-una-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5. Paso 2. Conectar una VM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#96-paso-3a-obtener-direccion-por-dhcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.6. Paso 3A. Obtener dirección por DHCP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#97-paso-3b-configuracion-estatica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.7. Paso 3B. Configuración estática
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#98-paso-4-pruebas-por-niveles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.8. Paso 4. Pruebas por niveles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.8. Paso 4. Pruebas por niveles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nivel-1-enlace-e-interfaz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 1. Enlace e interfaz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nivel-2-direccion-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 2. Dirección local
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nivel-3-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 3. Gateway
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nivel-4-direccion-remota" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 4. Dirección remota
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nivel-5-resolucion-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 5. Resolución DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nivel-6-servicio-de-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nivel 6. Servicio de aplicación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#99-alternativa-segura-para-entornos-anidados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.9. Alternativa segura para entornos anidados
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-diferencia-entre-red-de-gestion-y-redes-de-maquinas-virtuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Diferencia entre red de gestión y redes de máquinas virtuales
       
     </span>
   </a>
@@ -995,10 +3380,386 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#contenidos-orientativos-del-bloque-proxmox" class="md-nav__link">
+  <a href="#11-errores-frecuentes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Contenidos orientativos del bloque Proxmox
+        11. Errores frecuentes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Errores frecuentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-asignar-la-ip-a-la-interfaz-fisica-y-al-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1. Asignar la IP a la interfaz física y al bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-configurar-dos-gateways-predeterminados-sin-planificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2. Configurar dos gateways predeterminados sin planificación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-confundir-bridge-con-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3. Confundir bridge con router
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-anadir-gateway-a-una-red-aislada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4. Añadir gateway a una red aislada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-configurar-dos-nic-de-una-vm-en-la-misma-subred" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5. Configurar dos NIC de una VM en la misma subred
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-olvidar-que-el-firewall-puede-filtrar-trafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6. Olvidar que el firewall puede filtrar tráfico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#117-cambiar-la-red-de-gestion-sin-consola" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.7. Cambiar la red de gestión sin consola
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#118-no-comprobar-el-nombre-real-de-la-interfaz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.8. No comprobar el nombre real de la interfaz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#119-utilizar-una-direccion-ya-ocupada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.9. Utilizar una dirección ya ocupada
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-metodo-sistematico-de-resolucion-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Método sistemático de resolución de problemas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Método sistemático de resolución de problemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-definir-el-alcance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1. Definir el alcance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-comprobar-el-estado-de-la-interfaz-dentro-de-la-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2. Comprobar el estado de la interfaz dentro de la VM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-comprobar-direccionamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3. Comprobar direccionamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-comprobar-rutas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 4. Comprobar rutas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5-comprobar-la-configuracion-de-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 5. Comprobar la configuración de Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6-comprobar-el-puerto-virtual-en-el-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 6. Comprobar el puerto virtual en el host
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-7-observar-arp-y-trafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 7. Observar ARP y tráfico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-8-comparar-con-una-maquina-que-funcione" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 8. Comparar con una máquina que funcione
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-9-revisar-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 9. Revisar firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-10-documentar-la-causa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 10. Documentar la causa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-actividades-de-consolidacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Actividades de consolidación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Actividades de consolidación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actividad-1-clasificacion-de-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 1. Clasificación de elementos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-2-reconstruccion-de-topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 2. Reconstrucción de topología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-3-deteccion-de-errores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 3. Detección de errores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-4-prediccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 4. Predicción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividad-5-captura-razonada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividad 5. Captura razonada
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-reto-final-de-la-unidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Reto final de la unidad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Reto final de la unidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enunciado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enunciado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entregables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entregables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incidencias-que-puede-introducir-el-docente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incidencias que puede introducir el docente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rubrica-orientativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rúbrica orientativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-cuestionario-de-autoevaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Cuestionario de autoevaluación
       
     </span>
   </a>
@@ -1006,10 +3767,154 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conexion-con-aws" class="md-nav__link">
+  <a href="#16-soluciones-orientativas-para-el-profesorado" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conexion con AWS
+        16. Soluciones orientativas para el profesorado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Soluciones orientativas para el profesorado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#161-ideas-clave-del-cuestionario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.1. Ideas clave del cuestionario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#162-explicacion-esperada-ip-en-el-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.2. Explicación esperada: IP en el bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#163-diagnostico-del-caso-de-bridges-diferentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3. Diagnóstico del caso de bridges diferentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-plantilla-de-documentacion-del-alumno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Plantilla de documentación del alumno
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Plantilla de documentación del alumno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identificación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabla-de-direccionamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla de direccionamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración del bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pruebas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incidencia-resuelta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incidencia resuelta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusión
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-chuleta-de-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Chuleta de comandos
       
     </span>
   </a>
@@ -1017,10 +3922,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#actividades" class="md-nav__link">
+  <a href="#19-glosario" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Actividades
+        19. Glosario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-transicion-al-siguiente-bloque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Transición al siguiente bloque
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-referencias-oficiales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Referencias oficiales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nota-de-seguridad-para-el-laboratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nota de seguridad para el laboratorio
       
     </span>
   </a>
@@ -1044,54 +3982,1471 @@
 
 
 
-<h1 id="01-fundamentos-de-redes-cloud">01. Fundamentos de redes cloud<a class="headerlink" href="#01-fundamentos-de-redes-cloud" title="Permanent link">&para;</a></h1>
-<p>Esta unidad introduce los conceptos basicos de redes mediante un laboratorio sobre Proxmox VE. La idea es trabajar primero sobre un entorno de virtualizacion accesible y visual para despues reutilizar los mismos principios cuando entremos en AWS.</p>
-<h2 id="conceptos-clave">Conceptos clave<a class="headerlink" href="#conceptos-clave" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Interfaces fisicas y bridges Linux en Proxmox.</li>
-<li>Direccionamiento IP, puerta de enlace y resolucion DNS en hosts y maquinas virtuales.</li>
-<li>Segmentacion de red con bridges y VLAN.</li>
-<li>Relacion entre topologias de laboratorio y topologias cloud.</li>
-</ul>
-<h2 id="competencias">Competencias<a class="headerlink" href="#competencias" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Configurar y verificar una red virtual basica en Proxmox.</li>
-<li>Diferenciar redes locales virtualizadas y redes cloud.</li>
-<li>Identificar patrones de topologia base que despues se trasladaran a AWS.</li>
-</ul>
-<h2 id="secuencia-de-trabajo">Secuencia de trabajo<a class="headerlink" href="#secuencia-de-trabajo" title="Permanent link">&para;</a></h2>
+<h1 id="introduccion-al-networking-en-proxmox-ve">Introducción al networking en Proxmox VE<a class="headerlink" href="#introduccion-al-networking-en-proxmox-ve" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Bloque 1 de 4:</strong> Introducción al networking · Networking avanzado · VPN · Escenarios avanzados de uso</p>
+</blockquote>
+<h2 id="0-ficha-de-la-unidad">0. Ficha de la unidad<a class="headerlink" href="#0-ficha-de-la-unidad" title="Permanent link">&para;</a></h2>
+<h3 id="finalidad">Finalidad<a class="headerlink" href="#finalidad" title="Permanent link">&para;</a></h3>
+<p>Esta unidad introduce el modelo de red de <strong>Proxmox Virtual Environment (Proxmox VE)</strong> mediante una combinación de explicación conceptual, observación del sistema y prácticas guiadas. El objetivo no es memorizar opciones de la interfaz, sino comprender <strong>cómo circula una trama desde una máquina virtual hasta otra máquina o hasta la red física</strong>.</p>
+<p>Al finalizar, el alumnado deberá ser capaz de:</p>
 <ol>
-<li>Identificar la configuracion de red inicial del nodo Proxmox.</li>
-<li>Analizar el papel de las interfaces, el bridge principal y la salida a red.</li>
-<li>Crear o adaptar una red virtual para maquinas del laboratorio.</li>
-<li>Introducir segmentacion con VLAN y comprobar conectividad.</li>
-<li>Relacionar cada elemento del laboratorio con su equivalente posterior en AWS.</li>
+<li>Identificar las interfaces físicas y virtuales de un nodo Proxmox.</li>
+<li>Explicar la función de un <em>Linux bridge</em> y compararlo con un switch Ethernet.</li>
+<li>Interpretar una configuración básica de <code>/etc/network/interfaces</code>.</li>
+<li>Crear una red virtual aislada para máquinas virtuales y contenedores.</li>
+<li>Conectar una máquina virtual a una red externa cuando el laboratorio lo permita.</li>
+<li>Seleccionar el modelo de tarjeta virtual adecuado.</li>
+<li>Verificar conectividad con herramientas de Linux.</li>
+<li>Aplicar un procedimiento sistemático de diagnóstico ante fallos de red.</li>
+<li>Documentar una topología mediante un esquema, una tabla de direccionamiento y evidencias de funcionamiento.</li>
 </ol>
-<h2 id="contenidos-orientativos-del-bloque-proxmox">Contenidos orientativos del bloque Proxmox<a class="headerlink" href="#contenidos-orientativos-del-bloque-proxmox" title="Permanent link">&para;</a></h2>
+<h3 id="conocimientos-previos-recomendados">Conocimientos previos recomendados<a class="headerlink" href="#conocimientos-previos-recomendados" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Introduccion a Proxmox Networking: componentes, bridges, zonas de red y topologias basicas.</li>
-<li>Network Configuration: configuracion inicial, bridges, direccionamiento, validacion y pruebas.</li>
-<li>VLAN Configuration: segmentacion, bridge VLAN-aware, etiquetado y escenarios de laboratorio.</li>
+<li>Direccionamiento IPv4 y notación CIDR.</li>
+<li>Diferencia entre dirección IP, máscara, puerta de enlace y DNS.</li>
+<li>Conceptos básicos de Ethernet, MAC, switch, router y broadcast.</li>
+<li>Manejo elemental de la terminal Linux.</li>
+<li>Creación básica de máquinas virtuales en Proxmox VE.</li>
 </ul>
-<h2 id="conexion-con-aws">Conexion con AWS<a class="headerlink" href="#conexion-con-aws" title="Permanent link">&para;</a></h2>
+<h3 id="distribucion-temporal-orientativa">Distribución temporal orientativa<a class="headerlink" href="#distribucion-temporal-orientativa" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Contenido</th>
+<th style="text-align: right;">Duración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Modelo de red de Proxmox y recorrido de los paquetes</td>
+<td style="text-align: right;">1 h</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Interfaces físicas, bridges e interfaces virtuales</td>
+<td style="text-align: right;">1 h</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Lectura de la configuración y herramientas de diagnóstico</td>
+<td style="text-align: right;">1 h</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Práctica 1: inventario y análisis de la red inicial</td>
+<td style="text-align: right;">1 h</td>
+</tr>
+<tr>
+<td>5-6</td>
+<td>Práctica 2: creación de una red virtual aislada</td>
+<td style="text-align: right;">2 h</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Práctica 3: conexión controlada a una red externa</td>
+<td style="text-align: right;">1-2 h</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Resolución de incidencias y reto final</td>
+<td style="text-align: right;">1-2 h</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-escenario-de-laboratorio">1. Escenario de laboratorio<a class="headerlink" href="#1-escenario-de-laboratorio" title="Permanent link">&para;</a></h2>
+<p>El material está diseñado para poder utilizarse en dos tipos de entorno:</p>
+<h3 id="escenario-a-proxmox-instalado-directamente-sobre-un-servidor-fisico">Escenario A. Proxmox instalado directamente sobre un servidor físico<a class="headerlink" href="#escenario-a-proxmox-instalado-directamente-sobre-un-servidor-fisico" title="Permanent link">&para;</a></h3>
+<p>El nodo Proxmox dispone de una o varias tarjetas de red físicas. Una de ellas se utiliza normalmente para:</p>
 <ul>
-<li>El bridge de Proxmox anticipa la idea de red virtual base.</li>
-<li>La segmentacion con VLAN prepara la comprension de subredes y dominios de aislamiento.</li>
-<li>Las pruebas de conectividad y rutas sirven como base para tablas de rutas, NACL y security groups.</li>
+<li>administrar el nodo;</li>
+<li>acceder a la interfaz web;</li>
+<li>conectar máquinas virtuales a la red del aula;</li>
+<li>proporcionar acceso a otros servicios de infraestructura.</li>
 </ul>
-<h2 id="actividades">Actividades<a class="headerlink" href="#actividades" title="Permanent link">&para;</a></h2>
+<h3 id="escenario-b-proxmox-virtualizado-para-cada-alumno">Escenario B. Proxmox virtualizado para cada alumno<a class="headerlink" href="#escenario-b-proxmox-virtualizado-para-cada-alumno" title="Permanent link">&para;</a></h3>
+<p>Cada alumno dispone de una máquina virtual que ejecuta Proxmox VE. Este modelo se conoce como <strong>virtualización anidada</strong> o <em>nested virtualization</em>.</p>
+<p>En este caso:</p>
 <ul>
-<li>Inventario comentado de la configuracion de red del nodo Proxmox.</li>
-<li>Diseno de un esquema con red de gestion, red de maquinas y una VLAN de laboratorio.</li>
-<li>Verificacion de conectividad entre VMs y analisis de aislamiento entre segmentos.</li>
-<li>Mapa de equivalencias entre elementos de Proxmox y conceptos que apareceran en AWS.</li>
+<li>la “tarjeta física” que ve el Proxmox del alumno es, en realidad, una tarjeta virtual proporcionada por el hipervisor principal;</li>
+<li>las interfaces pueden aparecer como <code>ens18</code>, <code>ens19</code>, <code>enp6s18</code> u otros nombres predecibles de Linux;</li>
+<li>las máquinas virtuales creadas dentro de ese Proxmox generan un segundo nivel de interfaces virtuales;</li>
+<li>la salida directa de las máquinas internas hacia la red del centro dependerá de la configuración del hipervisor principal, de los filtros de MAC y de la política de seguridad del laboratorio.</li>
 </ul>
+<blockquote>
+<p><strong>Recomendación docente:</strong> las primeras prácticas deben realizarse sobre bridges aislados. De esta forma, diez alumnos pueden crear sus propias topologías sin introducir direcciones IP, servidores DHCP o tráfico no controlado en la red real del centro.</p>
+</blockquote>
+<h3 id="recursos-minimos-por-alumno">Recursos mínimos por alumno<a class="headerlink" href="#recursos-minimos-por-alumno" title="Permanent link">&para;</a></h3>
+<p>Configuración orientativa para el Proxmox anidado:</p>
+<ul>
+<li>4 vCPU.</li>
+<li>12-16 GB de RAM.</li>
+<li>80-100 GB de disco con aprovisionamiento fino.</li>
+<li>1 interfaz para gestión.</li>
+<li>Una segunda interfaz virtual opcional para prácticas de conexión externa.</li>
+<li>Dos máquinas virtuales Linux ligeras para las pruebas.</li>
+</ul>
+<hr />
+<h2 id="2-el-problema-que-resuelve-el-networking-de-un-hipervisor">2. El problema que resuelve el networking de un hipervisor<a class="headerlink" href="#2-el-problema-que-resuelve-el-networking-de-un-hipervisor" title="Permanent link">&para;</a></h2>
+<p>En un equipo físico convencional, el sistema operativo utiliza una tarjeta de red para enviar y recibir datos. En un hipervisor aparecen nuevas preguntas:</p>
+<ul>
+<li>¿Cómo puede compartir una tarjeta física un conjunto de máquinas virtuales?</li>
+<li>¿Cómo se conectan dos máquinas virtuales sin salir del servidor?</li>
+<li>¿Cómo se aísla una red de laboratorio de la red del centro?</li>
+<li>¿Dónde se coloca la dirección IP de administración del hipervisor?</li>
+<li>¿Cómo se conectan máquinas virtuales a varias redes?</li>
+</ul>
+<p>Proxmox VE utiliza normalmente un modelo de <strong>red en puente</strong>. El elemento central es un <strong>Linux bridge</strong>, que realiza una función equivalente a la de un switch Ethernet software.</p>
+<p>Una primera representación sería:</p>
+<pre><code class="language-text">                         NODO PROXMOX
+
+ Red física                                      Máquinas virtuales
+     │
+     │ cable o enlace virtual
+     ▼
+┌──────────┐       ┌──────────────────┐       ┌──────────────┐
+│   eno1   │──────▶│      vmbr0       │◀──────│ tap100i0     │
+│ NIC host │       │  bridge Linux    │       │ NIC de VM100 │
+└──────────┘       │  &quot;switch virtual&quot;│       └──────┬───────┘
+                   │                  │              │
+                   │                  │       ┌──────▼───────┐
+                   │                  │       │ Sistema VM100│
+                   └─────────▲────────┘       └──────────────┘
+                             │
+                      ┌──────┴───────┐
+                      │ tap101i0     │
+                      │ NIC de VM101 │
+                      └──────────────┘
+</code></pre>
+<p>El bridge aprende direcciones MAC y reenvía tramas entre sus puertos, de forma parecida a un switch físico.</p>
+<hr />
+<h2 id="3-componentes-de-red-en-proxmox-ve">3. Componentes de red en Proxmox VE<a class="headerlink" href="#3-componentes-de-red-en-proxmox-ve" title="Permanent link">&para;</a></h2>
+<h3 id="31-interfaz-de-red-fisica">3.1. Interfaz de red física<a class="headerlink" href="#31-interfaz-de-red-fisica" title="Permanent link">&para;</a></h3>
+<p>Es la interfaz asociada a una tarjeta de red del servidor. Algunos nombres habituales son:</p>
+<ul>
+<li><code>eno1</code>, <code>eno2</code>: interfaces integradas en placa o identificadas por firmware;</li>
+<li><code>enp3s0</code>, <code>enp4s0f1</code>: interfaces identificadas por su posición PCI;</li>
+<li><code>ens18</code>: nombre frecuente en máquinas virtuales;</li>
+<li><code>eth0</code>: nomenclatura clásica, menos habitual en instalaciones modernas.</li>
+</ul>
+<p>Podemos consultar las interfaces con:</p>
+<pre><code class="language-bash">ip -br link
+</code></pre>
+<p>Ejemplo de salida:</p>
+<pre><code class="language-text">lo               UNKNOWN        00:00:00:00:00:00
+ens18            UP             bc:24:11:7a:20:10
+vmbr0            UP             bc:24:11:7a:20:10
+</code></pre>
+<p>La interfaz física suele configurarse con <code>inet manual</code> cuando forma parte de un bridge. La dirección IP de administración se configura en el bridge, no en el puerto físico que ha sido incorporado a él.</p>
+<h3 id="32-linux-bridge">3.2. Linux bridge<a class="headerlink" href="#32-linux-bridge" title="Permanent link">&para;</a></h3>
+<p>Un <strong>Linux bridge</strong> es un switch Ethernet implementado por software en el kernel de Linux. En Proxmox suele recibir nombres como:</p>
+<ul>
+<li><code>vmbr0</code>;</li>
+<li><code>vmbr1</code>;</li>
+<li><code>vmbr2</code>.</li>
+</ul>
+<p>Cada bridge crea un dominio de capa 2 independiente, salvo que se conecte a otros bridges, a una interfaz física o a un dispositivo de encaminamiento.</p>
+<p>Un bridge puede utilizarse de tres formas básicas:</p>
+<h4 id="a-bridge-conectado-a-una-interfaz-fisica">A. Bridge conectado a una interfaz física<a class="headerlink" href="#a-bridge-conectado-a-una-interfaz-fisica" title="Permanent link">&para;</a></h4>
+<pre><code class="language-text">VM ── vmbr0 ── ens18 ── red externa
+</code></pre>
+<p>Permite que las máquinas virtuales participen, si la infraestructura lo admite, en la red externa conectada a esa interfaz.</p>
+<h4 id="b-bridge-aislado">B. Bridge aislado<a class="headerlink" href="#b-bridge-aislado" title="Permanent link">&para;</a></h4>
+<pre><code class="language-text">VM1 ──┐
+      ├── vmbr1
+VM2 ──┘
+</code></pre>
+<p>No tiene puerto físico. Las máquinas conectadas pueden comunicarse entre sí, pero no salen de esa red sin un router o una configuración adicional.</p>
+<h4 id="c-bridge-con-direccion-ip-del-host">C. Bridge con dirección IP del host<a class="headerlink" href="#c-bridge-con-direccion-ip-del-host" title="Permanent link">&para;</a></h4>
+<pre><code class="language-text">Host Proxmox 10.20.10.1
+            │
+VM1 ───── vmbr1 ───── VM2
+</code></pre>
+<p>El propio nodo Proxmox participa en la red. Es útil para administración, pruebas, encaminamiento o servicios concretos, aunque debe utilizarse de forma planificada.</p>
+<h3 id="33-interfaces-virtuales-de-maquinas-kvm">3.3. Interfaces virtuales de máquinas KVM<a class="headerlink" href="#33-interfaces-virtuales-de-maquinas-kvm" title="Permanent link">&para;</a></h3>
+<p>Cuando una máquina virtual está encendida, Proxmox crea interfaces <code>tap</code> en el host. Un ejemplo es:</p>
+<pre><code class="language-text">tap100i0
+</code></pre>
+<p>Su nombre puede interpretarse así:</p>
+<ul>
+<li><code>100</code>: identificador de la máquina virtual;</li>
+<li><code>i0</code>: primera interfaz de red de esa máquina.</li>
+</ul>
+<p>Esta interfaz actúa como el extremo del cable virtual que conecta la tarjeta de la VM con el bridge.</p>
+<h3 id="34-interfaces-virtuales-de-contenedores-lxc">3.4. Interfaces virtuales de contenedores LXC<a class="headerlink" href="#34-interfaces-virtuales-de-contenedores-lxc" title="Permanent link">&para;</a></h3>
+<p>Los contenedores utilizan normalmente pares de interfaces virtuales <code>veth</code>. Un extremo queda en el host y el otro aparece dentro del espacio de red del contenedor.</p>
+<p>La idea funcional es la misma:</p>
+<pre><code class="language-text">Contenedor ── veth ── vmbrX
+</code></pre>
+<h3 id="35-tarjeta-de-red-que-ve-el-sistema-invitado">3.5. Tarjeta de red que ve el sistema invitado<a class="headerlink" href="#35-tarjeta-de-red-que-ve-el-sistema-invitado" title="Permanent link">&para;</a></h3>
+<p>Al añadir una interfaz a una VM, Proxmox permite seleccionar un modelo de hardware virtual. Los más comunes son:</p>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Uso recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VirtIO</code></td>
+<td>Opción preferente para Linux moderno y Windows con controladores VirtIO. Buen rendimiento y bajo consumo de CPU.</td>
+</tr>
+<tr>
+<td><code>E1000</code></td>
+<td>Emulación de una tarjeta Intel. Útil por compatibilidad con sistemas que no disponen de VirtIO.</td>
+</tr>
+<tr>
+<td><code>VMXNET3</code></td>
+<td>Puede ser útil en algunos sistemas con controladores compatibles.</td>
+</tr>
+<tr>
+<td><code>Realtek RTL8139</code></td>
+<td>Compatibilidad con sistemas antiguos; no es la opción habitual para nuevas máquinas.</td>
+</tr>
+</tbody>
+</table>
+<p>Para las prácticas del curso se utilizará <strong>VirtIO</strong>, salvo que el sistema invitado no disponga del controlador necesario.</p>
+<h3 id="36-direccion-mac">3.6. Dirección MAC<a class="headerlink" href="#36-direccion-mac" title="Permanent link">&para;</a></h3>
+<p>Cada interfaz virtual necesita una dirección MAC única dentro del dominio de capa 2. Proxmox puede generarla automáticamente.</p>
+<p>La MAC permite que el bridge aprenda en qué puerto se encuentra cada sistema. Puede consultarse con:</p>
+<pre><code class="language-bash">bridge fdb show br vmbr0
+</code></pre>
+<p>La tabla FDB (<em>Forwarding Database</em>) de un bridge cumple una función semejante a la tabla MAC de un switch.</p>
+<h3 id="37-direccion-ip-gateway-y-dns">3.7. Dirección IP, gateway y DNS<a class="headerlink" href="#37-direccion-ip-gateway-y-dns" title="Permanent link">&para;</a></h3>
+<p>Proxmox conecta interfaces en capa 2, pero la configuración IP de la VM depende normalmente del sistema operativo invitado.</p>
+<p>Conviene separar claramente:</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dirección MAC</td>
+<td>Identifica la interfaz dentro de la red Ethernet.</td>
+</tr>
+<tr>
+<td>Dirección IP</td>
+<td>Identifica lógicamente al equipo en una red IP.</td>
+</tr>
+<tr>
+<td>Máscara/prefijo</td>
+<td>Determina qué destinos se consideran locales.</td>
+</tr>
+<tr>
+<td>Gateway</td>
+<td>Router utilizado para llegar a otras redes.</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>Traduce nombres a direcciones IP.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Regla esencial:</strong> dos equipos de la misma subred pueden comunicarse a través del bridge sin gateway. El gateway solo es necesario para alcanzar redes diferentes.</p>
+</blockquote>
+<hr />
+<h2 id="4-recorrido-de-una-trama">4. Recorrido de una trama<a class="headerlink" href="#4-recorrido-de-una-trama" title="Permanent link">&para;</a></h2>
+<p>Supongamos dos máquinas virtuales conectadas a <code>vmbr1</code>:</p>
+<ul>
+<li><code>vm-a</code>: <code>10.20.10.11/24</code>;</li>
+<li><code>vm-b</code>: <code>10.20.10.12/24</code>.</li>
+</ul>
+<p>Cuando <code>vm-a</code> ejecuta:</p>
+<pre><code class="language-bash">ping 10.20.10.12
+</code></pre>
+<p>ocurre, de forma simplificada, lo siguiente:</p>
+<ol>
+<li><code>vm-a</code> comprueba que <code>10.20.10.12</code> pertenece a su subred local.</li>
+<li>Si desconoce la MAC de <code>vm-b</code>, envía una solicitud ARP en broadcast.</li>
+<li>La trama entra en la interfaz virtual asociada a <code>vm-a</code>.</li>
+<li><code>vmbr1</code> reenvía el broadcast a los demás puertos del bridge.</li>
+<li><code>vm-b</code> responde indicando su dirección MAC.</li>
+<li>Ambas máquinas almacenan temporalmente la relación IP-MAC.</li>
+<li>Los paquetes ICMP posteriores viajan como tramas unicast entre ambos puertos del bridge.</li>
+</ol>
+<p>La trama no necesita salir por una interfaz física. Toda la comunicación puede permanecer dentro del nodo Proxmox.</p>
+<p>Podemos observar el tráfico desde el host con:</p>
+<pre><code class="language-bash">tcpdump -eni vmbr1 arp or icmp
+</code></pre>
+<hr />
+<h2 id="5-configuracion-de-red-del-nodo">5. Configuración de red del nodo<a class="headerlink" href="#5-configuracion-de-red-del-nodo" title="Permanent link">&para;</a></h2>
+<p>Proxmox permite administrar la red desde:</p>
+<ol>
+<li>la interfaz web;</li>
+<li>la consola o SSH;</li>
+<li>el archivo <code>/etc/network/interfaces</code>.</li>
+</ol>
+<h3 id="51-interfaz-web">5.1. Interfaz web<a class="headerlink" href="#51-interfaz-web" title="Permanent link">&para;</a></h3>
+<p>Ruta habitual:</p>
+<pre><code class="language-text">Nodo Proxmox → System → Network
+</code></pre>
+<p>Desde esta pantalla se pueden crear o editar:</p>
+<ul>
+<li>Linux bridges;</li>
+<li>bonds;</li>
+<li>VLAN;</li>
+<li>interfaces de red;</li>
+<li>otros tipos de dispositivos soportados.</li>
+</ul>
+<p>Tras guardar cambios, Proxmox muestra la configuración pendiente. En instalaciones modernas con <code>ifupdown2</code>, la opción <strong>Apply Configuration</strong> permite aplicar muchos cambios sin reiniciar el nodo.</p>
+<blockquote>
+<p><strong>Advertencia:</strong> una configuración incorrecta de la interfaz de administración puede cortar el acceso web y SSH. Las modificaciones importantes deben realizarse con acceso a la consola del nodo o con un mecanismo de recuperación disponible.</p>
+</blockquote>
+<h3 id="52-archivo-etcnetworkinterfaces">5.2. Archivo <code>/etc/network/interfaces</code><a class="headerlink" href="#52-archivo-etcnetworkinterfaces" title="Permanent link">&para;</a></h3>
+<p>Una configuración básica puede tener este aspecto:</p>
+<pre><code class="language-ini">auto lo
+iface lo inet loopback
+
+iface ens18 inet manual
+
+auto vmbr0
+iface vmbr0 inet static
+        address 192.168.50.20/24
+        gateway 192.168.50.1
+        bridge-ports ens18
+        bridge-stp off
+        bridge-fd 0
+
+source /etc/network/interfaces.d/*
+</code></pre>
+<h4 id="lectura-linea-a-linea">Lectura línea a línea<a class="headerlink" href="#lectura-linea-a-linea" title="Permanent link">&para;</a></h4>
+<pre><code class="language-ini">auto lo
+iface lo inet loopback
+</code></pre>
+<p>Configura la interfaz de loopback.</p>
+<pre><code class="language-ini">iface ens18 inet manual
+</code></pre>
+<p>La interfaz <code>ens18</code> no recibe una configuración IP propia. Se utilizará como puerto del bridge.</p>
+<pre><code class="language-ini">auto vmbr0
+</code></pre>
+<p>Indica que <code>vmbr0</code> debe levantarse automáticamente.</p>
+<pre><code class="language-ini">iface vmbr0 inet static
+</code></pre>
+<p>El bridge tendrá configuración IPv4 estática.</p>
+<pre><code class="language-ini">address 192.168.50.20/24
+</code></pre>
+<p>Dirección de administración del nodo.</p>
+<pre><code class="language-ini">gateway 192.168.50.1
+</code></pre>
+<p>Puerta de enlace predeterminada del nodo.</p>
+<pre><code class="language-ini">bridge-ports ens18
+</code></pre>
+<p>Añade <code>ens18</code> como puerto del bridge.</p>
+<pre><code class="language-ini">bridge-stp off
+bridge-fd 0
+</code></pre>
+<p>Desactiva STP y establece el retardo de reenvío a cero en este escenario sencillo. En topologías redundantes, estas decisiones deben revisarse.</p>
+<h4 id="copia-de-seguridad-antes-de-modificar">Copia de seguridad antes de modificar<a class="headerlink" href="#copia-de-seguridad-antes-de-modificar" title="Permanent link">&para;</a></h4>
+<pre><code class="language-bash">cp /etc/network/interfaces \
+  /root/interfaces.backup.$(date +%F-%H%M%S)
+</code></pre>
+<h4 id="validacion-visual">Validación visual<a class="headerlink" href="#validacion-visual" title="Permanent link">&para;</a></h4>
+<pre><code class="language-bash">cat /etc/network/interfaces
+</code></pre>
+<h4 id="aplicacion-desde-consola">Aplicación desde consola<a class="headerlink" href="#aplicacion-desde-consola" title="Permanent link">&para;</a></h4>
+<pre><code class="language-bash">ifreload -a
+</code></pre>
+<p>Esta operación debe realizarse con precaución. Un error de sintaxis o direccionamiento puede dejar inaccesible el nodo.</p>
+<hr />
+<h2 id="6-herramientas-basicas-de-observacion-y-diagnostico">6. Herramientas básicas de observación y diagnóstico<a class="headerlink" href="#6-herramientas-basicas-de-observacion-y-diagnostico" title="Permanent link">&para;</a></h2>
+<h3 id="61-estado-resumido-de-interfaces">6.1. Estado resumido de interfaces<a class="headerlink" href="#61-estado-resumido-de-interfaces" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ip -br link
+ip -br address
+</code></pre>
+<p>Permiten comprobar rápidamente:</p>
+<ul>
+<li>nombre de la interfaz;</li>
+<li>estado <code>UP</code> o <code>DOWN</code>;</li>
+<li>dirección MAC;</li>
+<li>direcciones IP asignadas.</li>
+</ul>
+<h3 id="62-tabla-de-rutas">6.2. Tabla de rutas<a class="headerlink" href="#62-tabla-de-rutas" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ip route
+</code></pre>
+<p>Ejemplo:</p>
+<pre><code class="language-text">default via 192.168.50.1 dev vmbr0
+192.168.50.0/24 dev vmbr0 proto kernel scope link src 192.168.50.20
+</code></pre>
+<p>Interpretación:</p>
+<ul>
+<li>el tráfico a <code>192.168.50.0/24</code> se entrega directamente por <code>vmbr0</code>;</li>
+<li>el resto se envía al gateway <code>192.168.50.1</code>.</li>
+</ul>
+<h3 id="63-puertos-de-los-bridges">6.3. Puertos de los bridges<a class="headerlink" href="#63-puertos-de-los-bridges" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">bridge link
+</code></pre>
+<p>También puede utilizarse:</p>
+<pre><code class="language-bash">ip link show master vmbr0
+</code></pre>
+<h3 id="64-tabla-mac-del-bridge">6.4. Tabla MAC del bridge<a class="headerlink" href="#64-tabla-mac-del-bridge" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">bridge fdb show br vmbr0
+</code></pre>
+<h3 id="65-vecinos-arpnd">6.5. Vecinos ARP/ND<a class="headerlink" href="#65-vecinos-arpnd" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ip neigh
+</code></pre>
+<h3 id="66-pruebas-de-conectividad">6.6. Pruebas de conectividad<a class="headerlink" href="#66-pruebas-de-conectividad" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ping -c 4 DIRECCION_IP
+</code></pre>
+<p>Para observar la ruta:</p>
+<pre><code class="language-bash">traceroute DIRECCION_IP
+</code></pre>
+<p>Si <code>traceroute</code> no está instalado, puede utilizarse:</p>
+<pre><code class="language-bash">tracepath DIRECCION_IP
+</code></pre>
+<h3 id="67-captura-de-trafico">6.7. Captura de tráfico<a class="headerlink" href="#67-captura-de-trafico" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">tcpdump -eni vmbr1
+</code></pre>
+<p>Filtros útiles:</p>
+<pre><code class="language-bash">tcpdump -eni vmbr1 arp
+tcpdump -eni vmbr1 icmp
+tcpdump -eni vmbr1 'host 10.20.10.11'
+tcpdump -eni vmbr1 'port 53'
+</code></pre>
+<h3 id="68-configuracion-de-red-de-una-vm-o-contenedor">6.8. Configuración de red de una VM o contenedor<a class="headerlink" href="#68-configuracion-de-red-de-una-vm-o-contenedor" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">qm config 100
+pct config 200
+</code></pre>
+<p>Para mostrar solo las interfaces:</p>
+<pre><code class="language-bash">qm config 100 | grep '^net'
+pct config 200 | grep '^net'
+</code></pre>
+<hr />
+<h2 id="7-practica-guiada-1-inventario-de-la-red-inicial">7. Práctica guiada 1: inventario de la red inicial<a class="headerlink" href="#7-practica-guiada-1-inventario-de-la-red-inicial" title="Permanent link">&para;</a></h2>
+<h3 id="71-objetivos">7.1. Objetivos<a class="headerlink" href="#71-objetivos" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Identificar las interfaces del nodo.</li>
+<li>Localizar la interfaz utilizada para la administración.</li>
+<li>Interpretar la configuración de <code>vmbr0</code>.</li>
+<li>Relacionar la vista web con la configuración Linux.</li>
+</ul>
+<h3 id="72-precauciones">7.2. Precauciones<a class="headerlink" href="#72-precauciones" title="Permanent link">&para;</a></h3>
+<p>En esta práctica no se modificará <code>vmbr0</code>. El alumnado se limitará a observar y documentar.</p>
+<h3 id="73-paso-1-acceder-al-panel-de-red">7.3. Paso 1. Acceder al panel de red<a class="headerlink" href="#73-paso-1-acceder-al-panel-de-red" title="Permanent link">&para;</a></h3>
+<p>En la interfaz web:</p>
+<pre><code class="language-text">Nodo → System → Network
+</code></pre>
+<p>Anota:</p>
+<ul>
+<li>nombre de la interfaz de gestión;</li>
+<li>dirección IP del nodo;</li>
+<li>puerta de enlace;</li>
+<li>nombre del bridge principal;</li>
+<li>puerto asociado al bridge.</li>
+</ul>
+<h3 id="74-paso-2-consultar-interfaces-desde-la-consola">7.4. Paso 2. Consultar interfaces desde la consola<a class="headerlink" href="#74-paso-2-consultar-interfaces-desde-la-consola" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ip -br link
+ip -br addr
+</code></pre>
+<p>Completa una tabla como la siguiente:</p>
+<table>
+<thead>
+<tr>
+<th>Interfaz</th>
+<th>Tipo estimado</th>
+<th>Estado</th>
+<th>MAC</th>
+<th>IP/prefijo</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lo</code></td>
+<td>Loopback</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Comunicación local</td>
+</tr>
+<tr>
+<td><code>ens18</code></td>
+<td>Física/virtual del host</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Puerto de <code>vmbr0</code></td>
+</tr>
+<tr>
+<td><code>vmbr0</code></td>
+<td>Linux bridge</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Gestión del nodo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="75-paso-3-consultar-la-ruta-predeterminada">7.5. Paso 3. Consultar la ruta predeterminada<a class="headerlink" href="#75-paso-3-consultar-la-ruta-predeterminada" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ip route
+</code></pre>
+<p>Responde:</p>
+<ol>
+<li>¿Qué interfaz utiliza la ruta por defecto?</li>
+<li>¿Cuál es el gateway?</li>
+<li>¿En qué red está la dirección de administración?</li>
+</ol>
+<h3 id="76-paso-4-leer-el-archivo-de-configuracion">7.6. Paso 4. Leer el archivo de configuración<a class="headerlink" href="#76-paso-4-leer-el-archivo-de-configuracion" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">cat /etc/network/interfaces
+</code></pre>
+<p>Localiza:</p>
+<ul>
+<li><code>iface ... inet manual</code>;</li>
+<li><code>auto vmbr0</code>;</li>
+<li><code>address</code>;</li>
+<li><code>gateway</code>;</li>
+<li><code>bridge-ports</code>.</li>
+</ul>
+<h3 id="77-paso-5-dibujar-la-topologia">7.7. Paso 5. Dibujar la topología<a class="headerlink" href="#77-paso-5-dibujar-la-topologia" title="Permanent link">&para;</a></h3>
+<p>Ejemplo:</p>
+<pre><code class="language-mermaid">flowchart LR
+    ADMIN[Equipo del alumno] --&gt; RED[Red de gestión]
+    RED --&gt; NIC[ens18]
+    NIC --&gt; BR[vmbr0]
+    BR --&gt; HOST[IP de Proxmox]
+</code></pre>
+<h3 id="78-evidencias-a-entregar">7.8. Evidencias a entregar<a class="headerlink" href="#78-evidencias-a-entregar" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Tabla de interfaces cumplimentada.</li>
+<li>Salida de <code>ip -br addr</code>.</li>
+<li>Salida de <code>ip route</code>.</li>
+<li>Fragmento relevante de <code>/etc/network/interfaces</code>.</li>
+<li>Diagrama de la topología.</li>
+<li>Explicación de cinco líneas: “¿Por qué la IP está en <code>vmbr0</code> y no en <code>ens18</code>?”.</li>
+</ul>
+<hr />
+<h2 id="8-practica-guiada-2-red-virtual-aislada">8. Práctica guiada 2: red virtual aislada<a class="headerlink" href="#8-practica-guiada-2-red-virtual-aislada" title="Permanent link">&para;</a></h2>
+<h3 id="81-objetivos">8.1. Objetivos<a class="headerlink" href="#81-objetivos" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Crear un bridge sin interfaz física.</li>
+<li>Conectar dos máquinas virtuales a la misma red aislada.</li>
+<li>Configurar direccionamiento IPv4.</li>
+<li>Comprobar ARP e ICMP.</li>
+<li>Capturar tráfico desde el nodo Proxmox.</li>
+</ul>
+<h3 id="82-topologia">8.2. Topología<a class="headerlink" href="#82-topologia" title="Permanent link">&para;</a></h3>
+<pre><code class="language-mermaid">flowchart LR
+    VM1[vm-a&lt;br/&gt;10.20.10.11/24] --- BR[vmbr1&lt;br/&gt;bridge aislado]
+    VM2[vm-b&lt;br/&gt;10.20.10.12/24] --- BR
+</code></pre>
+<p>Características:</p>
+<ul>
+<li>Red: <code>10.20.10.0/24</code>.</li>
+<li>No se configura gateway.</li>
+<li>No se configura DNS.</li>
+<li>El bridge no tiene puerto físico.</li>
+<li>El nodo Proxmox no necesita dirección IP en <code>vmbr1</code> para que las dos VMs se comuniquen.</li>
+</ul>
+<h3 id="83-paso-0-preparar-las-maquinas">8.3. Paso 0. Preparar las máquinas<a class="headerlink" href="#83-paso-0-preparar-las-maquinas" title="Permanent link">&para;</a></h3>
+<p>Se necesitan dos VMs Linux ligeras. Ejemplo:</p>
+<table>
+<thead>
+<tr>
+<th>VM</th>
+<th style="text-align: right;">VMID</th>
+<th style="text-align: right;">RAM</th>
+<th style="text-align: right;">vCPU</th>
+<th style="text-align: right;">Disco</th>
+<th>Interfaz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vm-a</code></td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">1-2 GB</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8-16 GB</td>
+<td>VirtIO</td>
+</tr>
+<tr>
+<td><code>vm-b</code></td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">1-2 GB</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8-16 GB</td>
+<td>VirtIO</td>
+</tr>
+</tbody>
+</table>
+<p>Pueden utilizarse clones vinculados de una plantilla para reducir consumo de disco y tiempo de despliegue.</p>
+<h3 id="84-paso-1-crear-vmbr1-desde-la-interfaz-web">8.4. Paso 1. Crear <code>vmbr1</code> desde la interfaz web<a class="headerlink" href="#84-paso-1-crear-vmbr1-desde-la-interfaz-web" title="Permanent link">&para;</a></h3>
+<p>Ruta:</p>
+<pre><code class="language-text">Nodo → System → Network → Create → Linux Bridge
+</code></pre>
+<p>Valores:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td><code>vmbr1</code></td>
+</tr>
+<tr>
+<td>IPv4/CIDR</td>
+<td>vacío</td>
+</tr>
+<tr>
+<td>Gateway IPv4</td>
+<td>vacío</td>
+</tr>
+<tr>
+<td>Bridge ports</td>
+<td>vacío</td>
+</tr>
+<tr>
+<td>Autostart</td>
+<td>activado</td>
+</tr>
+<tr>
+<td>VLAN aware</td>
+<td>desactivado para esta práctica</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td><code>Red aislada laboratorio</code></td>
+</tr>
+</tbody>
+</table>
+<p>Guarda la configuración y revisa los cambios pendientes.</p>
+<h3 id="85-paso-2-revisar-la-configuracion-generada">8.5. Paso 2. Revisar la configuración generada<a class="headerlink" href="#85-paso-2-revisar-la-configuracion-generada" title="Permanent link">&para;</a></h3>
+<p>El fragmento esperado es equivalente a:</p>
+<pre><code class="language-ini">auto vmbr1
+iface vmbr1 inet manual
+        bridge-ports none
+        bridge-stp off
+        bridge-fd 0
+        # Red aislada laboratorio
+</code></pre>
+<p>Aplica la configuración desde la interfaz web. Mantén disponible la consola por si se produce un error.</p>
+<h3 id="86-paso-3-verificar-el-bridge">8.6. Paso 3. Verificar el bridge<a class="headerlink" href="#86-paso-3-verificar-el-bridge" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ip -br link show vmbr1
+</code></pre>
+<p>También:</p>
+<pre><code class="language-bash">bridge link
+</code></pre>
+<p>Antes de encender las VMs, <code>vmbr1</code> puede no mostrar interfaces <code>tap</code> asociadas.</p>
+<h3 id="87-paso-4-conectar-las-maquinas-virtuales">8.7. Paso 4. Conectar las máquinas virtuales<a class="headerlink" href="#87-paso-4-conectar-las-maquinas-virtuales" title="Permanent link">&para;</a></h3>
+<p>Para cada VM:</p>
+<pre><code class="language-text">VM → Hardware → Add → Network Device
+</code></pre>
+<p>Selecciona:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bridge</td>
+<td><code>vmbr1</code></td>
+</tr>
+<tr>
+<td>Model</td>
+<td><code>VirtIO (paravirtualized)</code></td>
+</tr>
+<tr>
+<td>VLAN Tag</td>
+<td>vacío</td>
+</tr>
+<tr>
+<td>Firewall</td>
+<td>según política del laboratorio; para la primera prueba puede mantenerse sin reglas específicas</td>
+</tr>
+</tbody>
+</table>
+<p>Si la VM tenía otra interfaz y no se necesita, puede retirarse o mantenerse claramente identificada. Para evitar confusiones en la práctica inicial, es preferible que cada VM tenga una sola NIC conectada a <code>vmbr1</code>.</p>
+<h3 id="88-paso-5-encender-las-vms-y-observar-interfaces-tap">8.8. Paso 5. Encender las VMs y observar interfaces <code>tap</code><a class="headerlink" href="#88-paso-5-encender-las-vms-y-observar-interfaces-tap" title="Permanent link">&para;</a></h3>
+<p>En el nodo:</p>
+<pre><code class="language-bash">ip -br link | grep tap
+bridge link
+</code></pre>
+<p>Deberían aparecer interfaces semejantes a:</p>
+<pre><code class="language-text">tap110i0
+ tap120i0
+</code></pre>
+<p>Comprueba que ambas pertenecen a <code>vmbr1</code>.</p>
+<h3 id="89-paso-6-configurar-ip-temporal-dentro-de-las-vms">8.9. Paso 6. Configurar IP temporal dentro de las VMs<a class="headerlink" href="#89-paso-6-configurar-ip-temporal-dentro-de-las-vms" title="Permanent link">&para;</a></h3>
+<p>Primero identifica la interfaz:</p>
+<pre><code class="language-bash">ip -br link
+</code></pre>
+<p>En <code>vm-a</code>:</p>
+<pre><code class="language-bash">sudo ip link set dev ens18 up
+sudo ip address add 10.20.10.11/24 dev ens18
+</code></pre>
+<p>En <code>vm-b</code>:</p>
+<pre><code class="language-bash">sudo ip link set dev ens18 up
+sudo ip address add 10.20.10.12/24 dev ens18
+</code></pre>
+<blockquote>
+<p>El nombre de la interfaz dentro de la VM puede ser diferente. Sustituye <code>ens18</code> por el nombre real.</p>
+</blockquote>
+<p>Comprueba:</p>
+<pre><code class="language-bash">ip -br addr
+ip route
+</code></pre>
+<p>La configuración realizada con <code>ip address add</code> es temporal y se perderá al reiniciar. Esto resulta útil para una primera prueba porque evita depender del gestor de red de cada distribución.</p>
+<h3 id="810-paso-7-probar-conectividad">8.10. Paso 7. Probar conectividad<a class="headerlink" href="#810-paso-7-probar-conectividad" title="Permanent link">&para;</a></h3>
+<p>Desde <code>vm-a</code>:</p>
+<pre><code class="language-bash">ping -c 4 10.20.10.12
+</code></pre>
+<p>Desde <code>vm-b</code>:</p>
+<pre><code class="language-bash">ping -c 4 10.20.10.11
+</code></pre>
+<p>Resultado esperado: respuesta correcta en ambos sentidos.</p>
+<h3 id="811-paso-8-consultar-la-tabla-de-vecinos">8.11. Paso 8. Consultar la tabla de vecinos<a class="headerlink" href="#811-paso-8-consultar-la-tabla-de-vecinos" title="Permanent link">&para;</a></h3>
+<p>Dentro de cada VM:</p>
+<pre><code class="language-bash">ip neigh
+</code></pre>
+<p>Deberá aparecer la IP de la otra VM asociada a una dirección MAC.</p>
+<h3 id="812-paso-9-observar-arp-e-icmp-desde-proxmox">8.12. Paso 9. Observar ARP e ICMP desde Proxmox<a class="headerlink" href="#812-paso-9-observar-arp-e-icmp-desde-proxmox" title="Permanent link">&para;</a></h3>
+<p>En el nodo Proxmox:</p>
+<pre><code class="language-bash">tcpdump -eni vmbr1 arp or icmp
+</code></pre>
+<p>Limpia antes la entrada ARP de una VM para volver a observar el proceso:</p>
+<pre><code class="language-bash">sudo ip neigh flush dev ens18
+</code></pre>
+<p>Después repite el <code>ping</code>.</p>
+<p>Identifica en la captura:</p>
+<ol>
+<li>solicitud ARP;</li>
+<li>respuesta ARP;</li>
+<li><code>ICMP echo request</code>;</li>
+<li><code>ICMP echo reply</code>.</li>
+</ol>
+<h3 id="813-paso-10-verificar-aprendizaje-de-mac">8.13. Paso 10. Verificar aprendizaje de MAC<a class="headerlink" href="#813-paso-10-verificar-aprendizaje-de-mac" title="Permanent link">&para;</a></h3>
+<p>En Proxmox:</p>
+<pre><code class="language-bash">bridge fdb show br vmbr1
+</code></pre>
+<p>Relaciona las MAC aprendidas con las MAC mostradas en la configuración de cada VM.</p>
+<h3 id="814-configuracion-persistente-en-debian-mediante-systemd-networkd">8.14. Configuración persistente en Debian mediante systemd-networkd<a class="headerlink" href="#814-configuracion-persistente-en-debian-mediante-systemd-networkd" title="Permanent link">&para;</a></h3>
+<p>Ejemplo para <code>vm-a</code>, si la distribución utiliza <code>systemd-networkd</code>:</p>
+<pre><code class="language-ini"># /etc/systemd/network/20-lab.network
+[Match]
+Name=ens18
+
+[Network]
+Address=10.20.10.11/24
+</code></pre>
+<p>Después:</p>
+<pre><code class="language-bash">sudo systemctl restart systemd-networkd
+</code></pre>
+<p>En <code>vm-b</code>, cambia la dirección a <code>10.20.10.12/24</code>.</p>
+<blockquote>
+<p>La forma de persistir la red cambia según la distribución: NetworkManager, Netplan, <code>/etc/network/interfaces</code> o <code>systemd-networkd</code>. El profesorado debe adaptar este apartado a la imagen base empleada.</p>
+</blockquote>
+<h3 id="815-preguntas-de-reflexion">8.15. Preguntas de reflexión<a class="headerlink" href="#815-preguntas-de-reflexion" title="Permanent link">&para;</a></h3>
+<ol>
+<li>¿Por qué las VMs pueden comunicarse sin gateway?</li>
+<li>¿Por qué no pueden acceder a Internet?</li>
+<li>¿Qué diferencia existe entre <code>vmbr1</code> y <code>tap110i0</code>?</li>
+<li>¿Qué ocurriría si <code>vm-a</code> utilizase <code>/25</code> y <code>vm-b</code> <code>/24</code>?</li>
+<li>¿Qué problema produciría asignar la misma IP a ambas máquinas?</li>
+<li>¿Aparecen las interfaces <code>tap</code> cuando las VMs están apagadas?</li>
+</ol>
+<h3 id="816-evidencias-a-entregar">8.16. Evidencias a entregar<a class="headerlink" href="#816-evidencias-a-entregar" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Captura o exportación de la configuración de <code>vmbr1</code>.</li>
+<li>Configuración de las NIC de las dos VMs.</li>
+<li>Salida de <code>ip -br addr</code> en ambas VMs.</li>
+<li>Ping correcto.</li>
+<li>Captura de <code>tcpdump</code> con ARP e ICMP.</li>
+<li>Tabla FDB del bridge.</li>
+<li>Diagrama final de la red.</li>
+</ul>
+<hr />
+<h2 id="9-practica-guiada-3-conexion-controlada-a-una-red-externa">9. Práctica guiada 3: conexión controlada a una red externa<a class="headerlink" href="#9-practica-guiada-3-conexion-controlada-a-una-red-externa" title="Permanent link">&para;</a></h2>
+<h3 id="91-finalidad">9.1. Finalidad<a class="headerlink" href="#91-finalidad" title="Permanent link">&para;</a></h3>
+<p>Esta práctica permite comprender cómo un bridge enlaza las máquinas virtuales con una red situada fuera del nodo Proxmox.</p>
+<blockquote>
+<p><strong>Solo debe realizarse en una red de laboratorio autorizada.</strong> No debe conectarse una VM directamente a la red corporativa o educativa sin conocer la política de direccionamiento, DHCP, filtrado de MAC, VLAN y seguridad.</p>
+</blockquote>
+<h3 id="92-topologia">9.2. Topología<a class="headerlink" href="#92-topologia" title="Permanent link">&para;</a></h3>
+<pre><code class="language-mermaid">flowchart LR
+    VM[VM Linux] --- BR[vmbr0]
+    BR --- NIC[ens18]
+    NIC --- LAB[Red externa de laboratorio]
+    LAB --- GW[Gateway / DHCP]
+</code></pre>
+<h3 id="93-comprobaciones-previas">9.3. Comprobaciones previas<a class="headerlink" href="#93-comprobaciones-previas" title="Permanent link">&para;</a></h3>
+<p>El docente debe confirmar:</p>
+<ul>
+<li>que <code>vmbr0</code> está conectado a la red adecuada;</li>
+<li>que la red permite las MAC de las VMs internas;</li>
+<li>que existe un rango de direcciones reservado o un DHCP de laboratorio;</li>
+<li>que no se producirá conflicto con la red del centro;</li>
+<li>que el hipervisor exterior permite el tráfico de las MAC anidadas, si se usa virtualización anidada.</li>
+</ul>
+<h3 id="94-paso-1-examinar-vmbr0">9.4. Paso 1. Examinar <code>vmbr0</code><a class="headerlink" href="#94-paso-1-examinar-vmbr0" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ip -br addr show vmbr0
+ip link show master vmbr0
+ip route
+</code></pre>
+<p>Confirma que el puerto físico o virtual correcto pertenece al bridge.</p>
+<h3 id="95-paso-2-conectar-una-vm">9.5. Paso 2. Conectar una VM<a class="headerlink" href="#95-paso-2-conectar-una-vm" title="Permanent link">&para;</a></h3>
+<p>En la VM:</p>
+<pre><code class="language-text">Hardware → Add → Network Device
+</code></pre>
+<ul>
+<li>Bridge: <code>vmbr0</code>.</li>
+<li>Model: <code>VirtIO</code>.</li>
+<li>VLAN Tag: vacío, salvo indicación del docente.</li>
+</ul>
+<h3 id="96-paso-3a-obtener-direccion-por-dhcp">9.6. Paso 3A. Obtener dirección por DHCP<a class="headerlink" href="#96-paso-3a-obtener-direccion-por-dhcp" title="Permanent link">&para;</a></h3>
+<p>Dentro de la VM, según distribución:</p>
+<pre><code class="language-bash">sudo dhclient -v ens18
+</code></pre>
+<p>O activa el perfil DHCP del gestor de red correspondiente.</p>
+<p>Comprueba:</p>
+<pre><code class="language-bash">ip -br addr
+ip route
+cat /etc/resolv.conf
+</code></pre>
+<h3 id="97-paso-3b-configuracion-estatica">9.7. Paso 3B. Configuración estática<a class="headerlink" href="#97-paso-3b-configuracion-estatica" title="Permanent link">&para;</a></h3>
+<p>Ejemplo exclusivamente ilustrativo:</p>
+<pre><code class="language-text">IP:       192.168.60.51/24
+Gateway:  192.168.60.1
+DNS:      192.168.60.1
+</code></pre>
+<p>El direccionamiento real debe proporcionarlo el docente.</p>
+<h3 id="98-paso-4-pruebas-por-niveles">9.8. Paso 4. Pruebas por niveles<a class="headerlink" href="#98-paso-4-pruebas-por-niveles" title="Permanent link">&para;</a></h3>
+<p>Realiza las pruebas en este orden:</p>
+<h4 id="nivel-1-enlace-e-interfaz">Nivel 1. Enlace e interfaz<a class="headerlink" href="#nivel-1-enlace-e-interfaz" title="Permanent link">&para;</a></h4>
+<pre><code class="language-bash">ip -br link
+</code></pre>
+<h4 id="nivel-2-direccion-local">Nivel 2. Dirección local<a class="headerlink" href="#nivel-2-direccion-local" title="Permanent link">&para;</a></h4>
+<pre><code class="language-bash">ip -br addr
+</code></pre>
+<h4 id="nivel-3-gateway">Nivel 3. Gateway<a class="headerlink" href="#nivel-3-gateway" title="Permanent link">&para;</a></h4>
+<pre><code class="language-bash">ping -c 4 192.168.60.1
+</code></pre>
+<h4 id="nivel-4-direccion-remota">Nivel 4. Dirección remota<a class="headerlink" href="#nivel-4-direccion-remota" title="Permanent link">&para;</a></h4>
+<pre><code class="language-bash">ping -c 4 1.1.1.1
+</code></pre>
+<h4 id="nivel-5-resolucion-dns">Nivel 5. Resolución DNS<a class="headerlink" href="#nivel-5-resolucion-dns" title="Permanent link">&para;</a></h4>
+<pre><code class="language-bash">getent hosts example.com
+</code></pre>
+<h4 id="nivel-6-servicio-de-aplicacion">Nivel 6. Servicio de aplicación<a class="headerlink" href="#nivel-6-servicio-de-aplicacion" title="Permanent link">&para;</a></h4>
+<pre><code class="language-bash">curl -I https://example.com
+</code></pre>
+<p>La secuencia permite separar un fallo de enlace, direccionamiento, ruta, DNS o aplicación.</p>
+<h3 id="99-alternativa-segura-para-entornos-anidados">9.9. Alternativa segura para entornos anidados<a class="headerlink" href="#99-alternativa-segura-para-entornos-anidados" title="Permanent link">&para;</a></h3>
+<p>Si no se permite que las VMs internas aparezcan directamente en la red exterior, el docente puede proporcionar:</p>
+<ul>
+<li>una segunda red virtual cerrada en el hipervisor principal;</li>
+<li>un router virtual controlado;</li>
+<li>una VM de servicios con DHCP y DNS de laboratorio;</li>
+<li>una salida mediante NAT, que se desarrollará en el bloque de networking avanzado.</li>
+</ul>
+<hr />
+<h2 id="10-diferencia-entre-red-de-gestion-y-redes-de-maquinas-virtuales">10. Diferencia entre red de gestión y redes de máquinas virtuales<a class="headerlink" href="#10-diferencia-entre-red-de-gestion-y-redes-de-maquinas-virtuales" title="Permanent link">&para;</a></h2>
+<p>En una instalación sencilla, la gestión del nodo y las VMs pueden compartir <code>vmbr0</code>. Sin embargo, conceptualmente deben distinguirse:</p>
+<table>
+<thead>
+<tr>
+<th>Red</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gestión</td>
+<td>Interfaz web, SSH, API y administración del nodo.</td>
+</tr>
+<tr>
+<td>Máquinas virtuales</td>
+<td>Tráfico de las cargas de trabajo.</td>
+</tr>
+<tr>
+<td>Almacenamiento</td>
+<td>NFS, iSCSI, Ceph u otros servicios de datos.</td>
+</tr>
+<tr>
+<td>Clúster</td>
+<td>Comunicación entre nodos y Corosync.</td>
+</tr>
+<tr>
+<td>Migración</td>
+<td>Transferencia de memoria y estado de VMs.</td>
+</tr>
+<tr>
+<td>Copias de seguridad</td>
+<td>Tráfico hacia Proxmox Backup Server u otro destino.</td>
+</tr>
+</tbody>
+</table>
+<p>En el bloque inicial se utilizarán una red de gestión y una red aislada. La separación mediante interfaces, VLAN, bonds o SDN se tratará posteriormente.</p>
+<hr />
+<h2 id="11-errores-frecuentes">11. Errores frecuentes<a class="headerlink" href="#11-errores-frecuentes" title="Permanent link">&para;</a></h2>
+<h3 id="111-asignar-la-ip-a-la-interfaz-fisica-y-al-bridge">11.1. Asignar la IP a la interfaz física y al bridge<a class="headerlink" href="#111-asignar-la-ip-a-la-interfaz-fisica-y-al-bridge" title="Permanent link">&para;</a></h3>
+<p>Configuración incorrecta:</p>
+<pre><code class="language-ini">iface ens18 inet static
+        address 192.168.50.20/24
+
+auto vmbr0
+iface vmbr0 inet static
+        address 192.168.50.20/24
+        bridge-ports ens18
+</code></pre>
+<p>Problema: se duplica la configuración de capa 3. Cuando una interfaz se integra como puerto de un bridge, la IP debe estar normalmente en el bridge.</p>
+<h3 id="112-configurar-dos-gateways-predeterminados-sin-planificacion">11.2. Configurar dos gateways predeterminados sin planificación<a class="headerlink" href="#112-configurar-dos-gateways-predeterminados-sin-planificacion" title="Permanent link">&para;</a></h3>
+<p>Un host debe tener una política de encaminamiento coherente. Introducir varios gateways por defecto puede provocar rutas asimétricas o resultados inesperados.</p>
+<h3 id="113-confundir-bridge-con-router">11.3. Confundir bridge con router<a class="headerlink" href="#113-confundir-bridge-con-router" title="Permanent link">&para;</a></h3>
+<p>Un bridge conecta equipos en capa 2. No enruta automáticamente entre subredes.</p>
+<pre><code class="language-text">10.20.10.0/24 ── vmbr1 ── 10.30.10.0/24
+</code></pre>
+<p>El simple hecho de conectar interfaces a un mismo bridge no sustituye a un router ni corrige una configuración IP incoherente.</p>
+<h3 id="114-anadir-gateway-a-una-red-aislada">11.4. Añadir gateway a una red aislada<a class="headerlink" href="#114-anadir-gateway-a-una-red-aislada" title="Permanent link">&para;</a></h3>
+<p>En una red interna sin router no debe inventarse una puerta de enlace. Una IP de gateway inexistente no proporciona conectividad.</p>
+<h3 id="115-configurar-dos-nic-de-una-vm-en-la-misma-subred">11.5. Configurar dos NIC de una VM en la misma subred<a class="headerlink" href="#115-configurar-dos-nic-de-una-vm-en-la-misma-subred" title="Permanent link">&para;</a></h3>
+<p>Puede provocar selección de rutas, ARP y respuestas impredecibles. Cada interfaz debe tener una función clara.</p>
+<h3 id="116-olvidar-que-el-firewall-puede-filtrar-trafico">11.6. Olvidar que el firewall puede filtrar tráfico<a class="headerlink" href="#116-olvidar-que-el-firewall-puede-filtrar-trafico" title="Permanent link">&para;</a></h3>
+<p>La configuración puede existir en varios niveles:</p>
+<ul>
+<li>Datacenter;</li>
+<li>nodo;</li>
+<li>VM o contenedor;</li>
+<li>interfaz virtual;</li>
+<li>sistema operativo invitado.</li>
+</ul>
+<p>Una prueba de red debe comprobar también las reglas activas.</p>
+<h3 id="117-cambiar-la-red-de-gestion-sin-consola">11.7. Cambiar la red de gestión sin consola<a class="headerlink" href="#117-cambiar-la-red-de-gestion-sin-consola" title="Permanent link">&para;</a></h3>
+<p>Si se pierde acceso a la interfaz web, la consola local o la consola del hipervisor exterior será necesaria para recuperar la configuración.</p>
+<h3 id="118-no-comprobar-el-nombre-real-de-la-interfaz">11.8. No comprobar el nombre real de la interfaz<a class="headerlink" href="#118-no-comprobar-el-nombre-real-de-la-interfaz" title="Permanent link">&para;</a></h3>
+<p>Los ejemplos pueden utilizar <code>ens18</code>, pero cada instalación puede presentar un nombre diferente.</p>
+<h3 id="119-utilizar-una-direccion-ya-ocupada">11.9. Utilizar una dirección ya ocupada<a class="headerlink" href="#119-utilizar-una-direccion-ya-ocupada" title="Permanent link">&para;</a></h3>
+<p>Antes de asignar una IP estática, debe comprobarse el plan de direccionamiento. En un laboratorio controlado puede emplearse <code>arping</code> como ayuda, aunque no sustituye a una gestión correcta de direcciones.</p>
+<pre><code class="language-bash">arping -D -I ens18 10.20.10.11
+</code></pre>
+<hr />
+<h2 id="12-metodo-sistematico-de-resolucion-de-problemas">12. Método sistemático de resolución de problemas<a class="headerlink" href="#12-metodo-sistematico-de-resolucion-de-problemas" title="Permanent link">&para;</a></h2>
+<p>Cuando una VM no se comunica, no conviene modificar opciones al azar. Se recomienda avanzar desde la capa inferior hacia la superior.</p>
+<h3 id="paso-1-definir-el-alcance">Paso 1. Definir el alcance<a class="headerlink" href="#paso-1-definir-el-alcance" title="Permanent link">&para;</a></h3>
+<p>Preguntas iniciales:</p>
+<ul>
+<li>¿Falla una VM o todas?</li>
+<li>¿Falla solo Internet o tampoco funciona la red local?</li>
+<li>¿El problema comenzó después de un cambio?</li>
+<li>¿Afecta a IPv4, IPv6 o ambos?</li>
+<li>¿La VM está conectada al bridge correcto?</li>
+</ul>
+<h3 id="paso-2-comprobar-el-estado-de-la-interfaz-dentro-de-la-vm">Paso 2. Comprobar el estado de la interfaz dentro de la VM<a class="headerlink" href="#paso-2-comprobar-el-estado-de-la-interfaz-dentro-de-la-vm" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ip -br link
+</code></pre>
+<p>Debe estar <code>UP</code>.</p>
+<h3 id="paso-3-comprobar-direccionamiento">Paso 3. Comprobar direccionamiento<a class="headerlink" href="#paso-3-comprobar-direccionamiento" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ip -br addr
+</code></pre>
+<p>Verifica IP y prefijo.</p>
+<h3 id="paso-4-comprobar-rutas">Paso 4. Comprobar rutas<a class="headerlink" href="#paso-4-comprobar-rutas" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ip route
+</code></pre>
+<p>Para red local no hace falta gateway. Para redes remotas debe existir una ruta adecuada.</p>
+<h3 id="paso-5-comprobar-la-configuracion-de-proxmox">Paso 5. Comprobar la configuración de Proxmox<a class="headerlink" href="#paso-5-comprobar-la-configuracion-de-proxmox" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">qm config VMID | grep '^net'
+</code></pre>
+<p>Revisa:</p>
+<ul>
+<li>bridge;</li>
+<li>modelo;</li>
+<li>MAC;</li>
+<li>etiqueta VLAN, si existiera;</li>
+<li>firewall.</li>
+</ul>
+<h3 id="paso-6-comprobar-el-puerto-virtual-en-el-host">Paso 6. Comprobar el puerto virtual en el host<a class="headerlink" href="#paso-6-comprobar-el-puerto-virtual-en-el-host" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">bridge link
+</code></pre>
+<p>La interfaz <code>tap</code> debe estar asociada al bridge esperado.</p>
+<h3 id="paso-7-observar-arp-y-trafico">Paso 7. Observar ARP y tráfico<a class="headerlink" href="#paso-7-observar-arp-y-trafico" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">tcpdump -eni vmbr1 arp or icmp
+</code></pre>
+<p>Interpretación rápida:</p>
+<table>
+<thead>
+<tr>
+<th>Observación</th>
+<th>Posible causa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No sale ARP de la VM</td>
+<td>NIC apagada, IP/prefijo incorrectos, interfaz equivocada.</td>
+</tr>
+<tr>
+<td>Sale ARP, pero nadie responde</td>
+<td>Destino apagado, bridge equivocado, VLAN incorrecta, IP inexistente.</td>
+</tr>
+<tr>
+<td>Hay ARP y ping de ida, pero no respuesta</td>
+<td>Firewall o configuración del destino.</td>
+</tr>
+<tr>
+<td>Funciona IP remota, pero no nombres</td>
+<td>Problema DNS.</td>
+</tr>
+<tr>
+<td>Funciona red local, pero no gateway</td>
+<td>Gateway, red exterior o filtrado.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="paso-8-comparar-con-una-maquina-que-funcione">Paso 8. Comparar con una máquina que funcione<a class="headerlink" href="#paso-8-comparar-con-una-maquina-que-funcione" title="Permanent link">&para;</a></h3>
+<p>Comparar:</p>
+<pre><code class="language-bash">ip -br addr
+ip route
+ip neigh
+</code></pre>
+<h3 id="paso-9-revisar-firewall">Paso 9. Revisar firewall<a class="headerlink" href="#paso-9-revisar-firewall" title="Permanent link">&para;</a></h3>
+<p>Dentro de la VM y en Proxmox, según el laboratorio.</p>
+<h3 id="paso-10-documentar-la-causa">Paso 10. Documentar la causa<a class="headerlink" href="#paso-10-documentar-la-causa" title="Permanent link">&para;</a></h3>
+<p>Una incidencia debe cerrarse indicando:</p>
+<ul>
+<li>síntoma;</li>
+<li>causa;</li>
+<li>prueba que confirmó la causa;</li>
+<li>cambio aplicado;</li>
+<li>prueba final;</li>
+<li>medida preventiva.</li>
+</ul>
+<hr />
+<h2 id="13-actividades-de-consolidacion">13. Actividades de consolidación<a class="headerlink" href="#13-actividades-de-consolidacion" title="Permanent link">&para;</a></h2>
+<h3 id="actividad-1-clasificacion-de-elementos">Actividad 1. Clasificación de elementos<a class="headerlink" href="#actividad-1-clasificacion-de-elementos" title="Permanent link">&para;</a></h3>
+<p>Clasifica cada elemento como <strong>interfaz física</strong>, <strong>bridge</strong>, <strong>interfaz de VM</strong>, <strong>interfaz de contenedor</strong> o <strong>parámetro IP</strong>:</p>
+<pre><code class="language-text">vmbr0 · tap110i0 · ens18 · veth200i0 · 10.20.10.11/24 · gateway
+</code></pre>
+<h3 id="actividad-2-reconstruccion-de-topologia">Actividad 2. Reconstrucción de topología<a class="headerlink" href="#actividad-2-reconstruccion-de-topologia" title="Permanent link">&para;</a></h3>
+<p>A partir de esta salida:</p>
+<pre><code class="language-text">ens18   UP
+vmbr0   UP  192.168.50.20/24
+tap110i0 UP
+tap120i0 UP
+</code></pre>
+<p>Y de esta relación:</p>
+<pre><code class="language-text">ens18 master vmbr0
+tap110i0 master vmbr1
+tap120i0 master vmbr1
+</code></pre>
+<p>Dibuja la topología y explica qué VMs pueden alcanzar directamente la red exterior.</p>
+<h3 id="actividad-3-deteccion-de-errores">Actividad 3. Detección de errores<a class="headerlink" href="#actividad-3-deteccion-de-errores" title="Permanent link">&para;</a></h3>
+<p>Analiza:</p>
+<pre><code class="language-ini">iface ens18 inet static
+        address 192.168.50.20/24
+        gateway 192.168.50.1
+
+auto vmbr0
+iface vmbr0 inet manual
+        bridge-ports ens18
+</code></pre>
+<p>Propón una versión corregida y justifica el cambio.</p>
+<h3 id="actividad-4-prediccion">Actividad 4. Predicción<a class="headerlink" href="#actividad-4-prediccion" title="Permanent link">&para;</a></h3>
+<p>Antes de ejecutar una prueba, predice el resultado:</p>
+<table>
+<thead>
+<tr>
+<th>VM</th>
+<th>Dirección</th>
+<th>Bridge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><code>10.0.0.10/24</code></td>
+<td><code>vmbr1</code></td>
+</tr>
+<tr>
+<td>B</td>
+<td><code>10.0.0.20/24</code></td>
+<td><code>vmbr2</code></td>
+</tr>
+</tbody>
+</table>
+<p>¿Funcionará el ping? Explica por qué.</p>
+<h3 id="actividad-5-captura-razonada">Actividad 5. Captura razonada<a class="headerlink" href="#actividad-5-captura-razonada" title="Permanent link">&para;</a></h3>
+<p>Realiza un ping entre dos VMs y localiza en <code>tcpdump</code>:</p>
+<ul>
+<li>MAC origen;</li>
+<li>MAC destino;</li>
+<li>IP origen;</li>
+<li>IP destino;</li>
+<li>solicitud y respuesta ICMP.</li>
+</ul>
+<hr />
+<h2 id="14-reto-final-de-la-unidad">14. Reto final de la unidad<a class="headerlink" href="#14-reto-final-de-la-unidad" title="Permanent link">&para;</a></h2>
+<h3 id="enunciado">Enunciado<a class="headerlink" href="#enunciado" title="Permanent link">&para;</a></h3>
+<p>Construye una topología formada por:</p>
+<ul>
+<li>un nodo Proxmox;</li>
+<li>un bridge de gestión existente (<code>vmbr0</code>);</li>
+<li>un bridge aislado nuevo (<code>vmbr1</code>);</li>
+<li>dos VMs Linux conectadas a <code>vmbr1</code>;</li>
+<li>direccionamiento estático en <code>10.30.X.0/24</code>, donde <code>X</code> es el número asignado al alumno;</li>
+<li>conectividad correcta entre ambas VMs;</li>
+<li>ausencia de gateway en la red aislada.</li>
+</ul>
+<p>Ejemplo para el alumno 7:</p>
+<pre><code class="language-text">Red: 10.30.7.0/24
+VM-A: 10.30.7.11/24
+VM-B: 10.30.7.12/24
+</code></pre>
+<h3 id="entregables">Entregables<a class="headerlink" href="#entregables" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Diagrama de red.</li>
+<li>Tabla de direccionamiento.</li>
+<li>Configuración del bridge.</li>
+<li>Configuración de las NIC virtuales.</li>
+<li>Salidas de <code>ip -br addr</code>.</li>
+<li>Prueba de ping.</li>
+<li>Captura ARP/ICMP.</li>
+<li>Tabla FDB de <code>vmbr1</code>.</li>
+<li>Explicación del recorrido de una trama.</li>
+<li>Resolución documentada de una incidencia introducida por el docente.</li>
+</ol>
+<h3 id="incidencias-que-puede-introducir-el-docente">Incidencias que puede introducir el docente<a class="headerlink" href="#incidencias-que-puede-introducir-el-docente" title="Permanent link">&para;</a></h3>
+<p>Asignar una por alumno o pareja:</p>
+<ul>
+<li>prefijo incorrecto;</li>
+<li>IP duplicada;</li>
+<li>VM conectada a otro bridge;</li>
+<li>interfaz apagada;</li>
+<li>regla de firewall dentro de una VM;</li>
+<li>dirección no configurada;</li>
+<li>gateway innecesario o incorrecto;</li>
+<li>segunda NIC en la misma subred.</li>
+</ul>
+<h3 id="rubrica-orientativa">Rúbrica orientativa<a class="headerlink" href="#rubrica-orientativa" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th style="text-align: right;">Puntuación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Topología y tabla de direccionamiento correctas</td>
+<td style="text-align: right;">1,5</td>
+</tr>
+<tr>
+<td>Creación y configuración de <code>vmbr1</code></td>
+<td style="text-align: right;">1,5</td>
+</tr>
+<tr>
+<td>NIC virtuales correctamente conectadas</td>
+<td style="text-align: right;">1,0</td>
+</tr>
+<tr>
+<td>Configuración IP coherente</td>
+<td style="text-align: right;">1,5</td>
+</tr>
+<tr>
+<td>Conectividad demostrada</td>
+<td style="text-align: right;">1,0</td>
+</tr>
+<tr>
+<td>Uso de herramientas de diagnóstico</td>
+<td style="text-align: right;">1,5</td>
+</tr>
+<tr>
+<td>Explicación del flujo de tráfico</td>
+<td style="text-align: right;">1,0</td>
+</tr>
+<tr>
+<td>Documentación clara y reproducible</td>
+<td style="text-align: right;">1,0</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>10</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="15-cuestionario-de-autoevaluacion">15. Cuestionario de autoevaluación<a class="headerlink" href="#15-cuestionario-de-autoevaluacion" title="Permanent link">&para;</a></h2>
+<ol>
+<li>¿Qué función desempeña un Linux bridge?</li>
+<li>¿Qué diferencia existe entre <code>vmbr0</code> y <code>ens18</code>?</li>
+<li>¿Por qué la dirección IP del nodo suele configurarse en el bridge?</li>
+<li>¿Qué es una interfaz <code>tap</code>?</li>
+<li>¿Qué tipo de interfaz utilizan normalmente los contenedores?</li>
+<li>¿Qué modelo de NIC virtual se recomienda para sistemas modernos?</li>
+<li>¿Puede una red aislada funcionar sin gateway?</li>
+<li>¿Qué comando muestra la tabla de rutas?</li>
+<li>¿Qué comando permite observar ARP e ICMP en un bridge?</li>
+<li>¿Qué sucede con la interfaz <code>tap</code> al apagar una VM?</li>
+<li>¿Qué archivo almacena habitualmente la configuración de red del nodo?</li>
+<li>¿Por qué debe mantenerse acceso de consola al cambiar la red de gestión?</li>
+<li>¿Qué diferencia existe entre conmutación y encaminamiento?</li>
+<li>¿Qué información almacena la FDB de un bridge?</li>
+<li>¿En qué orden comprobarías enlace, IP, ruta, DNS y aplicación?</li>
+</ol>
+<hr />
+<h2 id="16-soluciones-orientativas-para-el-profesorado">16. Soluciones orientativas para el profesorado<a class="headerlink" href="#16-soluciones-orientativas-para-el-profesorado" title="Permanent link">&para;</a></h2>
+<h3 id="161-ideas-clave-del-cuestionario">16.1. Ideas clave del cuestionario<a class="headerlink" href="#161-ideas-clave-del-cuestionario" title="Permanent link">&para;</a></h3>
+<ol>
+<li>El bridge conmuta tramas Ethernet entre interfaces.</li>
+<li><code>ens18</code> es un puerto físico o virtual del host; <code>vmbr0</code> es el switch software.</li>
+<li>Porque la interfaz física forma parte del bridge y la identidad IP corresponde al dispositivo lógico de capa 3.</li>
+<li>Es la interfaz del host que conecta una NIC de una VM KVM con un bridge.</li>
+<li>Interfaces <code>veth</code>.</li>
+<li><code>VirtIO</code>, cuando el sistema invitado dispone del controlador.</li>
+<li>Sí, si todos los equipos se encuentran en la misma subred y solo necesitan comunicación local.</li>
+<li><code>ip route</code>.</li>
+<li><code>tcpdump -eni vmbrX arp or icmp</code>.</li>
+<li>Desaparece o deja de estar activa porque está vinculada al proceso de la VM.</li>
+<li><code>/etc/network/interfaces</code>.</li>
+<li>Porque un error puede interrumpir la interfaz web y SSH.</li>
+<li>La conmutación opera principalmente en capa 2; el encaminamiento comunica redes IP distintas.</li>
+<li>Asociaciones entre direcciones MAC y puertos del bridge.</li>
+<li>En ese orden, avanzando de las capas inferiores a las superiores.</li>
+</ol>
+<h3 id="162-explicacion-esperada-ip-en-el-bridge">16.2. Explicación esperada: IP en el bridge<a class="headerlink" href="#162-explicacion-esperada-ip-en-el-bridge" title="Permanent link">&para;</a></h3>
+<p>Cuando una interfaz física se añade a un bridge, actúa como un puerto del switch virtual. La dirección IP de administración se asigna al bridge, que representa la interfaz lógica del host en esa red. Configurar simultáneamente la misma IP en el puerto y en el bridge genera una configuración incorrecta o ambigua.</p>
+<h3 id="163-diagnostico-del-caso-de-bridges-diferentes">16.3. Diagnóstico del caso de bridges diferentes<a class="headerlink" href="#163-diagnostico-del-caso-de-bridges-diferentes" title="Permanent link">&para;</a></h3>
+<p>Dos VMs conectadas a <code>vmbr1</code> y <code>vmbr2</code> se encuentran en dominios de capa 2 separados. Aunque utilicen direcciones de la misma subred, no existe un camino de conmutación entre ellas. Se necesitaría conectarlas al mismo bridge o introducir un diseño de interconexión adecuado.</p>
+<hr />
+<h2 id="17-plantilla-de-documentacion-del-alumno">17. Plantilla de documentación del alumno<a class="headerlink" href="#17-plantilla-de-documentacion-del-alumno" title="Permanent link">&para;</a></h2>
+<h3 id="identificacion">Identificación<a class="headerlink" href="#identificacion" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Alumno/a:</li>
+<li>Fecha:</li>
+<li>Nodo:</li>
+<li>VMID utilizados:</li>
+</ul>
+<h3 id="topologia">Topología<a class="headerlink" href="#topologia" title="Permanent link">&para;</a></h3>
+<pre><code class="language-mermaid">flowchart LR
+    A[VM-A] --- B[vmbr1]
+    C[VM-B] --- B
+</code></pre>
+<h3 id="tabla-de-direccionamiento">Tabla de direccionamiento<a class="headerlink" href="#tabla-de-direccionamiento" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Dispositivo</th>
+<th>Interfaz</th>
+<th>MAC</th>
+<th>IP/prefijo</th>
+<th>Gateway</th>
+<th>Bridge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nodo</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VM-A</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VM-B</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuracion-del-bridge">Configuración del bridge<a class="headerlink" href="#configuracion-del-bridge" title="Permanent link">&para;</a></h3>
+<pre><code class="language-ini"># Pegar aquí el fragmento relevante
+</code></pre>
+<h3 id="pruebas">Pruebas<a class="headerlink" href="#pruebas" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># Pegar comandos y resultados relevantes
+</code></pre>
+<h3 id="incidencia-resuelta">Incidencia resuelta<a class="headerlink" href="#incidencia-resuelta" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Síntoma:</li>
+<li>Hipótesis:</li>
+<li>Comprobaciones:</li>
+<li>Causa:</li>
+<li>Solución:</li>
+<li>Verificación final:</li>
+</ul>
+<h3 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h3>
+<p>Explica en 8-10 líneas el recorrido de una trama entre las dos VMs.</p>
+<hr />
+<h2 id="18-chuleta-de-comandos">18. Chuleta de comandos<a class="headerlink" href="#18-chuleta-de-comandos" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash"># Interfaces y direcciones
+ip -br link
+ip -br addr
+
+# Detalle de una interfaz
+ip addr show vmbr0
+ip link show ens18
+
+# Rutas
+ip route
+
+# Vecinos ARP/ND
+ip neigh
+
+# Bridges y puertos
+bridge link
+ip link show master vmbr1
+
+# Tabla MAC/FDB
+bridge fdb show br vmbr1
+
+# Captura de tráfico
+tcpdump -eni vmbr1
+tcpdump -eni vmbr1 arp or icmp
+
+# Configuración del nodo
+cat /etc/network/interfaces
+
+# Aplicar configuración con ifupdown2
+ifreload -a
+
+# Configuración de invitados
+qm config VMID
+pct config CTID
+
+# Conectividad
+ping -c 4 IP_DESTINO
+tracepath IP_DESTINO
+
+# Resolución DNS
+getent hosts example.com
+</code></pre>
+<hr />
+<h2 id="19-glosario">19. Glosario<a class="headerlink" href="#19-glosario" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Término</th>
+<th>Definición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bridge</td>
+<td>Switch Ethernet implementado por software.</td>
+</tr>
+<tr>
+<td><code>vmbrX</code></td>
+<td>Nombre habitual de un Linux bridge en Proxmox.</td>
+</tr>
+<tr>
+<td>NIC</td>
+<td>Interfaz o tarjeta de red.</td>
+</tr>
+<tr>
+<td><code>tap</code></td>
+<td>Interfaz del host asociada a una NIC de una VM KVM.</td>
+</tr>
+<tr>
+<td><code>veth</code></td>
+<td>Par de interfaces virtuales utilizado habitualmente por contenedores.</td>
+</tr>
+<tr>
+<td>FDB</td>
+<td>Tabla que relaciona MAC con puertos de un bridge.</td>
+</tr>
+<tr>
+<td>MAC</td>
+<td>Identificador de capa 2 de una interfaz Ethernet.</td>
+</tr>
+<tr>
+<td>Gateway</td>
+<td>Router utilizado para alcanzar otras redes.</td>
+</tr>
+<tr>
+<td>CIDR</td>
+<td>Notación de prefijo, por ejemplo <code>/24</code>.</td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td>Trama enviada a todos los equipos del dominio de capa 2.</td>
+</tr>
+<tr>
+<td>ARP</td>
+<td>Protocolo que relaciona direcciones IPv4 con direcciones MAC.</td>
+</tr>
+<tr>
+<td>ICMP</td>
+<td>Protocolo utilizado, entre otros fines, por <code>ping</code>.</td>
+</tr>
+<tr>
+<td>VirtIO</td>
+<td>Dispositivo paravirtualizado optimizado para máquinas virtuales.</td>
+</tr>
+<tr>
+<td>Uplink</td>
+<td>Enlace que conecta un bridge o switch con otra red.</td>
+</tr>
+<tr>
+<td>Red aislada</td>
+<td>Red sin conexión directa a una interfaz física o a un router exterior.</td>
+</tr>
+<tr>
+<td>Virtualización anidada</td>
+<td>Ejecución de un hipervisor dentro de una máquina virtual.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="20-transicion-al-siguiente-bloque">20. Transición al siguiente bloque<a class="headerlink" href="#20-transicion-al-siguiente-bloque" title="Permanent link">&para;</a></h2>
+<p>Tras completar esta unidad, el alumnado conoce el modelo básico de red de Proxmox y puede construir dominios de capa 2 sencillos. El siguiente bloque, <strong>Networking avanzado en Proxmox</strong>, puede desarrollar:</p>
+<ol>
+<li>bridges con varias interfaces;</li>
+<li>VLAN y bridges <em>VLAN-aware</em>;</li>
+<li>puertos access y trunk;</li>
+<li>bonding y redundancia;</li>
+<li>routing y NAT;</li>
+<li>firewall de Proxmox;</li>
+<li>MTU y tramas jumbo;</li>
+<li>redes para clúster, almacenamiento y migración;</li>
+<li>Open vSwitch frente a Linux bridge;</li>
+<li>introducción a Proxmox SDN.</li>
+</ol>
+<hr />
+<h2 id="21-referencias-oficiales">21. Referencias oficiales<a class="headerlink" href="#21-referencias-oficiales" title="Permanent link">&para;</a></h2>
+<p>Documentación revisada el <strong>15 de julio de 2026</strong>. Los conceptos se han redactado para ser utilizables con instalaciones recientes de Proxmox VE; los nombres exactos de algunos menús pueden variar entre versiones.</p>
+<ul>
+<li><a href="https://pve.proxmox.com/pve-docs/pve-admin-guide.html">Proxmox VE Administration Guide</a></li>
+<li><a href="https://pve.proxmox.com/pve-docs/chapter-sysadmin.html">Host System Administration — Network Configuration</a></li>
+<li><a href="https://pve.proxmox.com/wiki/Network_Configuration">Proxmox VE Network Configuration Wiki</a></li>
+<li><a href="https://pve.proxmox.com/pve-docs/pve-network-plain.html">Apply Network Changes</a></li>
+<li><a href="https://pve.proxmox.com/pve-docs/chapter-qm.html">QEMU/KVM Virtual Machines</a></li>
+<li><a href="https://pve.proxmox.com/pve-docs/qm.conf.5.html"><code>qm.conf(5)</code> — Network device models</a></li>
+</ul>
+<hr />
+<h2 id="nota-de-seguridad-para-el-laboratorio">Nota de seguridad para el laboratorio<a class="headerlink" href="#nota-de-seguridad-para-el-laboratorio" title="Permanent link">&para;</a></h2>
+<p>Las direcciones IP de los ejemplos pertenecen a rangos privados y deben adaptarse a la planificación del aula. No se debe conectar un servidor DHCP, una pasarela, un router virtual o una VM con servicios expuestos a la red real del centro sin autorización y sin una segmentación previamente definida.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 
