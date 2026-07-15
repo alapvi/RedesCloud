@@ -478,6 +478,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#secuencia-de-trabajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secuencia de trabajo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contenidos-orientativos-del-bloque-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contenidos orientativos del bloque Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexion-con-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexion con AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#actividades" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -951,6 +984,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#secuencia-de-trabajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secuencia de trabajo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contenidos-orientativos-del-bloque-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contenidos orientativos del bloque Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexion-con-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexion con AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#actividades" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -979,21 +1045,46 @@
 
 
 <h1 id="01-fundamentos-de-redes-cloud">01. Fundamentos de redes cloud<a class="headerlink" href="#01-fundamentos-de-redes-cloud" title="Permanent link">&para;</a></h1>
+<p>Esta unidad introduce los conceptos basicos de redes mediante un laboratorio sobre Proxmox VE. La idea es trabajar primero sobre un entorno de virtualizacion accesible y visual para despues reutilizar los mismos principios cuando entremos en AWS.</p>
 <h2 id="conceptos-clave">Conceptos clave<a class="headerlink" href="#conceptos-clave" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Modelo de responsabilidad compartida.</li>
-<li>Regiones, zonas de disponibilidad y edge locations.</li>
-<li>Alta disponibilidad y tolerancia a fallos.</li>
+<li>Interfaces fisicas y bridges Linux en Proxmox.</li>
+<li>Direccionamiento IP, puerta de enlace y resolucion DNS en hosts y maquinas virtuales.</li>
+<li>Segmentacion de red con bridges y VLAN.</li>
+<li>Relacion entre topologias de laboratorio y topologias cloud.</li>
 </ul>
 <h2 id="competencias">Competencias<a class="headerlink" href="#competencias" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Diferenciar redes on-premises y cloud.</li>
-<li>Identificar patrones de topologia base.</li>
+<li>Configurar y verificar una red virtual basica en Proxmox.</li>
+<li>Diferenciar redes locales virtualizadas y redes cloud.</li>
+<li>Identificar patrones de topologia base que despues se trasladaran a AWS.</li>
+</ul>
+<h2 id="secuencia-de-trabajo">Secuencia de trabajo<a class="headerlink" href="#secuencia-de-trabajo" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Identificar la configuracion de red inicial del nodo Proxmox.</li>
+<li>Analizar el papel de las interfaces, el bridge principal y la salida a red.</li>
+<li>Crear o adaptar una red virtual para maquinas del laboratorio.</li>
+<li>Introducir segmentacion con VLAN y comprobar conectividad.</li>
+<li>Relacionar cada elemento del laboratorio con su equivalente posterior en AWS.</li>
+</ol>
+<h2 id="contenidos-orientativos-del-bloque-proxmox">Contenidos orientativos del bloque Proxmox<a class="headerlink" href="#contenidos-orientativos-del-bloque-proxmox" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Introduccion a Proxmox Networking: componentes, bridges, zonas de red y topologias basicas.</li>
+<li>Network Configuration: configuracion inicial, bridges, direccionamiento, validacion y pruebas.</li>
+<li>VLAN Configuration: segmentacion, bridge VLAN-aware, etiquetado y escenarios de laboratorio.</li>
+</ul>
+<h2 id="conexion-con-aws">Conexion con AWS<a class="headerlink" href="#conexion-con-aws" title="Permanent link">&para;</a></h2>
+<ul>
+<li>El bridge de Proxmox anticipa la idea de red virtual base.</li>
+<li>La segmentacion con VLAN prepara la comprension de subredes y dominios de aislamiento.</li>
+<li>Las pruebas de conectividad y rutas sirven como base para tablas de rutas, NACL y security groups.</li>
 </ul>
 <h2 id="actividades">Actividades<a class="headerlink" href="#actividades" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Comparativa de modelos de red.</li>
-<li>Mapa de servicios de red del proveedor cloud.</li>
+<li>Inventario comentado de la configuracion de red del nodo Proxmox.</li>
+<li>Diseno de un esquema con red de gestion, red de maquinas y una VLAN de laboratorio.</li>
+<li>Verificacion de conectividad entre VMs y analisis de aislamiento entre segmentos.</li>
+<li>Mapa de equivalencias entre elementos de Proxmox y conceptos que apareceran en AWS.</li>
 </ul>
 
 
