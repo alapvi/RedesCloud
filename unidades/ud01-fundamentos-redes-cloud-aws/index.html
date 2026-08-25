@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Alberto Aparicio">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>UD1. Fundamentos de redes cloud en AWS - Administración de redes en la nube con AWS</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Administración de redes en la nube con AWS</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Inicio</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guía docente</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../guias/estructura/" class="dropdown-item">Estructura del site</a>
+</li>
+                                    
+<li>
+    <a href="../../guias/plantilla-unidad/" class="dropdown-item">Plantilla de unidad</a>
+</li>
+                                    
+<li>
+    <a href="../../guias/control-costes-limpieza/" class="dropdown-item">Control de costes y limpieza</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Unidades didácticas</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">UD1. Fundamentos de redes cloud en AWS</a>
+</li>
+                                    
+<li>
+    <a href="../ud02-seguridad-basica-red-aws/" class="dropdown-item">UD2. Seguridad básica de red en AWS</a>
+</li>
+                                    
+<li>
+    <a href="../ud03-vpn-cliente-site-to-site/" class="dropdown-item">UD3. VPN cliente y VPN site-to-site</a>
+</li>
+                                    
+<li>
+    <a href="../ud04-conectividad-dedicada-bgp/" class="dropdown-item">UD4. Conectividad dedicada y BGP</a>
+</li>
+                                    
+<li>
+    <a href="../ud05-interconexion-multicloud/" class="dropdown-item">UD5. Interconexión multicloud</a>
+</li>
+                                    
+<li>
+    <a href="../ud06-endpoints-peering-tgw-cloudwan/" class="dropdown-item">UD6. Endpoints privados, peering, TGW y Cloud WAN</a>
+</li>
+                                    
+<li>
+    <a href="../ud07-dns-certificados-cdn-edge/" class="dropdown-item">UD7. DNS, certificados, CDN y edge</a>
+</li>
+                                    
+<li>
+    <a href="../ud08-firewall-waf-ips/" class="dropdown-item">UD8. Firewall cloud, WAF e IPS</a>
+</li>
+                                    
+<li>
+    <a href="../ud09-iam-auditoria-automatizacion-monitorizacion/" class="dropdown-item">UD9. IAM, auditoría, automatización y monitorización</a>
+</li>
+                                    
+<li>
+    <a href="../ud10-proyecto-final-integrado/" class="dropdown-item">UD10. Proyecto final integrado</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../referencias/" class="nav-link">Referencias</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../guias/control-costes-limpieza/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../ud02-seguridad-basica-red-aws/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#ud1-fundamentos-de-redes-cloud-en-aws" class="nav-link">UD1. Fundamentos de redes cloud en AWS</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-datos-generales" class="nav-link">1. Datos generales</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-proposito-de-la-unidad" class="nav-link">2. Propósito de la unidad</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-resultados-de-aprendizaje-y-criterios-de-evaluacion" class="nav-link">3. Resultados de aprendizaje y criterios de evaluación</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-objetivos-didacticos" class="nav-link">4. Objetivos didácticos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-conceptos-clave" class="nav-link">5. Conceptos clave</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-mapa-conceptual" class="nav-link">6. Mapa conceptual</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-arquitectura-objetivo-de-la-unidad" class="nav-link">7. Arquitectura objetivo de la unidad</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-secuencia-de-sesiones" class="nav-link">8. Secuencia de sesiones</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-actividades-de-aula" class="nav-link">9. Actividades de aula</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#10-laboratorio-guiado" class="nav-link">10. Laboratorio guiado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#lab-ud1-creacion-de-una-vpc-base-publicaprivada" class="nav-link">Lab UD1. Creación de una VPC base pública/privada</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo" class="nav-link">Objetivo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#recursos-a-crear" class="nav-link">Recursos a crear</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#paso-1-crear-la-vpc" class="nav-link">Paso 1. Crear la VPC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#paso-2-crear-subredes" class="nav-link">Paso 2. Crear subredes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#paso-3-crear-y-asociar-internet-gateway" class="nav-link">Paso 3. Crear y asociar Internet Gateway</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#paso-4-crear-tabla-de-rutas-publica" class="nav-link">Paso 4. Crear tabla de rutas pública</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#paso-5-crear-nat-gateway" class="nav-link">Paso 5. Crear NAT Gateway</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#paso-6-crear-tabla-de-rutas-privada" class="nav-link">Paso 6. Crear tabla de rutas privada</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#paso-7-crear-security-group-para-ec2-publica" class="nav-link">Paso 7. Crear Security Group para EC2 pública</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#paso-8-lanzar-ec2-publica" class="nav-link">Paso 8. Lanzar EC2 pública</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#paso-9-lanzar-ec2-privada" class="nav-link">Paso 9. Lanzar EC2 privada</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#paso-10-validaciones" class="nav-link">Paso 10. Validaciones</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#11-practica-evaluable" class="nav-link">11. Práctica evaluable</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#p1-diseno-y-despliegue-de-una-vpc-base" class="nav-link">P1. Diseño y despliegue de una VPC base</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#enunciado" class="nav-link">Enunciado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#requisitos-minimos" class="nav-link">Requisitos mínimos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#entrega" class="nav-link">Entrega</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#12-evidencias-de-evaluacion" class="nav-link">12. Evidencias de evaluación</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#13-rubrica-orientativa" class="nav-link">13. Rúbrica orientativa</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#14-errores-frecuentes-y-pistas-de-troubleshooting" class="nav-link">14. Errores frecuentes y pistas de troubleshooting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#15-checklist-de-limpieza-de-la-ud1" class="nav-link">15. Checklist de limpieza de la UD1</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#16-materiales-del-curso-que-se-integran" class="nav-link">16. Materiales del curso que se integran</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#17-referencias-y-labs-recomendados" class="nav-link">17. Referencias y labs recomendados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#18-ampliacion" class="nav-link">18. Ampliación</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#19-preguntas-de-cierre" class="nav-link">19. Preguntas de cierre</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="ud1-fundamentos-de-redes-cloud-en-aws">UD1. Fundamentos de redes cloud en AWS<a class="headerlink" href="#ud1-fundamentos-de-redes-cloud-en-aws" title="Permanent link">&para;</a></h1>
+<h2 id="1-datos-generales">1. Datos generales<a class="headerlink" href="#1-datos-generales" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duración</td>
+<td>15 horas</td>
+</tr>
+<tr>
+<td>Temporalización</td>
+<td>Semanas 1, 2 y 3</td>
+</tr>
+<tr>
+<td>Proveedor principal</td>
+<td>AWS</td>
+</tr>
+<tr>
+<td>Servicio central</td>
+<td>Amazon VPC</td>
+</tr>
+<tr>
+<td>Práctica evaluable</td>
+<td>P1. Diseño y despliegue de una VPC base</td>
+</tr>
+<tr>
+<td>Resultado de aprendizaje principal</td>
+<td>RA1. Despliegue de infraestructura de red en la nube</td>
+</tr>
+<tr>
+<td>Resultados relacionados</td>
+<td>RA2. Configuración de recursos de red, balanceo y escalado</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-proposito-de-la-unidad">2. Propósito de la unidad<a class="headerlink" href="#2-proposito-de-la-unidad" title="Permanent link">&para;</a></h2>
+<p>Esta unidad introduce los fundamentos de red necesarios para administrar infraestructuras cloud en AWS. El alumnado aprenderá a diseñar una red virtual básica, configurar direccionamiento, crear subredes públicas y privadas, asociar tablas de rutas, permitir salida a Internet y desplegar instancias de prueba.</p>
+<p>La unidad es la base del resto del módulo. Las configuraciones creadas aquí se reutilizarán posteriormente para trabajar seguridad, balanceadores, VPN, endpoints privados, WAF, logs y proyecto final.</p>
+<h2 id="3-resultados-de-aprendizaje-y-criterios-de-evaluacion">3. Resultados de aprendizaje y criterios de evaluación<a class="headerlink" href="#3-resultados-de-aprendizaje-y-criterios-de-evaluacion" title="Permanent link">&para;</a></h2>
+<h3 id="resultados-de-aprendizaje">Resultados de aprendizaje<a class="headerlink" href="#resultados-de-aprendizaje" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>RA1.</strong> Aplica procedimientos de despliegue de una infraestructura de red asociada a las aplicaciones de unos sistemas, configurando la privacidad, ciberseguridad y disponibilidad, para permitir la conectividad entre recursos de la nube y otras instalaciones propias, on-premise, o en otras nubes.</li>
+<li><strong>RA2.</strong> Configura recursos de red, asignando parámetros de balanceo y escalado horizontal y vertical, desde orígenes externos o internos, en condiciones de ciberseguridad, direccionando y enrutando el tráfico a los recursos desplegados en la nube.</li>
+</ul>
+<h3 id="criterios-de-evaluacion-relacionados">Criterios de evaluación relacionados<a class="headerlink" href="#criterios-de-evaluacion-relacionados" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Criterio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RA1.a</td>
+<td>Configura redes virtuales con rangos de direcciones IP, zonas de disponibilidad o regiones, direccionamiento privado, direccionamiento público, puertas de enlace, cortafuegos, grupos de seguridad y delegación de subredes.</td>
+</tr>
+<tr>
+<td>RA1.f</td>
+<td>Establece el enrutado y la conexión entre sistemas locales y servicios WAN de red para los escenarios que lo requieran.</td>
+</tr>
+<tr>
+<td>RA2.d</td>
+<td>Establece opciones de traducción de direccionamiento público para compartir direcciones públicas entre varios recursos.</td>
+</tr>
+<tr>
+<td>RA2.e</td>
+<td>Establece direccionamiento público y privado para los recursos de red que lo requieran, reservando direcciones IP estáticas internas o externas según las necesidades de conectividad.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-objetivos-didacticos">4. Objetivos didácticos<a class="headerlink" href="#4-objetivos-didacticos" title="Permanent link">&para;</a></h2>
+<p>Al finalizar la unidad, el alumnado deberá ser capaz de:</p>
+<ol>
+<li>Explicar qué es una VPC y qué función cumple en una arquitectura cloud.</li>
+<li>Diseñar un plan de direccionamiento CIDR coherente.</li>
+<li>Diferenciar subred pública y subred privada.</li>
+<li>Crear una VPC con varias subredes en distintas zonas de disponibilidad.</li>
+<li>Configurar un Internet Gateway para permitir acceso a Internet desde subredes públicas.</li>
+<li>Configurar un NAT Gateway para permitir salida a Internet desde subredes privadas.</li>
+<li>Crear y asociar tablas de rutas a subredes.</li>
+<li>Desplegar instancias EC2 en subred pública y privada.</li>
+<li>Usar User Data para automatizar la instalación de un servicio básico.</li>
+<li>Verificar conectividad y diagnosticar errores básicos de rutas.</li>
+<li>Documentar la arquitectura desplegada de forma técnica.</li>
+<li>Eliminar recursos para evitar costes innecesarios.</li>
+</ol>
+<h2 id="5-conceptos-clave">5. Conceptos clave<a class="headerlink" href="#5-conceptos-clave" title="Permanent link">&para;</a></h2>
+<h3 id="51-amazon-vpc">5.1. Amazon VPC<a class="headerlink" href="#51-amazon-vpc" title="Permanent link">&para;</a></h3>
+<p>Una <strong>Amazon Virtual Private Cloud</strong> es una red virtual aislada dentro de AWS. Permite definir un rango de direcciones IP, crear subredes, configurar rutas y controlar cómo se comunican los recursos.</p>
+<p>En esta unidad se trabajará una VPC sencilla con arquitectura pública/privada.</p>
+<h3 id="52-region-y-zona-de-disponibilidad">5.2. Región y zona de disponibilidad<a class="headerlink" href="#52-region-y-zona-de-disponibilidad" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Región:</strong> área geográfica donde AWS agrupa centros de datos.</li>
+<li><strong>Zona de disponibilidad:</strong> ubicación aislada dentro de una región.</li>
+</ul>
+<p>Para mejorar disponibilidad, las subredes se distribuirán en al menos dos zonas de disponibilidad.</p>
+<h3 id="53-cidr">5.3. CIDR<a class="headerlink" href="#53-cidr" title="Permanent link">&para;</a></h3>
+<p>El bloque <strong>CIDR</strong> define el rango de direcciones IP de la VPC y de cada subred.</p>
+<p>Ejemplo propuesto:</p>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>CIDR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VPC</td>
+<td><code>10.10.0.0/16</code></td>
+</tr>
+<tr>
+<td>Subred pública A</td>
+<td><code>10.10.1.0/24</code></td>
+</tr>
+<tr>
+<td>Subred pública B</td>
+<td><code>10.10.2.0/24</code></td>
+</tr>
+<tr>
+<td>Subred privada A</td>
+<td><code>10.10.11.0/24</code></td>
+</tr>
+<tr>
+<td>Subred privada B</td>
+<td><code>10.10.12.0/24</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="54-subred-publica">5.4. Subred pública<a class="headerlink" href="#54-subred-publica" title="Permanent link">&para;</a></h3>
+<p>Una subred es pública cuando su tabla de rutas contiene una ruta por defecto hacia un <strong>Internet Gateway</strong>.</p>
+<p>Ruta típica:</p>
+<table>
+<thead>
+<tr>
+<th>Destino</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10.10.0.0/16</code></td>
+<td>local</td>
+</tr>
+<tr>
+<td><code>0.0.0.0/0</code></td>
+<td>Internet Gateway</td>
+</tr>
+</tbody>
+</table>
+<h3 id="55-subred-privada">5.5. Subred privada<a class="headerlink" href="#55-subred-privada" title="Permanent link">&para;</a></h3>
+<p>Una subred privada no recibe tráfico entrante directamente desde Internet. Puede tener salida a Internet mediante un <strong>NAT Gateway</strong> situado en una subred pública.</p>
+<p>Ruta típica:</p>
+<table>
+<thead>
+<tr>
+<th>Destino</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10.10.0.0/16</code></td>
+<td>local</td>
+</tr>
+<tr>
+<td><code>0.0.0.0/0</code></td>
+<td>NAT Gateway</td>
+</tr>
+</tbody>
+</table>
+<h3 id="56-internet-gateway">5.6. Internet Gateway<a class="headerlink" href="#56-internet-gateway" title="Permanent link">&para;</a></h3>
+<p>El <strong>Internet Gateway</strong> permite que recursos con IP pública o Elastic IP puedan comunicarse con Internet, siempre que la tabla de rutas y las reglas de seguridad lo permitan.</p>
+<h3 id="57-nat-gateway">5.7. NAT Gateway<a class="headerlink" href="#57-nat-gateway" title="Permanent link">&para;</a></h3>
+<p>El <strong>NAT Gateway</strong> permite que instancias en subred privada inicien conexiones hacia Internet, por ejemplo para actualizar paquetes o descargar software, sin permitir conexiones entrantes no solicitadas desde Internet.</p>
+<h3 id="58-tabla-de-rutas">5.8. Tabla de rutas<a class="headerlink" href="#58-tabla-de-rutas" title="Permanent link">&para;</a></h3>
+<p>Una tabla de rutas contiene reglas que indican hacia dónde se envía el tráfico. Cada subred debe estar asociada a una tabla de rutas.</p>
+<h3 id="59-ec2-y-user-data">5.9. EC2 y User Data<a class="headerlink" href="#59-ec2-y-user-data" title="Permanent link">&para;</a></h3>
+<p><strong>Amazon EC2</strong> permite desplegar máquinas virtuales. Con <strong>User Data</strong> se pueden ejecutar comandos de inicialización al arrancar una instancia, por ejemplo instalar un servidor web.</p>
+<p>Ejemplo de User Data para Amazon Linux:</p>
+<pre><code class="language-bash">#!/bin/bash
+dnf update -y
+dnf install -y httpd
+systemctl enable httpd
+systemctl start httpd
+echo &quot;&lt;h1&gt;UD1 - Servidor web en AWS&lt;/h1&gt;&quot; &gt; /var/www/html/index.html
+</code></pre>
+<h2 id="6-mapa-conceptual">6. Mapa conceptual<a class="headerlink" href="#6-mapa-conceptual" title="Permanent link">&para;</a></h2>
+<pre><code class="language-mermaid">graph TD
+    A[Amazon VPC] --&gt; B[CIDR]
+    A --&gt; C[Subredes]
+    C --&gt; D[Subred publica]
+    C --&gt; E[Subred privada]
+    D --&gt; F[Internet Gateway]
+    E --&gt; G[NAT Gateway]
+    A --&gt; H[Tablas de rutas]
+    H --&gt; F
+    H --&gt; G
+    C --&gt; I[EC2]
+    I --&gt; J[User Data]
+</code></pre>
+<h2 id="7-arquitectura-objetivo-de-la-unidad">7. Arquitectura objetivo de la unidad<a class="headerlink" href="#7-arquitectura-objetivo-de-la-unidad" title="Permanent link">&para;</a></h2>
+<pre><code class="language-mermaid">graph TD
+    Internet((Internet)) --&gt; IGW[Internet Gateway]
+    IGW --&gt; PublicRT[Tabla rutas publica]
+    PublicRT --&gt; PubA[Subred publica A]
+    PublicRT --&gt; PubB[Subred publica B]
+    PubA --&gt; NAT[NAT Gateway]
+    PubA --&gt; EC2Pub[EC2 publica]
+    NAT --&gt; PrivateRT[Tabla rutas privada]
+    PrivateRT --&gt; PrivA[Subred privada A]
+    PrivateRT --&gt; PrivB[Subred privada B]
+    PrivA --&gt; EC2Priv[EC2 privada]
+</code></pre>
+<h2 id="8-secuencia-de-sesiones">8. Secuencia de sesiones<a class="headerlink" href="#8-secuencia-de-sesiones" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th style="text-align: right;">Horas</th>
+<th>Contenido</th>
+<th>Actividad principal</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sesión 1</td>
+<td style="text-align: right;">2 h</td>
+<td>Introducción a redes cloud, VPC, regiones, AZ y CIDR</td>
+<td>Diseño en papel de una VPC</td>
+<td>Tabla CIDR inicial</td>
+</tr>
+<tr>
+<td>Sesión 2</td>
+<td style="text-align: right;">3 h</td>
+<td>VPC, subredes e Internet Gateway</td>
+<td>Creación de VPC y subred pública</td>
+<td>Capturas de VPC y subredes</td>
+</tr>
+<tr>
+<td>Sesión 3</td>
+<td style="text-align: right;">2 h</td>
+<td>Tablas de rutas y acceso público</td>
+<td>EC2 en subred pública</td>
+<td>Prueba de acceso HTTP/SSH</td>
+</tr>
+<tr>
+<td>Sesión 4</td>
+<td style="text-align: right;">3 h</td>
+<td>Subred privada, NAT Gateway y rutas privadas</td>
+<td>EC2 privada con salida a Internet</td>
+<td>Prueba de salida desde subred privada</td>
+</tr>
+<tr>
+<td>Sesión 5</td>
+<td style="text-align: right;">2 h</td>
+<td>User Data y validación de servicios</td>
+<td>Instalación automática de Apache/Nginx</td>
+<td>Servicio web funcionando</td>
+</tr>
+<tr>
+<td>Sesión 6</td>
+<td style="text-align: right;">3 h</td>
+<td>Documentación, troubleshooting y limpieza</td>
+<td>Finalización de P1</td>
+<td>Informe técnico y checklist</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-actividades-de-aula">9. Actividades de aula<a class="headerlink" href="#9-actividades-de-aula" title="Permanent link">&para;</a></h2>
+<h3 id="actividad-1-diseno-de-direccionamiento">Actividad 1. Diseño de direccionamiento<a class="headerlink" href="#actividad-1-diseno-de-direccionamiento" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> comprender la planificación de rangos de red antes de crear recursos.</p>
+<p><strong>Desarrollo:</strong></p>
+<ol>
+<li>Se entrega al alumnado el escenario de una empresa ficticia.</li>
+<li>Deben proponer un CIDR para la VPC.</li>
+<li>Deben dividir el rango en subredes públicas y privadas.</li>
+<li>Deben justificar por qué las subredes no se solapan.</li>
+</ol>
+<p><strong>Producto:</strong> tabla de direccionamiento.</p>
+<h3 id="actividad-2-identificacion-de-subred-publica-y-privada">Actividad 2. Identificación de subred pública y privada<a class="headerlink" href="#actividad-2-identificacion-de-subred-publica-y-privada" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> diferenciar subredes por su tabla de rutas, no solo por su nombre.</p>
+<p><strong>Desarrollo:</strong></p>
+<p>El alumnado recibe varias tablas de rutas y debe clasificar las subredes como públicas o privadas.</p>
+<p><strong>Preguntas guía:</strong></p>
+<ul>
+<li>¿Tiene ruta <code>0.0.0.0/0</code>?</li>
+<li>¿El destino de esa ruta es un Internet Gateway o un NAT Gateway?</li>
+<li>¿Puede recibir conexiones desde Internet?</li>
+<li>¿Puede iniciar conexiones hacia Internet?</li>
+</ul>
+<h3 id="actividad-3-diagnostico-de-rutas-incorrectas">Actividad 3. Diagnóstico de rutas incorrectas<a class="headerlink" href="#actividad-3-diagnostico-de-rutas-incorrectas" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> aprender troubleshooting básico de conectividad.</p>
+<p><strong>Desarrollo:</strong></p>
+<p>Se presentan errores frecuentes:</p>
+<ul>
+<li>subred pública sin ruta al Internet Gateway;</li>
+<li>subred privada con ruta directa al Internet Gateway;</li>
+<li>NAT Gateway en subred privada;</li>
+<li>Elastic IP no asociada al NAT Gateway;</li>
+<li>EC2 sin IP pública;</li>
+<li>Security Group sin puerto HTTP abierto.</li>
+</ul>
+<p>El alumnado debe identificar el problema y proponer la corrección.</p>
+<h2 id="10-laboratorio-guiado">10. Laboratorio guiado<a class="headerlink" href="#10-laboratorio-guiado" title="Permanent link">&para;</a></h2>
+<h1 id="lab-ud1-creacion-de-una-vpc-base-publicaprivada">Lab UD1. Creación de una VPC base pública/privada<a class="headerlink" href="#lab-ud1-creacion-de-una-vpc-base-publicaprivada" title="Permanent link">&para;</a></h1>
+<h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
+<p>Crear una VPC funcional con subredes públicas y privadas, acceso a Internet desde subred pública, salida a Internet desde subred privada mediante NAT Gateway y una instancia EC2 inicializada mediante User Data.</p>
+<h2 id="recursos-a-crear">Recursos a crear<a class="headerlink" href="#recursos-a-crear" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th style="text-align: right;">Cantidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VPC</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>Subred pública</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>Subred privada</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>Internet Gateway</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>NAT Gateway</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>Elastic IP</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>Route Table pública</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>Route Table privada</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>EC2 pública</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>EC2 privada</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>Security Group básico</td>
+<td style="text-align: right;">1-2</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Aviso de coste</p>
+<p>El NAT Gateway, Elastic IP, instancias EC2 y transferencia de datos pueden generar coste. El alumnado deberá eliminar los recursos al finalizar la práctica si no se reutilizan.</p>
+</div>
+<h2 id="paso-1-crear-la-vpc">Paso 1. Crear la VPC<a class="headerlink" href="#paso-1-crear-la-vpc" title="Permanent link">&para;</a></h2>
+<p>Datos recomendados:</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nombre</td>
+<td><code>vpc-ud1-redes-nube</code></td>
+</tr>
+<tr>
+<td>CIDR IPv4</td>
+<td><code>10.10.0.0/16</code></td>
+</tr>
+<tr>
+<td>Tenancy</td>
+<td>Default</td>
+</tr>
+<tr>
+<td>DNS hostnames</td>
+<td>Enabled</td>
+</tr>
+<tr>
+<td>DNS resolution</td>
+<td>Enabled</td>
+</tr>
+</tbody>
+</table>
+<h2 id="paso-2-crear-subredes">Paso 2. Crear subredes<a class="headerlink" href="#paso-2-crear-subredes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Nombre</th>
+<th>AZ</th>
+<th>CIDR</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subnet-public-a-ud1</code></td>
+<td>AZ A</td>
+<td><code>10.10.1.0/24</code></td>
+<td>Pública</td>
+</tr>
+<tr>
+<td><code>subnet-public-b-ud1</code></td>
+<td>AZ B</td>
+<td><code>10.10.2.0/24</code></td>
+<td>Pública</td>
+</tr>
+<tr>
+<td><code>subnet-private-a-ud1</code></td>
+<td>AZ A</td>
+<td><code>10.10.11.0/24</code></td>
+<td>Privada</td>
+</tr>
+<tr>
+<td><code>subnet-private-b-ud1</code></td>
+<td>AZ B</td>
+<td><code>10.10.12.0/24</code></td>
+<td>Privada</td>
+</tr>
+</tbody>
+</table>
+<h2 id="paso-3-crear-y-asociar-internet-gateway">Paso 3. Crear y asociar Internet Gateway<a class="headerlink" href="#paso-3-crear-y-asociar-internet-gateway" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Crear un Internet Gateway llamado <code>igw-ud1</code>.</li>
+<li>Asociarlo a la VPC <code>vpc-ud1-redes-nube</code>.</li>
+</ol>
+<h2 id="paso-4-crear-tabla-de-rutas-publica">Paso 4. Crear tabla de rutas pública<a class="headerlink" href="#paso-4-crear-tabla-de-rutas-publica" title="Permanent link">&para;</a></h2>
+<p>Nombre: <code>rt-public-ud1</code></p>
+<table>
+<thead>
+<tr>
+<th>Destino</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10.10.0.0/16</code></td>
+<td>local</td>
+</tr>
+<tr>
+<td><code>0.0.0.0/0</code></td>
+<td><code>igw-ud1</code></td>
+</tr>
+</tbody>
+</table>
+<p>Asociar esta tabla a:</p>
+<ul>
+<li><code>subnet-public-a-ud1</code>;</li>
+<li><code>subnet-public-b-ud1</code>.</li>
+</ul>
+<h2 id="paso-5-crear-nat-gateway">Paso 5. Crear NAT Gateway<a class="headerlink" href="#paso-5-crear-nat-gateway" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Reservar una Elastic IP.</li>
+<li>Crear un NAT Gateway en <code>subnet-public-a-ud1</code>.</li>
+<li>Asociar la Elastic IP al NAT Gateway.</li>
+</ol>
+<h2 id="paso-6-crear-tabla-de-rutas-privada">Paso 6. Crear tabla de rutas privada<a class="headerlink" href="#paso-6-crear-tabla-de-rutas-privada" title="Permanent link">&para;</a></h2>
+<p>Nombre: <code>rt-private-ud1</code></p>
+<table>
+<thead>
+<tr>
+<th>Destino</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10.10.0.0/16</code></td>
+<td>local</td>
+</tr>
+<tr>
+<td><code>0.0.0.0/0</code></td>
+<td>NAT Gateway</td>
+</tr>
+</tbody>
+</table>
+<p>Asociar esta tabla a:</p>
+<ul>
+<li><code>subnet-private-a-ud1</code>;</li>
+<li><code>subnet-private-b-ud1</code>.</li>
+</ul>
+<h2 id="paso-7-crear-security-group-para-ec2-publica">Paso 7. Crear Security Group para EC2 pública<a class="headerlink" href="#paso-7-crear-security-group-para-ec2-publica" title="Permanent link">&para;</a></h2>
+<p>Nombre: <code>sg-web-public-ud1</code></p>
+<p>Reglas inbound recomendadas para laboratorio:</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th style="text-align: right;">Puerto</th>
+<th>Origen</th>
+<th>Comentario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSH</td>
+<td style="text-align: right;">22</td>
+<td>IP del aula o del profesor</td>
+<td>Administración</td>
+</tr>
+<tr>
+<td>HTTP</td>
+<td style="text-align: right;">80</td>
+<td><code>0.0.0.0/0</code></td>
+<td>Prueba web</td>
+</tr>
+</tbody>
+</table>
+<p>Reglas outbound:</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Destino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All traffic</td>
+<td><code>0.0.0.0/0</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Recomendación</p>
+<p>No dejar SSH abierto a <code>0.0.0.0/0</code>. Si se usa temporalmente por limitaciones del aula, justificarlo y eliminarlo al finalizar.</p>
+</div>
+<h2 id="paso-8-lanzar-ec2-publica">Paso 8. Lanzar EC2 pública<a class="headerlink" href="#paso-8-lanzar-ec2-publica" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nombre</td>
+<td><code>ec2-public-ud1</code></td>
+</tr>
+<tr>
+<td>AMI</td>
+<td>Amazon Linux 2023</td>
+</tr>
+<tr>
+<td>Tipo</td>
+<td><code>t3.micro</code> o equivalente disponible</td>
+</tr>
+<tr>
+<td>Subred</td>
+<td><code>subnet-public-a-ud1</code></td>
+</tr>
+<tr>
+<td>Auto-assign public IP</td>
+<td>Enabled</td>
+</tr>
+<tr>
+<td>Security Group</td>
+<td><code>sg-web-public-ud1</code></td>
+</tr>
+</tbody>
+</table>
+<p>User Data:</p>
+<pre><code class="language-bash">#!/bin/bash
+dnf update -y
+dnf install -y httpd
+systemctl enable httpd
+systemctl start httpd
+echo &quot;&lt;h1&gt;UD1 - EC2 publica funcionando&lt;/h1&gt;&quot; &gt; /var/www/html/index.html
+</code></pre>
+<h2 id="paso-9-lanzar-ec2-privada">Paso 9. Lanzar EC2 privada<a class="headerlink" href="#paso-9-lanzar-ec2-privada" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nombre</td>
+<td><code>ec2-private-ud1</code></td>
+</tr>
+<tr>
+<td>AMI</td>
+<td>Amazon Linux 2023</td>
+</tr>
+<tr>
+<td>Tipo</td>
+<td><code>t3.micro</code> o equivalente disponible</td>
+</tr>
+<tr>
+<td>Subred</td>
+<td><code>subnet-private-a-ud1</code></td>
+</tr>
+<tr>
+<td>Auto-assign public IP</td>
+<td>Disabled</td>
+</tr>
+<tr>
+<td>Security Group</td>
+<td>Security Group restrictivo</td>
+</tr>
+</tbody>
+</table>
+<h2 id="paso-10-validaciones">Paso 10. Validaciones<a class="headerlink" href="#paso-10-validaciones" title="Permanent link">&para;</a></h2>
+<h3 id="validacion-1-ec2-publica">Validación 1. EC2 pública<a class="headerlink" href="#validacion-1-ec2-publica" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Acceder por navegador a la IP pública de <code>ec2-public-ud1</code>.</li>
+<li>Comprobar que aparece el mensaje de User Data.</li>
+</ul>
+<h3 id="validacion-2-rutas-publicas">Validación 2. Rutas públicas<a class="headerlink" href="#validacion-2-rutas-publicas" title="Permanent link">&para;</a></h3>
+<p>Comprobar que la subred pública tiene ruta:</p>
+<pre><code class="language-text">0.0.0.0/0 -&gt; Internet Gateway
+</code></pre>
+<h3 id="validacion-3-rutas-privadas">Validación 3. Rutas privadas<a class="headerlink" href="#validacion-3-rutas-privadas" title="Permanent link">&para;</a></h3>
+<p>Comprobar que la subred privada tiene ruta:</p>
+<pre><code class="language-text">0.0.0.0/0 -&gt; NAT Gateway
+</code></pre>
+<h3 id="validacion-4-salida-a-internet-desde-privada">Validación 4. Salida a Internet desde privada<a class="headerlink" href="#validacion-4-salida-a-internet-desde-privada" title="Permanent link">&para;</a></h3>
+<p>Desde la instancia privada, si se accede mediante bastion, SSM o método autorizado, comprobar:</p>
+<pre><code class="language-bash">curl https://aws.amazon.com
+</code></pre>
+<h3 id="validacion-5-entrada-bloqueada-a-privada">Validación 5. Entrada bloqueada a privada<a class="headerlink" href="#validacion-5-entrada-bloqueada-a-privada" title="Permanent link">&para;</a></h3>
+<p>Comprobar que la instancia privada no tiene IP pública y no puede recibir conexiones directas desde Internet.</p>
+<h2 id="11-practica-evaluable">11. Práctica evaluable<a class="headerlink" href="#11-practica-evaluable" title="Permanent link">&para;</a></h2>
+<h1 id="p1-diseno-y-despliegue-de-una-vpc-base">P1. Diseño y despliegue de una VPC base<a class="headerlink" href="#p1-diseno-y-despliegue-de-una-vpc-base" title="Permanent link">&para;</a></h1>
+<h2 id="enunciado">Enunciado<a class="headerlink" href="#enunciado" title="Permanent link">&para;</a></h2>
+<p>Una empresa quiere comenzar a migrar servicios a AWS. Necesita una red base en la nube con subredes públicas para servicios expuestos y subredes privadas para recursos internos. La red debe permitir salida a Internet desde las subredes privadas, pero no entrada directa desde Internet.</p>
+<p>El alumnado deberá diseñar, desplegar, verificar y documentar la arquitectura.</p>
+<h2 id="requisitos-minimos">Requisitos mínimos<a class="headerlink" href="#requisitos-minimos" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Una VPC con CIDR propio.</li>
+<li>Dos subredes públicas.</li>
+<li>Dos subredes privadas.</li>
+<li>Un Internet Gateway.</li>
+<li>Un NAT Gateway.</li>
+<li>Una tabla de rutas pública.</li>
+<li>Una tabla de rutas privada.</li>
+<li>Una EC2 pública con servicio web instalado mediante User Data.</li>
+<li>Una EC2 privada sin IP pública.</li>
+<li>Security Groups básicos.</li>
+<li>Pruebas de conectividad.</li>
+<li>Documentación técnica.</li>
+<li>Limpieza o justificación de recursos mantenidos.</li>
+</ul>
+<h2 id="entrega">Entrega<a class="headerlink" href="#entrega" title="Permanent link">&para;</a></h2>
+<p>El alumnado entregará un informe en Markdown o PDF con:</p>
+<ol>
+<li>Diagrama de arquitectura.</li>
+<li>Tabla de direccionamiento.</li>
+<li>Tabla de rutas.</li>
+<li>Capturas de recursos principales.</li>
+<li>Pruebas de conectividad.</li>
+<li>Problemas encontrados y solución aplicada.</li>
+<li>Checklist de limpieza de recursos.</li>
+</ol>
+<h2 id="12-evidencias-de-evaluacion">12. Evidencias de evaluación<a class="headerlink" href="#12-evidencias-de-evaluacion" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E1</td>
+<td>Diagrama de arquitectura de la VPC.</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>Tabla de direccionamiento CIDR.</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>Capturas de VPC y subredes.</td>
+</tr>
+<tr>
+<td>E4</td>
+<td>Capturas de tablas de rutas.</td>
+</tr>
+<tr>
+<td>E5</td>
+<td>Captura del Internet Gateway asociado.</td>
+</tr>
+<tr>
+<td>E6</td>
+<td>Captura del NAT Gateway activo.</td>
+</tr>
+<tr>
+<td>E7</td>
+<td>Captura de EC2 pública y EC2 privada.</td>
+</tr>
+<tr>
+<td>E8</td>
+<td>Prueba de acceso HTTP a EC2 pública.</td>
+</tr>
+<tr>
+<td>E9</td>
+<td>Prueba de salida a Internet desde EC2 privada.</td>
+</tr>
+<tr>
+<td>E10</td>
+<td>Informe de troubleshooting.</td>
+</tr>
+<tr>
+<td>E11</td>
+<td>Checklist de limpieza.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="13-rubrica-orientativa">13. Rúbrica orientativa<a class="headerlink" href="#13-rubrica-orientativa" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>Excelente</th>
+<th>Adecuado</th>
+<th>Básico</th>
+<th>Insuficiente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Diseño de direccionamiento</td>
+<td>CIDR coherente, escalable y sin solapamientos; subredes bien justificadas.</td>
+<td>CIDR correcto y subredes funcionales.</td>
+<td>CIDR funcional pero poco justificado.</td>
+<td>CIDR incorrecto o con solapamientos.</td>
+</tr>
+<tr>
+<td>Configuración de VPC y subredes</td>
+<td>VPC y cuatro subredes correctamente creadas y nombradas.</td>
+<td>VPC y subredes creadas con pequeños errores de nomenclatura.</td>
+<td>Faltan elementos secundarios pero la red básica funciona.</td>
+<td>VPC o subredes mal configuradas.</td>
+</tr>
+<tr>
+<td>Rutas e Internet Gateway</td>
+<td>Rutas públicas correctamente asociadas al IGW.</td>
+<td>Rutas públicas funcionales con algún detalle mejorable.</td>
+<td>Rutas parcialmente correctas.</td>
+<td>No hay conectividad pública.</td>
+</tr>
+<tr>
+<td>NAT Gateway y salida privada</td>
+<td>NAT funcional y subred privada con salida a Internet.</td>
+<td>NAT funcional con algún problema menor.</td>
+<td>NAT creado pero con pruebas incompletas.</td>
+<td>NAT ausente o no funcional.</td>
+</tr>
+<tr>
+<td>EC2 y User Data</td>
+<td>Servicio web instalado automáticamente y validado.</td>
+<td>EC2 funcional con instalación manual o parcial.</td>
+<td>EC2 creada pero validación incompleta.</td>
+<td>EC2 no accesible o mal ubicada.</td>
+</tr>
+<tr>
+<td>Documentación</td>
+<td>Informe claro, completo, con diagrama, tablas, capturas y análisis.</td>
+<td>Informe correcto con la mayoría de evidencias.</td>
+<td>Informe básico e incompleto.</td>
+<td>No documenta adecuadamente.</td>
+</tr>
+<tr>
+<td>Limpieza y control de costes</td>
+<td>Recursos eliminados o justificados, con checklist completo.</td>
+<td>Limpieza realizada parcialmente.</td>
+<td>Limpieza poco documentada.</td>
+<td>Mantiene recursos costosos sin justificar.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14-errores-frecuentes-y-pistas-de-troubleshooting">14. Errores frecuentes y pistas de troubleshooting<a class="headerlink" href="#14-errores-frecuentes-y-pistas-de-troubleshooting" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Posible causa</th>
+<th>Comprobación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>La EC2 pública no responde por HTTP</td>
+<td>Security Group no permite puerto 80</td>
+<td>Revisar inbound rules</td>
+</tr>
+<tr>
+<td>La EC2 pública no tiene Internet</td>
+<td>Subred sin ruta al IGW</td>
+<td>Revisar tabla de rutas pública</td>
+</tr>
+<tr>
+<td>La EC2 privada no sale a Internet</td>
+<td>Falta ruta al NAT Gateway</td>
+<td>Revisar tabla de rutas privada</td>
+</tr>
+<tr>
+<td>El NAT Gateway no funciona</td>
+<td>Está en subred privada o sin Elastic IP</td>
+<td>Revisar subred y EIP</td>
+</tr>
+<tr>
+<td>No se puede conectar por SSH</td>
+<td>IP origen no permitida o clave incorrecta</td>
+<td>Revisar SG, clave y usuario</td>
+</tr>
+<tr>
+<td>User Data no instaló Apache</td>
+<td>Script incorrecto o AMI diferente</td>
+<td>Revisar logs cloud-init</td>
+</tr>
+</tbody>
+</table>
+<h2 id="15-checklist-de-limpieza-de-la-ud1">15. Checklist de limpieza de la UD1<a class="headerlink" href="#15-checklist-de-limpieza-de-la-ud1" title="Permanent link">&para;</a></h2>
+<p>Al finalizar la unidad, comprobar:</p>
+<ul>
+<li>[ ] Terminar o eliminar las instancias EC2.</li>
+<li>[ ] Eliminar NAT Gateway si no se reutiliza.</li>
+<li>[ ] Liberar Elastic IP si no se reutiliza.</li>
+<li>[ ] Eliminar tablas de rutas no necesarias.</li>
+<li>[ ] Eliminar subredes si se elimina la VPC.</li>
+<li>[ ] Desasociar y eliminar Internet Gateway si se elimina la VPC.</li>
+<li>[ ] Eliminar la VPC si no se reutiliza en UD2.</li>
+<li>[ ] Revisar que no quedan Load Balancers ni endpoints creados por error.</li>
+<li>[ ] Revisar consola de facturación o alertas de presupuesto.</li>
+</ul>
+<h2 id="16-materiales-del-curso-que-se-integran">16. Materiales del curso que se integran<a class="headerlink" href="#16-materiales-del-curso-que-se-integran" title="Permanent link">&para;</a></h2>
+<p>Del curso de AWS Networking se utilizarán especialmente:</p>
+<ul>
+<li>VPC Intro.</li>
+<li>How to create first VPC?</li>
+<li>How to create Subnet?</li>
+<li>How to create Internet Gateway.</li>
+<li>Route Table Intro.</li>
+<li>How to create Route Table?</li>
+<li>Intro: EC2 in Public Subnet.</li>
+<li>Setup EC2 in Public Subnet.</li>
+<li>Connect to EC2 running in Public Subnet.</li>
+<li>Intro: NAT Gateway.</li>
+<li>Create NAT Gateway.</li>
+<li>Update Route Table for NAT Gateway.</li>
+<li>Validate &amp; Test NAT Gateway.</li>
+<li>Intro: EC2 User Data.</li>
+<li>EC2 User Data setup.</li>
+<li>Validate and Test User Data.</li>
+</ul>
+<h2 id="17-referencias-y-labs-recomendados">17. Referencias y labs recomendados<a class="headerlink" href="#17-referencias-y-labs-recomendados" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Amazon VPC User Guide: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html</li>
+<li>Configure route tables: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html</li>
+<li>Internet Gateway: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html</li>
+<li>NAT devices: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat.html</li>
+<li>Plan your VPC: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-getting-started.html</li>
+<li>AWS CloudOps Networking Workshop: https://network-workshop.aws-cloudops.com/</li>
+<li>AWS Networking Best Practices: https://aws.github.io/aws-networking-best-practices/foundation/vpc/</li>
+</ul>
+<h2 id="18-ampliacion">18. Ampliación<a class="headerlink" href="#18-ampliacion" title="Permanent link">&para;</a></h2>
+<p>Para alumnado avanzado:</p>
+<ol>
+<li>Crear una segunda NAT Gateway en otra zona de disponibilidad y comparar disponibilidad/coste.</li>
+<li>Desplegar EC2 privada y acceder mediante AWS Systems Manager Session Manager.</li>
+<li>Crear una versión automatizada de la VPC mediante AWS CLI.</li>
+<li>Crear una plantilla Terraform mínima para la VPC.</li>
+<li>Añadir etiquetas obligatorias a todos los recursos.</li>
+</ol>
+<h2 id="19-preguntas-de-cierre">19. Preguntas de cierre<a class="headerlink" href="#19-preguntas-de-cierre" title="Permanent link">&para;</a></h2>
+<ol>
+<li>¿Qué diferencia real hay entre una subred pública y una subred privada?</li>
+<li>¿Por qué el NAT Gateway debe estar en una subred pública?</li>
+<li>¿Qué ruta necesita una subred pública para tener salida a Internet?</li>
+<li>¿Por qué una instancia privada puede salir a Internet pero no recibir conexiones directas?</li>
+<li>¿Qué recursos de esta unidad generan coste aunque no haya tráfico?</li>
+<li>¿Qué evidencias demuestran que la arquitectura funciona correctamente?</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Material docente - Curso de Especialización en Recursos y Servicios en la Nube</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
