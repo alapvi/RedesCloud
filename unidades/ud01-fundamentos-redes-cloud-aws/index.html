@@ -53,6 +53,8 @@
       
     
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -1615,54 +1617,9 @@
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"&lt;h1&gt;UD1 - Servidor web en AWS&lt;/h1&gt;"</span><span class="w"> </span>&gt;<span class="w"> </span>/var/www/html/index.html
 </code></pre></div>
 <h2 id="6-mapa-conceptual">6. Mapa conceptual<a class="headerlink" href="#6-mapa-conceptual" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart LR
-    VPC[Amazon VPC] --&gt; CIDR[CIDR]
-    VPC --&gt; SUB[Subredes]
-    VPC --&gt; RT[Tablas de rutas]
-
-    SUB --&gt; PUB[Subred pública]
-    SUB --&gt; PRI[Subred privada]
-
-    PUB --&gt; IGW[Internet Gateway]
-    PRI --&gt; NAT[NAT Gateway]
-
-    PUB --&gt; EC2PUB[EC2 pública]
-    PRI --&gt; EC2PRI[EC2 privada]
-
-    EC2PUB --&gt; UD[User Data]
-    EC2PRI --&gt; SAL[Salida a Internet]
-
-    RT --&gt; IGW
-    RT --&gt; NAT</code></pre>
+<p><img alt="Mapa conceptual de AWS VPC y componentes de red" src="../../assets/DiagramaConceptual_AWS.png" /></p>
 <h2 id="7-arquitectura-objetivo-de-la-unidad">7. Arquitectura objetivo de la unidad<a class="headerlink" href="#7-arquitectura-objetivo-de-la-unidad" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart LR
-    Internet((Internet)) --&gt; IGW[Internet Gateway]
-
-    subgraph Publica[Subredes públicas]
-        PublicRT[Tabla de rutas pública]
-        PubA[Subred pública A]
-        PubB[Subred pública B]
-        EC2Pub[EC2 pública]
-    end
-
-    subgraph Privada[Subredes privadas]
-        NAT[NAT Gateway]
-        PrivateRT[Tabla de rutas privada]
-        PrivA[Subred privada A]
-        PrivB[Subred privada B]
-        EC2Priv[EC2 privada]
-    end
-
-    IGW --&gt; PublicRT
-    PublicRT --&gt; PubA
-    PublicRT --&gt; PubB
-    PubA --&gt; EC2Pub
-    PubA --&gt; NAT
-
-    NAT --&gt; PrivateRT
-    PrivateRT --&gt; PrivA
-    PrivateRT --&gt; PrivB
-    PrivA --&gt; EC2Priv</code></pre>
+<p><img alt="Arquitectura VPC pública/privada con Internet Gateway y NAT Gateway" src="../../assets/DiagramaAWS.png" /></p>
 <h2 id="8-secuencia-de-sesiones">8. Secuencia de sesiones<a class="headerlink" href="#8-secuencia-de-sesiones" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
