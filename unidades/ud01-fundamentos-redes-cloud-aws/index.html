@@ -1541,20 +1541,12 @@
 <td><code>10.10.0.0/16</code></td>
 </tr>
 <tr>
-<td>Subred pública A</td>
+<td>Subred pública</td>
 <td><code>10.10.1.0/24</code></td>
 </tr>
 <tr>
-<td>Subred pública B</td>
-<td><code>10.10.2.0/24</code></td>
-</tr>
-<tr>
-<td>Subred privada A</td>
+<td>Subred privada</td>
 <td><code>10.10.11.0/24</code></td>
-</tr>
-<tr>
-<td>Subred privada B</td>
-<td><code>10.10.12.0/24</code></td>
 </tr>
 </tbody>
 </table>
@@ -1730,11 +1722,11 @@
 </tr>
 <tr>
 <td>Subred pública</td>
-<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
 </tr>
 <tr>
 <td>Subred privada</td>
-<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
 </tr>
 <tr>
 <td>Internet Gateway</td>
@@ -1818,27 +1810,15 @@
 </thead>
 <tbody>
 <tr>
-<td><code>subnet-public-a-ud1</code></td>
+<td><code>subnet-public-ud1</code></td>
 <td>AZ A</td>
 <td><code>10.10.1.0/24</code></td>
 <td>Pública</td>
 </tr>
 <tr>
-<td><code>subnet-public-b-ud1</code></td>
-<td>AZ B</td>
-<td><code>10.10.2.0/24</code></td>
-<td>Pública</td>
-</tr>
-<tr>
-<td><code>subnet-private-a-ud1</code></td>
+<td><code>subnet-private-ud1</code></td>
 <td>AZ A</td>
 <td><code>10.10.11.0/24</code></td>
-<td>Privada</td>
-</tr>
-<tr>
-<td><code>subnet-private-b-ud1</code></td>
-<td>AZ B</td>
-<td><code>10.10.12.0/24</code></td>
 <td>Privada</td>
 </tr>
 </tbody>
@@ -1870,13 +1850,12 @@
 </table>
 <p>Asociar esta tabla a:</p>
 <ul>
-<li><code>subnet-public-a-ud1</code>;</li>
-<li><code>subnet-public-b-ud1</code>.</li>
+<li><code>subnet-public-ud1</code>.</li>
 </ul>
 <h2 id="paso-5-crear-nat-gateway">Paso 5. Crear NAT Gateway<a class="headerlink" href="#paso-5-crear-nat-gateway" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Reservar una Elastic IP.</li>
-<li>Crear un NAT Gateway en <code>subnet-public-a-ud1</code>.</li>
+<li>Crear un NAT Gateway en <code>subnet-public-ud1</code>.</li>
 <li>Asociar la Elastic IP al NAT Gateway.</li>
 </ol>
 <h2 id="paso-6-crear-tabla-de-rutas-privada">Paso 6. Crear tabla de rutas privada<a class="headerlink" href="#paso-6-crear-tabla-de-rutas-privada" title="Permanent link">&para;</a></h2>
@@ -1901,8 +1880,7 @@
 </table>
 <p>Asociar esta tabla a:</p>
 <ul>
-<li><code>subnet-private-a-ud1</code>;</li>
-<li><code>subnet-private-b-ud1</code>.</li>
+<li><code>subnet-private-ud1</code>.</li>
 </ul>
 <h2 id="paso-7-crear-security-group-para-ec2-publica">Paso 7. Crear Security Group para EC2 pública<a class="headerlink" href="#paso-7-crear-security-group-para-ec2-publica" title="Permanent link">&para;</a></h2>
 <p>Nombre: <code>sg-web-public-ud1</code></p>
@@ -1973,7 +1951,7 @@
 </tr>
 <tr>
 <td>Subred</td>
-<td><code>subnet-public-a-ud1</code></td>
+<td><code>subnet-public-ud1</code></td>
 </tr>
 <tr>
 <td>Auto-assign public IP</td>
@@ -2016,7 +1994,7 @@
 </tr>
 <tr>
 <td>Subred</td>
-<td><code>subnet-private-a-ud1</code></td>
+<td><code>subnet-private-ud1</code></td>
 </tr>
 <tr>
 <td>Auto-assign public IP</td>
@@ -2056,8 +2034,8 @@
 <h2 id="requisitos-minimos">Requisitos mínimos<a class="headerlink" href="#requisitos-minimos" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Una VPC con CIDR propio.</li>
-<li>Dos subredes públicas.</li>
-<li>Dos subredes privadas.</li>
+<li>Una subred pública.</li>
+<li>Una subred privada.</li>
 <li>Un Internet Gateway.</li>
 <li>Un NAT Gateway.</li>
 <li>Una tabla de rutas pública.</li>
@@ -2156,7 +2134,7 @@
 </tr>
 <tr>
 <td>Configuración de VPC y subredes</td>
-<td>VPC y cuatro subredes correctamente creadas y nombradas.</td>
+<td>VPC y dos subredes correctamente creadas y nombradas.</td>
 <td>VPC y subredes creadas con pequeños errores de nomenclatura.</td>
 <td>Faltan elementos secundarios pero la red básica funciona.</td>
 <td>VPC o subredes mal configuradas.</td>
