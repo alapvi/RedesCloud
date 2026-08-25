@@ -487,31 +487,55 @@ systemctl start httpd
 echo &quot;&lt;h1&gt;UD1 - Servidor web en AWS&lt;/h1&gt;&quot; &gt; /var/www/html/index.html
 </code></pre>
 <h2 id="6-mapa-conceptual">6. Mapa conceptual<a class="headerlink" href="#6-mapa-conceptual" title="Permanent link">&para;</a></h2>
-<pre><code class="language-mermaid">graph TD
-    A[Amazon VPC] --&gt; B[CIDR]
-    A --&gt; C[Subredes]
-    C --&gt; D[Subred publica]
-    C --&gt; E[Subred privada]
-    D --&gt; F[Internet Gateway]
-    E --&gt; G[NAT Gateway]
-    A --&gt; H[Tablas de rutas]
-    H --&gt; F
-    H --&gt; G
-    C --&gt; I[EC2]
-    I --&gt; J[User Data]
+<pre><code class="language-mermaid">flowchart LR
+    VPC[Amazon VPC] --&gt; CIDR[CIDR]
+    VPC --&gt; SUB[Subredes]
+    VPC --&gt; RT[Tablas de rutas]
+
+    SUB --&gt; PUB[Subred pública]
+    SUB --&gt; PRI[Subred privada]
+
+    PUB --&gt; IGW[Internet Gateway]
+    PRI --&gt; NAT[NAT Gateway]
+
+    PUB --&gt; EC2PUB[EC2 pública]
+    PRI --&gt; EC2PRI[EC2 privada]
+
+    EC2PUB --&gt; UD[User Data]
+    EC2PRI --&gt; SAL[Salida a Internet]
+
+    RT --&gt; IGW
+    RT --&gt; NAT
 </code></pre>
 <h2 id="7-arquitectura-objetivo-de-la-unidad">7. Arquitectura objetivo de la unidad<a class="headerlink" href="#7-arquitectura-objetivo-de-la-unidad" title="Permanent link">&para;</a></h2>
-<pre><code class="language-mermaid">graph TD
+<pre><code class="language-mermaid">flowchart LR
     Internet((Internet)) --&gt; IGW[Internet Gateway]
-    IGW --&gt; PublicRT[Tabla rutas publica]
-    PublicRT --&gt; PubA[Subred publica A]
-    PublicRT --&gt; PubB[Subred publica B]
-    PubA --&gt; NAT[NAT Gateway]
-    PubA --&gt; EC2Pub[EC2 publica]
-    NAT --&gt; PrivateRT[Tabla rutas privada]
-    PrivateRT --&gt; PrivA[Subred privada A]
-    PrivateRT --&gt; PrivB[Subred privada B]
-    PrivA --&gt; EC2Priv[EC2 privada]
+
+    subgraph Publica[Subredes públicas]
+        PublicRT[Tabla de rutas pública]
+        PubA[Subred pública A]
+        PubB[Subred pública B]
+        EC2Pub[EC2 pública]
+    end
+
+    subgraph Privada[Subredes privadas]
+        NAT[NAT Gateway]
+        PrivateRT[Tabla de rutas privada]
+        PrivA[Subred privada A]
+        PrivB[Subred privada B]
+        EC2Priv[EC2 privada]
+    end
+
+    IGW --&gt; PublicRT
+    PublicRT --&gt; PubA
+    PublicRT --&gt; PubB
+    PubA --&gt; EC2Pub
+    PubA --&gt; NAT
+
+    NAT --&gt; PrivateRT
+    PrivateRT --&gt; PrivA
+    PrivateRT --&gt; PrivB
+    PrivA --&gt; EC2Priv
 </code></pre>
 <h2 id="8-secuencia-de-sesiones">8. Secuencia de sesiones<a class="headerlink" href="#8-secuencia-de-sesiones" title="Permanent link">&para;</a></h2>
 <table>
