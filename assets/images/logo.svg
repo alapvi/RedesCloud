@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Fondo círculo -->
+  <circle cx="50" cy="50" r="48" fill="#E3F2FD" stroke="#1976D2" stroke-width="2"/>
+  
+  <!-- Nodos de la red (círculos) -->
+  <circle cx="30" cy="30" r="6" fill="#1976D2"/>
+  <circle cx="70" cy="30" r="6" fill="#1976D2"/>
+  <circle cx="50" cy="70" r="6" fill="#1976D2"/>
+  <circle cx="50" cy="50" r="8" fill="#1976D2"/>
+  
+  <!-- Conexiones (líneas) -->
+  <line x1="30" y1="30" x2="50" y2="50" stroke="#1976D2" stroke-width="1.5"/>
+  <line x1="70" y1="30" x2="50" y2="50" stroke="#1976D2" stroke-width="1.5"/>
+  <line x1="50" y1="70" x2="50" y2="50" stroke="#1976D2" stroke-width="1.5"/>
+  <line x1="30" y1="30" x2="70" y2="30" stroke="#1976D2" stroke-width="1.5" stroke-dasharray="2,2"/>
+</svg>
