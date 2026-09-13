@@ -3,113 +3,128 @@
 {% block extra_css %}
   {{ super() }}
   <style>
+    /* Estilo para el toggle del sidebar */
     .md-sidebar--primary {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      transform: translateX(0) !important;
     }
 
-    .md-sidebar--primary.toggled {
-      margin-left: -30.1rem;
-      width: 0 !important;
-      overflow: hidden;
-      display: none;
-    }
-
-    .md-content {
-      transition: all 0.3s ease !important;
+    .md-sidebar--primary.hidden {
+      transform: translateX(-100%) !important;
     }
 
     .sidebar-toggle-btn {
-      display: inline-block !important;
-      width: auto !important;
-      padding: 0.4rem 0.8rem !important;
-      margin-left: 0.5rem !important;
-      border: none !important;
-      background: transparent !important;
-      cursor: pointer !important;
-      font-size: 1.5rem !important;
-      color: inherit !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.4rem;
+      height: 2.4rem;
+      margin: 0.4rem 0 0.4rem 0.5rem;
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      color: inherit;
+      cursor: pointer;
+      transition: background-color 0.25s;
+      font-size: 1.5rem;
     }
 
     .sidebar-toggle-btn:hover {
-      opacity: 0.7;
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    [data-md-color-scheme="slate"] .sidebar-toggle-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
   </style>
 {% endblock %}
 
-{% block scripts %}
+{% block header %}
   {{ super() }}
   <script>
-    // Esperar a que el documento esté completamente cargado
-    function initToggleSidebar() {
-      console.log('[Sidebar Toggle] Iniciando...');
-      
-      const header = document.querySelector('.md-header');
-      const sidebar = document.querySelector('.md-sidebar--primary');
-      
-      if (!header || !sidebar) {
-        console.warn('[Sidebar Toggle] No se encontraron elementos necesarios');
-        setTimeout(initToggleSidebar, 100);
-        return;
+    document.addEventListener('DOMContentLoaded', function() {
+      // Variables
+      const STORAGE_KEY = 'md-sidebar-hidden';
+      let sidebarHidden = localStorage.getItem(STORAGE_KEY) === 'true';
+
+      // Función para crear e insertar botón
+      function setupToggleButton() {
+        const header = document.querySelector('.md-header__inner');
+        
+        if (!header) {
+          return setTimeout(setupToggleButton, 100);
+        }
+
+        // No crear si ya existe
+        if (document.querySelector('.sidebar-toggle-btn')) {
+          return;
+        }
+
+        // Crear botón
+        const btn = document.createElement('button');
+        btn.className = 'sidebar-toggle-btn';
+        btn.setAttribute('type', 'button');
+        btn.setAttribute('title', 'Alternar menú lateral');
+        btn.setAttribute('aria-label', 'Alternar menú lateral');
+        btn.innerHTML = '☰';
+
+        // Insertar al inicio del header
+        header.insertBefore(btn, header.firstChild);
+
+        // Listener del botón
+        btn.addEventListener('click', toggleSidebar);
+
+        // Aplicar estado guardado
+        applyToggleState();
       }
 
-      console.log('[Sidebar Toggle] Elementos encontrados');
+      // Función para aplicar estado
+      function applyToggleState() {
+        const sidebar = document.querySelector('.md-sidebar--primary');
+        if (!sidebar) return;
 
-      // Crear botón si no existe
-      let btn = document.querySelector('.sidebar-toggle-btn');
-      if (!btn) {
-        btn = document.createElement('button');
-        btn.className = 'sidebar-toggle-btn';
-        btn.innerHTML = '☰';
-        btn.title = 'Alternar menú';
-        btn.type = 'button';
-        
-        // Insertar después del logo
-        const header_inner = header.querySelector('.md-header__inner');
-        if (header_inner) {
-          const logo = header_inner.querySelector('.md-logo');
-          if (logo) {
-            logo.after(btn);
-            console.log('[Sidebar Toggle] Botón insertado');
-          }
+        if (sidebarHidden) {
+          sidebar.classList.add('hidden');
+        } else {
+          sidebar.classList.remove('hidden');
         }
       }
 
-      // Cargar estado previo
-      const toggled = localStorage.getItem('sidebar-toggled') === 'true';
-      if (toggled) {
-        sidebar.classList.add('toggled');
-        console.log('[Sidebar Toggle] Estado cargado: cerrado');
-      }
-
-      // Event listener
-      btn.addEventListener('click', function(e) {
+      // Función toggle
+      function toggleSidebar(e) {
         e.preventDefault();
         e.stopPropagation();
-        
-        const isToggled = sidebar.classList.contains('toggled');
-        
-        if (isToggled) {
-          sidebar.classList.remove('toggled');
-          localStorage.setItem('sidebar-toggled', 'false');
-          console.log('[Sidebar Toggle] Abriendo...');
-        } else {
-          sidebar.classList.add('toggled');
-          localStorage.setItem('sidebar-toggled', 'true');
-          console.log('[Sidebar Toggle] Cerrando...');
-        }
-      });
 
-      console.log('[Sidebar Toggle] Inicialización completada');
-    }
+        sidebarHidden = !sidebarHidden;
+        localStorage.setItem(STORAGE_KEY, sidebarHidden ? 'true' : 'false');
+        applyToggleState();
+      }
 
-    // Iniciar cuando el DOM esté listo
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initToggleSidebar);
-    } else {
-      setTimeout(initToggleSidebar, 100);
-    }
+      // Iniciar setup
+      setupToggleButton();
 
-    // También iniciar cuando la página cambia (Material MkDocs instantaneous loading)
-    window.addEventListener('pydata-page', initToggleSidebar);
+      // Reintentar en caso de que sea lazy-loaded
+      setTimeout(setupToggleButton, 500);
+    });
+
+    // También ejecutar después de navegación instantánea
+    document.addEventListener('mdChange', function() {
+      const btn = document.querySelector('.sidebar-toggle-btn');
+      if (!btn) {
+        setTimeout(function() {
+          const STORAGE_KEY = 'md-sidebar-hidden';
+          const sidebarHidden = localStorage.getItem(STORAGE_KEY) === 'true';
+          const sidebar = document.querySelector('.md-sidebar--primary');
+          
+          if (sidebar) {
+            if (sidebarHidden) {
+              sidebar.classList.add('hidden');
+            } else {
+              sidebar.classList.remove('hidden');
+            }
+          }
+        }, 100);
+      }
+    });
   </script>
 {% endblock %}

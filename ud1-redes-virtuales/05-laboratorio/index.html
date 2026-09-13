@@ -90,6 +90,7 @@
     </div>
     
     
+  
       
 
   
@@ -200,6 +201,93 @@
   
 </header>
     
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Variables
+      const STORAGE_KEY = 'md-sidebar-hidden';
+      let sidebarHidden = localStorage.getItem(STORAGE_KEY) === 'true';
+
+      // Función para crear e insertar botón
+      function setupToggleButton() {
+        const header = document.querySelector('.md-header__inner');
+        
+        if (!header) {
+          return setTimeout(setupToggleButton, 100);
+        }
+
+        // No crear si ya existe
+        if (document.querySelector('.sidebar-toggle-btn')) {
+          return;
+        }
+
+        // Crear botón
+        const btn = document.createElement('button');
+        btn.className = 'sidebar-toggle-btn';
+        btn.setAttribute('type', 'button');
+        btn.setAttribute('title', 'Alternar menú lateral');
+        btn.setAttribute('aria-label', 'Alternar menú lateral');
+        btn.innerHTML = '☰';
+
+        // Insertar al inicio del header
+        header.insertBefore(btn, header.firstChild);
+
+        // Listener del botón
+        btn.addEventListener('click', toggleSidebar);
+
+        // Aplicar estado guardado
+        applyToggleState();
+      }
+
+      // Función para aplicar estado
+      function applyToggleState() {
+        const sidebar = document.querySelector('.md-sidebar--primary');
+        if (!sidebar) return;
+
+        if (sidebarHidden) {
+          sidebar.classList.add('hidden');
+        } else {
+          sidebar.classList.remove('hidden');
+        }
+      }
+
+      // Función toggle
+      function toggleSidebar(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        sidebarHidden = !sidebarHidden;
+        localStorage.setItem(STORAGE_KEY, sidebarHidden ? 'true' : 'false');
+        applyToggleState();
+      }
+
+      // Iniciar setup
+      setupToggleButton();
+
+      // Reintentar en caso de que sea lazy-loaded
+      setTimeout(setupToggleButton, 500);
+    });
+
+    // También ejecutar después de navegación instantánea
+    document.addEventListener('mdChange', function() {
+      const btn = document.querySelector('.sidebar-toggle-btn');
+      if (!btn) {
+        setTimeout(function() {
+          const STORAGE_KEY = 'md-sidebar-hidden';
+          const sidebarHidden = localStorage.getItem(STORAGE_KEY) === 'true';
+          const sidebar = document.querySelector('.md-sidebar--primary');
+          
+          if (sidebar) {
+            if (sidebarHidden) {
+              sidebar.classList.add('hidden');
+            } else {
+              sidebar.classList.remove('hidden');
+            }
+          }
+        }, 100);
+      }
+    });
+  </script>
+
     <div class="md-container" data-md-component="container">
       
       
@@ -3388,84 +3476,8 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.prune", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.top", "navigation.footer", "navigation.tracking", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-  
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
-  <script>
-    // Esperar a que el documento esté completamente cargado
-    function initToggleSidebar() {
-      console.log('[Sidebar Toggle] Iniciando...');
-      
-      const header = document.querySelector('.md-header');
-      const sidebar = document.querySelector('.md-sidebar--primary');
-      
-      if (!header || !sidebar) {
-        console.warn('[Sidebar Toggle] No se encontraron elementos necesarios');
-        setTimeout(initToggleSidebar, 100);
-        return;
-      }
-
-      console.log('[Sidebar Toggle] Elementos encontrados');
-
-      // Crear botón si no existe
-      let btn = document.querySelector('.sidebar-toggle-btn');
-      if (!btn) {
-        btn = document.createElement('button');
-        btn.className = 'sidebar-toggle-btn';
-        btn.innerHTML = '☰';
-        btn.title = 'Alternar menú';
-        btn.type = 'button';
-        
-        // Insertar después del logo
-        const header_inner = header.querySelector('.md-header__inner');
-        if (header_inner) {
-          const logo = header_inner.querySelector('.md-logo');
-          if (logo) {
-            logo.after(btn);
-            console.log('[Sidebar Toggle] Botón insertado');
-          }
-        }
-      }
-
-      // Cargar estado previo
-      const toggled = localStorage.getItem('sidebar-toggled') === 'true';
-      if (toggled) {
-        sidebar.classList.add('toggled');
-        console.log('[Sidebar Toggle] Estado cargado: cerrado');
-      }
-
-      // Event listener
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const isToggled = sidebar.classList.contains('toggled');
-        
-        if (isToggled) {
-          sidebar.classList.remove('toggled');
-          localStorage.setItem('sidebar-toggled', 'false');
-          console.log('[Sidebar Toggle] Abriendo...');
-        } else {
-          sidebar.classList.add('toggled');
-          localStorage.setItem('sidebar-toggled', 'true');
-          console.log('[Sidebar Toggle] Cerrando...');
-        }
-      });
-
-      console.log('[Sidebar Toggle] Inicialización completada');
-    }
-
-    // Iniciar cuando el DOM esté listo
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initToggleSidebar);
-    } else {
-      setTimeout(initToggleSidebar, 100);
-    }
-
-    // También iniciar cuando la página cambia (Material MkDocs instantaneous loading)
-    window.addEventListener('pydata-page', initToggleSidebar);
-  </script>
-
   </body>
 </html>
