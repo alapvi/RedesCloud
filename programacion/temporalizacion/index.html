@@ -3126,21 +3126,30 @@
     
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Crear botón hamburguesa REAL en el DOM
       const header = document.querySelector('.md-header__inner');
       if (!header) return;
 
-      // Click en el ☰ que viene del CSS
-      header.addEventListener('click', function(e) {
-        if (e.target.nodeType === 3 || e.target === header) return; // Si click en el text node del ::before
-        
-        if (e.clientX < 60) { // Area del icono
-          document.body.classList.toggle('sidebar-collapsed');
-          localStorage.setItem('sidebar-collapsed', 
-            document.body.classList.contains('sidebar-collapsed'));
-        }
+      // Crear el botón
+      const btn = document.createElement('button');
+      btn.id = 'sidebar-toggle-btn';
+      btn.textContent = '☰';
+      btn.setAttribute('aria-label', 'Toggle sidebar');
+      btn.setAttribute('type', 'button');
+      
+      // Insertar ANTES que el primer hijo (logo)
+      header.insertBefore(btn, header.firstChild);
+
+      // Click handler en el botón REAL
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.body.classList.toggle('sidebar-collapsed');
+        localStorage.setItem('sidebar-collapsed', 
+          document.body.classList.contains('sidebar-collapsed'));
       });
 
-      // Restaurar estado
+      // Restaurar estado al cargar
       if (localStorage.getItem('sidebar-collapsed') === 'true') {
         document.body.classList.add('sidebar-collapsed');
       }
