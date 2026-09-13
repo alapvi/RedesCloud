@@ -4446,6 +4446,7 @@
 </span></code></pre></div>
 <p>La red física del aula proporciona direccionamiento mediante <strong>DHCP</strong>.</p>
 <p>La arquitectura inicial será:</p>
+<p><img alt="Proxmox: arquitectura del laboratorio con red interna" src="../../assets/ud1-proxmox-red-interna.png" /></p>
 <div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>                 RED FÍSICA DEL AULA
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>                    DHCP + Internet
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>                          │
@@ -4886,6 +4887,7 @@
 <div class="highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>10.10.10.0/24
 </span></code></pre></div>
 <p>Arquitectura:</p>
+<p><img alt="Proxmox: arquitectura con routing y NAT para salida a Internet" src="../../assets/ud1-proxmox-nat.png" /></p>
 <div class="highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>VM-A 10.10.10.10
 </span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>       │
 </span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>       │
@@ -5124,6 +5126,7 @@
 <h2 id="laboratorio-6-construccion-manual-de-una-vpc-en-aws">Laboratorio 6 · Construcción manual de una VPC en AWS<a class="headerlink" href="#laboratorio-6-construccion-manual-de-una-vpc-en-aws" title="Permanent link">&para;</a></h2>
 <h2 id="objetivo_4">Objetivo<a class="headerlink" href="#objetivo_4" title="Permanent link">&para;</a></h2>
 <p>Reproducir en AWS los principios de red estudiados anteriormente.</p>
+<p><img alt="AWS: arquitectura de la VPC básica de la UD1" src="../../assets/ud1-aws-vpc.png" /></p>
 <p>Crear:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-81-1"><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a>VPC:            10.0.0.0/16
 </span><span id="__span-81-2"><a id="__codelineno-81-2" name="__codelineno-81-2" href="#__codelineno-81-2"></a>Public Subnet:  10.0.1.0/24
@@ -5464,6 +5467,7 @@
 </ol>
 <hr />
 <h2 id="idea-final">Idea final<a class="headerlink" href="#idea-final" title="Permanent link">&para;</a></h2>
+<p><img alt="Equivalencias conceptuales entre Proxmox y AWS" src="../../assets/ud1-equivalencias-proxmox-aws.png" /></p>
 <p>La evolución de los laboratorios de la UD1 puede resumirse como:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-106-1"><a id="__codelineno-106-1" name="__codelineno-106-1" href="#__codelineno-106-1"></a>VM
 </span><span id="__span-106-2"><a id="__codelineno-106-2" name="__codelineno-106-2" href="#__codelineno-106-2"></a> ↓
