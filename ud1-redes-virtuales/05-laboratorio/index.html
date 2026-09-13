@@ -731,6 +731,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Laboratorios
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -747,6 +765,829 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-preparacion-del-entorno-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Preparación del entorno Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01-arquitectura-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 Arquitectura inicial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02-bridge-de-la-red-fisica-vmbr0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 Bridge de la red física: vmbr0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#03-plantilla-inicial-de-etcnetworkinterfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 Plantilla inicial de /etc/network/interfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#04-que-hace-esta-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4 ¿Qué hace esta configuración?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaz-fisica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfaz física
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-fisico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bridge físico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-interno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bridge interno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#05-validar-la-configuracion-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5 Validar la configuración inicial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#06-evolucion-de-la-red-durante-la-unidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6 Evolución de la red durante la unidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fase-1-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 1 · Switching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fase-2-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 2 · Routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fase-3-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 3 · NAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-1-direccionamiento-ipv4-y-cidr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 1 · Direccionamiento IPv4 y CIDR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-2-red-aislada-en-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 2 · Red aislada en Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-previo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso previo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conectar-las-maquinas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conectar las máquinas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conectar las máquinas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM-A
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vm-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM-B
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#antes-de-hacer-ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Antes de hacer ping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observar-el-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observar el bridge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observar-arp-e-icmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observar ARP e ICMP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-3-romper-la-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 3 · Romper la conectividad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#antes-de-modificar-nada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Antes de modificar nada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-4-introduccion-al-routing-en-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 4 · Introducción al routing en Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modificacion-de-vmbr1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modificación de vmbr1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-de-las-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de las VM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración de las VM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-a_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM-A
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vm-b_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM-B
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pregunta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pregunta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-5-salida-a-internet-mediante-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 5 · Salida a Internet mediante NAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#51-routing-ipv4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Routing IPv4
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 NAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-plantilla-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Plantilla de referencia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-prediccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Predicción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-validacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Validación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-6-construccion-manual-de-una-vpc-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 6 · Construcción manual de una VPC en AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orden-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orden recomendado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-7-routing-de-la-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 7 · Routing de la VPC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-8-internet-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 8 · Internet Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-9-instancias-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 9 · Instancias EC2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ec2-publica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EC2 pública
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ec2-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EC2 privada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pista" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pista
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-10-recorrido-del-paquete-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 10 · Recorrido del paquete en AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regla
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caso-a-ec2-publica-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caso A · EC2 pública → Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caso-b-ec2-publica-ec2-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caso B · EC2 pública → EC2 privada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caso-c-ec2-privada-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caso C · EC2 privada → Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matriz-final-de-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matriz final de conectividad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ayudas-generales-de-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ayudas generales de troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proxmox-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxmox / Linux
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-no-hacer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué NO hacer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#antes-de-pedir-ayuda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Antes de pedir ayuda
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidencias-minimas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencias mínimas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idea-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idea final
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2698,6 +3539,818 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-preparacion-del-entorno-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Preparación del entorno Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01-arquitectura-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 Arquitectura inicial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02-bridge-de-la-red-fisica-vmbr0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 Bridge de la red física: vmbr0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#03-plantilla-inicial-de-etcnetworkinterfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 Plantilla inicial de /etc/network/interfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#04-que-hace-esta-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4 ¿Qué hace esta configuración?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaz-fisica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfaz física
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-fisico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bridge físico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-interno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bridge interno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#05-validar-la-configuracion-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5 Validar la configuración inicial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#06-evolucion-de-la-red-durante-la-unidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6 Evolución de la red durante la unidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fase-1-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 1 · Switching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fase-2-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 2 · Routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fase-3-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 3 · NAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-1-direccionamiento-ipv4-y-cidr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 1 · Direccionamiento IPv4 y CIDR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-2-red-aislada-en-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 2 · Red aislada en Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-previo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso previo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conectar-las-maquinas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conectar las máquinas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conectar las máquinas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM-A
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vm-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM-B
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#antes-de-hacer-ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Antes de hacer ping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observar-el-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observar el bridge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observar-arp-e-icmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observar ARP e ICMP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-3-romper-la-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 3 · Romper la conectividad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#antes-de-modificar-nada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Antes de modificar nada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-4-introduccion-al-routing-en-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 4 · Introducción al routing en Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modificacion-de-vmbr1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modificación de vmbr1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-de-las-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración de las VM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración de las VM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-a_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM-A
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vm-b_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM-B
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pregunta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pregunta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-5-salida-a-internet-mediante-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 5 · Salida a Internet mediante NAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#51-routing-ipv4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Routing IPv4
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 NAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-plantilla-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Plantilla de referencia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-prediccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Predicción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-validacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Validación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-6-construccion-manual-de-una-vpc-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 6 · Construcción manual de una VPC en AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orden-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orden recomendado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-7-routing-de-la-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 7 · Routing de la VPC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-8-internet-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 8 · Internet Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pistas_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pistas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-9-instancias-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 9 · Instancias EC2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ec2-publica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EC2 pública
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ec2-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EC2 privada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pista" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pista
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-10-recorrido-del-paquete-en-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio 10 · Recorrido del paquete en AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regla
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caso-a-ec2-publica-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caso A · EC2 pública → Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caso-b-ec2-publica-ec2-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caso B · EC2 pública → EC2 privada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caso-c-ec2-privada-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caso C · EC2 privada → Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matriz-final-de-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matriz final de conectividad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ayudas-generales-de-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ayudas generales de troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proxmox-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxmox / Linux
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-no-hacer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué NO hacer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#antes-de-pedir-ayuda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Antes de pedir ayuda
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidencias-minimas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencias mínimas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idea-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idea final
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2775,7 +4428,7 @@
 <li>¿Cómo puedo demostrar que funciona?</li>
 </ol>
 <hr />
-<h1 id="0-preparacion-del-entorno-proxmox">0. Preparación del entorno Proxmox<a class="headerlink" href="#0-preparacion-del-entorno-proxmox" title="Permanent link">&para;</a></h1>
+<h2 id="0-preparacion-del-entorno-proxmox">0. Preparación del entorno Proxmox<a class="headerlink" href="#0-preparacion-del-entorno-proxmox" title="Permanent link">&para;</a></h2>
 <p>Antes de comenzar los laboratorios debemos comprender cómo estará conectado el servidor Proxmox a la red física del aula.</p>
 <h2 id="01-arquitectura-inicial">0.1 Arquitectura inicial<a class="headerlink" href="#01-arquitectura-inicial" title="Permanent link">&para;</a></h2>
 <p>El servidor dispone de una interfaz Ethernet física, que representaremos como:</p>
@@ -2833,7 +4486,7 @@
 </tbody>
 </table>
 <hr />
-<h1 id="02-bridge-de-la-red-fisica-vmbr0">0.2 Bridge de la red física: <code>vmbr0</code><a class="headerlink" href="#02-bridge-de-la-red-fisica-vmbr0" title="Permanent link">&para;</a></h1>
+<h2 id="02-bridge-de-la-red-fisica-vmbr0">0.2 Bridge de la red física: <code>vmbr0</code><a class="headerlink" href="#02-bridge-de-la-red-fisica-vmbr0" title="Permanent link">&para;</a></h2>
 <p>La interfaz física no tendrá directamente la configuración IP:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">iface eno1 inet manual</span>
 </span></code></pre></div>
@@ -2854,7 +4507,7 @@
 <p>Cuando una interfaz física se integra en un Linux Bridge, la configuración IP del host se realiza normalmente sobre el <strong>bridge</strong>, no sobre el puerto físico.</p>
 </div>
 <hr />
-<h1 id="03-plantilla-inicial-de-etcnetworkinterfaces">0.3 Plantilla inicial de <code>/etc/network/interfaces</code><a class="headerlink" href="#03-plantilla-inicial-de-etcnetworkinterfaces" title="Permanent link">&para;</a></h1>
+<h2 id="03-plantilla-inicial-de-etcnetworkinterfaces">0.3 Plantilla inicial de <code>/etc/network/interfaces</code><a class="headerlink" href="#03-plantilla-inicial-de-etcnetworkinterfaces" title="Permanent link">&para;</a></h2>
 <p>Una configuración simplificada de referencia será:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="na">auto lo</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="na">iface lo inet loopback</span>
@@ -2886,7 +4539,7 @@
 <p>Antes de modificar la red de un nodo remoto asegúrate de disponer de acceso por consola física o por algún mecanismo alternativo de administración.</p>
 </div>
 <hr />
-<h1 id="04-que-hace-esta-configuracion">0.4 ¿Qué hace esta configuración?<a class="headerlink" href="#04-que-hace-esta-configuracion" title="Permanent link">&para;</a></h1>
+<h2 id="04-que-hace-esta-configuracion">0.4 ¿Qué hace esta configuración?<a class="headerlink" href="#04-que-hace-esta-configuracion" title="Permanent link">&para;</a></h2>
 <h2 id="interfaz-fisica">Interfaz física<a class="headerlink" href="#interfaz-fisica" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="na">iface eno1 inet manual</span>
 </span></code></pre></div>
@@ -2916,7 +4569,7 @@
 </ul>
 <p>Es simplemente un <strong>segmento Ethernet virtual interno</strong>.</p>
 <hr />
-<h1 id="05-validar-la-configuracion-inicial">0.5 Validar la configuración inicial<a class="headerlink" href="#05-validar-la-configuracion-inicial" title="Permanent link">&para;</a></h1>
+<h2 id="05-validar-la-configuracion-inicial">0.5 Validar la configuración inicial<a class="headerlink" href="#05-validar-la-configuracion-inicial" title="Permanent link">&para;</a></h2>
 <p>Después de aplicar la configuración:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>link
 </span></code></pre></div>
@@ -2941,7 +4594,7 @@
 </span></code></pre></div>
 <p>te permitirá comprobar qué interfaz y siguiente salto utilizaría el nodo Proxmox para alcanzar Internet.</p>
 <hr />
-<h1 id="06-evolucion-de-la-red-durante-la-unidad">0.6 Evolución de la red durante la unidad<a class="headerlink" href="#06-evolucion-de-la-red-durante-la-unidad" title="Permanent link">&para;</a></h1>
+<h2 id="06-evolucion-de-la-red-durante-la-unidad">0.6 Evolución de la red durante la unidad<a class="headerlink" href="#06-evolucion-de-la-red-durante-la-unidad" title="Permanent link">&para;</a></h2>
 <p>No configuraremos toda la infraestructura desde el principio.</p>
 <p>La iremos construyendo según aparezcan nuevas necesidades.</p>
 <h2 id="fase-1-switching">Fase 1 · Switching<a class="headerlink" href="#fase-1-switching" title="Permanent link">&para;</a></h2>
@@ -3003,7 +4656,7 @@
 </span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>NAT
 </span></code></pre></div>
 <hr />
-<h1 id="laboratorio-1-direccionamiento-ipv4-y-cidr">Laboratorio 1 · Direccionamiento IPv4 y CIDR<a class="headerlink" href="#laboratorio-1-direccionamiento-ipv4-y-cidr" title="Permanent link">&para;</a></h1>
+<h2 id="laboratorio-1-direccionamiento-ipv4-y-cidr">Laboratorio 1 · Direccionamiento IPv4 y CIDR<a class="headerlink" href="#laboratorio-1-direccionamiento-ipv4-y-cidr" title="Permanent link">&para;</a></h2>
 <h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
 <p>Interpretar correctamente una dirección IPv4 y su prefijo.</p>
 <p>Analiza:</p>
@@ -3041,7 +4694,7 @@
 <p>Las redes avanzan en bloques de 16 en el tercer octeto.</p>
 </details>
 <hr />
-<h1 id="laboratorio-2-red-aislada-en-proxmox">Laboratorio 2 · Red aislada en Proxmox<a class="headerlink" href="#laboratorio-2-red-aislada-en-proxmox" title="Permanent link">&para;</a></h1>
+<h2 id="laboratorio-2-red-aislada-en-proxmox">Laboratorio 2 · Red aislada en Proxmox<a class="headerlink" href="#laboratorio-2-red-aislada-en-proxmox" title="Permanent link">&para;</a></h2>
 <h2 id="objetivo_1">Objetivo<a class="headerlink" href="#objetivo_1" title="Permanent link">&para;</a></h2>
 <p>Crear una red virtual Ethernet completamente aislada.</p>
 <div class="highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>VM-A
@@ -3186,7 +4839,7 @@
 <p>Un gateway no es necesario para comunicarse con otro host de la misma red.</p>
 </details>
 <hr />
-<h1 id="laboratorio-3-romper-la-conectividad">Laboratorio 3 · Romper la conectividad<a class="headerlink" href="#laboratorio-3-romper-la-conectividad" title="Permanent link">&para;</a></h1>
+<h2 id="laboratorio-3-romper-la-conectividad">Laboratorio 3 · Romper la conectividad<a class="headerlink" href="#laboratorio-3-romper-la-conectividad" title="Permanent link">&para;</a></h2>
 <p>Cambia únicamente la dirección de VM-B:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>VM-A → 192.168.50.10/24
 </span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>VM-B → 192.168.60.20/24
@@ -3226,7 +4879,7 @@
 <p>Si existen dos redes IP diferentes, necesitarás un elemento que trabaje en <strong>capa 3</strong>.</p>
 </details>
 <hr />
-<h1 id="laboratorio-4-introduccion-al-routing-en-proxmox">Laboratorio 4 · Introducción al routing en Proxmox<a class="headerlink" href="#laboratorio-4-introduccion-al-routing-en-proxmox" title="Permanent link">&para;</a></h1>
+<h2 id="laboratorio-4-introduccion-al-routing-en-proxmox">Laboratorio 4 · Introducción al routing en Proxmox<a class="headerlink" href="#laboratorio-4-introduccion-al-routing-en-proxmox" title="Permanent link">&para;</a></h2>
 <h2 id="objetivo_2">Objetivo<a class="headerlink" href="#objetivo_2" title="Permanent link">&para;</a></h2>
 <p>Evolucionaremos el bridge interno para que el nodo Proxmox participe en la red.</p>
 <p>Utilizaremos:</p>
@@ -3294,7 +4947,7 @@
 <p>¿Significa disponer ahora de gateway que VM-A ya puede acceder a Internet?</p>
 <p>Justifica la respuesta antes de probarlo.</p>
 <hr />
-<h1 id="laboratorio-5-salida-a-internet-mediante-nat">Laboratorio 5 · Salida a Internet mediante NAT<a class="headerlink" href="#laboratorio-5-salida-a-internet-mediante-nat" title="Permanent link">&para;</a></h1>
+<h2 id="laboratorio-5-salida-a-internet-mediante-nat">Laboratorio 5 · Salida a Internet mediante NAT<a class="headerlink" href="#laboratorio-5-salida-a-internet-mediante-nat" title="Permanent link">&para;</a></h2>
 <h2 id="objetivo_3">Objetivo<a class="headerlink" href="#objetivo_3" title="Permanent link">&para;</a></h2>
 <p>Permitir que las VM de:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>10.10.10.0/24
@@ -3468,7 +5121,7 @@
 </span></code></pre></div>
 </details>
 <hr />
-<h1 id="laboratorio-6-construccion-manual-de-una-vpc-en-aws">Laboratorio 6 · Construcción manual de una VPC en AWS<a class="headerlink" href="#laboratorio-6-construccion-manual-de-una-vpc-en-aws" title="Permanent link">&para;</a></h1>
+<h2 id="laboratorio-6-construccion-manual-de-una-vpc-en-aws">Laboratorio 6 · Construcción manual de una VPC en AWS<a class="headerlink" href="#laboratorio-6-construccion-manual-de-una-vpc-en-aws" title="Permanent link">&para;</a></h2>
 <h2 id="objetivo_4">Objetivo<a class="headerlink" href="#objetivo_4" title="Permanent link">&para;</a></h2>
 <p>Reproducir en AWS los principios de red estudiados anteriormente.</p>
 <p>Crear:</p>
@@ -3517,7 +5170,7 @@
 <p>En esta unidad ambas subnets pueden estar en una misma AZ.</p>
 </details>
 <hr />
-<h1 id="laboratorio-7-routing-de-la-vpc">Laboratorio 7 · Routing de la VPC<a class="headerlink" href="#laboratorio-7-routing-de-la-vpc" title="Permanent link">&para;</a></h1>
+<h2 id="laboratorio-7-routing-de-la-vpc">Laboratorio 7 · Routing de la VPC<a class="headerlink" href="#laboratorio-7-routing-de-la-vpc" title="Permanent link">&para;</a></h2>
 <p>Crea:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-85-1"><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>rc-ud1-rt-public
 </span><span id="__span-85-2"><a id="__codelineno-85-2" name="__codelineno-85-2" href="#__codelineno-85-2"></a>rc-ud1-rt-private
@@ -3542,7 +5195,7 @@
 <p>Comprueba la <strong>asociación</strong>.</p>
 </details>
 <hr />
-<h1 id="laboratorio-8-internet-gateway">Laboratorio 8 · Internet Gateway<a class="headerlink" href="#laboratorio-8-internet-gateway" title="Permanent link">&para;</a></h1>
+<h2 id="laboratorio-8-internet-gateway">Laboratorio 8 · Internet Gateway<a class="headerlink" href="#laboratorio-8-internet-gateway" title="Permanent link">&para;</a></h2>
 <p>Crea:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-88-1"><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a>rc-ud1-igw
 </span></code></pre></div>
@@ -3573,7 +5226,7 @@
 </span></code></pre></div>
 </details>
 <hr />
-<h1 id="laboratorio-9-instancias-ec2">Laboratorio 9 · Instancias EC2<a class="headerlink" href="#laboratorio-9-instancias-ec2" title="Permanent link">&para;</a></h1>
+<h2 id="laboratorio-9-instancias-ec2">Laboratorio 9 · Instancias EC2<a class="headerlink" href="#laboratorio-9-instancias-ec2" title="Permanent link">&para;</a></h2>
 <p>Crea una instancia en cada subnet.</p>
 <h2 id="ec2-publica">EC2 pública<a class="headerlink" href="#ec2-publica" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span id="__span-93-1"><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a>Subnet:      public-subnet
@@ -3599,7 +5252,7 @@
 <p>No esperes encontrar necesariamente la IPv4 pública configurada directamente sobre la interfaz Linux.</p>
 </details>
 <hr />
-<h1 id="laboratorio-10-recorrido-del-paquete-en-aws">Laboratorio 10 · Recorrido del paquete en AWS<a class="headerlink" href="#laboratorio-10-recorrido-del-paquete-en-aws" title="Permanent link">&para;</a></h1>
+<h2 id="laboratorio-10-recorrido-del-paquete-en-aws">Laboratorio 10 · Recorrido del paquete en AWS<a class="headerlink" href="#laboratorio-10-recorrido-del-paquete-en-aws" title="Permanent link">&para;</a></h2>
 <h2 id="regla">Regla<a class="headerlink" href="#regla" title="Permanent link">&para;</a></h2>
 <p><strong>No hagas primero el ping.</strong></p>
 <p>Primero determina qué ruta debería utilizarse.</p>
@@ -3649,7 +5302,7 @@
 <p>Precisamente la necesidad de proporcionar salida a Internet a una subnet privada sin convertirla en pública será uno de los problemas que resolveremos posteriormente.</p>
 </div>
 <hr />
-<h1 id="matriz-final-de-conectividad">Matriz final de conectividad<a class="headerlink" href="#matriz-final-de-conectividad" title="Permanent link">&para;</a></h1>
+<h2 id="matriz-final-de-conectividad">Matriz final de conectividad<a class="headerlink" href="#matriz-final-de-conectividad" title="Permanent link">&para;</a></h2>
 <p>Completa la matriz:</p>
 <table>
 <thead>
@@ -3708,7 +5361,7 @@
 </table>
 <p><code>*</code> Siempre que las políticas de seguridad permitan el tráfico.</p>
 <hr />
-<h1 id="ayudas-generales-de-troubleshooting">Ayudas generales de troubleshooting<a class="headerlink" href="#ayudas-generales-de-troubleshooting" title="Permanent link">&para;</a></h1>
+<h2 id="ayudas-generales-de-troubleshooting">Ayudas generales de troubleshooting<a class="headerlink" href="#ayudas-generales-de-troubleshooting" title="Permanent link">&para;</a></h2>
 <h2 id="proxmox-linux">Proxmox / Linux<a class="headerlink" href="#proxmox-linux" title="Permanent link">&para;</a></h2>
 <p>Sigue este orden:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-101-1"><a id="__codelineno-101-1" name="__codelineno-101-1" href="#__codelineno-101-1"></a>1. Interfaz
@@ -3762,7 +5415,7 @@
 </span><span id="__span-104-15"><a id="__codelineno-104-15" name="__codelineno-104-15" href="#__codelineno-104-15"></a>Destino
 </span></code></pre></div>
 <hr />
-<h1 id="que-no-hacer">Qué NO hacer<a class="headerlink" href="#que-no-hacer" title="Permanent link">&para;</a></h1>
+<h2 id="que-no-hacer">Qué NO hacer<a class="headerlink" href="#que-no-hacer" title="Permanent link">&para;</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Evita estas estrategias</p>
 <ul>
@@ -3776,7 +5429,7 @@
 </ul>
 </div>
 <hr />
-<h1 id="antes-de-pedir-ayuda">Antes de pedir ayuda<a class="headerlink" href="#antes-de-pedir-ayuda" title="Permanent link">&para;</a></h1>
+<h2 id="antes-de-pedir-ayuda">Antes de pedir ayuda<a class="headerlink" href="#antes-de-pedir-ayuda" title="Permanent link">&para;</a></h2>
 <p>Debes poder indicar:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-105-1"><a id="__codelineno-105-1" name="__codelineno-105-1" href="#__codelineno-105-1"></a>1. Qué comunicación intentas realizar.
 </span><span id="__span-105-2"><a id="__codelineno-105-2" name="__codelineno-105-2" href="#__codelineno-105-2"></a>2. Cuál es el origen.
@@ -3792,7 +5445,7 @@
 <p>La VM alcanza <code>10.10.10.1</code>, pero no alcanza Internet. La ruta por defecto apunta a <code>10.10.10.1</code>. He comprobado que Proxmox sí tiene salida por <code>vmbr0</code>. Mi siguiente comprobación será verificar <code>net.ipv4.ip_forward</code> y la regla de <code>MASQUERADE</code>.</p>
 </blockquote>
 <hr />
-<h1 id="evidencias-minimas">Evidencias mínimas<a class="headerlink" href="#evidencias-minimas" title="Permanent link">&para;</a></h1>
+<h2 id="evidencias-minimas">Evidencias mínimas<a class="headerlink" href="#evidencias-minimas" title="Permanent link">&para;</a></h2>
 <p>El alumnado deberá conservar:</p>
 <ol>
 <li>diagrama de la arquitectura;</li>
@@ -3810,7 +5463,7 @@
 <li>explicación razonada de, al menos, un caso que no funcione.</li>
 </ol>
 <hr />
-<h1 id="idea-final">Idea final<a class="headerlink" href="#idea-final" title="Permanent link">&para;</a></h1>
+<h2 id="idea-final">Idea final<a class="headerlink" href="#idea-final" title="Permanent link">&para;</a></h2>
 <p>La evolución de los laboratorios de la UD1 puede resumirse como:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-106-1"><a id="__codelineno-106-1" name="__codelineno-106-1" href="#__codelineno-106-1"></a>VM
 </span><span id="__span-106-2"><a id="__codelineno-106-2" name="__codelineno-106-2" href="#__codelineno-106-2"></a> ↓
