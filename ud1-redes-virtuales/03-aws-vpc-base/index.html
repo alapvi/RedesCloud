@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#vpc-en-aws" class="md-skip">
+        <a href="#amazon-vpc-construccion-de-una-red-virtual-en-aws" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -854,6 +854,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPC en AWS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -870,6 +888,311 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-region-y-availability-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Region y Availability Zone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. VPC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-diseno-de-direccionamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Diseño de direccionamiento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-direcciones-reservadas-por-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Direcciones reservadas por AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-router-implicito-de-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Router implícito de VPC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-route-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Route Tables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ruta-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Ruta local
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-longest-prefix-match" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Longest Prefix Match
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-main-route-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Main Route Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-internet-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Internet Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-subnet-publica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Subnet pública
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-subnet-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Subnet privada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-publico-y-privado-son-propiedades-de-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Público y privado son propiedades de routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-ec2-y-eni" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. EC2 y ENI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-ipv4-publica-e-internet-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. IPv4 pública e Internet Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-security-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Security Group
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-caso-a-ec2-publica-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Caso A · EC2 pública → Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-caso-b-ec2-publica-ec2-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Caso B · EC2 pública → EC2 privada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-caso-c-ec2-privada-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Caso C · EC2 privada → Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-por-que-no-usamos-nat-gateway-todavia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. ¿Por qué no usamos NAT Gateway todavía?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-tabla-de-comportamiento-esperado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. Tabla de comportamiento esperado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-routing-y-seguridad-son-problemas-distintos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. Routing y seguridad son problemas distintos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-errores-conceptuales-a-evitar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. Errores conceptuales a evitar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2865,6 +3188,300 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-region-y-availability-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Region y Availability Zone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. VPC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-diseno-de-direccionamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Diseño de direccionamiento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-direcciones-reservadas-por-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Direcciones reservadas por AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-router-implicito-de-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Router implícito de VPC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-route-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Route Tables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ruta-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Ruta local
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-longest-prefix-match" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Longest Prefix Match
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-main-route-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Main Route Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-internet-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Internet Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-subnet-publica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Subnet pública
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-subnet-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Subnet privada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-publico-y-privado-son-propiedades-de-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Público y privado son propiedades de routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-ec2-y-eni" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. EC2 y ENI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-ipv4-publica-e-internet-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. IPv4 pública e Internet Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-security-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Security Group
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-caso-a-ec2-publica-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Caso A · EC2 pública → Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-caso-b-ec2-publica-ec2-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Caso B · EC2 pública → EC2 privada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-caso-c-ec2-privada-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Caso C · EC2 privada → Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-por-que-no-usamos-nat-gateway-todavia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. ¿Por qué no usamos NAT Gateway todavía?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-tabla-de-comportamiento-esperado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. Tabla de comportamiento esperado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-routing-y-seguridad-son-problemas-distintos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. Routing y seguridad son problemas distintos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-errores-conceptuales-a-evitar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. Errores conceptuales a evitar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2931,8 +3548,280 @@
   
 
 
-<h1 id="vpc-en-aws">VPC en AWS<a class="headerlink" href="#vpc-en-aws" title="Permanent link">&para;</a></h1>
-<p>Contenido pendiente de desarrollo.</p>
+<h1 id="amazon-vpc-construccion-de-una-red-virtual-en-aws">Amazon VPC · Construcción de una red virtual en AWS<a class="headerlink" href="#amazon-vpc-construccion-de-una-red-virtual-en-aws" title="Permanent link">&para;</a></h1>
+<h2 id="1-objetivo">1. Objetivo<a class="headerlink" href="#1-objetivo" title="Permanent link">&para;</a></h2>
+<p>Construiremos nuestra primera infraestructura de red en AWS:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1 VPC
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>2 subnets
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>2 Route Tables
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>1 Internet Gateway
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>2 instancias EC2
+</span></code></pre></div>
+<p>Queremos comprender:</p>
+<ol>
+<li>cómo se define un espacio de direccionamiento;</li>
+<li>cómo se divide mediante subnets;</li>
+<li>cómo decide AWS el camino de un paquete;</li>
+<li>qué convierte una subnet en pública;</li>
+<li>qué condiciones necesita una instancia para comunicarse con Internet.</li>
+</ol>
+<blockquote>
+<p><strong>Una VPC es un dominio de routing definido mediante direccionamiento, subnets, rutas y gateways.</strong></p>
+</blockquote>
+<h2 id="2-arquitectura">2. Arquitectura<a class="headerlink" href="#2-arquitectura" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>                         INTERNET
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>                             │
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>                    Internet Gateway
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>                             │
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        ┌────────────────────┴────────────────────┐
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        │             VPC 10.0.0.0/16             │
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        │              VPC Router                 │
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        │                                         │
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        │ PUBLIC SUBNET              PRIVATE SUBNET
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        │ 10.0.1.0/24                10.0.2.0/24  │
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        │      │                          │       │
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        │ EC2-PUBLIC                 EC2-PRIVATE  │
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        └─────────────────────────────────────────┘
+</span></code></pre></div>
+<h2 id="3-region-y-availability-zone">3. Region y Availability Zone<a class="headerlink" href="#3-region-y-availability-zone" title="Permanent link">&para;</a></h2>
+<p>Una VPC es un recurso regional. Cada subnet pertenece a una única Availability Zone.</p>
+<p>En esta UD utilizaremos una única AZ para centrarnos en networking.</p>
+<h2 id="4-vpc">4. VPC<a class="headerlink" href="#4-vpc" title="Permanent link">&para;</a></h2>
+<p>Usaremos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>10.0.0.0/16
+</span></code></pre></div>
+<p>Las subnets deberán estar contenidas en este rango.</p>
+<h2 id="5-diseno-de-direccionamiento">5. Diseño de direccionamiento<a class="headerlink" href="#5-diseno-de-direccionamiento" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>10.0.1.0/24 → Public Subnet
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>10.0.2.0/24 → Private Subnet
+</span></code></pre></div>
+<p>No se solapan y dejan espacio para crecimiento.</p>
+<h2 id="6-direcciones-reservadas-por-aws">6. Direcciones reservadas por AWS<a class="headerlink" href="#6-direcciones-reservadas-por-aws" title="Permanent link">&para;</a></h2>
+<p>AWS reserva las cuatro primeras y la última dirección IPv4 de cada subnet.</p>
+<p>Para <code>10.0.1.0/24</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Dirección</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10.0.1.0</code></td>
+<td>red</td>
+</tr>
+<tr>
+<td><code>10.0.1.1</code></td>
+<td>router de VPC</td>
+</tr>
+<tr>
+<td><code>10.0.1.2</code></td>
+<td>DNS de AWS</td>
+</tr>
+<tr>
+<td><code>10.0.1.3</code></td>
+<td>reservado</td>
+</tr>
+<tr>
+<td><code>10.0.1.255</code></td>
+<td>reservado</td>
+</tr>
+</tbody>
+</table>
+<p>Una <code>/24</code> proporciona <strong>251 direcciones utilizables</strong>.</p>
+<h2 id="7-router-implicito-de-vpc">7. Router implícito de VPC<a class="headerlink" href="#7-router-implicito-de-vpc" title="Permanent link">&para;</a></h2>
+<p>AWS proporciona un router implícito. Su comportamiento se controla principalmente mediante <strong>Route Tables</strong>.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Public Subnet
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>      │
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>      ▼
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  VPC Router
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>      ▲
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>      │
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Private Subnet
+</span></code></pre></div>
+<h2 id="8-route-tables">8. Route Tables<a class="headerlink" href="#8-route-tables" title="Permanent link">&para;</a></h2>
+<p>Una regla tiene:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Destination → Target
+</span></code></pre></div>
+<p>Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>10.0.0.0/16 → local
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>0.0.0.0/0   → Internet Gateway
+</span></code></pre></div>
+<h2 id="9-ruta-local">9. Ruta local<a class="headerlink" href="#9-ruta-local" title="Permanent link">&para;</a></h2>
+<p>AWS incorpora automáticamente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>10.0.0.0/16 → local
+</span></code></pre></div>
+<p>Esto permite routing interno dentro del espacio de la VPC, sujeto a las políticas de seguridad.</p>
+<h2 id="10-longest-prefix-match">10. Longest Prefix Match<a class="headerlink" href="#10-longest-prefix-match" title="Permanent link">&para;</a></h2>
+<p>Si varias rutas coinciden, se utiliza la más específica.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>10.0.0.0/16 → local
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>0.0.0.0/0   → IGW
+</span></code></pre></div>
+<p>Para <code>10.0.2.30</code> se selecciona <code>/16</code>, no <code>/0</code>.</p>
+<h2 id="11-main-route-table">11. Main Route Table<a class="headerlink" href="#11-main-route-table" title="Permanent link">&para;</a></h2>
+<p>Toda VPC dispone de una <strong>Main Route Table</strong>. Una subnet sin asociación explícita utiliza esa tabla.</p>
+<p>En nuestros laboratorios haremos asociaciones explícitas:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>public-subnet  → rt-public
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>private-subnet → rt-private
+</span></code></pre></div>
+<h2 id="12-internet-gateway">12. Internet Gateway<a class="headerlink" href="#12-internet-gateway" title="Permanent link">&para;</a></h2>
+<p>Un IGW es un componente gestionado por AWS que actúa como target de routing hacia Internet.</p>
+<p>Crear y asociar un IGW <strong>no proporciona automáticamente Internet</strong>.</p>
+<h2 id="13-subnet-publica">13. Subnet pública<a class="headerlink" href="#13-subnet-publica" title="Permanent link">&para;</a></h2>
+<p><code>rt-public</code>:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>10.0.0.0/16 → local
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>0.0.0.0/0   → IGW
+</span></code></pre></div>
+<p>La presencia de una ruta hacia el IGW convierte la subnet en pública desde el punto de vista del routing.</p>
+<h2 id="14-subnet-privada">14. Subnet privada<a class="headerlink" href="#14-subnet-privada" title="Permanent link">&para;</a></h2>
+<p><code>rt-private</code>:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>10.0.0.0/16 → local
+</span></code></pre></div>
+<p>No tiene salida directa a Internet.</p>
+<h2 id="15-publico-y-privado-son-propiedades-de-routing">15. Público y privado son propiedades de routing<a class="headerlink" href="#15-publico-y-privado-son-propiedades-de-routing" title="Permanent link">&para;</a></h2>
+<p>Una subnet no se convierte en pública por su nombre ni porque una EC2 tenga IP pública.</p>
+<p>La diferencia fundamental es:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>PUBLIC:  0.0.0.0/0 → IGW
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>PRIVATE: sin ruta → IGW
+</span></code></pre></div>
+<h2 id="16-ec2-y-eni">16. EC2 y ENI<a class="headerlink" href="#16-ec2-y-eni" title="Permanent link">&para;</a></h2>
+<p>Una EC2 se conecta a la VPC mediante una <strong>Elastic Network Interface (ENI)</strong>:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>EC2
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a> │
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a> ▼
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>ENI
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a> │
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a> ▼
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>Subnet
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a> │
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a> ▼
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>VPC
+</span></code></pre></div>
+<p>La ENI es relevante para direccionamiento, MAC y Security Groups.</p>
+<h2 id="17-ipv4-publica-e-internet-gateway">17. IPv4 pública e Internet Gateway<a class="headerlink" href="#17-ipv4-publica-e-internet-gateway" title="Permanent link">&para;</a></h2>
+<p>Dentro del SO invitado veremos normalmente la IPv4 privada. Para IPv4 pública, AWS realiza lógicamente una traducción 1:1 en el IGW entre la IP pública y la privada asociada.</p>
+<p>Para acceso IPv4 directo mediante IGW necesitamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>IP pública o Elastic IP
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>+
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>ruta hacia IGW
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>+
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>política de seguridad compatible
+</span></code></pre></div>
+<h2 id="18-security-group">18. Security Group<a class="headerlink" href="#18-security-group" title="Permanent link">&para;</a></h2>
+<p>En esta UD se introduce únicamente como control básico de tráfico sobre la interfaz.</p>
+<p>Usaremos reglas sencillas para SSH, ICMP y HTTP. La comparación SG/NACL/firewall se reserva para la UD2.</p>
+<h2 id="19-caso-a-ec2-publica-internet">19. Caso A · EC2 pública → Internet<a class="headerlink" href="#19-caso-a-ec2-publica-internet" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>EC2-PUBLIC
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>   │
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>   ▼
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>rt-public
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>   │
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>0.0.0.0/0
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>   │
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>   ▼
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>IGW
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>   │
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>   ▼
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>Internet
+</span></code></pre></div>
+<h2 id="20-caso-b-ec2-publica-ec2-privada">20. Caso B · EC2 pública → EC2 privada<a class="headerlink" href="#20-caso-b-ec2-publica-ec2-privada" title="Permanent link">&para;</a></h2>
+<p>Se utiliza:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>10.0.0.0/16 → local
+</span></code></pre></div>
+<p>El IGW no participa.</p>
+<h2 id="21-caso-c-ec2-privada-internet">21. Caso C · EC2 privada → Internet<a class="headerlink" href="#21-caso-c-ec2-privada-internet" title="Permanent link">&para;</a></h2>
+<p><code>rt-private</code> solo contiene:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>10.0.0.0/16 → local
+</span></code></pre></div>
+<p>No existe ruta válida hacia Internet. La comunicación debe fallar.</p>
+<h2 id="22-por-que-no-usamos-nat-gateway-todavia">22. ¿Por qué no usamos NAT Gateway todavía?<a class="headerlink" href="#22-por-que-no-usamos-nat-gateway-todavia" title="Permanent link">&para;</a></h2>
+<p>Queremos separar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>¿Existe routing hacia Internet?
+</span></code></pre></div>
+<p>de:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>¿Cómo damos salida a una red privada sin exponerla?
+</span></code></pre></div>
+<p>La UD1 resuelve lo primero; NAT se estudiará en UD2.</p>
+<h2 id="23-tabla-de-comportamiento-esperado">23. Tabla de comportamiento esperado<a class="headerlink" href="#23-tabla-de-comportamiento-esperado" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Origen</th>
+<th>Destino</th>
+<th>Ruta</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public EC2</td>
+<td>Private EC2</td>
+<td><code>10.0.0.0/16 → local</code></td>
+<td>✅*</td>
+</tr>
+<tr>
+<td>Private EC2</td>
+<td>Public EC2</td>
+<td><code>10.0.0.0/16 → local</code></td>
+<td>✅*</td>
+</tr>
+<tr>
+<td>Public EC2</td>
+<td>Internet</td>
+<td><code>0.0.0.0/0 → IGW</code></td>
+<td>✅*</td>
+</tr>
+<tr>
+<td>Private EC2</td>
+<td>Internet</td>
+<td>no existe</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<p><code>*</code> Siempre que las políticas de seguridad permitan el tráfico.</p>
+<h2 id="24-routing-y-seguridad-son-problemas-distintos">24. Routing y seguridad son problemas distintos<a class="headerlink" href="#24-routing-y-seguridad-son-problemas-distintos" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>Que exista un camino no significa que el tráfico esté permitido.</strong></p>
+</blockquote>
+<h2 id="25-errores-conceptuales-a-evitar">25. Errores conceptuales a evitar<a class="headerlink" href="#25-errores-conceptuales-a-evitar" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Subnet pública</p>
+<p>No es pública porque una máquina tenga IP pública, sino porque la Route Table contiene una ruta hacia un IGW.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Internet Gateway</p>
+<p>Crear un IGW no da Internet automáticamente a toda la VPC.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Subnet privada</p>
+<p>Una subnet privada puede comunicarse con otras subnets de la VPC mediante la ruta <code>local</code>.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Tablas de rutas</p>
+<p><code>ip route</code> dentro de Linux y una VPC Route Table son niveles distintos.</p>
+</div>
+<h2 id="26-modelo-mental">26. Modelo mental<a class="headerlink" href="#26-modelo-mental" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>¿Quién origina el tráfico?
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>        ↓
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>¿Qué dirección tiene?
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>        ↓
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>¿En qué subnet está?
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>        ↓
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>¿Qué Route Table utiliza?
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>        ↓
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>¿Qué ruta coincide mejor?
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>        ↓
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>¿Cuál es el target?
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>        ↓
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>¿La seguridad permite el flujo?
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>        ↓
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>¿Puede llegar al destino?
+</span></code></pre></div>
+<blockquote>
+<p><strong>¿Qué camino seguirá el paquete y por qué?</strong></p>
+</blockquote>
 
 
 

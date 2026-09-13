@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#redes-virtuales-en-proxmox" class="md-skip">
+        <a href="#redes-virtuales-en-proxmox-ve" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -826,6 +826,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redes virtuales en Proxmox
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -842,6 +860,223 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-de-una-red-fisica-a-una-red-virtual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. De una red física a una red virtual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-el-stack-de-red-de-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. El stack de red de Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-interfaces-fisicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Interfaces físicas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-linux-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Linux Bridge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-puertos-tap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Puertos TAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-arquitectura-interna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Arquitectura interna
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-fdb-forwarding-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. FDB · Forwarding Database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-arp-y-tabla-de-vecinos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. ARP y tabla de vecinos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-recorrido-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Recorrido completo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-bridge-frente-a-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Bridge frente a router
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-mismo-bridge-redes-ip-distintas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Mismo bridge, redes IP distintas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-bridge-interno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Bridge interno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-cuando-asignamos-ip-al-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. ¿Cuándo asignamos IP al bridge?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-validacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Validación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-observar-trafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Observar tráfico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-relacion-con-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Relación con AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-lo-que-todavia-no-introducimos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Lo que todavía no introducimos
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2865,6 +3100,212 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-de-una-red-fisica-a-una-red-virtual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. De una red física a una red virtual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-el-stack-de-red-de-proxmox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. El stack de red de Proxmox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-interfaces-fisicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Interfaces físicas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-linux-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Linux Bridge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-puertos-tap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Puertos TAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-arquitectura-interna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Arquitectura interna
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-fdb-forwarding-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. FDB · Forwarding Database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-arp-y-tabla-de-vecinos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. ARP y tabla de vecinos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-recorrido-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Recorrido completo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-bridge-frente-a-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Bridge frente a router
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-mismo-bridge-redes-ip-distintas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Mismo bridge, redes IP distintas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-bridge-interno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Bridge interno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-cuando-asignamos-ip-al-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. ¿Cuándo asignamos IP al bridge?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-validacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Validación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-observar-trafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Observar tráfico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-relacion-con-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Relación con AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-lo-que-todavia-no-introducimos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Lo que todavía no introducimos
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2931,8 +3372,266 @@
   
 
 
-<h1 id="redes-virtuales-en-proxmox">Redes virtuales en Proxmox<a class="headerlink" href="#redes-virtuales-en-proxmox" title="Permanent link">&para;</a></h1>
-<p>Contenido pendiente de desarrollo.</p>
+<h1 id="redes-virtuales-en-proxmox-ve">Redes virtuales en Proxmox VE<a class="headerlink" href="#redes-virtuales-en-proxmox-ve" title="Permanent link">&para;</a></h1>
+<h2 id="1-objetivo">1. Objetivo<a class="headerlink" href="#1-objetivo" title="Permanent link">&para;</a></h2>
+<p><strong>Proxmox VE</strong> utiliza el stack de networking de Linux para proporcionar conectividad a las máquinas virtuales. Uno de sus elementos fundamentales es el <strong>Linux Bridge</strong>, representado habitualmente mediante <code>vmbr0</code>, <code>vmbr1</code>, etc.</p>
+<p>El objetivo no será únicamente crear:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>VM-A ─── vmbr1 ─── VM-B
+</span></code></pre></div>
+<p>sino comprender cómo se conecta una VM al bridge, qué función realiza una interfaz TAP, cómo aprende el bridge las MAC, qué papel desempeñan ARP y la tabla de vecinos, cuándo interviene el routing y por qué un bridge no sustituye a un router.</p>
+<blockquote>
+<p><strong>Virtualizar una red no cambia los principios de Ethernet e IP. Cambia dónde se implementan.</strong></p>
+</blockquote>
+<h2 id="2-de-una-red-fisica-a-una-red-virtual">2. De una red física a una red virtual<a class="headerlink" href="#2-de-una-red-fisica-a-una-red-virtual" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Servidor A ─────┐
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Servidor B ─────┼──── Switch ───── Router ───── Internet
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Servidor C ─────┘
+</span></code></pre></div>
+<p>En virtualización:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>VM-A ─────┐
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>VM-B ─────┼──── Linux Bridge ───── NIC física
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>VM-C ─────┘
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Infraestructura física</th>
+<th>Virtualización</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servidor</td>
+<td>Máquina virtual</td>
+</tr>
+<tr>
+<td>NIC</td>
+<td>vNIC</td>
+</tr>
+<tr>
+<td>Cable Ethernet</td>
+<td>conexión virtual</td>
+</tr>
+<tr>
+<td>Puerto del switch</td>
+<td>puerto lógico del bridge</td>
+</tr>
+<tr>
+<td>Switch</td>
+<td>Linux Bridge</td>
+</tr>
+<tr>
+<td>Tabla MAC</td>
+<td>FDB del bridge</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-el-stack-de-red-de-proxmox">3. El stack de red de Proxmox<a class="headerlink" href="#3-el-stack-de-red-de-proxmox" title="Permanent link">&para;</a></h2>
+<p>Proxmox utiliza mecanismos de Linux y los integra con VM, contenedores, interfaces físicas, bonding, VLAN, routing, firewall y SDN.</p>
+<p>Nos centraremos en:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>NIC física
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>     │
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Linux Bridge
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>     │
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>interfaz virtual
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>     │
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>VM
+</span></code></pre></div>
+<h2 id="4-interfaces-fisicas">4. Interfaces físicas<a class="headerlink" href="#4-interfaces-fisicas" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>link
+</span></code></pre></div>
+<p>Una interfaz física puede actuar como puerto de un bridge:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>eno1
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a> │
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a> ▼
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>vmbr0
+</span></code></pre></div>
+<h2 id="5-linux-bridge">5. Linux Bridge<a class="headerlink" href="#5-linux-bridge" title="Permanent link">&para;</a></h2>
+<p>Un Linux Bridge opera principalmente en <strong>capa 2</strong> y reenvía tramas usando direcciones MAC.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>                       vmbr0
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>              ┌──────────┼──────────┐
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>            VM-A        VM-B       eno1
+</span></code></pre></div>
+<h2 id="6-puertos-tap">6. Puertos TAP<a class="headerlink" href="#6-puertos-tap" title="Permanent link">&para;</a></h2>
+<p>Dentro de la VM:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ens18
+</span></code></pre></div>
+<p>y en el host podemos encontrar interfaces tipo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>tap100i0
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>tap101i0
+</span></code></pre></div>
+<p>Relación conceptual:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ens18 de la VM
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>      │
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>      ▼
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>vNIC virtual
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>      │
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>      ▼
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>TAP del host
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>      │
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>      ▼
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>Linux Bridge
+</span></code></pre></div>
+<h2 id="7-arquitectura-interna">7. Arquitectura interna<a class="headerlink" href="#7-arquitectura-interna" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>┌─────────────────┐             ┌─────────────────┐
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>│ VM 100          │             │ VM 101          │
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>│ 192.168.50.10   │             │ 192.168.50.20   │
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>└───────┬─────────┘             └────────┬────────┘
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        ▼                                ▼
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    tap100i0                          tap101i0
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        └──────────────┬─────────────────┘
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>                       ▼
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>                     vmbr1
+</span></code></pre></div>
+<p>Todavía no hacemos routing.</p>
+<h2 id="8-fdb-forwarding-database">8. FDB · Forwarding Database<a class="headerlink" href="#8-fdb-forwarding-database" title="Permanent link">&para;</a></h2>
+<p>El bridge mantiene asociaciones:</p>
+<table>
+<thead>
+<tr>
+<th>MAC</th>
+<th>Puerto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BC:24:11:AA:AA:01</code></td>
+<td><code>tap100i0</code></td>
+</tr>
+<tr>
+<td><code>BC:24:11:BB:BB:02</code></td>
+<td><code>tap101i0</code></td>
+</tr>
+</tbody>
+</table>
+<p>Consultar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>bridge<span class="w"> </span>fdb<span class="w"> </span>show<span class="w"> </span>br<span class="w"> </span>vmbr1
+</span></code></pre></div>
+<h2 id="9-arp-y-tabla-de-vecinos">9. ARP y tabla de vecinos<a class="headerlink" href="#9-arp-y-tabla-de-vecinos" title="Permanent link">&para;</a></h2>
+<p>Las aplicaciones trabajan con IP, mientras el bridge conmuta usando MAC. En IPv4, ARP relaciona ambos niveles.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ip<span class="w"> </span>neigh
+</span></code></pre></div>
+<p>Podemos observar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>192.168.50.20 dev ens18 lladdr bc:24:11:bb:bb:02 REACHABLE
+</span></code></pre></div>
+<p>Por tanto:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>VM:      IP → MAC        (ARP / neighbor table)
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Bridge:  MAC → puerto    (FDB)
+</span></code></pre></div>
+<h2 id="10-recorrido-completo">10. Recorrido completo<a class="headerlink" href="#10-recorrido-completo" title="Permanent link">&para;</a></h2>
+<p>Para <code>VM-A → VM-B</code>:</p>
+<ol>
+<li>VM-A determina que <code>192.168.50.20</code> pertenece a su red local.</li>
+<li>Resuelve la MAC mediante ARP.</li>
+<li>Construye la trama Ethernet.</li>
+<li>La interfaz TAP entrega la trama al bridge.</li>
+<li><code>vmbr1</code> consulta su FDB.</li>
+<li>La trama sale por el puerto asociado a VM-B.</li>
+</ol>
+<p>No interviene ningún router.</p>
+<h2 id="11-bridge-frente-a-router">11. Bridge frente a router<a class="headerlink" href="#11-bridge-frente-a-router" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Decisión principal</th>
+<th style="text-align: right;">Capa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux Bridge</td>
+<td>MAC → puerto</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>Switch Ethernet</td>
+<td>MAC → puerto</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>Router</td>
+<td>red/IP → siguiente salto</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>ARP</td>
+<td>IPv4 → MAC</td>
+<td style="text-align: right;">enlace entre L3 y L2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-mismo-bridge-redes-ip-distintas">12. Mismo bridge, redes IP distintas<a class="headerlink" href="#12-mismo-bridge-redes-ip-distintas" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>VM-A 192.168.50.10/24
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>        │
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>      vmbr1
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>        │
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>VM-B 192.168.60.20/24
+</span></code></pre></div>
+<p>Comparten capa 2, pero necesitan routing para comunicarse entre redes IP diferentes.</p>
+<h2 id="13-bridge-interno">13. Bridge interno<a class="headerlink" href="#13-bridge-interno" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>VM-A ───┐
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>        ├── vmbr1
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>VM-B ───┘
+</span></code></pre></div>
+<p>Configuración conceptual:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>auto vmbr1
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>iface vmbr1 inet manual
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    bridge-ports none
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    bridge-stp off
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    bridge-fd 0
+</span></code></pre></div>
+<p>Un bridge puede conmutar tráfico sin disponer de IP propia.</p>
+<h2 id="14-cuando-asignamos-ip-al-bridge">14. ¿Cuándo asignamos IP al bridge?<a class="headerlink" href="#14-cuando-asignamos-ip-al-bridge" title="Permanent link">&para;</a></h2>
+<p>Cuando queremos que el <strong>host Proxmox</strong> participe como nodo IP en esa red.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Proxmox 192.168.50.2/24
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>      │
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    vmbr1
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>   /     \
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a> VM-A    VM-B
+</span></code></pre></div>
+<h2 id="15-validacion">15. Validación<a class="headerlink" href="#15-validacion" title="Permanent link">&para;</a></h2>
+<p>En Proxmox:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>link
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>ip<span class="w"> </span>-d<span class="w"> </span>link<span class="w"> </span>show<span class="w"> </span>vmbr1
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>bridge<span class="w"> </span>link
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>bridge<span class="w"> </span>fdb<span class="w"> </span>show<span class="w"> </span>br<span class="w"> </span>vmbr1
+</span></code></pre></div>
+<p>En las VM:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>addr
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>ip<span class="w"> </span>route
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>ip<span class="w"> </span>neigh
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">192</span>.168.50.20
+</span></code></pre></div>
+<h2 id="16-observar-trafico">16. Observar tráfico<a class="headerlink" href="#16-observar-trafico" title="Permanent link">&para;</a></h2>
+<p>Dentro de una VM:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>tcpdump<span class="w"> </span>-ni<span class="w"> </span>ens18<span class="w"> </span>arp<span class="w"> </span>or<span class="w"> </span>icmp
+</span></code></pre></div>
+<p>En el hipervisor:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>tcpdump<span class="w"> </span>-ni<span class="w"> </span>vmbr1
+</span></code></pre></div>
+<h2 id="17-relacion-con-aws">17. Relación con AWS<a class="headerlink" href="#17-relacion-con-aws" title="Permanent link">&para;</a></h2>
+<p>En Proxmox podemos observar directamente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>vNIC
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>TAP
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>bridge
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>MAC
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>FDB
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>ARP
+</span></code></pre></div>
+<p>En AWS gran parte de estos detalles están abstraídos y trabajaremos principalmente con:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>VPC
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>subnet
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>ENI
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>Route Table
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>Gateway
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>Security Group
+</span></code></pre></div>
+<blockquote>
+<p><strong>Proxmox nos permite observar mecanismos que AWS deliberadamente abstrae.</strong></p>
+</blockquote>
+<h2 id="18-lo-que-todavia-no-introducimos">18. Lo que todavía no introducimos<a class="headerlink" href="#18-lo-que-todavia-no-introducimos" title="Permanent link">&para;</a></h2>
+<p>No trabajaremos aún VLAN-aware bridge, 802.1Q, trunks, bonding, routing entre bridges, NAT, firewall, SDN, VXLAN ni EVPN.</p>
 
 
 

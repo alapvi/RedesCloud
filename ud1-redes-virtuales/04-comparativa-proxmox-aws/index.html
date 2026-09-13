@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#proxmox-vs-aws" class="md-skip">
+        <a href="#de-proxmox-a-aws-mismos-principios-distinta-implementacion" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -882,6 +882,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxmox vs AWS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -898,6 +916,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equivalencias-conceptuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equivalencias conceptuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diferencia-fundamental-capa-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencia fundamental: capa 2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#una-subnet-aws-no-es-una-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Una subnet AWS no es una VLAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2865,6 +2968,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equivalencias-conceptuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equivalencias conceptuales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diferencia-fundamental-capa-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencia fundamental: capa 2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#una-subnet-aws-no-es-una-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Una subnet AWS no es una VLAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2931,8 +3108,108 @@
   
 
 
-<h1 id="proxmox-vs-aws">Proxmox vs AWS<a class="headerlink" href="#proxmox-vs-aws" title="Permanent link">&para;</a></h1>
-<p>Contenido pendiente de desarrollo.</p>
+<h1 id="de-proxmox-a-aws-mismos-principios-distinta-implementacion">De Proxmox a AWS: mismos principios, distinta implementación<a class="headerlink" href="#de-proxmox-a-aws-mismos-principios-distinta-implementacion" title="Permanent link">&para;</a></h1>
+<h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
+<p>Una competencia esencial es evitar pensar únicamente en nombres de productos.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>VPC
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Route Table
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Internet Gateway
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Security Group
+</span></code></pre></div>
+<p>son implementaciones concretas de problemas de networking conocidos.</p>
+<h2 id="equivalencias-conceptuales">Equivalencias conceptuales<a class="headerlink" href="#equivalencias-conceptuales" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Proxmox / red tradicional</th>
+<th>AWS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>host virtual</td>
+<td>VM</td>
+<td>EC2</td>
+</tr>
+<tr>
+<td>interfaz virtual</td>
+<td>vNIC</td>
+<td>ENI</td>
+</tr>
+<tr>
+<td>red virtual</td>
+<td>bridge / red IP</td>
+<td>VPC</td>
+</tr>
+<tr>
+<td>segmento IP</td>
+<td>red conectada al bridge</td>
+<td>subnet</td>
+</tr>
+<tr>
+<td>espacio de direccionamiento</td>
+<td>CIDR LAN</td>
+<td>CIDR VPC</td>
+</tr>
+<tr>
+<td>forwarding entre redes</td>
+<td>router</td>
+<td>VPC routing</td>
+</tr>
+<tr>
+<td>decisión de routing</td>
+<td>tabla del router</td>
+<td>Route Table</td>
+</tr>
+<tr>
+<td>salida externa</td>
+<td>router WAN</td>
+<td>Internet Gateway</td>
+</tr>
+<tr>
+<td>filtrado</td>
+<td>firewall</td>
+<td>Security Group / NACL</td>
+</tr>
+<tr>
+<td>dirección pública</td>
+<td>router/NAT/ISP</td>
+<td>Public IPv4 / Elastic IP</td>
+</tr>
+</tbody>
+</table>
+<p>Las equivalencias son funcionales, no exactas.</p>
+<h2 id="diferencia-fundamental-capa-2">Diferencia fundamental: capa 2<a class="headerlink" href="#diferencia-fundamental-capa-2" title="Permanent link">&para;</a></h2>
+<p>En Proxmox observamos directamente MAC, ARP, bridges, VLAN e interfaces físicas.</p>
+<p>AWS abstrae gran parte de esa capa y trabajamos principalmente con IP, subnets, routing y políticas de seguridad.</p>
+<h2 id="una-subnet-aws-no-es-una-vlan">Una subnet AWS no es una VLAN<a class="headerlink" href="#una-subnet-aws-no-es-una-vlan" title="Permanent link">&para;</a></h2>
+<p>Una VLAN es un mecanismo de capa 2 basado en 802.1Q.</p>
+<p>Una subnet AWS es un rango IP dentro de una VPC, pertenece a una AZ y se integra con el routing de VPC.</p>
+<p>Por tanto hablamos de <strong>equivalencia funcional de segmentación</strong>, no de identidad tecnológica.</p>
+<h2 id="routing">Routing<a class="headerlink" href="#routing" title="Permanent link">&para;</a></h2>
+<p>Linux:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>default via 192.168.10.1
+</span></code></pre></div>
+<p>AWS:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>0.0.0.0/0 → igw
+</span></code></pre></div>
+<p>Ambas reglas responden a la misma pregunta: ¿dónde enviamos un paquete cuyo destino no coincide con una ruta más específica?</p>
+<h2 id="modelo-mental">Modelo mental<a class="headerlink" href="#modelo-mental" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>NECESIDAD
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>   ↓
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>PRINCIPIO DE RED
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>   ↓
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>IMPLEMENTACIÓN LOCAL
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>   ↓
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>IMPLEMENTACIÓN CLOUD
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>   ↓
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>VALIDACIÓN
+</span></code></pre></div>
+<p>No queremos memorizar servicios; queremos diseñar redes.</p>
+<blockquote>
+<p><strong>¿Qué arquitectura de red necesito y por qué?</strong></p>
+</blockquote>
 
 
 
