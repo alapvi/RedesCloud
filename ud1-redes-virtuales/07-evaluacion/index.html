@@ -55,6 +55,8 @@
       
     
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -3380,35 +3382,41 @@
       
     
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Crear botón hamburguesa REAL en el DOM
+    (function() {
+      function initSidebarToggle() {
       const header = document.querySelector('.md-header__inner');
       if (!header) return;
 
-      // Crear el botón
-      const btn = document.createElement('button');
-      btn.id = 'sidebar-toggle-btn';
-      btn.textContent = '☰';
-      btn.setAttribute('aria-label', 'Toggle sidebar');
-      btn.setAttribute('type', 'button');
-      
-      // Insertar ANTES que el primer hijo (logo)
-      header.insertBefore(btn, header.firstChild);
+      let btn = document.getElementById('sidebar-toggle-btn');
+      if (!btn) {
+        btn = document.createElement('button');
+        btn.id = 'sidebar-toggle-btn';
+        btn.textContent = '☰';
+        btn.setAttribute('aria-label', 'Contraer o expandir navegación');
+        btn.setAttribute('type', 'button');
+        header.insertBefore(btn, header.firstElementChild);
 
-      // Click handler en el botón REAL
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        document.body.classList.toggle('sidebar-collapsed');
-        localStorage.setItem('sidebar-collapsed', 
-          document.body.classList.contains('sidebar-collapsed'));
-      });
+        btn.addEventListener('click', function() {
+          const collapsed = document.body.classList.toggle('sidebar-collapsed');
+          localStorage.setItem('sidebar-collapsed', String(collapsed));
+        });
+      }
 
-      // Restaurar estado al cargar
       if (localStorage.getItem('sidebar-collapsed') === 'true') {
         document.body.classList.add('sidebar-collapsed');
       }
-    });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSidebarToggle);
+      } else {
+        initSidebarToggle();
+      }
+
+      if (typeof document$ !== 'undefined') {
+        document$.subscribe(initSidebarToggle);
+      }
+    })();
   </script>
 
   </body>
