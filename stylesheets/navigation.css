@@ -1,3 +1,19 @@
+/* Indicador visual para cualquier sección que tenga páginas hijas */
+.md-sidebar--primary .md-nav__item--section > .md-nav__link .md-nav__icon::after {
+  content: "";
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 0.1rem solid currentColor;
+  border-bottom: 0.1rem solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+}
+
+.md-sidebar--primary .md-nav__toggle:checked ~ .md-nav__link .md-nav__icon::after {
+  transform: rotate(45deg);
+}
+
 @media screen and (min-width: 60em) {
   .md-sidebar--primary .md-nav__toggle ~ .md-nav {
     display: none;
@@ -14,18 +30,4 @@
     cursor: pointer;
   }
 
-  .md-sidebar--primary .md-nav__item--section > .md-nav__link .md-nav__icon::after {
-    content: "";
-    display: inline-block;
-    width: 0.45rem;
-    height: 0.45rem;
-    border-right: 0.1rem solid currentColor;
-    border-bottom: 0.1rem solid currentColor;
-    transform: rotate(-45deg);
-    transition: transform 0.2s ease;
-  }
-
-  .md-sidebar--primary .md-nav__toggle:checked ~ .md-nav__link .md-nav__icon::after {
-    transform: rotate(45deg);
-  }
 }
