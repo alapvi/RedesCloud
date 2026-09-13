@@ -12,13 +12,13 @@
         <meta name="author" content="Alberto Aparicio">
       
       
-        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/07-laboratorio/">
+        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/04-routing-intervlan/">
       
       
-        <link rel="prev" href="../06-security-groups-nacl/">
+        <link rel="prev" href="../03-opnsense-router-firewall/">
       
       
-        <link rel="next" href="../08-troubleshooting/">
+        <link rel="next" href="../05-firewall-minimo-privilegio/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Laboratorios - Administración de Redes en la Nube</title>
+        <title>Routing inter-VLAN - Administración de Redes en la Nube</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#laboratorios" class="md-skip">
+        <a href="#routing-inter-vlan" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Laboratorios
+              Routing inter-VLAN
             
           </span>
         </div>
@@ -925,14 +925,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../02-dmz/" class="md-nav__link">
+      <a href="../02-proxmox-vlan-aware/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    DMZ y zonas de seguridad
+    Proxmox VLAN-aware
   
 
     
@@ -953,98 +953,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../03-routing-intervlan/" class="md-nav__link">
+      <a href="../03-opnsense-router-firewall/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Routing inter-VLAN
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../04-nat/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    NAT y gateways
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05-firewall-proxmox/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Firewall en Proxmox
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06-security-groups-nacl/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Security Groups y NACL
+    OPNsense router/firewall
   
 
     
@@ -1074,6 +990,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routing inter-VLAN
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1081,7 +1015,7 @@
   <span class="md-ellipsis">
     
   
-    Laboratorios
+    Routing inter-VLAN
   
 
     
@@ -1090,6 +1024,240 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-punto-de-partida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Punto de partida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-decision-del-host-origen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Decisión del host origen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arp-al-siguiente-salto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ARP al siguiente salto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-trama-y-paquete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Trama y paquete
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-longest-prefix-match" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Longest Prefix Match
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-nueva-trama-en-la-red-destino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Nueva trama en la red destino
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ttl-y-traceroute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. TTL y traceroute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-misma-red-frente-a-red-distinta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Misma red frente a red distinta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Misma red frente a red distinta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#misma-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Misma red
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#red-distinta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Red distinta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-que-es-realmente-el-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Qué es realmente el gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-reachability-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Reachability ≠ Authorization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-ruta-de-retorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Ruta de retorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-fallo-mascara-incorrecta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Fallo: máscara incorrecta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-fallo-gateway-incorrecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Fallo: gateway incorrecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-fallo-app-sin-ruta-de-retorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Fallo: APP sin ruta de retorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-captura-por-puntos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Captura por puntos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-procedimiento-de-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Procedimiento de troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idea-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idea clave
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1103,14 +1271,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../08-troubleshooting/" class="md-nav__link">
+      <a href="../05-firewall-minimo-privilegio/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Troubleshooting
+    Firewall y mínimo privilegio
   
 
     
@@ -1131,14 +1299,70 @@
   
   
     <li class="md-nav__item">
-      <a href="../09-evaluacion/" class="md-nav__link">
+      <a href="../06-nat/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Evaluación
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-aws-segmentacion-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS: segmentación y routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-security-groups-nacl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Groups y NACL
   
 
     
@@ -2698,6 +2922,229 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-punto-de-partida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Punto de partida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-decision-del-host-origen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Decisión del host origen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arp-al-siguiente-salto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ARP al siguiente salto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-trama-y-paquete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Trama y paquete
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-longest-prefix-match" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Longest Prefix Match
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-nueva-trama-en-la-red-destino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Nueva trama en la red destino
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ttl-y-traceroute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. TTL y traceroute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-misma-red-frente-a-red-distinta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Misma red frente a red distinta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Misma red frente a red distinta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#misma-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Misma red
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#red-distinta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Red distinta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-que-es-realmente-el-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Qué es realmente el gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-reachability-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Reachability ≠ Authorization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-ruta-de-retorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Ruta de retorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-fallo-mascara-incorrecta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Fallo: máscara incorrecta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-fallo-gateway-incorrecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Fallo: gateway incorrecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-fallo-app-sin-ruta-de-retorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Fallo: APP sin ruta de retorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-captura-por-puntos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Captura por puntos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-procedimiento-de-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Procedimiento de troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idea-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idea clave
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2761,8 +3208,177 @@
 
 
 
-<h1 id="laboratorios">Laboratorios<a class="headerlink" href="#laboratorios" title="Permanent link">&para;</a></h1>
-<p>Contenido pendiente de desarrollo.</p>
+<h1 id="routing-inter-vlan">Routing inter-VLAN<a class="headerlink" href="#routing-inter-vlan" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Segmentar separa redes. Enrutar permite que esas redes se comuniquen.</strong></p>
+</blockquote>
+<hr />
+<h2 id="1-punto-de-partida">1. Punto de partida<a class="headerlink" href="#1-punto-de-partida" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>WEB → 10.10.10.10/24 → GW 10.10.10.1
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>APP → 10.10.20.10/24 → GW 10.10.20.1
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>DB  → 10.10.30.10/24 → GW 10.10.30.1
+</span></code></pre></div>
+<p>OPNsense participa directamente en las tres redes.</p>
+<hr />
+<h2 id="2-decision-del-host-origen">2. Decisión del host origen<a class="headerlink" href="#2-decision-del-host-origen" title="Permanent link">&para;</a></h2>
+<p>WEB quiere alcanzar <code>10.10.20.10</code>.</p>
+<p>WEB compara el destino con su prefijo <code>10.10.10.0/24</code> y determina que no es local.</p>
+<p>Por tanto usa:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>default gateway → 10.10.10.1
+</span></code></pre></div>
+<p>Comprobamos la decisión con:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ip<span class="w"> </span>route
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ip<span class="w"> </span>route<span class="w"> </span>get<span class="w"> </span><span class="m">10</span>.10.20.10
+</span></code></pre></div>
+<hr />
+<h2 id="3-arp-al-siguiente-salto">3. ARP al siguiente salto<a class="headerlink" href="#3-arp-al-siguiente-salto" title="Permanent link">&para;</a></h2>
+<p>WEB no necesita inicialmente la MAC de APP. Necesita la MAC de su gateway.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ip<span class="w"> </span>neigh
+</span></code></pre></div>
+<p>Conceptualmente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>10.10.10.1 → MAC_OPNSENSE_WEB
+</span></code></pre></div>
+<hr />
+<h2 id="4-trama-y-paquete">4. Trama y paquete<a class="headerlink" href="#4-trama-y-paquete" title="Permanent link">&para;</a></h2>
+<p>Primera trama Ethernet:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>MAC origen  = WEB
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>MAC destino = OPNsense VLAN10
+</span></code></pre></div>
+<p>Paquete IP:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>src = 10.10.10.10
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>dst = 10.10.20.10
+</span></code></pre></div>
+<p>OPNsense recibe la trama, procesa el paquete IP y consulta su tabla de routing.</p>
+<hr />
+<h2 id="5-longest-prefix-match">5. Longest Prefix Match<a class="headerlink" href="#5-longest-prefix-match" title="Permanent link">&para;</a></h2>
+<p>Si existen:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>10.10.0.0/16
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>10.10.20.0/24
+</span></code></pre></div>
+<p>para <code>10.10.20.10</code> gana <code>/24</code> porque es más específica.</p>
+<p>Este principio se aplica tanto en routing convencional como más adelante en AWS Route Tables.</p>
+<hr />
+<h2 id="6-nueva-trama-en-la-red-destino">6. Nueva trama en la red destino<a class="headerlink" href="#6-nueva-trama-en-la-red-destino" title="Permanent link">&para;</a></h2>
+<p>OPNsense selecciona VLAN20, resuelve por ARP la MAC de APP y construye una nueva trama:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>MAC origen  = OPNsense VLAN20
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>MAC destino = APP
+</span></code></pre></div>
+<p>El paquete IP conserva:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>10.10.10.10 → 10.10.20.10
+</span></code></pre></div>
+<p>salvo campos como TTL.</p>
+<blockquote>
+<p><strong>El paquete IP atraviesa el router; la trama Ethernet no.</strong></p>
+</blockquote>
+<hr />
+<h2 id="7-ttl-y-traceroute">7. TTL y traceroute<a class="headerlink" href="#7-ttl-y-traceroute" title="Permanent link">&para;</a></h2>
+<p>Cada router decrementa TTL.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>64 → 63
+</span></code></pre></div>
+<p>Cuando TTL llega a 0, el router descarta el paquete y puede generar ICMP Time Exceeded.</p>
+<p><code>traceroute</code> utiliza este comportamiento para descubrir saltos.</p>
+<hr />
+<h2 id="8-misma-red-frente-a-red-distinta">8. Misma red frente a red distinta<a class="headerlink" href="#8-misma-red-frente-a-red-distinta" title="Permanent link">&para;</a></h2>
+<h3 id="misma-red">Misma red<a class="headerlink" href="#misma-red" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>WEB 10.10.10.10
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>WEB-02 10.10.10.20
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ARP destino → entrega directa
+</span></code></pre></div>
+<h3 id="red-distinta">Red distinta<a class="headerlink" href="#red-distinta" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>WEB 10.10.10.10
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>APP 10.10.20.10
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ARP gateway → router → ARP destino
+</span></code></pre></div>
+<hr />
+<h2 id="9-que-es-realmente-el-gateway">9. Qué es realmente el gateway<a class="headerlink" href="#9-que-es-realmente-el-gateway" title="Permanent link">&para;</a></h2>
+<p>El default gateway no es “la dirección para Internet”.</p>
+<p>Es el siguiente salto que utiliza el host cuando el destino no está directamente conectado.</p>
+<p>Por eso WEB envía tanto APP como <code>8.8.8.8</code> inicialmente a <code>10.10.10.1</code>.</p>
+<hr />
+<h2 id="10-reachability-authorization">10. Reachability ≠ Authorization<a class="headerlink" href="#10-reachability-authorization" title="Permanent link">&para;</a></h2>
+<p>Podemos tener:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ruta correcta + firewall bloqueando
+</span></code></pre></div>
+<p>O:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>firewall permisivo + sin ruta
+</span></code></pre></div>
+<blockquote>
+<p><strong>Que exista un camino no significa que el tráfico esté permitido.</strong></p>
+</blockquote>
+<hr />
+<h2 id="11-ruta-de-retorno">11. Ruta de retorno<a class="headerlink" href="#11-ruta-de-retorno" title="Permanent link">&para;</a></h2>
+<p>Una conexión necesita ida y vuelta:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>WEB → OPNsense → APP
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>APP → OPNsense → WEB
+</span></code></pre></div>
+<p>Si APP recibe el paquete pero no dispone de gateway, la ida puede existir y la comunicación completa fallar.</p>
+<hr />
+<h2 id="12-fallo-mascara-incorrecta">12. Fallo: máscara incorrecta<a class="headerlink" href="#12-fallo-mascara-incorrecta" title="Permanent link">&para;</a></h2>
+<p>Configura temporalmente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>WEB 10.10.10.10/8
+</span></code></pre></div>
+<p>WEB puede considerar <code>10.10.20.10</code> como destino local y realizar ARP directamente en VLAN10.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ip<span class="w"> </span>route<span class="w"> </span>get<span class="w"> </span><span class="m">10</span>.10.20.10
+</span></code></pre></div>
+<p>permite ver la decisión errónea.</p>
+<hr />
+<h2 id="13-fallo-gateway-incorrecto">13. Fallo: gateway incorrecto<a class="headerlink" href="#13-fallo-gateway-incorrecto" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>default via 10.10.10.254
+</span></code></pre></div>
+<p>WEB podrá seguir hablando con hosts de su propia subnet, pero fallará hacia otras redes.</p>
+<hr />
+<h2 id="14-fallo-app-sin-ruta-de-retorno">14. Fallo: APP sin ruta de retorno<a class="headerlink" href="#14-fallo-app-sin-ruta-de-retorno" title="Permanent link">&para;</a></h2>
+<p>APP recibe tráfico pero no sabe cómo devolverlo a <code>10.10.10.0/24</code>.</p>
+<p>Esto demuestra que “el paquete llega” no implica que la conexión funcione.</p>
+<hr />
+<h2 id="15-captura-por-puntos">15. Captura por puntos<a class="headerlink" href="#15-captura-por-puntos" title="Permanent link">&para;</a></h2>
+<p>En WEB:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>tcpdump<span class="w"> </span>-ni<span class="w"> </span>ens18
+</span></code></pre></div>
+<p>En OPNsense capturamos en WEB y APP.</p>
+<p>En APP:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>tcpdump<span class="w"> </span>-ni<span class="w"> </span>ens18
+</span></code></pre></div>
+<p>Podemos responder:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>¿sale del origen?
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>¿entra al router?
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>¿sale del router?
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>¿llega al destino?
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>¿vuelve la respuesta?
+</span></code></pre></div>
+<hr />
+<h2 id="16-procedimiento-de-troubleshooting">16. Procedimiento de troubleshooting<a class="headerlink" href="#16-procedimiento-de-troubleshooting" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>1. IP origen
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>2. máscara
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>3. ip route get
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>4. gateway
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>5. reachability gateway
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>6. route en OPNsense
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>7. estado destino
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>8. firewall
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>9. servicio
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>10. retorno
+</span></code></pre></div>
+<p>Herramientas:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>addr
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>ip<span class="w"> </span>route
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>ip<span class="w"> </span>route<span class="w"> </span>get<span class="w"> </span>DESTINO
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>ip<span class="w"> </span>neigh
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>ping
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>traceroute
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>tcpdump
+</span></code></pre></div>
+<hr />
+<h2 id="idea-clave">Idea clave<a class="headerlink" href="#idea-clave" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>VLAN → crea fronteras L2
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>ROUTING → crea caminos L3
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>FIREWALL → controla quién puede usar esos caminos
+</span></code></pre></div>
+<blockquote>
+<p><strong>La segmentación crea fronteras. El routing crea caminos.</strong></p>
+</blockquote>
 
 
 
@@ -2798,7 +3414,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../06-security-groups-nacl/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Security Groups y NACL">
+          <a href="../03-opnsense-router-firewall/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: OPNsense router/firewall">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2808,20 +3424,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Security Groups y NACL
+                OPNsense router/firewall
               </div>
             </div>
           </a>
         
         
           
-          <a href="../08-troubleshooting/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Troubleshooting">
+          <a href="../05-firewall-minimo-privilegio/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Firewall y mínimo privilegio">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Troubleshooting
+                Firewall y mínimo privilegio
               </div>
             </div>
             <div class="md-footer__button md-icon">

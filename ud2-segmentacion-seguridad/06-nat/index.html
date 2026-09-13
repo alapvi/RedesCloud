@@ -12,13 +12,13 @@
         <meta name="author" content="Alberto Aparicio">
       
       
-        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/08-troubleshooting/">
+        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/06-nat/">
       
       
-        <link rel="prev" href="../07-laboratorio/">
+        <link rel="prev" href="../05-firewall-minimo-privilegio/">
       
       
-        <link rel="next" href="../09-evaluacion/">
+        <link rel="next" href="../07-aws-segmentacion-seguridad/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Troubleshooting - Administración de Redes en la Nube</title>
+        <title>NAT - Administración de Redes en la Nube</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#troubleshooting" class="md-skip">
+        <a href="#nat-traduccion-de-direcciones" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Troubleshooting
+              NAT
             
           </span>
         </div>
@@ -925,14 +925,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../02-dmz/" class="md-nav__link">
+      <a href="../02-proxmox-vlan-aware/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    DMZ y zonas de seguridad
+    Proxmox VLAN-aware
   
 
     
@@ -953,7 +953,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../03-routing-intervlan/" class="md-nav__link">
+      <a href="../03-opnsense-router-firewall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPNsense router/firewall
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-routing-intervlan/" class="md-nav__link">
         
   
   
@@ -981,98 +1009,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../04-nat/" class="md-nav__link">
+      <a href="../05-firewall-minimo-privilegio/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    NAT y gateways
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05-firewall-proxmox/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Firewall en Proxmox
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06-security-groups-nacl/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Security Groups y NACL
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-laboratorio/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Laboratorios
+    Firewall y mínimo privilegio
   
 
     
@@ -1102,6 +1046,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1109,7 +1071,7 @@
   <span class="md-ellipsis">
     
   
-    Troubleshooting
+    NAT
   
 
     
@@ -1118,6 +1080,201 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-punto-de-partida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Punto de partida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-source-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Source NAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-masquerade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. MASQUERADE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pat-nat-overload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. PAT / NAT overload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-nat-no-es-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. NAT no es routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-nat-no-es-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. NAT no es firewall
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-outbound-nat-en-opnsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Outbound NAT en OPNsense
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-validacion-por-capas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Validación por capas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-doble-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Doble NAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-dnat-y-publicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. DNAT y publicación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-egress-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Egress filtering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-observar-la-traduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Observar la traducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-comparacion-con-ud1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Comparación con UD1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-fallos-provocados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Fallos provocados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-preparando-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Preparando AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1131,14 +1288,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../09-evaluacion/" class="md-nav__link">
+      <a href="../07-aws-segmentacion-seguridad/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Evaluación
+    AWS: segmentación y routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-security-groups-nacl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Groups y NACL
   
 
     
@@ -2698,6 +2883,190 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-punto-de-partida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Punto de partida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-source-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Source NAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-masquerade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. MASQUERADE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pat-nat-overload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. PAT / NAT overload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-nat-no-es-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. NAT no es routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-nat-no-es-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. NAT no es firewall
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-outbound-nat-en-opnsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Outbound NAT en OPNsense
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-validacion-por-capas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Validación por capas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-doble-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Doble NAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-dnat-y-publicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. DNAT y publicación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-egress-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Egress filtering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-observar-la-traduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Observar la traducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-comparacion-con-ud1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Comparación con UD1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-fallos-provocados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Fallos provocados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-preparando-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Preparando AWS
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2761,8 +3130,183 @@
 
 
 
-<h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
-<p>Contenido pendiente de desarrollo.</p>
+<h1 id="nat-traduccion-de-direcciones">NAT · Traducción de direcciones<a class="headerlink" href="#nat-traduccion-de-direcciones" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Routing decide el camino. Firewall decide si puede utilizarse. NAT decide qué direcciones se presentan durante ese recorrido.</strong></p>
+</blockquote>
+<hr />
+<h2 id="1-punto-de-partida">1. Punto de partida<a class="headerlink" href="#1-punto-de-partida" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>WEB → 10.10.10.0/24
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>APP → 10.10.20.0/24
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>DB  → 10.10.30.0/24
+</span></code></pre></div>
+<p>Estas direcciones son privadas. OPNsense dispone de una WAN en la red del aula.</p>
+<hr />
+<h2 id="2-source-nat">2. Source NAT<a class="headerlink" href="#2-source-nat" title="Permanent link">&para;</a></h2>
+<p>WEB genera:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>src = 10.10.10.10
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>dst = 1.1.1.1
+</span></code></pre></div>
+<p>Al salir por WAN, OPNsense puede traducir el origen:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>src = IP_WAN_OPNsense
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>dst = 1.1.1.1
+</span></code></pre></div>
+<p>Esto es SNAT.</p>
+<hr />
+<h2 id="3-masquerade">3. MASQUERADE<a class="headerlink" href="#3-masquerade" title="Permanent link">&para;</a></h2>
+<p>La WAN recibe su IP mediante DHCP. Queremos utilizar la dirección que tenga en cada momento.</p>
+<p>Conceptualmente es equivalente al comportamiento de <code>MASQUERADE</code> que utilizamos en Linux durante UD1.</p>
+<hr />
+<h2 id="4-pat-nat-overload">4. PAT / NAT overload<a class="headerlink" href="#4-pat-nat-overload" title="Permanent link">&para;</a></h2>
+<p>Varios hosts pueden compartir una sola IP WAN diferenciándose por puertos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>WEB ─┐
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>APP ─┼──▶ IP_WAN_OPNsense ───▶ Internet
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>DB  ─┘
+</span></code></pre></div>
+<hr />
+<h2 id="5-nat-no-es-routing">5. NAT no es routing<a class="headerlink" href="#5-nat-no-es-routing" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ROUTING
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>→ selecciona el camino
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>NAT
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>→ modifica direcciones
+</span></code></pre></div>
+<hr />
+<h2 id="6-nat-no-es-firewall">6. NAT no es firewall<a class="headerlink" href="#6-nat-no-es-firewall" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>NAT
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>→ traducción
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>FIREWALL
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>→ autorización
+</span></code></pre></div>
+<p>No debemos presentar NAT como sustituto de una política de seguridad.</p>
+<hr />
+<h2 id="7-outbound-nat-en-opnsense">7. Outbound NAT en OPNsense<a class="headerlink" href="#7-outbound-nat-en-opnsense" title="Permanent link">&para;</a></h2>
+<p>Queremos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>10.10.10.0/24 ─┐
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>10.10.20.0/24 ─┼──▶ WAN address
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>10.10.30.0/24 ─┘
+</span></code></pre></div>
+<p>OPNsense puede gestionar Outbound NAT automáticamente o permitir control híbrido/manual.</p>
+<p>Progresión didáctica:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Automatic
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a> ↓
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>observar comportamiento
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a> ↓
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Hybrid/Manual
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a> ↓
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>controlar reglas
+</span></code></pre></div>
+<hr />
+<h2 id="8-validacion-por-capas">8. Validación por capas<a class="headerlink" href="#8-validacion-por-capas" title="Permanent link">&para;</a></h2>
+<p>Desde WEB:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ip<span class="w"> </span>route
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ip<span class="w"> </span>route<span class="w"> </span>get<span class="w"> </span><span class="m">1</span>.1.1.1
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">10</span>.10.10.1
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span>.1.1.1
+</span></code></pre></div>
+<p>Después DNS:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>getent<span class="w"> </span>hosts<span class="w"> </span>example.com
+</span></code></pre></div>
+<p>Y finalmente aplicación:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>curl<span class="w"> </span>-I<span class="w"> </span>https://example.com
+</span></code></pre></div>
+<p>Orden:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>gateway → IP externa → DNS → aplicación
+</span></code></pre></div>
+<hr />
+<h2 id="9-doble-nat">9. Doble NAT<a class="headerlink" href="#9-doble-nat" title="Permanent link">&para;</a></h2>
+<p>En el aula probablemente tendremos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>10.10.10.10
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a> ↓
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>NAT OPNsense
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a> ↓
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>IP privada aula
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a> ↓
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>NAT router aula
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a> ↓
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>IP pública
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a> ↓
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>Internet
+</span></code></pre></div>
+<p>Es válido para estudiar salida a Internet, pero puede complicar publicación, VPN y troubleshooting.</p>
+<hr />
+<h2 id="10-dnat-y-publicacion">10. DNAT y publicación<a class="headerlink" href="#10-dnat-y-publicacion" title="Permanent link">&para;</a></h2>
+<p>La publicación entrante es otro problema:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>WAN_IP:443
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a> ↓
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>10.10.10.10:443
+</span></code></pre></div>
+<p>Esto es DNAT/port forwarding.</p>
+<p>Lo introducimos conceptualmente, pero la publicación segura se trabajará en una unidad posterior.</p>
+<hr />
+<h2 id="11-egress-filtering">11. Egress filtering<a class="headerlink" href="#11-egress-filtering" title="Permanent link">&para;</a></h2>
+<p>Que NAT permita técnicamente salir no implica que todos los sistemas deban hacerlo sin restricciones.</p>
+<p>Podemos diseñar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>WEB → Internet
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>APP → Internet controlado
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>DB  → sin Internet o muy restringido
+</span></code></pre></div>
+<p>La salida también es parte de la política de seguridad.</p>
+<hr />
+<h2 id="12-observar-la-traduccion">12. Observar la traducción<a class="headerlink" href="#12-observar-la-traduccion" title="Permanent link">&para;</a></h2>
+<p>Capturamos en dos puntos.</p>
+<p>Antes del NAT:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>src = 10.10.10.10
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>dst = 1.1.1.1
+</span></code></pre></div>
+<p>Después del NAT, en WAN:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>src = IP_WAN_OPNsense
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>dst = 1.1.1.1
+</span></code></pre></div>
+<p>La comparación demuestra visualmente la traducción.</p>
+<hr />
+<h2 id="13-comparacion-con-ud1">13. Comparación con UD1<a class="headerlink" href="#13-comparacion-con-ud1" title="Permanent link">&para;</a></h2>
+<p>UD1:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>POSTROUTING<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span>-s<span class="w"> </span><span class="m">10</span>.10.10.0/24<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span>-o<span class="w"> </span>vmbr0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span>-j<span class="w"> </span>MASQUERADE
+</span></code></pre></div>
+<p>UD2:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>OPNsense Outbound NAT
+</span></code></pre></div>
+<p>La tecnología cambia; el problema arquitectónico es el mismo.</p>
+<hr />
+<h2 id="14-fallos-provocados">14. Fallos provocados<a class="headerlink" href="#14-fallos-provocados" title="Permanent link">&para;</a></h2>
+<ul>
+<li>NAT desactivado;</li>
+<li>firewall bloqueando salida;</li>
+<li>gateway erróneo en host;</li>
+<li>OPNsense sin gateway WAN;</li>
+<li>DNS incorrecto;</li>
+<li>OPNsense con Internet pero VM sin NAT.</li>
+</ul>
+<hr />
+<h2 id="15-troubleshooting">15. Troubleshooting<a class="headerlink" href="#15-troubleshooting" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>1. IP host
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>2. gateway host
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>3. reachability gateway
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>4. WAN OPNsense
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>5. gateway WAN
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>6. Internet desde OPNsense
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>7. firewall
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>8. Outbound NAT
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>9. IP externa desde host
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>10. DNS
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>11. aplicación
+</span></code></pre></div>
+<hr />
+<h2 id="16-preparando-aws">16. Preparando AWS<a class="headerlink" href="#16-preparando-aws" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ON-PREMISE
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>Private VLAN → OPNsense → SNAT → WAN
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>AWS
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>Private Subnet → Route Table → NAT Gateway → IGW
+</span></code></pre></div>
+<blockquote>
+<p><strong>La tecnología cambia; los principios de red permanecen.</strong></p>
+</blockquote>
 
 
 
@@ -2798,7 +3342,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../07-laboratorio/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Laboratorios">
+          <a href="../05-firewall-minimo-privilegio/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Firewall y mínimo privilegio">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2808,20 +3352,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Laboratorios
+                Firewall y mínimo privilegio
               </div>
             </div>
           </a>
         
         
           
-          <a href="../09-evaluacion/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Evaluación">
+          <a href="../07-aws-segmentacion-seguridad/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: AWS: segmentación y routing">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Evaluación
+                AWS: segmentación y routing
               </div>
             </div>
             <div class="md-footer__button md-icon">

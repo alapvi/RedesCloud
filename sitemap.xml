@@ -93,35 +93,31 @@
          <lastmod>2026-09-13</lastmod>
     </url>
     <url>
-         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/02-dmz/</loc>
+         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/02-proxmox-vlan-aware/</loc>
          <lastmod>2026-09-13</lastmod>
     </url>
     <url>
-         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/03-routing-intervlan/</loc>
+         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/03-opnsense-router-firewall/</loc>
          <lastmod>2026-09-13</lastmod>
     </url>
     <url>
-         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/04-nat/</loc>
+         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/04-routing-intervlan/</loc>
          <lastmod>2026-09-13</lastmod>
     </url>
     <url>
-         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/05-firewall-proxmox/</loc>
+         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/05-firewall-minimo-privilegio/</loc>
          <lastmod>2026-09-13</lastmod>
     </url>
     <url>
-         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/06-security-groups-nacl/</loc>
+         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/06-nat/</loc>
          <lastmod>2026-09-13</lastmod>
     </url>
     <url>
-         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/07-laboratorio/</loc>
+         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/07-aws-segmentacion-seguridad/</loc>
          <lastmod>2026-09-13</lastmod>
     </url>
     <url>
-         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/08-troubleshooting/</loc>
-         <lastmod>2026-09-13</lastmod>
-    </url>
-    <url>
-         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/09-evaluacion/</loc>
+         <loc>https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/08-security-groups-nacl/</loc>
          <lastmod>2026-09-13</lastmod>
     </url>
     <url>

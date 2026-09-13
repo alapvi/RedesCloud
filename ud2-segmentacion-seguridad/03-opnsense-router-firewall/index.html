@@ -12,13 +12,13 @@
         <meta name="author" content="Alberto Aparicio">
       
       
-        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/02-dmz/">
+        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/03-opnsense-router-firewall/">
       
       
-        <link rel="prev" href="../01-vlan-segmentacion/">
+        <link rel="prev" href="../02-proxmox-vlan-aware/">
       
       
-        <link rel="next" href="../03-routing-intervlan/">
+        <link rel="next" href="../04-routing-intervlan/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>DMZ y zonas de seguridad - Administración de Redes en la Nube</title>
+        <title>OPNsense router/firewall - Administración de Redes en la Nube</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dmz-y-zonas-de-seguridad" class="md-skip">
+        <a href="#opnsense-router-y-firewall-virtual" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DMZ y zonas de seguridad
+              OPNsense router/firewall
             
           </span>
         </div>
@@ -922,6 +922,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-proxmox-vlan-aware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxmox VLAN-aware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -934,6 +962,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPNsense router/firewall
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -941,7 +987,7 @@
   <span class="md-ellipsis">
     
   
-    DMZ y zonas de seguridad
+    OPNsense router/firewall
   
 
     
@@ -950,6 +996,251 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-separacion-de-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Separación de funciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vm-opnsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. VM OPNsense
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-wan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. WAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-particularidades-del-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Particularidades del aula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Particularidades del aula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wan-con-ip-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WAN con IP privada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#varias-mac-tras-el-mismo-puerto-fisico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Varias MAC tras el mismo puerto físico
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-trunk-interno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Trunk interno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-crear-vlan-en-opnsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Crear VLAN en OPNsense
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-direccionamiento-de-opnsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Direccionamiento de OPNsense
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-configurar-los-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Configurar los hosts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-redes-directamente-conectadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Redes directamente conectadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-primero-validar-el-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Primero validar el gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-routing-frente-a-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Routing frente a firewall
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-validar-routing-inter-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Validar routing inter-VLAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-nat-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. NAT automático
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-fallos-provocados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Fallos provocados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-cadena-de-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Cadena de troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -963,7 +1254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../03-routing-intervlan/" class="md-nav__link">
+      <a href="../04-routing-intervlan/" class="md-nav__link">
         
   
   
@@ -991,14 +1282,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../04-nat/" class="md-nav__link">
+      <a href="../05-firewall-minimo-privilegio/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    NAT y gateways
+    Firewall y mínimo privilegio
   
 
     
@@ -1019,14 +1310,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../05-firewall-proxmox/" class="md-nav__link">
+      <a href="../06-nat/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Firewall en Proxmox
+    NAT
   
 
     
@@ -1047,7 +1338,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../06-security-groups-nacl/" class="md-nav__link">
+      <a href="../07-aws-segmentacion-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS: segmentación y routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-security-groups-nacl/" class="md-nav__link">
         
   
   
@@ -1055,90 +1374,6 @@
     
   
     Security Groups y NACL
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-laboratorio/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Laboratorios
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-evaluacion/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Evaluación
   
 
     
@@ -2698,6 +2933,240 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-separacion-de-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Separación de funciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vm-opnsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. VM OPNsense
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-wan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. WAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-particularidades-del-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Particularidades del aula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Particularidades del aula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wan-con-ip-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WAN con IP privada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#varias-mac-tras-el-mismo-puerto-fisico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Varias MAC tras el mismo puerto físico
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-trunk-interno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Trunk interno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-crear-vlan-en-opnsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Crear VLAN en OPNsense
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-direccionamiento-de-opnsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Direccionamiento de OPNsense
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-configurar-los-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Configurar los hosts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-redes-directamente-conectadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Redes directamente conectadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-primero-validar-el-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Primero validar el gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-routing-frente-a-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Routing frente a firewall
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-validar-routing-inter-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Validar routing inter-VLAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-nat-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. NAT automático
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-fallos-provocados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Fallos provocados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-cadena-de-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Cadena de troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2761,8 +3230,242 @@
 
 
 
-<h1 id="dmz-y-zonas-de-seguridad">DMZ y zonas de seguridad<a class="headerlink" href="#dmz-y-zonas-de-seguridad" title="Permanent link">&para;</a></h1>
-<p>Contenido pendiente de desarrollo.</p>
+<h1 id="opnsense-router-y-firewall-virtual">OPNsense · Router y firewall virtual<a class="headerlink" href="#opnsense-router-y-firewall-virtual" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Ahora convertimos la segmentación creada en Proxmox en una arquitectura enrutable mediante OPNsense.</strong></p>
+</blockquote>
+<hr />
+<h2 id="1-objetivo">1. Objetivo<a class="headerlink" href="#1-objetivo" title="Permanent link">&para;</a></h2>
+<p>Partimos de tres segmentos independientes:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>VLAN 10 → WEB → 10.10.10.0/24
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>VLAN 20 → APP → 10.10.20.0/24
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>VLAN 30 → DB  → 10.10.30.0/24
+</span></code></pre></div>
+<p>Todavía tenemos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>3 VLAN + 3 redes IP + 0 routers
+</span></code></pre></div>
+<p>Introducimos OPNsense para proporcionar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>routing inter-VLAN
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>+
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>gateway de cada red
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>+
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>conectividad WAN
+</span></code></pre></div>
+<p>La política restrictiva se implementará después. Primero debemos demostrar que el routing funciona.</p>
+<hr />
+<h2 id="2-arquitectura">2. Arquitectura<a class="headerlink" href="#2-arquitectura" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>                         RED DEL AULA
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>                      DHCP + acceso Internet
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>                              │
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>                            vmbr0
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>                              │
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>                            WAN
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>                              │
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                     ┌────────┴────────┐
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>                     │    OPNsense     │
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>                     │ Router/Firewall │
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>                     └────────┬────────┘
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>                              │
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>                         TRUNK 802.1Q
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>                              │
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>                       vmbr1 VLAN-aware
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>              ┌───────────────┼───────────────┐
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>              │               │               │
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>           VLAN 10         VLAN 20         VLAN 30
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>              │               │               │
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>             WEB             APP              DB
+</span></code></pre></div>
+<hr />
+<h2 id="3-separacion-de-funciones">3. Separación de funciones<a class="headerlink" href="#3-separacion-de-funciones" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Proxmox
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>→ virtualiza
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>→ conmuta
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>→ transporta VLAN
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>OPNsense
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>→ enruta
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>→ filtra
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>→ realiza NAT
+</span></code></pre></div>
+<p>No utilizaremos el host Proxmox como router de laboratorio. Esto mantiene separado el plano de gestión del hipervisor de la función de routing/firewall que queremos estudiar.</p>
+<hr />
+<h2 id="4-vm-opnsense">4. VM OPNsense<a class="headerlink" href="#4-vm-opnsense" title="Permanent link">&para;</a></h2>
+<p>Una configuración razonable:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>CPU: 2 vCPU
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>RAM: 2–4 GB
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Disco: 16–20 GB
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>NIC: 2
+</span></code></pre></div>
+<p>La primera vNIC es WAN; la segunda es trunk.</p>
+<hr />
+<h2 id="5-wan">5. WAN<a class="headerlink" href="#5-wan" title="Permanent link">&para;</a></h2>
+<p>En Proxmox:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Bridge: vmbr0
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>VLAN Tag: vacío
+</span></code></pre></div>
+<p>En OPNsense:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>IPv4 Configuration Type: DHCP
+</span></code></pre></div>
+<p>El router del aula entregará:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>IP + máscara + gateway + DNS
+</span></code></pre></div>
+<hr />
+<h2 id="6-particularidades-del-aula">6. Particularidades del aula<a class="headerlink" href="#6-particularidades-del-aula" title="Permanent link">&para;</a></h2>
+<h3 id="wan-con-ip-privada">WAN con IP privada<a class="headerlink" href="#wan-con-ip-privada" title="Permanent link">&para;</a></h3>
+<p>La red del aula probablemente utiliza RFC1918. Si OPNsense aplica bloqueo de redes privadas sobre WAN, debemos revisar esa opción para este escenario de laboratorio.</p>
+<h3 id="varias-mac-tras-el-mismo-puerto-fisico">Varias MAC tras el mismo puerto físico<a class="headerlink" href="#varias-mac-tras-el-mismo-puerto-fisico" title="Permanent link">&para;</a></h3>
+<p>El puerto físico verá al menos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>MAC Proxmox
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>MAC OPNsense WAN
+</span></code></pre></div>
+<p>Si el switch aplica port-security de una sola MAC, la WAN de OPNsense puede fallar aunque la configuración virtual sea correcta.</p>
+<p>Este es un excelente ejemplo de problema situado <strong>fuera del hipervisor</strong>.</p>
+<hr />
+<h2 id="7-trunk-interno">7. Trunk interno<a class="headerlink" href="#7-trunk-interno" title="Permanent link">&para;</a></h2>
+<p>Segunda vNIC:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Bridge: vmbr1
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>VLAN Tag: vacío
+</span></code></pre></div>
+<p>Debe transportar simultáneamente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>VLAN 10
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>VLAN 20
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>VLAN 30
+</span></code></pre></div>
+<p>No asignaremos una IP normal a la interfaz padre si se utiliza únicamente como contenedor del trunk.</p>
+<hr />
+<h2 id="8-crear-vlan-en-opnsense">8. Crear VLAN en OPNsense<a class="headerlink" href="#8-crear-vlan-en-opnsense" title="Permanent link">&para;</a></h2>
+<p>Sobre la interfaz padre interna:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>VLAN10_WEB → VID 10
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>VLAN20_APP → VID 20
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>VLAN30_DB  → VID 30
+</span></code></pre></div>
+<p>Después se asignan como interfaces lógicas.</p>
+<hr />
+<h2 id="9-direccionamiento-de-opnsense">9. Direccionamiento de OPNsense<a class="headerlink" href="#9-direccionamiento-de-opnsense" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>WEB → 10.10.10.1/24
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>APP → 10.10.20.1/24
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>DB  → 10.10.30.1/24
+</span></code></pre></div>
+<p>No se configura un gateway upstream en estas interfaces internas.</p>
+<hr />
+<h2 id="10-configurar-los-hosts">10. Configurar los hosts<a class="headerlink" href="#10-configurar-los-hosts" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>WEB
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>IP 10.10.10.10/24
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>GW 10.10.10.1
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>APP
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>IP 10.10.20.10/24
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>GW 10.10.20.1
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>DB
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>IP 10.10.30.10/24
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>GW 10.10.30.1
+</span></code></pre></div>
+<hr />
+<h2 id="11-redes-directamente-conectadas">11. Redes directamente conectadas<a class="headerlink" href="#11-redes-directamente-conectadas" title="Permanent link">&para;</a></h2>
+<p>OPNsense participa en las tres redes, por tanto conoce automáticamente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>10.10.10.0/24 → WEB
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>10.10.20.0/24 → APP
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>10.10.30.0/24 → DB
+</span></code></pre></div>
+<p>No necesitamos rutas estáticas para comunicar estas tres subnets.</p>
+<hr />
+<h2 id="12-primero-validar-el-gateway">12. Primero validar el gateway<a class="headerlink" href="#12-primero-validar-el-gateway" title="Permanent link">&para;</a></h2>
+<p>Desde WEB:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">10</span>.10.10.1
+</span></code></pre></div>
+<p>Desde APP:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">10</span>.10.20.1
+</span></code></pre></div>
+<p>Desde DB:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">10</span>.10.30.1
+</span></code></pre></div>
+<p>Si una VM no llega a su gateway, todavía no investigamos routing inter-VLAN.</p>
+<hr />
+<h2 id="13-routing-frente-a-firewall">13. Routing frente a firewall<a class="headerlink" href="#13-routing-frente-a-firewall" title="Permanent link">&para;</a></h2>
+<p>OPNsense es router y firewall.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ROUTING
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>→ ¿existe camino?
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>FIREWALL
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>→ ¿está permitido usarlo?
+</span></code></pre></div>
+<p>Las interfaces nuevas pueden no disponer de reglas permisivas. Por ello, para demostrar routing podemos crear temporalmente reglas explícitas de laboratorio que permitan tráfico entre las redes.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>WEB → any → PASS temporal
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>APP → any → PASS temporal
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>DB  → any → PASS temporal
+</span></code></pre></div>
+<p>Estas reglas no son la política final.</p>
+<hr />
+<h2 id="14-validar-routing-inter-vlan">14. Validar routing inter-VLAN<a class="headerlink" href="#14-validar-routing-inter-vlan" title="Permanent link">&para;</a></h2>
+<p>Ejemplo WEB→APP:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">10</span>.10.20.10
+</span></code></pre></div>
+<p>Recorrido esperado:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>WEB
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a> ↓
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>GW 10.10.10.1
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a> ↓
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>OPNsense
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a> ↓
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>VLAN20
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a> ↓
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>APP
+</span></code></pre></div>
+<hr />
+<h2 id="15-nat-automatico">15. NAT automático<a class="headerlink" href="#15-nat-automatico" title="Permanent link">&para;</a></h2>
+<p>OPNsense puede generar automáticamente reglas de Outbound NAT para redes internas.</p>
+<p>En este capítulo el acceso a Internet desde WEB/APP/DB <strong>no es el objetivo</strong>.</p>
+<p>Si una VM ya consigue salir a Internet, debemos identificar que la traducción está ocurriendo y no confundirla con routing puro.</p>
+<hr />
+<h2 id="16-fallos-provocados">16. Fallos provocados<a class="headerlink" href="#16-fallos-provocados" title="Permanent link">&para;</a></h2>
+<ul>
+<li>VLAN creada sobre interfaz padre incorrecta.</li>
+<li>vNIC trunk etiquetada con VLAN 10 en Proxmox.</li>
+<li>gateway incorrecto.</li>
+<li>interfaz VLAN deshabilitada.</li>
+<li>regla temporal ausente.</li>
+<li>WAN privada bloqueada.</li>
+<li>port-security físico.</li>
+</ul>
+<hr />
+<h2 id="17-cadena-de-troubleshooting">17. Cadena de troubleshooting<a class="headerlink" href="#17-cadena-de-troubleshooting" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>VM
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a> ↓
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>Tag Proxmox
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a> ↓
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>vmbr1
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a> ↓
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>TRUNK
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a> ↓
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>parent OPNsense
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a> ↓
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>VLAN child
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a> ↓
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>IP/gateway
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a> ↓
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a>connected route
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a> ↓
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>firewall
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a> ↓
+</span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a>destino
+</span></code></pre></div>
+<hr />
+<h2 id="evidencias">Evidencias<a class="headerlink" href="#evidencias" title="Permanent link">&para;</a></h2>
+<ol>
+<li>dos vNIC de OPNsense;</li>
+<li>WAN DHCP;</li>
+<li>VLAN 10/20/30;</li>
+<li>interfaces WEB/APP/DB;</li>
+<li>IP de cada interfaz;</li>
+<li>gateways de las VM;</li>
+<li>reachability de cada gateway;</li>
+<li>routing inter-VLAN;</li>
+<li>explicación de un fallo provocado.</li>
+</ol>
+<blockquote>
+<p><strong>Primero demostramos que existe un camino. Después decidiremos quién tiene derecho a utilizarlo.</strong></p>
+</blockquote>
 
 
 
@@ -2798,7 +3501,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../01-vlan-segmentacion/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: VLAN y segmentación">
+          <a href="../02-proxmox-vlan-aware/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Proxmox VLAN-aware">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2808,14 +3511,14 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                VLAN y segmentación
+                Proxmox VLAN-aware
               </div>
             </div>
           </a>
         
         
           
-          <a href="../03-routing-intervlan/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Routing inter-VLAN">
+          <a href="../04-routing-intervlan/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Routing inter-VLAN">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente

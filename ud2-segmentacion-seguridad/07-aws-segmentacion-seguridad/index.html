@@ -12,13 +12,13 @@
         <meta name="author" content="Alberto Aparicio">
       
       
-        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/06-security-groups-nacl/">
+        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/07-aws-segmentacion-seguridad/">
       
       
-        <link rel="prev" href="../05-firewall-proxmox/">
+        <link rel="prev" href="../06-nat/">
       
       
-        <link rel="next" href="../07-laboratorio/">
+        <link rel="next" href="../08-security-groups-nacl/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Security Groups y NACL - Administración de Redes en la Nube</title>
+        <title>AWS: segmentación y routing - Administración de Redes en la Nube</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#security-groups-y-nacl" class="md-skip">
+        <a href="#aws-segmentacion-routing-y-salida-a-internet" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Security Groups y NACL
+              AWS: segmentación y routing
             
           </span>
         </div>
@@ -925,14 +925,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../02-dmz/" class="md-nav__link">
+      <a href="../02-proxmox-vlan-aware/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    DMZ y zonas de seguridad
+    Proxmox VLAN-aware
   
 
     
@@ -953,7 +953,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../03-routing-intervlan/" class="md-nav__link">
+      <a href="../03-opnsense-router-firewall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPNsense router/firewall
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-routing-intervlan/" class="md-nav__link">
         
   
   
@@ -981,14 +1009,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../04-nat/" class="md-nav__link">
+      <a href="../05-firewall-minimo-privilegio/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    NAT y gateways
+    Firewall y mínimo privilegio
   
 
     
@@ -1009,14 +1037,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../05-firewall-proxmox/" class="md-nav__link">
+      <a href="../06-nat/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Firewall en Proxmox
+    NAT
   
 
     
@@ -1046,6 +1074,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS: segmentación y routing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1053,7 +1099,7 @@
   <span class="md-ellipsis">
     
   
-    Security Groups y NACL
+    AWS: segmentación y routing
   
 
     
@@ -1062,6 +1108,262 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-arquitectura-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Arquitectura objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-subnet-no-es-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Subnet no es VLAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. VPC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ruta-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ruta local
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-route-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Route Tables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-internet-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Internet Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-route-table-publica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Route Table pública
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-route-table-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Route Table privada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-nat-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. NAT Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-recorrido-app-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Recorrido APP → Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-db-y-salida-a-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. DB y salida a Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-instancias-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Instancias EC2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-routing-frente-a-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Routing frente a seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-equivalencias-funcionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Equivalencias funcionales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-prediccion-antes-de-configurar-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Predicción antes de configurar seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-fallos-provocados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Fallos provocados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Fallos provocados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#app-asociada-a-rt-public" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APP asociada a RT-PUBLIC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nat-gw-en-subnet-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NAT GW en subnet privada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#falta-default-route-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Falta default route privada
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-troubleshooting-app-sin-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Troubleshooting APP sin Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1075,70 +1377,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../07-laboratorio/" class="md-nav__link">
+      <a href="../08-security-groups-nacl/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Laboratorios
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-evaluacion/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Evaluación
+    Security Groups y NACL
   
 
     
@@ -2698,6 +2944,251 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-arquitectura-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Arquitectura objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-subnet-no-es-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Subnet no es VLAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. VPC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ruta-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ruta local
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-route-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Route Tables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-internet-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Internet Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-route-table-publica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Route Table pública
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-route-table-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Route Table privada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-nat-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. NAT Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-recorrido-app-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Recorrido APP → Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-db-y-salida-a-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. DB y salida a Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-instancias-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Instancias EC2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-routing-frente-a-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Routing frente a seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-equivalencias-funcionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Equivalencias funcionales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-prediccion-antes-de-configurar-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Predicción antes de configurar seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-fallos-provocados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Fallos provocados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Fallos provocados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#app-asociada-a-rt-public" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APP asociada a RT-PUBLIC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nat-gw-en-subnet-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NAT GW en subnet privada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#falta-default-route-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Falta default route privada
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-troubleshooting-app-sin-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Troubleshooting APP sin Internet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2761,8 +3252,282 @@
 
 
 
-<h1 id="security-groups-y-nacl">Security Groups y NACL<a class="headerlink" href="#security-groups-y-nacl" title="Permanent link">&para;</a></h1>
-<p>Contenido pendiente de desarrollo.</p>
+<h1 id="aws-segmentacion-routing-y-salida-a-internet">AWS · Segmentación, routing y salida a Internet<a class="headerlink" href="#aws-segmentacion-routing-y-salida-a-internet" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>No debemos aprender AWS como una colección de botones. Debemos reconocer en AWS los mismos problemas de red que ya sabemos resolver.</strong></p>
+</blockquote>
+<hr />
+<h2 id="1-arquitectura-objetivo">1. Arquitectura objetivo<a class="headerlink" href="#1-arquitectura-objetivo" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>VPC 10.0.0.0/16
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>WEB → 10.0.10.0/24 → public subnet
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>APP → 10.0.20.0/24 → private subnet
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>DB  → 10.0.30.0/24 → private subnet
+</span></code></pre></div>
+<p>Trabajaremos en una sola Availability Zone para centrar la unidad en routing y seguridad. Multi-AZ y alta disponibilidad quedarán como ampliación.</p>
+<hr />
+<h2 id="2-subnet-no-es-vlan">2. Subnet no es VLAN<a class="headerlink" href="#2-subnet-no-es-vlan" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>VLAN
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>→ capa 2
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>→ 802.1Q
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>AWS subnet
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>→ rango IP de una VPC
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>→ capa 3 lógica
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>→ asociada a una AZ
+</span></code></pre></div>
+<p>La numeración 10/20/30 mantiene continuidad pedagógica, no equivalencia técnica.</p>
+<hr />
+<h2 id="3-vpc">3. VPC<a class="headerlink" href="#3-vpc" title="Permanent link">&para;</a></h2>
+<p>Creamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>VPC-UD2
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>10.0.0.0/16
+</span></code></pre></div>
+<p>Subnets:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SUBNET-WEB → 10.0.10.0/24
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>SUBNET-APP → 10.0.20.0/24
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>SUBNET-DB  → 10.0.30.0/24
+</span></code></pre></div>
+<hr />
+<h2 id="4-ruta-local">4. Ruta local<a class="headerlink" href="#4-ruta-local" title="Permanent link">&para;</a></h2>
+<p>AWS incorpora una ruta local para el CIDR de la VPC:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>10.0.0.0/16 → local
+</span></code></pre></div>
+<p>Esto proporciona reachability de routing entre subnets de la VPC si los controles de seguridad lo permiten.</p>
+<p>No desplegamos una EC2 router para ello.</p>
+<hr />
+<h2 id="5-route-tables">5. Route Tables<a class="headerlink" href="#5-route-tables" title="Permanent link">&para;</a></h2>
+<p>Una ruta expresa:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>DESTINATION + TARGET
+</span></code></pre></div>
+<p>Ejemplos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>10.0.0.0/16 → local
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>0.0.0.0/0  → Internet Gateway
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>0.0.0.0/0  → NAT Gateway
+</span></code></pre></div>
+<p>AWS aplica longest prefix match: la coincidencia más específica gana.</p>
+<hr />
+<h2 id="6-internet-gateway">6. Internet Gateway<a class="headerlink" href="#6-internet-gateway" title="Permanent link">&para;</a></h2>
+<p>Creamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>IGW-UD2
+</span></code></pre></div>
+<p>y lo asociamos a la VPC.</p>
+<p>El IGW será el target para la salida directa de la subnet pública.</p>
+<hr />
+<h2 id="7-route-table-publica">7. Route Table pública<a class="headerlink" href="#7-route-table-publica" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>RT-PUBLIC
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>10.0.0.0/16 → local
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>0.0.0.0/0  → IGW-UD2
+</span></code></pre></div>
+<p>Asociamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>SUBNET-WEB → RT-PUBLIC
+</span></code></pre></div>
+<p>La subnet es pública porque tiene una ruta directa al IGW.</p>
+<blockquote>
+<p><strong>Public subnet ≠ public EC2.</strong></p>
+</blockquote>
+<p>Una instancia también necesita una IPv4 pública/EIP y una política de seguridad compatible.</p>
+<hr />
+<h2 id="8-route-table-privada">8. Route Table privada<a class="headerlink" href="#8-route-table-privada" title="Permanent link">&para;</a></h2>
+<p>Inicialmente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>RT-PRIVATE
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>10.0.0.0/16 → local
+</span></code></pre></div>
+<p>Asociamos APP y DB.</p>
+<p>No tienen una ruta directa a IGW.</p>
+<hr />
+<h2 id="9-nat-gateway">9. NAT Gateway<a class="headerlink" href="#9-nat-gateway" title="Permanent link">&para;</a></h2>
+<p>Para permitir que APP/DB inicien conexiones hacia Internet sin IPv4 pública propia, desplegamos un NAT Gateway público.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>NAT-UD2
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Subnet: SUBNET-WEB
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Elastic IP: asignada
+</span></code></pre></div>
+<p>Después:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>RT-PRIVATE
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>10.0.0.0/16 → local
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>0.0.0.0/0  → NAT-UD2
+</span></code></pre></div>
+<hr />
+<h2 id="10-recorrido-app-internet">10. Recorrido APP → Internet<a class="headerlink" href="#10-recorrido-app-internet" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>EC2-APP
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a> ↓
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>SUBNET-APP
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a> ↓
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>RT-PRIVATE
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a> ↓ 0.0.0.0/0
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>NAT Gateway
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a> ↓
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>RT-PUBLIC
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a> ↓
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>IGW
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a> ↓
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>Internet
+</span></code></pre></div>
+<p>La respuesta vuelve a través del NAT Gateway hacia APP.</p>
+<p>Internet no utiliza ese NAT Gateway para iniciar una conexión directa no solicitada hacia APP.</p>
+<hr />
+<h2 id="11-db-y-salida-a-internet">11. DB y salida a Internet<a class="headerlink" href="#11-db-y-salida-a-internet" title="Permanent link">&para;</a></h2>
+<p>Si DB comparte RT-PRIVATE, técnicamente también tendrá salida mediante NAT GW.</p>
+<p>Pero podemos diseñar una variante más restrictiva:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>RT-DB
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>10.0.0.0/16 → local
+</span></code></pre></div>
+<p>sin default route.</p>
+<p>Esto introduce una pregunta arquitectónica real:</p>
+<blockquote>
+<p>¿Necesita DB acceso general a Internet?</p>
+</blockquote>
+<hr />
+<h2 id="12-instancias-ec2">12. Instancias EC2<a class="headerlink" href="#12-instancias-ec2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>EC2-WEB → SUBNET-WEB
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>EC2-APP → SUBNET-APP
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>EC2-DB  → SUBNET-DB
+</span></code></pre></div>
+<p>WEB puede disponer de IPv4 pública para el laboratorio.</p>
+<p>APP y DB no.</p>
+<hr />
+<h2 id="13-routing-frente-a-seguridad">13. Routing frente a seguridad<a class="headerlink" href="#13-routing-frente-a-seguridad" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ROUTING
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>→ ¿existe camino?
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>SECURITY GROUP
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>→ ¿está permitido?
+</span></code></pre></div>
+<p>La ruta <code>local</code> no implica que WEB pueda utilizar cualquier puerto de APP o DB.</p>
+<hr />
+<h2 id="14-equivalencias-funcionales">14. Equivalencias funcionales<a class="headerlink" href="#14-equivalencias-funcionales" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Necesidad</th>
+<th>Proxmox/OPNsense</th>
+<th>AWS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>red virtual</td>
+<td>Linux Bridge</td>
+<td>VPC</td>
+</tr>
+<tr>
+<td>segmentación</td>
+<td>VLAN</td>
+<td>Subnet</td>
+</tr>
+<tr>
+<td>routing interno</td>
+<td>OPNsense</td>
+<td>VPC routing</td>
+</tr>
+<tr>
+<td>tabla de rutas</td>
+<td>OPNsense</td>
+<td>Route Table</td>
+</tr>
+<tr>
+<td>acceso Internet</td>
+<td>WAN</td>
+<td>IGW</td>
+</tr>
+<tr>
+<td>NAT saliente</td>
+<td>Outbound NAT</td>
+<td>NAT Gateway</td>
+</tr>
+<tr>
+<td>servidor</td>
+<td>VM</td>
+<td>EC2</td>
+</tr>
+<tr>
+<td>política</td>
+<td>OPNsense firewall</td>
+<td>Security Groups / NACL</td>
+</tr>
+</tbody>
+</table>
+<p>No son equivalencias uno-a-uno; representan funciones arquitectónicas comparables.</p>
+<hr />
+<h2 id="15-prediccion-antes-de-configurar-seguridad">15. Predicción antes de configurar seguridad<a class="headerlink" href="#15-prediccion-antes-de-configurar-seguridad" title="Permanent link">&para;</a></h2>
+<p>Analiza solo routing:</p>
+<table>
+<thead>
+<tr>
+<th>Comunicación</th>
+<th>¿Ruta?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WEB→APP</td>
+<td>sí, <code>local</code></td>
+</tr>
+<tr>
+<td>APP→DB</td>
+<td>sí, <code>local</code></td>
+</tr>
+<tr>
+<td>APP→Internet</td>
+<td>sí, NAT GW</td>
+</tr>
+<tr>
+<td>DB→Internet</td>
+<td>sí si comparte RT-PRIVATE</td>
+</tr>
+<tr>
+<td>Internet→APP</td>
+<td>no de forma directa mediante NAT GW</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="16-fallos-provocados">16. Fallos provocados<a class="headerlink" href="#16-fallos-provocados" title="Permanent link">&para;</a></h2>
+<h3 id="app-asociada-a-rt-public">APP asociada a RT-PUBLIC<a class="headerlink" href="#app-asociada-a-rt-public" title="Permanent link">&para;</a></h3>
+<p>La subnet pasa a tener ruta directa hacia IGW. Esto modifica su naturaleza de routing, aunque la EC2 no quede automáticamente pública.</p>
+<h3 id="nat-gw-en-subnet-privada">NAT GW en subnet privada<a class="headerlink" href="#nat-gw-en-subnet-privada" title="Permanent link">&para;</a></h3>
+<p>Sin camino desde su subnet hacia IGW, no resuelve la salida pública esperada.</p>
+<h3 id="falta-default-route-privada">Falta default route privada<a class="headerlink" href="#falta-default-route-privada" title="Permanent link">&para;</a></h3>
+<p>El NAT GW existe pero no recibe tráfico.</p>
+<blockquote>
+<p><strong>Un componente existente no significa que esté en el camino del paquete.</strong></p>
+</blockquote>
+<hr />
+<h2 id="17-troubleshooting-app-sin-internet">17. Troubleshooting APP sin Internet<a class="headerlink" href="#17-troubleshooting-app-sin-internet" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>1. subnet de APP
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>2. Route Table asociada
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>3. existe 0.0.0.0/0
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>4. target = NAT GW
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>5. NAT GW Available
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>6. NAT GW en public subnet
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>7. RT-PUBLIC con default → IGW
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>8. IGW asociado a VPC
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>9. Security Group / NACL
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>10. sistema operativo
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>11. DNS
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>12. aplicación
+</span></code></pre></div>
+<hr />
+<h2 id="modelo-mental">Modelo mental<a class="headerlink" href="#modelo-mental" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>EC2
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a> ↓
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>ENI
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a> ↓
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>Subnet
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a> ↓
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>Route Table
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a> ↓
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>Longest Prefix Match
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a> ↓
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>Target
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a> ↓
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>Security controls
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a> ↓
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>Destination
+</span></code></pre></div>
+<blockquote>
+<p><strong>AWS abstrae la infraestructura, no los principios de red.</strong></p>
+</blockquote>
 
 
 
@@ -2798,7 +3563,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../05-firewall-proxmox/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Firewall en Proxmox">
+          <a href="../06-nat/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: NAT">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2808,20 +3573,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Firewall en Proxmox
+                NAT
               </div>
             </div>
           </a>
         
         
           
-          <a href="../07-laboratorio/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Laboratorios">
+          <a href="../08-security-groups-nacl/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Security Groups y NACL">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Laboratorios
+                Security Groups y NACL
               </div>
             </div>
             <div class="md-footer__button md-icon">

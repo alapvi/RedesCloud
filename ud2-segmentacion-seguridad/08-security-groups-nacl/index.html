@@ -12,13 +12,13 @@
         <meta name="author" content="Alberto Aparicio">
       
       
-        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/04-nat/">
+        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/08-security-groups-nacl/">
       
       
-        <link rel="prev" href="../03-routing-intervlan/">
+        <link rel="prev" href="../07-aws-segmentacion-seguridad/">
       
       
-        <link rel="next" href="../05-firewall-proxmox/">
+        <link rel="next" href="../../ud3-vpn-hibrida/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>NAT y gateways - Administración de Redes en la Nube</title>
+        <title>Security Groups y NACL - Administración de Redes en la Nube</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nat-y-gateways" class="md-skip">
+        <a href="#aws-security-groups-y-network-acl" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NAT y gateways
+              Security Groups y NACL
             
           </span>
         </div>
@@ -925,14 +925,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../02-dmz/" class="md-nav__link">
+      <a href="../02-proxmox-vlan-aware/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    DMZ y zonas de seguridad
+    Proxmox VLAN-aware
   
 
     
@@ -953,7 +953,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../03-routing-intervlan/" class="md-nav__link">
+      <a href="../03-opnsense-router-firewall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPNsense router/firewall
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-routing-intervlan/" class="md-nav__link">
         
   
   
@@ -961,6 +989,90 @@
     
   
     Routing inter-VLAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-firewall-minimo-privilegio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firewall y mínimo privilegio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-aws-segmentacion-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS: segmentación y routing
   
 
     
@@ -990,14 +1102,14 @@
         
       
       
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
   
   
   <span class="md-ellipsis">
     
   
-    NAT y gateways
+    Security Groups y NACL
   
 
     
@@ -1005,49 +1117,10 @@
   
   
 
-      </a>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05-firewall-proxmox/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Firewall en Proxmox
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06-security-groups-nacl/" class="md-nav__link">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1063,90 +1136,318 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-laboratorio/" class="md-nav__link">
+      
         
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
   
   
-  <span class="md-ellipsis">
+  
     
   
-    Laboratorios
   
-
-    
-  </span>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-politica-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Política objetivo
+      
+    </span>
+  </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dos-mecanismos-distintos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Dos mecanismos distintos
+      
+    </span>
+  </a>
   
-
-      </a>
-    </li>
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-security-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Security Groups
+      
+    </span>
+  </a>
   
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-troubleshooting/" class="md-nav__link">
+    <nav class="md-nav" aria-label="3. Security Groups">
+      <ul class="md-nav__list">
         
+          <li class="md-nav__item">
+  <a href="#sg-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SG-WEB
+      
+    </span>
+  </a>
   
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-evaluacion/" class="md-nav__link">
+</li>
         
+          <li class="md-nav__item">
+  <a href="#sg-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SG-APP
+      
+    </span>
+  </a>
   
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sg-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SG-DB
+      
+    </span>
+  </a>
   
-  <span class="md-ellipsis">
-    
+</li>
+        
+      </ul>
+    </nav>
   
-    Evaluación
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-referencias-entre-sg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Referencias entre SG
+      
+    </span>
+  </a>
   
-
-    
-  </span>
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-stateful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Stateful
+      
+    </span>
+  </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-outbound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Outbound
+      
+    </span>
+  </a>
   
-
-      </a>
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-network-acl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Network ACL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-stateless-y-puertos-efimeros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Stateless y puertos efímeros
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-allow-y-deny" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. ALLOW y DENY
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-papel-de-cada-mecanismo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Papel de cada mecanismo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-camino-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Camino conceptual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-validacion-web-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Validación WEB → APP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-validacion-web-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Validación WEB → DB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-validacion-app-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Validación APP → DB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-matriz-de-pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Matriz de pruebas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-fallo-origen-incorrecto-en-sg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Fallo: origen incorrecto en SG
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-fallo-puerto-incorrecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Fallo: puerto incorrecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-fallo-nacl-bloqueando-retorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Fallo: NACL bloqueando retorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-troubleshooting-sg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Troubleshooting SG
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-troubleshooting-nacl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Troubleshooting NACL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-seguridad-distribuida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Seguridad distribuida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-movimiento-lateral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Movimiento lateral
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2698,6 +2999,306 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-politica-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Política objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dos-mecanismos-distintos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Dos mecanismos distintos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-security-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Security Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Security Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sg-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SG-WEB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sg-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SG-APP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sg-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SG-DB
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-referencias-entre-sg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Referencias entre SG
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-stateful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Stateful
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-outbound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Outbound
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-network-acl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Network ACL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-stateless-y-puertos-efimeros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Stateless y puertos efímeros
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-allow-y-deny" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. ALLOW y DENY
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-papel-de-cada-mecanismo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Papel de cada mecanismo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-camino-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Camino conceptual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-validacion-web-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Validación WEB → APP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-validacion-web-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Validación WEB → DB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-validacion-app-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Validación APP → DB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-matriz-de-pruebas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Matriz de pruebas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-fallo-origen-incorrecto-en-sg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Fallo: origen incorrecto en SG
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-fallo-puerto-incorrecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Fallo: puerto incorrecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-fallo-nacl-bloqueando-retorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Fallo: NACL bloqueando retorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-troubleshooting-sg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Troubleshooting SG
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-troubleshooting-nacl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Troubleshooting NACL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-seguridad-distribuida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Seguridad distribuida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-movimiento-lateral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Movimiento lateral
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2761,8 +3362,306 @@
 
 
 
-<h1 id="nat-y-gateways">NAT y gateways<a class="headerlink" href="#nat-y-gateways" title="Permanent link">&para;</a></h1>
-<p>Contenido pendiente de desarrollo.</p>
+<h1 id="aws-security-groups-y-network-acl">AWS · Security Groups y Network ACL<a class="headerlink" href="#aws-security-groups-y-network-acl" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Routing decide si existe camino. Security Groups y NACL deciden qué tráfico puede utilizar ese camino.</strong></p>
+</blockquote>
+<hr />
+<h2 id="1-politica-objetivo">1. Política objetivo<a class="headerlink" href="#1-politica-objetivo" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Internet → WEB:443
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>WEB      → APP:8080
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>APP      → DB:5432
+</span></code></pre></div>
+<p>Las demás nuevas conexiones no necesarias deben permanecer bloqueadas.</p>
+<hr />
+<h2 id="2-dos-mecanismos-distintos">2. Dos mecanismos distintos<a class="headerlink" href="#2-dos-mecanismos-distintos" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Security Group</th>
+<th>Network ACL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nivel</td>
+<td>recurso / ENI</td>
+<td>subnet</td>
+</tr>
+<tr>
+<td>estado</td>
+<td>stateful</td>
+<td>stateless</td>
+</tr>
+<tr>
+<td>ALLOW</td>
+<td>sí</td>
+<td>sí</td>
+</tr>
+<tr>
+<td>DENY explícito</td>
+<td>no</td>
+<td>sí</td>
+</tr>
+<tr>
+<td>orden de reglas</td>
+<td>no</td>
+<td>sí</td>
+</tr>
+<tr>
+<td>referencia a SG</td>
+<td>sí</td>
+<td>no</td>
+</tr>
+<tr>
+<td>uso principal</td>
+<td>política por recurso/rol</td>
+<td>barrera adicional de subnet</td>
+</tr>
+</tbody>
+</table>
+<p>No deben enseñarse como dos firewalls equivalentes.</p>
+<hr />
+<h2 id="3-security-groups">3. Security Groups<a class="headerlink" href="#3-security-groups" title="Permanent link">&para;</a></h2>
+<p>Asociamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>EC2-WEB → SG-WEB
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>EC2-APP → SG-APP
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>EC2-DB  → SG-DB
+</span></code></pre></div>
+<h3 id="sg-web">SG-WEB<a class="headerlink" href="#sg-web" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Inbound
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>TCP/443
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Source: 0.0.0.0/0
+</span></code></pre></div>
+<p>Para administración, evitar SSH abierto a Internet si no es necesario.</p>
+<h3 id="sg-app">SG-APP<a class="headerlink" href="#sg-app" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Inbound
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>TCP/8080
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Source: SG-WEB
+</span></code></pre></div>
+<h3 id="sg-db">SG-DB<a class="headerlink" href="#sg-db" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Inbound
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>TCP/5432
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Source: SG-APP
+</span></code></pre></div>
+<hr />
+<h2 id="4-referencias-entre-sg">4. Referencias entre SG<a class="headerlink" href="#4-referencias-entre-sg" title="Permanent link">&para;</a></h2>
+<p>En lugar de decir:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Source: 10.0.10.0/24
+</span></code></pre></div>
+<p>podemos expresar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Source: SG-WEB
+</span></code></pre></div>
+<p>La política se asocia al <strong>rol</strong> del recurso y no a una IP concreta.</p>
+<p>Esto mantiene la lógica incluso si cambia la dirección privada de una instancia.</p>
+<hr />
+<h2 id="5-stateful">5. Stateful<a class="headerlink" href="#5-stateful" title="Permanent link">&para;</a></h2>
+<p>Si SG-APP permite:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>WEB → APP:8080
+</span></code></pre></div>
+<p>el tráfico de respuesta asociado puede volver automáticamente.</p>
+<p>No necesitamos una regla inversa para esa respuesta.</p>
+<p>Sin embargo, una nueva conexión:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>APP → WEB
+</span></code></pre></div>
+<p>sí requeriría autorización propia.</p>
+<hr />
+<h2 id="6-outbound">6. Outbound<a class="headerlink" href="#6-outbound" title="Permanent link">&para;</a></h2>
+<p>Los SG también controlan salida.</p>
+<p>Para la primera práctica podemos mantener egress permisivo y centrarnos en inbound. Como ampliación podemos restringir salida para estudiar egress filtering y exfiltración.</p>
+<hr />
+<h2 id="7-network-acl">7. Network ACL<a class="headerlink" href="#7-network-acl" title="Permanent link">&para;</a></h2>
+<p>Una NACL se aplica a una subnet.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>SUBNET-WEB → NACL
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>SUBNET-APP → NACL
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>SUBNET-DB  → NACL
+</span></code></pre></div>
+<p>Su característica esencial es que es <strong>stateless</strong>.</p>
+<hr />
+<h2 id="8-stateless-y-puertos-efimeros">8. Stateless y puertos efímeros<a class="headerlink" href="#8-stateless-y-puertos-efimeros" title="Permanent link">&para;</a></h2>
+<p>Supongamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>WEB:49152 → APP:8080
+</span></code></pre></div>
+<p>La respuesta será:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>APP:8080 → WEB:49152
+</span></code></pre></div>
+<p>La NACL debe permitir ambos sentidos.</p>
+<p>Una configuración que solo contemple TCP/8080 puede bloquear el retorno por el puerto efímero del cliente.</p>
+<hr />
+<h2 id="9-allow-y-deny">9. ALLOW y DENY<a class="headerlink" href="#9-allow-y-deny" title="Permanent link">&para;</a></h2>
+<p>Las NACL admiten ambas acciones y evalúan reglas por número, de menor a mayor.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>100 DENY  10.0.10.0/24
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>110 ALLOW 10.0.10.0/24 TCP 8080
+</span></code></pre></div>
+<p>La regla 100 coincide primero y bloquea.</p>
+<p>El orden forma parte de la política.</p>
+<hr />
+<h2 id="10-papel-de-cada-mecanismo">10. Papel de cada mecanismo<a class="headerlink" href="#10-papel-de-cada-mecanismo" title="Permanent link">&para;</a></h2>
+<p>Nuestra estrategia será:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Security Groups
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>→ política principal WEB→APP→DB
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>NACL
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>→ segunda capa / control grueso de subnet
+</span></code></pre></div>
+<p>Esto mantiene la arquitectura comprensible y evita duplicar innecesariamente la misma lógica en dos sitios.</p>
+<hr />
+<h2 id="11-camino-conceptual">11. Camino conceptual<a class="headerlink" href="#11-camino-conceptual" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>EC2 origen
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a> ↓
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>SG outbound
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a> ↓
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>NACL subnet origen
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a> ↓
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>Route Table
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a> ↓
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>NACL subnet destino
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a> ↓
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>SG inbound
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a> ↓
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>EC2 destino
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a> ↓
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>servicio
+</span></code></pre></div>
+<p>Cada etapa puede romper una comunicación.</p>
+<hr />
+<h2 id="12-validacion-web-app">12. Validación WEB → APP<a class="headerlink" href="#12-validacion-web-app" title="Permanent link">&para;</a></h2>
+<p>En APP:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8080</span>
+</span></code></pre></div>
+<p>Desde WEB:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>curl<span class="w"> </span>http://IP_PRIVADA_APP:8080
+</span></code></pre></div>
+<p>Esperado: ✓</p>
+<hr />
+<h2 id="13-validacion-web-db">13. Validación WEB → DB<a class="headerlink" href="#13-validacion-web-db" title="Permanent link">&para;</a></h2>
+<p>Desde WEB:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>nc<span class="w"> </span>-vz<span class="w"> </span>IP_PRIVADA_DB<span class="w"> </span><span class="m">5432</span>
+</span></code></pre></div>
+<p>Esperado: ✕</p>
+<p>La ruta <code>local</code> existe, pero SG-DB no permite origen SG-WEB.</p>
+<hr />
+<h2 id="14-validacion-app-db">14. Validación APP → DB<a class="headerlink" href="#14-validacion-app-db" title="Permanent link">&para;</a></h2>
+<p>En DB podemos levantar temporalmente un listener TCP de prueba sobre 5432.</p>
+<p>Desde APP:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>nc<span class="w"> </span>-vz<span class="w"> </span>IP_PRIVADA_DB<span class="w"> </span><span class="m">5432</span>
+</span></code></pre></div>
+<p>Esperado: ✓</p>
+<p>El objetivo es comprobar conectividad TCP, no simular una base PostgreSQL real.</p>
+<hr />
+<h2 id="15-matriz-de-pruebas">15. Matriz de pruebas<a class="headerlink" href="#15-matriz-de-pruebas" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Flujo</th>
+<th>Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internet→WEB:443</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Internet→APP:8080</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>Internet→DB:5432</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>WEB→APP:8080</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>WEB→DB:5432</td>
+<td>✕</td>
+</tr>
+<tr>
+<td>APP→DB:5432</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>DB→APP nueva</td>
+<td>✕</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="16-fallo-origen-incorrecto-en-sg">16. Fallo: origen incorrecto en SG<a class="headerlink" href="#16-fallo-origen-incorrecto-en-sg" title="Permanent link">&para;</a></h2>
+<p>Configura SG-APP con un origen que no corresponda a SG-WEB.</p>
+<p>La ruta seguirá existiendo, pero TCP/8080 fallará.</p>
+<p>Esto permite distinguir reachability de authorization.</p>
+<hr />
+<h2 id="17-fallo-puerto-incorrecto">17. Fallo: puerto incorrecto<a class="headerlink" href="#17-fallo-puerto-incorrecto" title="Permanent link">&para;</a></h2>
+<p>Configura 8081 mientras el servicio escucha en 8080.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>routing ✓
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>servicio ✓
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>policy ✕
+</span></code></pre></div>
+<hr />
+<h2 id="18-fallo-nacl-bloqueando-retorno">18. Fallo: NACL bloqueando retorno<a class="headerlink" href="#18-fallo-nacl-bloqueando-retorno" title="Permanent link">&para;</a></h2>
+<p>Permite la ida hacia 8080 pero bloquea los puertos efímeros de retorno.</p>
+<p>La conexión no se completa aunque el Security Group sea correcto.</p>
+<p>Este escenario demuestra con claridad:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>SG → stateful
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>NACL → stateless
+</span></code></pre></div>
+<hr />
+<h2 id="19-troubleshooting-sg">19. Troubleshooting SG<a class="headerlink" href="#19-troubleshooting-sg" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>1. SG asociado al recurso
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>2. inbound correcto
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>3. source correcto
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>4. protocolo
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>5. puerto
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>6. outbound suficiente
+</span></code></pre></div>
+<hr />
+<h2 id="20-troubleshooting-nacl">20. Troubleshooting NACL<a class="headerlink" href="#20-troubleshooting-nacl" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>1. NACL de subnet origen
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>2. outbound origen
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>3. NACL subnet destino
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>4. inbound destino
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>5. retorno
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>6. puertos efímeros
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>7. orden de reglas
+</span></code></pre></div>
+<hr />
+<h2 id="21-seguridad-distribuida">21. Seguridad distribuida<a class="headerlink" href="#21-seguridad-distribuida" title="Permanent link">&para;</a></h2>
+<p>OPNsense representaba un firewall central explícito.</p>
+<p>En AWS:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>WEB [SG-WEB]
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>   ↓
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>APP [SG-APP]
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>   ↓
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>DB [SG-DB]
+</span></code></pre></div>
+<p>la política se distribuye junto a los recursos.</p>
+<p>Este cambio de modelo es una de las ideas más importantes del bloque cloud.</p>
+<hr />
+<h2 id="22-movimiento-lateral">22. Movimiento lateral<a class="headerlink" href="#22-movimiento-lateral" title="Permanent link">&para;</a></h2>
+<p>Si WEB queda comprometido:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>WEB comprometido
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>  ├── APP:8080 ✓
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>  └── DB:5432 ✕
+</span></code></pre></div>
+<p>La política limita el alcance del compromiso.</p>
+<hr />
+<h2 id="modelo-mental">Modelo mental<a class="headerlink" href="#modelo-mental" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Route Table
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>→ reachability
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>Security Group
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>→ política stateful por recurso
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>NACL
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>→ política stateless por subnet
+</span></code></pre></div>
+<blockquote>
+<p><strong>Security Groups expresan mejor quién puede hablar con quién. NACL añade una frontera adicional de subnet.</strong></p>
+</blockquote>
 
 
 
@@ -2798,7 +3697,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../03-routing-intervlan/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Routing inter-VLAN">
+          <a href="../07-aws-segmentacion-seguridad/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: AWS: segmentación y routing">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2808,20 +3707,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Routing inter-VLAN
+                AWS: segmentación y routing
               </div>
             </div>
           </a>
         
         
           
-          <a href="../05-firewall-proxmox/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Firewall en Proxmox">
+          <a href="../../ud3-vpn-hibrida/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Introducción">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Firewall en Proxmox
+                Introducción
               </div>
             </div>
             <div class="md-footer__button md-icon">

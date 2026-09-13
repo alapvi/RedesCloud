@@ -12,13 +12,13 @@
         <meta name="author" content="Alberto Aparicio">
       
       
-        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/09-evaluacion/">
+        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/02-proxmox-vlan-aware/">
       
       
-        <link rel="prev" href="../08-troubleshooting/">
+        <link rel="prev" href="../01-vlan-segmentacion/">
       
       
-        <link rel="next" href="../../ud3-vpn-hibrida/">
+        <link rel="next" href="../03-opnsense-router-firewall/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Evaluación - Administración de Redes en la Nube</title>
+        <title>Proxmox VLAN-aware - Administración de Redes en la Nube</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#evaluacion" class="md-skip">
+        <a href="#proxmox-linux-bridge-vlan-aware" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Evaluación
+              Proxmox VLAN-aware
             
           </span>
         </div>
@@ -922,17 +922,335 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../02-dmz/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxmox VLAN-aware
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    DMZ y zonas de seguridad
+    Proxmox VLAN-aware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-punto-de-partida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Punto de partida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-activar-vlan-aware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Activar VLAN-aware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-crear-las-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Crear las VM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Crear las VM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WEB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DB
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-que-debemos-predecir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Qué debemos predecir
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-demostrar-una-vlan-antes-del-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Demostrar una VLAN antes del routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-inspeccionar-linux-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Inspeccionar Linux Bridge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-observar-trafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Observar tráfico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-preparar-opnsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Preparar OPNsense
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Preparar OPNsense">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WAN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trunk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-access-frente-a-trunk-en-nuestro-diseno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Access frente a trunk en nuestro diseño
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-lo-que-todavia-no-hacemos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Lo que todavía no hacemos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-fallo-provocado-tag-incorrecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Fallo provocado: Tag incorrecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-fallo-provocado-bridge-incorrecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Fallo provocado: bridge incorrecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-troubleshooting-de-capa-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Troubleshooting de capa 2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-opnsense-router-firewall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPNsense router/firewall
   
 
     
@@ -953,7 +1271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../03-routing-intervlan/" class="md-nav__link">
+      <a href="../04-routing-intervlan/" class="md-nav__link">
         
   
   
@@ -981,14 +1299,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../04-nat/" class="md-nav__link">
+      <a href="../05-firewall-minimo-privilegio/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    NAT y gateways
+    Firewall y mínimo privilegio
   
 
     
@@ -1009,14 +1327,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../05-firewall-proxmox/" class="md-nav__link">
+      <a href="../06-nat/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Firewall en Proxmox
+    NAT
   
 
     
@@ -1037,7 +1355,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../06-security-groups-nacl/" class="md-nav__link">
+      <a href="../07-aws-segmentacion-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS: segmentación y routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-security-groups-nacl/" class="md-nav__link">
         
   
   
@@ -1053,100 +1399,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-laboratorio/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Laboratorios
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Evaluación
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
     </li>
   
 
@@ -2698,6 +2950,257 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-punto-de-partida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Punto de partida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-activar-vlan-aware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Activar VLAN-aware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-crear-las-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Crear las VM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Crear las VM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WEB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DB
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-que-debemos-predecir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Qué debemos predecir
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-demostrar-una-vlan-antes-del-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Demostrar una VLAN antes del routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-inspeccionar-linux-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Inspeccionar Linux Bridge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-observar-trafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Observar tráfico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-preparar-opnsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Preparar OPNsense
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Preparar OPNsense">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WAN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trunk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-access-frente-a-trunk-en-nuestro-diseno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Access frente a trunk en nuestro diseño
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-lo-que-todavia-no-hacemos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Lo que todavía no hacemos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-fallo-provocado-tag-incorrecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Fallo provocado: Tag incorrecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-fallo-provocado-bridge-incorrecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Fallo provocado: bridge incorrecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-troubleshooting-de-capa-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Troubleshooting de capa 2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2761,8 +3264,236 @@
 
 
 
-<h1 id="evaluacion">Evaluación<a class="headerlink" href="#evaluacion" title="Permanent link">&para;</a></h1>
-<p>Contenido pendiente de desarrollo.</p>
+<h1 id="proxmox-linux-bridge-vlan-aware">Proxmox · Linux Bridge VLAN-aware<a class="headerlink" href="#proxmox-linux-bridge-vlan-aware" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Antes de configurar el router debemos demostrar que la infraestructura de capa 2 transporta correctamente cada VLAN.</strong></p>
+</blockquote>
+<hr />
+<h2 id="1-punto-de-partida">1. Punto de partida<a class="headerlink" href="#1-punto-de-partida" title="Permanent link">&para;</a></h2>
+<p>Desde UD1 tenemos dos bridges:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>vmbr0 → red física / gestión / DHCP
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>vmbr1 → red interna del laboratorio
+</span></code></pre></div>
+<p>Configuración inicial:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="na">auto lo</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="na">iface lo inet loopback</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="na">iface eno1 inet manual</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="na">auto vmbr0</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="na">iface vmbr0 inet dhcp</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="na">bridge-ports eno1</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="na">bridge-stp off</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="na">bridge-fd 0</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="na">auto vmbr1</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="na">iface vmbr1 inet manual</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="na">bridge-ports none</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="na">bridge-stp off</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="na">bridge-fd 0</span>
+</span></code></pre></div>
+<p><code>vmbr0</code> no necesita ser VLAN-aware para esta práctica. La segmentación interna se realizará sobre <code>vmbr1</code>.</p>
+<hr />
+<h2 id="2-objetivo">2. Objetivo<a class="headerlink" href="#2-objetivo" title="Permanent link">&para;</a></h2>
+<p>Queremos que <code>vmbr1</code> transporte:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>VLAN 10
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>VLAN 20
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>VLAN 30
+</span></code></pre></div>
+<p>sin realizar routing ni NAT.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>vmbr1
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a> ├── WEB VLAN10
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a> ├── APP VLAN20
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a> └── DB  VLAN30
+</span></code></pre></div>
+<hr />
+<h2 id="3-activar-vlan-aware">3. Activar VLAN-aware<a class="headerlink" href="#3-activar-vlan-aware" title="Permanent link">&para;</a></h2>
+<p>Configuración de referencia:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">auto lo</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="na">iface lo inet loopback</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="na">iface eno1 inet manual</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="na">auto vmbr0</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="na">iface vmbr0 inet dhcp</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="na">bridge-ports eno1</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="na">bridge-stp off</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="na">bridge-fd 0</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="na">auto vmbr1</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="na">iface vmbr1 inet manual</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="na">bridge-ports none</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="na">bridge-stp off</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="na">bridge-fd 0</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="na">bridge-vlan-aware yes</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">    </span><span class="na">bridge-vids 10 20 30</span>
+</span></code></pre></div>
+<p>También podría permitirse un rango mayor, pero restringirlo a las VLAN utilizadas hace más explícito el diseño del laboratorio.</p>
+<hr />
+<h2 id="4-crear-las-vm">4. Crear las VM<a class="headerlink" href="#4-crear-las-vm" title="Permanent link">&para;</a></h2>
+<h3 id="web">WEB<a class="headerlink" href="#web" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Bridge: vmbr1
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>VLAN Tag: 10
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>IP: 10.10.10.10/24
+</span></code></pre></div>
+<h3 id="app">APP<a class="headerlink" href="#app" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Bridge: vmbr1
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>VLAN Tag: 20
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>IP: 10.10.20.10/24
+</span></code></pre></div>
+<h3 id="db">DB<a class="headerlink" href="#db" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Bridge: vmbr1
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>VLAN Tag: 30
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>IP: 10.10.30.10/24
+</span></code></pre></div>
+<p>Todavía no configuramos gateway.</p>
+<hr />
+<h2 id="5-que-debemos-predecir">5. Qué debemos predecir<a class="headerlink" href="#5-que-debemos-predecir" title="Permanent link">&para;</a></h2>
+<p>En este punto:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>WEB ✕ APP
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>WEB ✕ DB
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>APP ✕ DB
+</span></code></pre></div>
+<p>No existe un router que conecte las tres redes.</p>
+<p>Este fallo es <strong>esperado</strong> y forma parte del diseño.</p>
+<hr />
+<h2 id="6-demostrar-una-vlan-antes-del-routing">6. Demostrar una VLAN antes del routing<a class="headerlink" href="#6-demostrar-una-vlan-antes-del-routing" title="Permanent link">&para;</a></h2>
+<p>Añadimos temporalmente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>WEB-02
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Bridge: vmbr1
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Tag: 10
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>IP: 10.10.10.20/24
+</span></code></pre></div>
+<p>WEB y WEB-02 deberían comunicarse directamente.</p>
+<p>Esto demuestra que:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>vmbr1
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>+
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>VLAN 10
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>+
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>direccionamiento
+</span></code></pre></div>
+<p>funcionan correctamente.</p>
+<hr />
+<h2 id="7-inspeccionar-linux-bridge">7. Inspeccionar Linux Bridge<a class="headerlink" href="#7-inspeccionar-linux-bridge" title="Permanent link">&para;</a></h2>
+<p>En el host Proxmox:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>link
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ip<span class="w"> </span>-d<span class="w"> </span>link<span class="w"> </span>show<span class="w"> </span>vmbr1
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>bridge<span class="w"> </span>link
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>bridge<span class="w"> </span>vlan<span class="w"> </span>show
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>bridge<span class="w"> </span>fdb<span class="w"> </span>show<span class="w"> </span>br<span class="w"> </span>vmbr1
+</span></code></pre></div>
+<p>Debemos identificar:</p>
+<ul>
+<li>puertos TAP/veth conectados;</li>
+<li>VLAN permitidas;</li>
+<li>PVID;</li>
+<li>entradas de la FDB;</li>
+<li>MAC aprendidas.</li>
+</ul>
+<hr />
+<h2 id="8-observar-trafico">8. Observar tráfico<a class="headerlink" href="#8-observar-trafico" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>tcpdump<span class="w"> </span>-eni<span class="w"> </span>vmbr1
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>tcpdump<span class="w"> </span>-eni<span class="w"> </span>vmbr1<span class="w"> </span>vlan
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>tcpdump<span class="w"> </span>-eni<span class="w"> </span>vmbr1<span class="w"> </span>vlan<span class="w"> </span><span class="m">10</span>
+</span></code></pre></div>
+<p>La visibilidad de la etiqueta puede depender del punto de captura y de offloading.</p>
+<p>No debemos convertir una salida concreta de <code>tcpdump</code> en dogma. Lo importante es entender dónde se realiza el etiquetado y cómo se transporta.</p>
+<hr />
+<h2 id="9-preparar-opnsense">9. Preparar OPNsense<a class="headerlink" href="#9-preparar-opnsense" title="Permanent link">&para;</a></h2>
+<p>La VM OPNsense tendrá:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>vNIC 1 → vmbr0 → WAN
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>vNIC 2 → vmbr1 → TRUNK
+</span></code></pre></div>
+<h3 id="wan">WAN<a class="headerlink" href="#wan" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Bridge: vmbr0
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>VLAN Tag: vacío
+</span></code></pre></div>
+<h3 id="trunk">Trunk<a class="headerlink" href="#trunk" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Bridge: vmbr1
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>VLAN Tag: vacío
+</span></code></pre></div>
+<p>La vNIC de trunk <strong>no debe</strong> recibir un único Tag 10/20/30 en Proxmox porque debe transportar todas las VLAN hacia OPNsense.</p>
+<hr />
+<h2 id="10-access-frente-a-trunk-en-nuestro-diseno">10. Access frente a trunk en nuestro diseño<a class="headerlink" href="#10-access-frente-a-trunk-en-nuestro-diseno" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>WEB VM
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  │ access VLAN10
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  ▼
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>vmbr1
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>  │ trunk VLAN10,20,30
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>  ▼
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>OPNsense
+</span></code></pre></div>
+<p>Proxmox se encarga de la conmutación y del transporte de las VLAN. OPNsense terminará esas VLAN como interfaces de capa 3.</p>
+<hr />
+<h2 id="11-lo-que-todavia-no-hacemos">11. Lo que todavía no hacemos<a class="headerlink" href="#11-lo-que-todavia-no-hacemos" title="Permanent link">&para;</a></h2>
+<p>En este capítulo no configuramos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>routing inter-VLAN
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>firewall
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>NAT
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>DHCP de las VLAN
+</span></code></pre></div>
+<p>Aislar variables facilita el diagnóstico.</p>
+<hr />
+<h2 id="12-fallo-provocado-tag-incorrecto">12. Fallo provocado: Tag incorrecto<a class="headerlink" href="#12-fallo-provocado-tag-incorrecto" title="Permanent link">&para;</a></h2>
+<p>Cambia WEB temporalmente de VLAN 10 a VLAN 20.</p>
+<p>Antes de probar, predice:</p>
+<ul>
+<li>¿seguirá viendo a WEB-02?</li>
+<li>¿qué broadcast domain utilizará?</li>
+<li>¿qué observarás en <code>bridge vlan show</code>?</li>
+</ul>
+<hr />
+<h2 id="13-fallo-provocado-bridge-incorrecto">13. Fallo provocado: bridge incorrecto<a class="headerlink" href="#13-fallo-provocado-bridge-incorrecto" title="Permanent link">&para;</a></h2>
+<p>Conecta APP temporalmente a <code>vmbr0</code>.</p>
+<p>Ahora APP ha abandonado la red interna del laboratorio y se ha conectado funcionalmente a la red física del aula.</p>
+<p>Esto permite comprobar que el bridge es parte de la topología, no una opción administrativa irrelevante.</p>
+<hr />
+<h2 id="14-troubleshooting-de-capa-2">14. Troubleshooting de capa 2<a class="headerlink" href="#14-troubleshooting-de-capa-2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>VM
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a> ↓
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>vNIC
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a> ↓
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>bridge correcto
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a> ↓
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>VLAN Tag
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a> ↓
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>vmbr1 VLAN-aware
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a> ↓
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>VLAN table
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a> ↓
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>FDB
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a> ↓
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>destino
+</span></code></pre></div>
+<p>Si dos equipos de la misma VLAN y subnet no se ven, todavía no necesitamos investigar routing.</p>
+<hr />
+<h2 id="evidencias">Evidencias<a class="headerlink" href="#evidencias" title="Permanent link">&para;</a></h2>
+<p>Conserva:</p>
+<ol>
+<li>configuración de <code>vmbr1</code>;</li>
+<li><code>bridge vlan show</code>;</li>
+<li>FDB del bridge;</li>
+<li>configuración de WEB/APP/DB;</li>
+<li>prueba WEB↔WEB-02;</li>
+<li>explicación del fallo con Tag incorrecto.</li>
+</ol>
+<hr />
+<h2 id="modelo-mental">Modelo mental<a class="headerlink" href="#modelo-mental" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Proxmox
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>   ↓
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>NO enruta
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>NO filtra
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>NO hace NAT
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>Proxmox
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>   ↓
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>conmuta
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>segmenta
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>transporta VLAN
+</span></code></pre></div>
+<blockquote>
+<p><strong>Antes de configurar el router debemos demostrar que la infraestructura de capa 2 transporta correctamente cada VLAN.</strong></p>
+</blockquote>
 
 
 
@@ -2798,7 +3529,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pie" >
         
           
-          <a href="../08-troubleshooting/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Troubleshooting">
+          <a href="../01-vlan-segmentacion/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: VLAN y segmentación">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2808,20 +3539,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Troubleshooting
+                VLAN y segmentación
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../ud3-vpn-hibrida/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Introducción">
+          <a href="../03-opnsense-router-firewall/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: OPNsense router/firewall">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                Introducción
+                OPNsense router/firewall
               </div>
             </div>
             <div class="md-footer__button md-icon">

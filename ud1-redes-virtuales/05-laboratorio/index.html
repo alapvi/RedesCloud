@@ -1776,14 +1776,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud2-segmentacion-seguridad/02-dmz/" class="md-nav__link">
+      <a href="../../ud2-segmentacion-seguridad/02-proxmox-vlan-aware/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    DMZ y zonas de seguridad
+    Proxmox VLAN-aware
   
 
     
@@ -1804,7 +1804,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud2-segmentacion-seguridad/03-routing-intervlan/" class="md-nav__link">
+      <a href="../../ud2-segmentacion-seguridad/03-opnsense-router-firewall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPNsense router/firewall
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2-segmentacion-seguridad/04-routing-intervlan/" class="md-nav__link">
         
   
   
@@ -1832,14 +1860,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud2-segmentacion-seguridad/04-nat/" class="md-nav__link">
+      <a href="../../ud2-segmentacion-seguridad/05-firewall-minimo-privilegio/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    NAT y gateways
+    Firewall y mínimo privilegio
   
 
     
@@ -1860,14 +1888,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud2-segmentacion-seguridad/05-firewall-proxmox/" class="md-nav__link">
+      <a href="../../ud2-segmentacion-seguridad/06-nat/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Firewall en Proxmox
+    NAT
   
 
     
@@ -1888,7 +1916,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud2-segmentacion-seguridad/06-security-groups-nacl/" class="md-nav__link">
+      <a href="../../ud2-segmentacion-seguridad/07-aws-segmentacion-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS: segmentación y routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2-segmentacion-seguridad/08-security-groups-nacl/" class="md-nav__link">
         
   
   
@@ -1896,90 +1952,6 @@
     
   
     Security Groups y NACL
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../ud2-segmentacion-seguridad/07-laboratorio/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Laboratorios
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../ud2-segmentacion-seguridad/08-troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../ud2-segmentacion-seguridad/09-evaluacion/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Evaluación
   
 
     
@@ -4886,8 +4858,6 @@
 <p>Utilizaremos:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>10.10.10.0/24
 </span></code></pre></div>
-<p>Arquitectura:</p>
-<p><img alt="Proxmox: arquitectura con routing y NAT para salida a Internet" src="../../assets/ud1-proxmox-nat.png" /></p>
 <div class="highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>VM-A 10.10.10.10
 </span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>       │
 </span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>       │
@@ -4955,6 +4925,7 @@
 <div class="highlight"><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>10.10.10.0/24
 </span></code></pre></div>
 <p>salgan hacia Internet utilizando la conectividad de <code>vmbr0</code>.</p>
+<p><img alt="Proxmox: arquitectura con routing y NAT para salida a Internet" src="../../assets/ud1-proxmox-nat.png" /></p>
 <p>Arquitectura:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-66-1"><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>VM-A 10.10.10.10
 </span><span id="__span-66-2"><a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>        │

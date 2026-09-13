@@ -18,7 +18,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../02-dmz/">
+        <link rel="next" href="../02-proxmox-vlan-aware/">
       
       
         
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#vlan-y-segmentacion" class="md-skip">
+        <a href="#vlan-y-segmentacion-de-red" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -906,6 +906,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLAN y segmentación
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -923,6 +941,207 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-el-problema-de-una-red-plana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. El problema de una red plana
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-que-es-una-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Qué es una VLAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-vlan-no-es-subnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. VLAN no es subnet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ieee-8021q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. IEEE 802.1Q
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-tagged-y-untagged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Tagged y untagged
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-access-frente-a-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Access frente a trunk
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Access frente a trunk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trunk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-arquitectura-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Arquitectura objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-router-on-a-stick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Router-on-a-stick
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-segmentacion-no-es-filtrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Segmentación no es filtrado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-pvid-y-trafico-untagged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. PVID y tráfico untagged
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-herramientas-de-observacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Herramientas de observación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-preguntas-de-prediccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Preguntas de predicción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-errores-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Errores frecuentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -935,14 +1154,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../02-dmz/" class="md-nav__link">
+      <a href="../02-proxmox-vlan-aware/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    DMZ y zonas de seguridad
+    Proxmox VLAN-aware
   
 
     
@@ -963,7 +1182,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../03-routing-intervlan/" class="md-nav__link">
+      <a href="../03-opnsense-router-firewall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPNsense router/firewall
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-routing-intervlan/" class="md-nav__link">
         
   
   
@@ -991,14 +1238,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../04-nat/" class="md-nav__link">
+      <a href="../05-firewall-minimo-privilegio/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    NAT y gateways
+    Firewall y mínimo privilegio
   
 
     
@@ -1019,14 +1266,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../05-firewall-proxmox/" class="md-nav__link">
+      <a href="../06-nat/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Firewall en Proxmox
+    NAT
   
 
     
@@ -1047,7 +1294,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../06-security-groups-nacl/" class="md-nav__link">
+      <a href="../07-aws-segmentacion-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS: segmentación y routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-security-groups-nacl/" class="md-nav__link">
         
   
   
@@ -1055,90 +1330,6 @@
     
   
     Security Groups y NACL
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-laboratorio/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Laboratorios
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-evaluacion/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Evaluación
   
 
     
@@ -2698,6 +2889,196 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-el-problema-de-una-red-plana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. El problema de una red plana
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-que-es-una-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Qué es una VLAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-vlan-no-es-subnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. VLAN no es subnet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ieee-8021q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. IEEE 802.1Q
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-tagged-y-untagged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Tagged y untagged
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-access-frente-a-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Access frente a trunk
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Access frente a trunk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trunk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-arquitectura-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Arquitectura objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-router-on-a-stick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Router-on-a-stick
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-segmentacion-no-es-filtrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Segmentación no es filtrado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-pvid-y-trafico-untagged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. PVID y tráfico untagged
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-herramientas-de-observacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Herramientas de observación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-preguntas-de-prediccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Preguntas de predicción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-errores-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Errores frecuentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-mental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo mental
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2761,8 +3142,210 @@
 
 
 
-<h1 id="vlan-y-segmentacion">VLAN y segmentación<a class="headerlink" href="#vlan-y-segmentacion" title="Permanent link">&para;</a></h1>
-<p>Contenido pendiente de desarrollo.</p>
+<h1 id="vlan-y-segmentacion-de-red">VLAN y segmentación de red<a class="headerlink" href="#vlan-y-segmentacion-de-red" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Una VLAN separa dominios de capa 2; un router conecta redes de capa 3; un firewall decide qué comunicaciones se permiten.</strong></p>
+</blockquote>
+<hr />
+<h2 id="1-el-problema-de-una-red-plana">1. El problema de una red plana<a class="headerlink" href="#1-el-problema-de-una-red-plana" title="Permanent link">&para;</a></h2>
+<p>Una red plana puede ser suficiente en un escenario pequeño, pero mezcla sistemas con funciones y niveles de confianza distintos dentro del mismo dominio de capa 2.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>WEB ─┐
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>APP ─┼── mismo dominio Ethernet
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>DB  ─┘
+</span></code></pre></div>
+<p>En una arquitectura de tres capas queremos separar esas funciones:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>VLAN 10 → WEB
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>VLAN 20 → APP
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>VLAN 30 → DB
+</span></code></pre></div>
+<p>La segmentación no se introduce para complicar la red, sino para crear <strong>fronteras técnicas</strong> sobre las que después podamos aplicar routing y política de seguridad.</p>
+<hr />
+<h2 id="2-que-es-una-vlan">2. Qué es una VLAN<a class="headerlink" href="#2-que-es-una-vlan" title="Permanent link">&para;</a></h2>
+<p>Una VLAN permite construir varios dominios lógicos Ethernet utilizando una misma infraestructura física o virtual.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>switch / bridge
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>      │
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>      ├── VLAN 10
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>      ├── VLAN 20
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>      └── VLAN 30
+</span></code></pre></div>
+<p>Los equipos de VLAN diferentes no comparten directamente el mismo dominio de broadcast.</p>
+<p>Esto permite:</p>
+<ul>
+<li>separar funciones;</li>
+<li>reducir dominios de difusión;</li>
+<li>organizar la red por zonas;</li>
+<li>introducir límites de routing;</li>
+<li>aplicar posteriormente controles de acceso entre zonas.</li>
+</ul>
+<hr />
+<h2 id="3-vlan-no-es-subnet">3. VLAN no es subnet<a class="headerlink" href="#3-vlan-no-es-subnet" title="Permanent link">&para;</a></h2>
+<p>Es fundamental no confundir ambos conceptos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>VLAN
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>→ capa 2
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>→ Ethernet
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>→ dominio de broadcast
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Subnet
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>→ capa 3
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>→ direccionamiento IP
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>→ prefijo de red
+</span></code></pre></div>
+<p>En nuestro laboratorio asociaremos una subnet a cada VLAN:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>VLAN 10 → 10.10.10.0/24
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>VLAN 20 → 10.10.20.0/24
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>VLAN 30 → 10.10.30.0/24
+</span></code></pre></div>
+<p>La relación es intencionada y conveniente, pero no convierte ambos conceptos en equivalentes.</p>
+<hr />
+<h2 id="4-ieee-8021q">4. IEEE 802.1Q<a class="headerlink" href="#4-ieee-8021q" title="Permanent link">&para;</a></h2>
+<p>Cuando varias VLAN deben atravesar un mismo enlace utilizamos etiquetado <strong>IEEE 802.1Q</strong>.</p>
+<p>La trama incorpora un identificador VLAN (VID) que permite al dispositivo receptor saber a qué VLAN pertenece.</p>
+<p>En nuestro diseño:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>VID 10 → WEB
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>VID 20 → APP
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>VID 30 → DB
+</span></code></pre></div>
+<p>El enlace entre <code>vmbr1</code> y OPNsense deberá transportar simultáneamente las tres VLAN.</p>
+<hr />
+<h2 id="5-tagged-y-untagged">5. Tagged y untagged<a class="headerlink" href="#5-tagged-y-untagged" title="Permanent link">&para;</a></h2>
+<p>Un flujo puede viajar:</p>
+<ul>
+<li><strong>untagged</strong>, sin etiqueta 802.1Q visible;</li>
+<li><strong>tagged</strong>, incorporando el VID correspondiente.</li>
+</ul>
+<p>Una VM final no necesita normalmente gestionar las etiquetas si Proxmox asigna su interfaz virtual a una VLAN concreta. En cambio, OPNsense sí debe recibir varias VLAN etiquetadas por su interfaz trunk.</p>
+<hr />
+<h2 id="6-access-frente-a-trunk">6. Access frente a trunk<a class="headerlink" href="#6-access-frente-a-trunk" title="Permanent link">&para;</a></h2>
+<h3 id="access">Access<a class="headerlink" href="#access" title="Permanent link">&para;</a></h3>
+<p>Una interfaz de acceso pertenece funcionalmente a una sola VLAN.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>WEB
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a> │
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a> │ VLAN 10
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a> ▼
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>vmbr1
+</span></code></pre></div>
+<h3 id="trunk">Trunk<a class="headerlink" href="#trunk" title="Permanent link">&para;</a></h3>
+<p>Un trunk transporta varias VLAN:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>VLAN10 ─┐
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>VLAN20 ─┼── TRUNK ── OPNsense
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>VLAN30 ─┘
+</span></code></pre></div>
+<p>En nuestra arquitectura:</p>
+<ul>
+<li>WEB será acceso VLAN 10;</li>
+<li>APP será acceso VLAN 20;</li>
+<li>DB será acceso VLAN 30;</li>
+<li>OPNsense recibirá un trunk con 10, 20 y 30.</li>
+</ul>
+<hr />
+<h2 id="7-arquitectura-objetivo">7. Arquitectura objetivo<a class="headerlink" href="#7-arquitectura-objetivo" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>                         OPNsense
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>                            │
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>                     TRUNK 802.1Q
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>                            │
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>                     vmbr1 VLAN-aware
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>              ┌─────────────┼─────────────┐
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>              │             │             │
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>           VLAN 10       VLAN 20       VLAN 30
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>              │             │             │
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>             WEB           APP            DB
+</span></code></pre></div>
+<p>Asociaremos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>WEB → 10.10.10.0/24
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>APP → 10.10.20.0/24
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>DB  → 10.10.30.0/24
+</span></code></pre></div>
+<hr />
+<h2 id="8-router-on-a-stick">8. Router-on-a-stick<a class="headerlink" href="#8-router-on-a-stick" title="Permanent link">&para;</a></h2>
+<p>OPNsense dispondrá de una única interfaz interna física/virtual sobre la que se crearán tres interfaces VLAN:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>vtnet1
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  │
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>  ├── VLAN 10 → WEB → 10.10.10.1/24
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>  ├── VLAN 20 → APP → 10.10.20.1/24
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>  └── VLAN 30 → DB  → 10.10.30.1/24
+</span></code></pre></div>
+<p>Este patrón se conoce habitualmente como <strong>router-on-a-stick</strong>.</p>
+<p>El enlace común es trunk; cada subinterfaz lógica representa una red distinta.</p>
+<hr />
+<h2 id="9-segmentacion-no-es-filtrado">9. Segmentación no es filtrado<a class="headerlink" href="#9-segmentacion-no-es-filtrado" title="Permanent link">&para;</a></h2>
+<p>Crear VLAN distintas no define por sí mismo qué tráfico estará permitido una vez añadamos un router.</p>
+<p>Podemos tener:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>VLAN 10
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>VLAN 20
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>VLAN 30
+</span></code></pre></div>
+<p>sin comunicación entre ellas porque todavía no existe routing.</p>
+<p>Después de añadir OPNsense puede existir routing entre las tres redes. Será el firewall el que decida qué comunicaciones deben permanecer permitidas.</p>
+<blockquote>
+<p><strong>Segmentar no es filtrar. Enrutar no es permitir.</strong></p>
+</blockquote>
+<hr />
+<h2 id="10-pvid-y-trafico-untagged">10. PVID y tráfico untagged<a class="headerlink" href="#10-pvid-y-trafico-untagged" title="Permanent link">&para;</a></h2>
+<p>En Linux Bridge pueden aparecer conceptos como:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>PVID
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Egress Untagged
+</span></code></pre></div>
+<p>El PVID determina a qué VLAN se asocia tráfico recibido sin etiqueta en un puerto concreto.</p>
+<p>No utilizaremos este mecanismo como atajo para el trunk. El enlace hacia OPNsense debe transportar de forma clara VLAN 10, 20 y 30 etiquetadas.</p>
+<hr />
+<h2 id="11-herramientas-de-observacion">11. Herramientas de observación<a class="headerlink" href="#11-herramientas-de-observacion" title="Permanent link">&para;</a></h2>
+<p>Durante la unidad utilizaremos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>link
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ip<span class="w"> </span>-br<span class="w"> </span>addr
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>bridge<span class="w"> </span>link
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>bridge<span class="w"> </span>vlan<span class="w"> </span>show
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>bridge<span class="w"> </span>fdb<span class="w"> </span>show
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>tcpdump
+</span></code></pre></div>
+<p>Estas herramientas permiten observar:</p>
+<ul>
+<li>interfaces;</li>
+<li>puertos del bridge;</li>
+<li>VLAN asociadas;</li>
+<li>FDB/MAC aprendidas;</li>
+<li>tráfico y etiquetas.</li>
+</ul>
+<hr />
+<h2 id="12-preguntas-de-prediccion">12. Preguntas de predicción<a class="headerlink" href="#12-preguntas-de-prediccion" title="Permanent link">&para;</a></h2>
+<p>Antes de configurar, responde:</p>
+<ol>
+<li>¿Puede WEB comunicarse con APP sin un router?</li>
+<li>¿Qué ocurre si dos VM usan la misma subnet pero están en VLAN diferentes?</li>
+<li>¿Qué ocurre si WEB y WEB-02 están ambos en VLAN 10 y la misma subnet?</li>
+<li>¿Qué enlace necesita transportar simultáneamente 10, 20 y 30?</li>
+<li>¿Qué función tendrá OPNsense: switching, routing o ambas?</li>
+<li>¿Crear VLAN implica automáticamente una política de seguridad?</li>
+</ol>
+<hr />
+<h2 id="13-errores-frecuentes">13. Errores frecuentes<a class="headerlink" href="#13-errores-frecuentes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Tag VLAN incorrecto.</li>
+<li>VM conectada a <code>vmbr0</code> en lugar de <code>vmbr1</code>.</li>
+<li>trunk limitado accidentalmente a una sola VLAN.</li>
+<li>IP o prefijo incorrectos.</li>
+<li>confundir subnet con VLAN.</li>
+<li>buscar un problema de firewall antes de validar capa 2.</li>
+</ul>
+<hr />
+<h2 id="modelo-mental">Modelo mental<a class="headerlink" href="#modelo-mental" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>VLAN
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>→ separa capa 2
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>SUBNET
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>→ define red IP
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>ROUTER
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>→ conecta redes
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>FIREWALL
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>→ controla comunicaciones
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>NAT
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>→ traduce direcciones
+</span></code></pre></div>
+<blockquote>
+<p><strong>La segmentación crea fronteras. Todavía no decide quién puede cruzarlas.</strong></p>
+</blockquote>
 
 
 
@@ -2815,13 +3398,13 @@
         
         
           
-          <a href="../02-dmz/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: DMZ y zonas de seguridad">
+          <a href="../02-proxmox-vlan-aware/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Proxmox VLAN-aware">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Siguiente
               </span>
               <div class="md-ellipsis">
-                DMZ y zonas de seguridad
+                Proxmox VLAN-aware
               </div>
             </div>
             <div class="md-footer__button md-icon">
