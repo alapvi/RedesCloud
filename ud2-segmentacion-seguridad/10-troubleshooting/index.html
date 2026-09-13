@@ -1,0 +1,4391 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Infraestructura on-premise, cloud e híbrida con Proxmox y AWS">
+      
+      
+        <meta name="author" content="Alberto Aparicio">
+      
+      
+        <link rel="canonical" href="https://alapvi.github.io/RedesCloud/ud2-segmentacion-seguridad/10-troubleshooting/">
+      
+      
+        <link rel="prev" href="../09-laboratorios/">
+      
+      
+        <link rel="next" href="../../ud3-vpn-hibrida/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Troubleshooting - Administración de Redes en la Nube</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="light" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ud2-troubleshooting-de-redes-on-premise-y-aws" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Administración de Redes en la Nube" class="md-header__button md-logo" aria-label="Administración de Redes en la Nube" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administración de Redes en la Nube
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Troubleshooting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="light" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administración de Redes en la Nube" class="md-nav__button md-logo" aria-label="Administración de Redes en la Nube" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.svg" alt="logo">
+
+    </a>
+    Administración de Redes en la Nube
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programación
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Programación
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programacion/resultados-aprendizaje/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados de aprendizaje
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programacion/matriz-ra-ce-ud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matriz RA - CE - UD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programacion/temporalizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Temporalización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programacion/metodologia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodología
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programacion/evaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programacion/recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1 · Diseño y despliegue de redes virtuales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD1 · Diseño y despliegue de redes virtuales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1-redes-virtuales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1-redes-virtuales/01-fundamentos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos de red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1-redes-virtuales/02-proxmox-red-basica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redes virtuales en Proxmox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1-redes-virtuales/03-aws-vpc-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPC en AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1-redes-virtuales/04-comparativa-proxmox-aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxmox vs AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1-redes-virtuales/05-laboratorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Laboratorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1-redes-virtuales/06-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1-redes-virtuales/07-evaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2 · Segmentación, routing y seguridad
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD2 · Segmentación, routing y seguridad
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-vlan-segmentacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLAN y segmentación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-proxmox-vlan-aware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxmox VLAN-aware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-opnsense-router-firewall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPNsense router/firewall
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-routing-intervlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routing inter-VLAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-firewall-minimo-privilegio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firewall y mínimo privilegio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-aws-segmentacion-seguridad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS: segmentación y routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-security-groups-nacl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Groups y NACL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-laboratorios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Laboratorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD3 · VPN y conectividad híbrida
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD3 · VPN y conectividad híbrida
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3-vpn-hibrida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3-vpn-hibrida/01-fundamentos-vpn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos de VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3-vpn-hibrida/02-vpn-site-to-site/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPN Site-to-Site
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3-vpn-hibrida/03-vpn-cliente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPN de cliente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3-vpn-hibrida/04-proxmox-aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conectividad Proxmox ↔ AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3-vpn-hibrida/05-routing-hibrido/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routing híbrido
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3-vpn-hibrida/06-laboratorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Laboratorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3-vpn-hibrida/07-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3-vpn-hibrida/08-evaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD4 · Interconexión y routing avanzado
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD4 · Interconexión y routing avanzado
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4-routing-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4-routing-avanzado/01-vpc-peering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPC Peering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4-routing-avanzado/02-private-endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Private Endpoints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4-routing-avanzado/03-transit-gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transit Gateway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4-routing-avanzado/04-bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routing dinámico y BGP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4-routing-avanzado/05-direct-connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Direct Connect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4-routing-avanzado/06-multicloud-cloudwan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multicloud y Cloud WAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4-routing-avanzado/07-laboratorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Laboratorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4-routing-avanzado/08-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4-routing-avanzado/09-evaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD5 · Servicios de red y publicación segura
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD5 · Servicios de red y publicación segura
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5-servicios-publicacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5-servicios-publicacion/01-dns-route53/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS y Route 53
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5-servicios-publicacion/02-certificados-acm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Certificados con ACM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5-servicios-publicacion/03-load-balancing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load Balancing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5-servicios-publicacion/04-cloudfront/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CloudFront y servicios en el borde
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5-servicios-publicacion/05-waf-firewall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAF y firewall cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5-servicios-publicacion/06-arquitectura-publicacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitecturas de publicación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5-servicios-publicacion/07-laboratorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Laboratorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5-servicios-publicacion/08-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5-servicios-publicacion/09-evaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD6 · Monitorización, diagnóstico y automatización
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD6 · Monitorización, diagnóstico y automatización
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6-monitorizacion-automatizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6-monitorizacion-automatizacion/01-diagnostico-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnóstico de red en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6-monitorizacion-automatizacion/02-vpc-flow-logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPC Flow Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6-monitorizacion-automatizacion/03-cloudwatch-cloudtrail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CloudWatch y CloudTrail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6-monitorizacion-automatizacion/04-reachability-analyzer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reachability Analyzer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6-monitorizacion-automatizacion/05-aws-cli-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS CLI y API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6-monitorizacion-automatizacion/06-automatizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automatización de red
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6-monitorizacion-automatizacion/07-laboratorio-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Laboratorios de troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6-monitorizacion-automatizacion/08-evaluacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Referencia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencia/comandos-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comandos Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencia/comandos-aws-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencia/equivalencias-proxmox-aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Equivalencias Proxmox ↔ AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencia/puertos-protocolos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puertos y protocolos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencia/glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegación" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    UD2 · Segmentación, routing y seguridad
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ud2-troubleshooting-de-redes-on-premise-y-aws">UD2 · Troubleshooting de redes on-premise y AWS<a class="headerlink" href="#ud2-troubleshooting-de-redes-on-premise-y-aws" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Objetivo:</strong> desarrollar un método sistemático para localizar fallos de conectividad en arquitecturas Proxmox/OPNsense y AWS, utilizando el packet path, evidencias técnicas y aislamiento progresivo de la causa.</p>
+</blockquote>
+<hr />
+<h1 id="1-troubleshooting-no-es-probar-cosas-al-azar">1. Troubleshooting no es probar cosas al azar<a class="headerlink" href="#1-troubleshooting-no-es-probar-cosas-al-azar" title="Permanent link">&para;</a></h1>
+<p>Ante un problema de red, una estrategia incorrecta sería:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cambiar firewall
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>↓
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>cambiar rutas
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>↓
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>reiniciar
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>↓
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>cambiar DNS
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>↓
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>abrir any-any
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>↓
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>volver a probar
+</span></code></pre></div>
+<p>Aunque finalmente funcione, no habremos demostrado:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>qué fallaba
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>por qué fallaba
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>qué cambio lo corrigió
+</span></code></pre></div>
+<p>Nuestro método será:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SÍNTOMA
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>   ↓
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>ALCANCE
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>   ↓
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>PACKET PATH
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>   ↓
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>HIPÓTESIS
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>   ↓
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>EVIDENCIA
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>   ↓
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>CAUSA RAÍZ
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>   ↓
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>CORRECCIÓN MÍNIMA
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>   ↓
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>VALIDACIÓN
+</span></code></pre></div>
+<hr />
+<h1 id="2-primera-pregunta-que-deberia-ocurrir">2. Primera pregunta: ¿qué debería ocurrir?<a class="headerlink" href="#2-primera-pregunta-que-deberia-ocurrir" title="Permanent link">&para;</a></h1>
+<p>Antes de diagnosticar debemos definir el comportamiento esperado.</p>
+<p>No es suficiente:</p>
+<blockquote>
+<p>“No funciona APP.”</p>
+</blockquote>
+<p>Debemos concretar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>WEB
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>10.10.10.10
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>   │
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>   │ TCP/8080
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>   ▼
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>APP
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>10.10.20.10
+</span></code></pre></div>
+<p>Esperado:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ALLOW
+</span></code></pre></div>
+<p>Mientras:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>WEB
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>   │
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>   │ TCP/5432
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>   ▼
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>DB
+</span></code></pre></div>
+<p>Esperado:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>DENY
+</span></code></pre></div>
+<p>Un fallo puede ser:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>algo permitido no funciona
+</span></code></pre></div>
+<p>pero también:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>algo prohibido funciona
+</span></code></pre></div>
+<hr />
+<h1 id="3-determinar-el-alcance">3. Determinar el alcance<a class="headerlink" href="#3-determinar-el-alcance" title="Permanent link">&para;</a></h1>
+<p>Preguntamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>¿falla un host?
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>¿falla una VLAN?
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>¿falla una subnet?
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>¿falla un protocolo?
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>¿falla un puerto?
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>¿falla Internet?
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>¿falla solo DNS?
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>¿falla todo AWS?
+</span></code></pre></div>
+<p>Ejemplos:</p>
+<table>
+<thead>
+<tr>
+<th>Síntoma</th>
+<th>Alcance inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WEB no alcanza APP:8080</td>
+<td>flujo concreto</td>
+</tr>
+<tr>
+<td>ninguna VM de VLAN20 comunica</td>
+<td>VLAN/subnet</td>
+</tr>
+<tr>
+<td>APP llega a IP externa pero no a nombres</td>
+<td>DNS</td>
+</tr>
+<tr>
+<td>APP y DB pierden Internet</td>
+<td>routing/NAT compartido</td>
+</tr>
+<tr>
+<td>solo EC2-APP falla</td>
+<td>recurso/SG/subnet</td>
+</tr>
+</tbody>
+</table>
+<p>Cuanto mejor definamos el alcance:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>menos componentes tendremos que investigar
+</span></code></pre></div>
+<hr />
+<h1 id="4-reconstruir-el-packet-path">4. Reconstruir el packet path<a class="headerlink" href="#4-reconstruir-el-packet-path" title="Permanent link">&para;</a></h1>
+<p>La pregunta fundamental será siempre:</p>
+<blockquote>
+<p><strong>¿Qué camino debería recorrer el paquete?</strong></p>
+</blockquote>
+<hr />
+<h1 id="5-packet-path-on-premise">5. Packet path on-premise<a class="headerlink" href="#5-packet-path-on-premise" title="Permanent link">&para;</a></h1>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>WEB
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>10.10.10.10
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>   │
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>   │ VLAN10
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>   ▼
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>vmbr1
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>   │
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>   ▼
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>OPNsense
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>10.10.10.1
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>   │
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>   │ routing + firewall
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>   ▼
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>OPNsense
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>10.10.20.1
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>   │
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>   │ VLAN20
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>   ▼
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>vmbr1
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>   │
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>   ▼
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>APP
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>10.10.20.10
+</span></code></pre></div>
+<p>Debemos poder detenernos en cada punto y preguntar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>¿el paquete debería llegar hasta aquí?
+</span></code></pre></div>
+<hr />
+<h1 id="6-packet-path-aws">6. Packet path AWS<a class="headerlink" href="#6-packet-path-aws" title="Permanent link">&para;</a></h1>
+<p>Ejemplo WEB → APP:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>EC2-WEB
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>   ↓
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>Security Group
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>   ↓
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>NACL
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>   ↓
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>VPC routing
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>   ↓
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>NACL
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>   ↓
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>Security Group
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>   ↓
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>EC2-APP
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>   ↓
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>servicio TCP/8080
+</span></code></pre></div>
+<p>Este esquema es un <strong>modelo mental de diagnóstico</strong>, no una representación física del interior de AWS.</p>
+<hr />
+<h1 id="7-diagnostico-por-capas">7. Diagnóstico por capas<a class="headerlink" href="#7-diagnostico-por-capas" title="Permanent link">&para;</a></h1>
+<p>Utilizaremos esta secuencia:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>CAPA 1
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>estado / enlace
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    ↓
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>CAPA 2
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>bridge / VLAN / MAC
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    ↓
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>CAPA 3
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>IP / máscara / gateway / routing
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>    ↓
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>CAPA 4
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>TCP / UDP / puertos
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>    ↓
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>SEGURIDAD
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>firewall / SG / NACL
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>    ↓
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>NAT
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>    ↓
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>DNS
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>    ↓
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>APLICACIÓN
+</span></code></pre></div>
+<p>No siempre necesitaremos recorrerlas todas.</p>
+<hr />
+<h1 id="8-regla-fundamental">8. Regla fundamental<a class="headerlink" href="#8-regla-fundamental" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Comenzamos en el punto más próximo al origen en el que podamos demostrar algo.</strong></p>
+</blockquote>
+<p>Y avanzamos progresivamente hacia el destino.</p>
+<hr />
+<h1 id="9-nivel-1-estado-de-la-interfaz">9. Nivel 1 · Estado de la interfaz<a class="headerlink" href="#9-nivel-1-estado-de-la-interfaz" title="Permanent link">&para;</a></h1>
+<p>En Linux:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>link
+</span></code></pre></div>
+<p>Comprobar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>UP
+</span></code></pre></div>
+<p>Después:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>addr
+</span></code></pre></div>
+<p>Preguntas:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>¿existe la interfaz?
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>¿está UP?
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>¿tiene la IP esperada?
+</span></code></pre></div>
+<hr />
+<h1 id="10-nivel-2-vlan-y-switching">10. Nivel 2 · VLAN y switching<a class="headerlink" href="#10-nivel-2-vlan-y-switching" title="Permanent link">&para;</a></h1>
+<p>En Proxmox:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>bridge<span class="w"> </span>link
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>bridge<span class="w"> </span>vlan<span class="w"> </span>show
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>bridge<span class="w"> </span>fdb<span class="w"> </span>show<span class="w"> </span>br<span class="w"> </span>vmbr1
+</span></code></pre></div>
+<p>Preguntas:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>¿VM conectada al bridge correcto?
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>¿VLAN Tag correcto?
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>¿vmbr1 es VLAN-aware?
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>¿VLAN permitida?
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>¿se aprende la MAC?
+</span></code></pre></div>
+<hr />
+<h1 id="11-arp">11. ARP<a class="headerlink" href="#11-arp" title="Permanent link">&para;</a></h1>
+<p>En una VM:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>ip<span class="w"> </span>neigh
+</span></code></pre></div>
+<p>Podemos limpiar temporalmente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sudo<span class="w"> </span>ip<span class="w"> </span>neigh<span class="w"> </span>flush<span class="w"> </span>all
+</span></code></pre></div>
+<p>y generar tráfico.</p>
+<p>Captura:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>tcpdump<span class="w"> </span>-eni<span class="w"> </span>&lt;interfaz&gt;<span class="w"> </span>arp
+</span></code></pre></div>
+<hr />
+<h1 id="12-interpretar-neighbor-table">12. Interpretar neighbor table<a class="headerlink" href="#12-interpretar-neighbor-table" title="Permanent link">&para;</a></h1>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>10.10.10.1 FAILED
+</span></code></pre></div>
+<p>puede indicar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>gateway inexistente
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>VLAN incorrecta
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>bridge incorrecto
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>interfaz caída
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>problema L2
+</span></code></pre></div>
+<p>No deberíamos investigar todavía:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>DNS
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>NAT
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>aplicación
+</span></code></pre></div>
+<hr />
+<h1 id="13-pregunta-arp-fundamental">13. Pregunta ARP fundamental<a class="headerlink" href="#13-pregunta-arp-fundamental" title="Permanent link">&para;</a></h1>
+<p>Si WEB:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>10.10.10.10/24
+</span></code></pre></div>
+<p>quiere alcanzar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>10.10.20.10
+</span></code></pre></div>
+<p>debe hacer ARP para:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>10.10.10.1
+</span></code></pre></div>
+<p>No para:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>10.10.20.10
+</span></code></pre></div>
+<p>Si intenta resolver directamente <code>10.10.20.10</code>, debemos revisar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>máscara
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>routing local
+</span></code></pre></div>
+<hr />
+<h1 id="14-nivel-3-routing-del-host">14. Nivel 3 · Routing del host<a class="headerlink" href="#14-nivel-3-routing-del-host" title="Permanent link">&para;</a></h1>
+<p>Comprobar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>ip<span class="w"> </span>route
+</span></code></pre></div>
+<p>y después:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>ip<span class="w"> </span>route<span class="w"> </span>get<span class="w"> </span>DESTINO
+</span></code></pre></div>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>ip<span class="w"> </span>route<span class="w"> </span>get<span class="w"> </span><span class="m">10</span>.10.20.10
+</span></code></pre></div>
+<p>Esperamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>via 10.10.10.1
+</span></code></pre></div>
+<hr />
+<h1 id="15-ip-route-get-es-especialmente-util">15. <code>ip route get</code> es especialmente útil<a class="headerlink" href="#15-ip-route-get-es-especialmente-util" title="Permanent link">&para;</a></h1>
+<p>Porque responde:</p>
+<blockquote>
+<p><strong>¿Qué haría realmente este host con este destino?</strong></p>
+</blockquote>
+<p>No solo:</p>
+<blockquote>
+<p>“¿Qué rutas tengo configuradas?”</p>
+</blockquote>
+<hr />
+<h1 id="16-gateway">16. Gateway<a class="headerlink" href="#16-gateway" title="Permanent link">&para;</a></h1>
+<p>Probar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">10</span>.10.10.1
+</span></code></pre></div>
+<p>Si no alcanzamos el gateway:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>NO tiene sentido empezar por NAT
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>NO tiene sentido empezar por DNS
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>NO tiene sentido empezar por Internet
+</span></code></pre></div>
+<hr />
+<h1 id="17-routing-inter-vlan">17. Routing inter-VLAN<a class="headerlink" href="#17-routing-inter-vlan" title="Permanent link">&para;</a></h1>
+<p>Si:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>gateway ✓
+</span></code></pre></div>
+<p>pero:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>WEB → APP ✕
+</span></code></pre></div>
+<p>investigamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>routing OPNsense
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>firewall
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>retorno
+</span></code></pre></div>
+<hr />
+<h1 id="18-camino-de-retorno">18. Camino de retorno<a class="headerlink" href="#18-camino-de-retorno" title="Permanent link">&para;</a></h1>
+<p>Nunca debemos estudiar únicamente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>A → B
+</span></code></pre></div>
+<p>También:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>B → A
+</span></code></pre></div>
+<p>Una petición puede llegar al destino pero la respuesta no regresar.</p>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>WEB
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>→ APP
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>✓
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>APP
+</span><span id="__span-43-6"><a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>→ WEB
+</span><span id="__span-43-7"><a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a>sin gateway
+</span><span id="__span-43-8"><a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a>✕
+</span></code></pre></div>
+<p>Resultado para el usuario:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>“no funciona”
+</span></code></pre></div>
+<p>aunque el paquete inicial haya llegado.</p>
+<hr />
+<h1 id="19-nivel-4-servicio">19. Nivel 4 · Servicio<a class="headerlink" href="#19-nivel-4-servicio" title="Permanent link">&para;</a></h1>
+<p>Antes de culpar a la red:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>ss<span class="w"> </span>-lntp
+</span></code></pre></div>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>APP debería escuchar TCP/8080
+</span></code></pre></div>
+<p>Comprobar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>ss<span class="w"> </span>-lntp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">8080</span>
+</span></code></pre></div>
+<hr />
+<h1 id="20-probar-el-protocolo-correcto">20. Probar el protocolo correcto<a class="headerlink" href="#20-probar-el-protocolo-correcto" title="Permanent link">&para;</a></h1>
+<p>Para HTTP:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://10.10.20.10:8080
+</span></code></pre></div>
+<p>Para TCP:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>nc<span class="w"> </span>-vz<span class="w"> </span><span class="m">10</span>.10.20.10<span class="w"> </span><span class="m">8080</span>
+</span></code></pre></div>
+<hr />
+<h1 id="21-ping-no-es-suficiente">21. Ping no es suficiente<a class="headerlink" href="#21-ping-no-es-suficiente" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>ping ✕
+</span></code></pre></div>
+<p>no implica necesariamente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>servidor caído
+</span></code></pre></div>
+<p>Puede existir:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>ICMP bloqueado
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>+
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>TCP/8080 permitido
+</span></code></pre></div>
+<p>Por tanto:</p>
+<blockquote>
+<p><strong>La prueba debe representar el servicio real que queremos validar.</strong></p>
+</blockquote>
+<hr />
+<h1 id="22-firewall-opnsense">22. Firewall OPNsense<a class="headerlink" href="#22-firewall-opnsense" title="Permanent link">&para;</a></h1>
+<p>Si:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>routing ✓
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>servicio ✓
+</span></code></pre></div>
+<p>pero la conexión falla:</p>
+<p>revisar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>interfaz de entrada
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>source
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>destination
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a>protocol
+</span><span id="__span-54-5"><a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a>destination port
+</span><span id="__span-54-6"><a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a>rule order
+</span><span id="__span-54-7"><a id="__codelineno-54-7" name="__codelineno-54-7" href="#__codelineno-54-7"></a>state
+</span></code></pre></div>
+<hr />
+<h1 id="23-en-que-interfaz">23. ¿En qué interfaz?<a class="headerlink" href="#23-en-que-interfaz" title="Permanent link">&para;</a></h1>
+<p>Para:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>WEB → APP
+</span></code></pre></div>
+<p>el paquete entra en OPNsense por:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>WEB
+</span></code></pre></div>
+<p>Por tanto la política se analiza desde esa interfaz.</p>
+<hr />
+<h1 id="24-firewall-log">24. Firewall Log<a class="headerlink" href="#24-firewall-log" title="Permanent link">&para;</a></h1>
+<p>El log permite responder:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>¿llegó el paquete?
+</span><span id="__span-57-2"><a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>¿qué interfaz lo recibió?
+</span><span id="__span-57-3"><a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a>¿qué decisión tomó el firewall?
+</span></code></pre></div>
+<p>Si observamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>BLOCK
+</span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>10.10.10.10
+</span><span id="__span-58-3"><a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>→
+</span><span id="__span-58-4"><a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a>10.10.20.10:8080
+</span></code></pre></div>
+<p>tenemos una evidencia muy fuerte.</p>
+<hr />
+<h1 id="25-state-table">25. State table<a class="headerlink" href="#25-state-table" title="Permanent link">&para;</a></h1>
+<p>OPNsense es stateful.</p>
+<p>Una conexión ya establecida puede seguir teniendo estado después de modificar reglas.</p>
+<p>Por ello:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>cambiar regla
+</span><span id="__span-59-2"><a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>↓
+</span><span id="__span-59-3"><a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a>probar
+</span></code></pre></div>
+<p>puede producir conclusiones incorrectas.</p>
+<p>Cuando corresponda:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>revisar state
+</span><span id="__span-60-2"><a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>↓
+</span><span id="__span-60-3"><a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a>eliminar state
+</span><span id="__span-60-4"><a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a>↓
+</span><span id="__span-60-5"><a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a>repetir prueba
+</span></code></pre></div>
+<hr />
+<h1 id="26-packet-capture">26. Packet capture<a class="headerlink" href="#26-packet-capture" title="Permanent link">&para;</a></h1>
+<p>Utilizar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>tcpdump
+</span></code></pre></div>
+<p>o Packet Capture de OPNsense.</p>
+<p>Preguntas:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>¿entra el paquete?
+</span><span id="__span-62-2"><a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>¿sale?
+</span><span id="__span-62-3"><a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>¿aparece la respuesta?
+</span><span id="__span-62-4"><a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a>¿en qué interfaz desaparece?
+</span></code></pre></div>
+<hr />
+<h1 id="27-estrategia-de-dos-capturas">27. Estrategia de dos capturas<a class="headerlink" href="#27-estrategia-de-dos-capturas" title="Permanent link">&para;</a></h1>
+<p>Ejemplo WEB → APP:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>CAPTURA 1
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>interfaz WEB
+</span></code></pre></div>
+<p>y:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>CAPTURA 2
+</span><span id="__span-64-2"><a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>interfaz APP
+</span></code></pre></div>
+<p>Interpretación:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>entra por WEB ✓
+</span><span id="__span-65-2"><a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>sale por APP ✕
+</span></code></pre></div>
+<p>El problema se encuentra:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-66-1"><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>en OPNsense
+</span></code></pre></div>
+<p>o en su decisión de routing/política.</p>
+<hr />
+<h1 id="28-nat">28. NAT<a class="headerlink" href="#28-nat" title="Permanent link">&para;</a></h1>
+<p>Para salida a Internet:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-67-1"><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>APP
+</span><span id="__span-67-2"><a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>→ OPNsense
+</span><span id="__span-67-3"><a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a>→ WAN
+</span><span id="__span-67-4"><a id="__codelineno-67-4" name="__codelineno-67-4" href="#__codelineno-67-4"></a>→ Internet
+</span></code></pre></div>
+<p>debemos diferenciar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-68-1"><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>routing
+</span><span id="__span-68-2"><a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a>firewall
+</span><span id="__span-68-3"><a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a>NAT
+</span><span id="__span-68-4"><a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a>DNS
+</span></code></pre></div>
+<hr />
+<h1 id="29-diagnostico-de-internet">29. Diagnóstico de Internet<a class="headerlink" href="#29-diagnostico-de-internet" title="Permanent link">&para;</a></h1>
+<p>Seguir:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-69-1"><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>1. gateway
+</span><span id="__span-69-2"><a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a>2. IP externa
+</span><span id="__span-69-3"><a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a>3. DNS
+</span><span id="__span-69-4"><a id="__codelineno-69-4" name="__codelineno-69-4" href="#__codelineno-69-4"></a>4. aplicación
+</span></code></pre></div>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-70-1"><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a>ping<span class="w"> </span><span class="m">10</span>.10.20.1
+</span></code></pre></div>
+<p>después:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-71-1"><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>ping<span class="w"> </span><span class="m">1</span>.1.1.1
+</span></code></pre></div>
+<p>después:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-72-1"><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a>getent<span class="w"> </span>hosts<span class="w"> </span>example.com
+</span></code></pre></div>
+<p>después:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-73-1"><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>curl<span class="w"> </span>-I<span class="w"> </span>https://example.com
+</span></code></pre></div>
+<hr />
+<h1 id="30-interpretacion-rapida">30. Interpretación rápida<a class="headerlink" href="#30-interpretacion-rapida" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Gateway</th>
+<th>IP externa</th>
+<th>DNS</th>
+<th>Hipótesis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✕</td>
+<td>✕</td>
+<td>✕</td>
+<td>L2/L3/gateway</td>
+</tr>
+<tr>
+<td>✓</td>
+<td>✕</td>
+<td>✕</td>
+<td>firewall/NAT/WAN/routing</td>
+</tr>
+<tr>
+<td>✓</td>
+<td>✓</td>
+<td>✕</td>
+<td>DNS</td>
+</tr>
+<tr>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>revisar aplicación/protocolo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="31-comprobar-nat-mediante-captura">31. Comprobar NAT mediante captura<a class="headerlink" href="#31-comprobar-nat-mediante-captura" title="Permanent link">&para;</a></h1>
+<p>Captura interna:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-74-1"><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>src = 10.10.20.10
+</span></code></pre></div>
+<p>Captura WAN:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-75-1"><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a>src = IP_WAN_OPNsense
+</span></code></pre></div>
+<p>Si podemos demostrar ambas:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-76-1"><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a>SNAT ✓
+</span></code></pre></div>
+<hr />
+<h1 id="32-dns">32. DNS<a class="headerlink" href="#32-dns" title="Permanent link">&para;</a></h1>
+<p>Si:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-77-1"><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a>1.1.1.1 ✓
+</span></code></pre></div>
+<p>pero:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-78-1"><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a>example.com ✕
+</span></code></pre></div>
+<p>no debemos modificar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-79-1"><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a>VLAN
+</span><span id="__span-79-2"><a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a>routing
+</span><span id="__span-79-3"><a id="__codelineno-79-3" name="__codelineno-79-3" href="#__codelineno-79-3"></a>NAT
+</span></code></pre></div>
+<p>sin evidencia adicional.</p>
+<p>Investigamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-80-1"><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>DNS
+</span></code></pre></div>
+<hr />
+<h1 id="33-arbol-rapido-on-premise">33. Árbol rápido on-premise<a class="headerlink" href="#33-arbol-rapido-on-premise" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span id="__span-81-1"><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a>¿Interfaz UP?
+</span><span id="__span-81-2"><a id="__codelineno-81-2" name="__codelineno-81-2" href="#__codelineno-81-2"></a>   │
+</span><span id="__span-81-3"><a id="__codelineno-81-3" name="__codelineno-81-3" href="#__codelineno-81-3"></a>   ├── NO → interfaz / VM
+</span><span id="__span-81-4"><a id="__codelineno-81-4" name="__codelineno-81-4" href="#__codelineno-81-4"></a>   │
+</span><span id="__span-81-5"><a id="__codelineno-81-5" name="__codelineno-81-5" href="#__codelineno-81-5"></a>   └── SÍ
+</span><span id="__span-81-6"><a id="__codelineno-81-6" name="__codelineno-81-6" href="#__codelineno-81-6"></a>        ↓
+</span><span id="__span-81-7"><a id="__codelineno-81-7" name="__codelineno-81-7" href="#__codelineno-81-7"></a>¿IP/máscara correctas?
+</span><span id="__span-81-8"><a id="__codelineno-81-8" name="__codelineno-81-8" href="#__codelineno-81-8"></a>   │
+</span><span id="__span-81-9"><a id="__codelineno-81-9" name="__codelineno-81-9" href="#__codelineno-81-9"></a>   ├── NO → configuración L3
+</span><span id="__span-81-10"><a id="__codelineno-81-10" name="__codelineno-81-10" href="#__codelineno-81-10"></a>   │
+</span><span id="__span-81-11"><a id="__codelineno-81-11" name="__codelineno-81-11" href="#__codelineno-81-11"></a>   └── SÍ
+</span><span id="__span-81-12"><a id="__codelineno-81-12" name="__codelineno-81-12" href="#__codelineno-81-12"></a>        ↓
+</span><span id="__span-81-13"><a id="__codelineno-81-13" name="__codelineno-81-13" href="#__codelineno-81-13"></a>¿VLAN/bridge correctos?
+</span><span id="__span-81-14"><a id="__codelineno-81-14" name="__codelineno-81-14" href="#__codelineno-81-14"></a>   │
+</span><span id="__span-81-15"><a id="__codelineno-81-15" name="__codelineno-81-15" href="#__codelineno-81-15"></a>   ├── NO → Proxmox / 802.1Q
+</span><span id="__span-81-16"><a id="__codelineno-81-16" name="__codelineno-81-16" href="#__codelineno-81-16"></a>   │
+</span><span id="__span-81-17"><a id="__codelineno-81-17" name="__codelineno-81-17" href="#__codelineno-81-17"></a>   └── SÍ
+</span><span id="__span-81-18"><a id="__codelineno-81-18" name="__codelineno-81-18" href="#__codelineno-81-18"></a>        ↓
+</span><span id="__span-81-19"><a id="__codelineno-81-19" name="__codelineno-81-19" href="#__codelineno-81-19"></a>¿Gateway alcanzable?
+</span><span id="__span-81-20"><a id="__codelineno-81-20" name="__codelineno-81-20" href="#__codelineno-81-20"></a>   │
+</span><span id="__span-81-21"><a id="__codelineno-81-21" name="__codelineno-81-21" href="#__codelineno-81-21"></a>   ├── NO → ARP / VLAN / gateway
+</span><span id="__span-81-22"><a id="__codelineno-81-22" name="__codelineno-81-22" href="#__codelineno-81-22"></a>   │
+</span><span id="__span-81-23"><a id="__codelineno-81-23" name="__codelineno-81-23" href="#__codelineno-81-23"></a>   └── SÍ
+</span><span id="__span-81-24"><a id="__codelineno-81-24" name="__codelineno-81-24" href="#__codelineno-81-24"></a>        ↓
+</span><span id="__span-81-25"><a id="__codelineno-81-25" name="__codelineno-81-25" href="#__codelineno-81-25"></a>¿Ruta correcta?
+</span><span id="__span-81-26"><a id="__codelineno-81-26" name="__codelineno-81-26" href="#__codelineno-81-26"></a>   │
+</span><span id="__span-81-27"><a id="__codelineno-81-27" name="__codelineno-81-27" href="#__codelineno-81-27"></a>   ├── NO → routing
+</span><span id="__span-81-28"><a id="__codelineno-81-28" name="__codelineno-81-28" href="#__codelineno-81-28"></a>   │
+</span><span id="__span-81-29"><a id="__codelineno-81-29" name="__codelineno-81-29" href="#__codelineno-81-29"></a>   └── SÍ
+</span><span id="__span-81-30"><a id="__codelineno-81-30" name="__codelineno-81-30" href="#__codelineno-81-30"></a>        ↓
+</span><span id="__span-81-31"><a id="__codelineno-81-31" name="__codelineno-81-31" href="#__codelineno-81-31"></a>¿Firewall permite?
+</span><span id="__span-81-32"><a id="__codelineno-81-32" name="__codelineno-81-32" href="#__codelineno-81-32"></a>   │
+</span><span id="__span-81-33"><a id="__codelineno-81-33" name="__codelineno-81-33" href="#__codelineno-81-33"></a>   ├── NO → reglas / state
+</span><span id="__span-81-34"><a id="__codelineno-81-34" name="__codelineno-81-34" href="#__codelineno-81-34"></a>   │
+</span><span id="__span-81-35"><a id="__codelineno-81-35" name="__codelineno-81-35" href="#__codelineno-81-35"></a>   └── SÍ
+</span><span id="__span-81-36"><a id="__codelineno-81-36" name="__codelineno-81-36" href="#__codelineno-81-36"></a>        ↓
+</span><span id="__span-81-37"><a id="__codelineno-81-37" name="__codelineno-81-37" href="#__codelineno-81-37"></a>¿Servicio escucha?
+</span><span id="__span-81-38"><a id="__codelineno-81-38" name="__codelineno-81-38" href="#__codelineno-81-38"></a>   │
+</span><span id="__span-81-39"><a id="__codelineno-81-39" name="__codelineno-81-39" href="#__codelineno-81-39"></a>   ├── NO → aplicación
+</span><span id="__span-81-40"><a id="__codelineno-81-40" name="__codelineno-81-40" href="#__codelineno-81-40"></a>   │
+</span><span id="__span-81-41"><a id="__codelineno-81-41" name="__codelineno-81-41" href="#__codelineno-81-41"></a>   └── SÍ
+</span><span id="__span-81-42"><a id="__codelineno-81-42" name="__codelineno-81-42" href="#__codelineno-81-42"></a>        ↓
+</span><span id="__span-81-43"><a id="__codelineno-81-43" name="__codelineno-81-43" href="#__codelineno-81-43"></a>¿Internet?
+</span><span id="__span-81-44"><a id="__codelineno-81-44" name="__codelineno-81-44" href="#__codelineno-81-44"></a>   │
+</span><span id="__span-81-45"><a id="__codelineno-81-45" name="__codelineno-81-45" href="#__codelineno-81-45"></a>   ├── NO → NAT/WAN
+</span><span id="__span-81-46"><a id="__codelineno-81-46" name="__codelineno-81-46" href="#__codelineno-81-46"></a>   │
+</span><span id="__span-81-47"><a id="__codelineno-81-47" name="__codelineno-81-47" href="#__codelineno-81-47"></a>   └── SÍ
+</span><span id="__span-81-48"><a id="__codelineno-81-48" name="__codelineno-81-48" href="#__codelineno-81-48"></a>        ↓
+</span><span id="__span-81-49"><a id="__codelineno-81-49" name="__codelineno-81-49" href="#__codelineno-81-49"></a>¿Nombre DNS?
+</span><span id="__span-81-50"><a id="__codelineno-81-50" name="__codelineno-81-50" href="#__codelineno-81-50"></a>   │
+</span><span id="__span-81-51"><a id="__codelineno-81-51" name="__codelineno-81-51" href="#__codelineno-81-51"></a>   ├── NO → DNS
+</span><span id="__span-81-52"><a id="__codelineno-81-52" name="__codelineno-81-52" href="#__codelineno-81-52"></a>   │
+</span><span id="__span-81-53"><a id="__codelineno-81-53" name="__codelineno-81-53" href="#__codelineno-81-53"></a>   └── SÍ → cadena funcional
+</span></code></pre></div>
+<hr />
+<h1 id="34-troubleshooting-en-aws">34. Troubleshooting en AWS<a class="headerlink" href="#34-troubleshooting-en-aws" title="Permanent link">&para;</a></h1>
+<p>En AWS cambia la implementación.</p>
+<p>No cambia la metodología.</p>
+<p>Seguimos preguntando:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-82-1"><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a>¿qué camino debería recorrer el paquete?
+</span></code></pre></div>
+<hr />
+<h1 id="35-empezar-por-el-recurso">35. Empezar por el recurso<a class="headerlink" href="#35-empezar-por-el-recurso" title="Permanent link">&para;</a></h1>
+<p>Comprobar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-83-1"><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a>EC2 state
+</span><span id="__span-83-2"><a id="__codelineno-83-2" name="__codelineno-83-2" href="#__codelineno-83-2"></a>private IPv4
+</span><span id="__span-83-3"><a id="__codelineno-83-3" name="__codelineno-83-3" href="#__codelineno-83-3"></a>subnet
+</span><span id="__span-83-4"><a id="__codelineno-83-4" name="__codelineno-83-4" href="#__codelineno-83-4"></a>Security Groups asociados
+</span></code></pre></div>
+<p>Preguntas:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-84-1"><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a>¿es la instancia correcta?
+</span><span id="__span-84-2"><a id="__codelineno-84-2" name="__codelineno-84-2" href="#__codelineno-84-2"></a>¿está en la subnet correcta?
+</span><span id="__span-84-3"><a id="__codelineno-84-3" name="__codelineno-84-3" href="#__codelineno-84-3"></a>¿estamos utilizando la IP correcta?
+</span></code></pre></div>
+<hr />
+<h1 id="36-subnet-y-route-table">36. Subnet y Route Table<a class="headerlink" href="#36-subnet-y-route-table" title="Permanent link">&para;</a></h1>
+<p>Cada subnet debe utilizar la Route Table prevista.</p>
+<p>Nuestro diseño:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-85-1"><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>SUBNET-WEB
+</span><span id="__span-85-2"><a id="__codelineno-85-2" name="__codelineno-85-2" href="#__codelineno-85-2"></a>→ RT-WEB-PUBLIC
+</span><span id="__span-85-3"><a id="__codelineno-85-3" name="__codelineno-85-3" href="#__codelineno-85-3"></a>
+</span><span id="__span-85-4"><a id="__codelineno-85-4" name="__codelineno-85-4" href="#__codelineno-85-4"></a>SUBNET-APP
+</span><span id="__span-85-5"><a id="__codelineno-85-5" name="__codelineno-85-5" href="#__codelineno-85-5"></a>→ RT-APP-PRIVATE
+</span><span id="__span-85-6"><a id="__codelineno-85-6" name="__codelineno-85-6" href="#__codelineno-85-6"></a>
+</span><span id="__span-85-7"><a id="__codelineno-85-7" name="__codelineno-85-7" href="#__codelineno-85-7"></a>SUBNET-DB
+</span><span id="__span-85-8"><a id="__codelineno-85-8" name="__codelineno-85-8" href="#__codelineno-85-8"></a>→ RT-DB-ISOLATED
+</span></code></pre></div>
+<hr />
+<h1 id="37-error-especialmente-peligroso">37. Error especialmente peligroso<a class="headerlink" href="#37-error-especialmente-peligroso" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span id="__span-86-1"><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a>SUBNET-DB
+</span><span id="__span-86-2"><a id="__codelineno-86-2" name="__codelineno-86-2" href="#__codelineno-86-2"></a>→ RT-APP-PRIVATE
+</span></code></pre></div>
+<p>puede no producir una caída.</p>
+<p>Puede producir:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-87-1"><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a>DB → Internet
+</span></code></pre></div>
+<p>cuando no debería.</p>
+<p>Es un fallo de seguridad por:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-88-1"><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a>exceso de conectividad
+</span></code></pre></div>
+<hr />
+<h1 id="38-leer-la-route-table">38. Leer la Route Table<a class="headerlink" href="#38-leer-la-route-table" title="Permanent link">&para;</a></h1>
+<p>No basta con ver que existe una ruta.</p>
+<p>Debemos preguntar:</p>
+<blockquote>
+<p><strong>¿Qué ruta coincide con este destino?</strong></p>
+</blockquote>
+<p>APP → DB:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-89-1"><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a>10.0.0.0/16 → local
+</span></code></pre></div>
+<p>APP → Internet:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-90-1"><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a>0.0.0.0/0 → NAT Gateway
+</span></code></pre></div>
+<hr />
+<h1 id="39-longest-prefix-match">39. Longest Prefix Match<a class="headerlink" href="#39-longest-prefix-match" title="Permanent link">&para;</a></h1>
+<p>Si:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-91-1"><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a>10.0.0.0/16 → local
+</span><span id="__span-91-2"><a id="__codelineno-91-2" name="__codelineno-91-2" href="#__codelineno-91-2"></a>0.0.0.0/0 → NAT
+</span></code></pre></div>
+<p>para:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-92-1"><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a>10.0.30.10
+</span></code></pre></div>
+<p>se utiliza:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-93-1"><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a>local
+</span></code></pre></div>
+<p>No NAT.</p>
+<hr />
+<h1 id="40-web-e-internet-gateway">40. WEB e Internet Gateway<a class="headerlink" href="#40-web-e-internet-gateway" title="Permanent link">&para;</a></h1>
+<p>Para conectividad pública IPv4 comprobar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-94-1"><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a>SUBNET-WEB
+</span><span id="__span-94-2"><a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a>↓
+</span><span id="__span-94-3"><a id="__codelineno-94-3" name="__codelineno-94-3" href="#__codelineno-94-3"></a>RT-WEB-PUBLIC
+</span><span id="__span-94-4"><a id="__codelineno-94-4" name="__codelineno-94-4" href="#__codelineno-94-4"></a>↓
+</span><span id="__span-94-5"><a id="__codelineno-94-5" name="__codelineno-94-5" href="#__codelineno-94-5"></a>0.0.0.0/0 → IGW
+</span><span id="__span-94-6"><a id="__codelineno-94-6" name="__codelineno-94-6" href="#__codelineno-94-6"></a>↓
+</span><span id="__span-94-7"><a id="__codelineno-94-7" name="__codelineno-94-7" href="#__codelineno-94-7"></a>IGW asociado a VPC
+</span></code></pre></div>
+<p>y, para una EC2 directamente pública:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-95-1"><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a>public IPv4/EIP
+</span><span id="__span-95-2"><a id="__codelineno-95-2" name="__codelineno-95-2" href="#__codelineno-95-2"></a>+
+</span><span id="__span-95-3"><a id="__codelineno-95-3" name="__codelineno-95-3" href="#__codelineno-95-3"></a>Security Group
+</span></code></pre></div>
+<hr />
+<h1 id="41-public-subnet-no-implica-public-ec2">41. Public subnet no implica public EC2<a class="headerlink" href="#41-public-subnet-no-implica-public-ec2" title="Permanent link">&para;</a></h1>
+<p>Podemos tener:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-96-1"><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a>subnet pública ✓
+</span><span id="__span-96-2"><a id="__codelineno-96-2" name="__codelineno-96-2" href="#__codelineno-96-2"></a>route to IGW ✓
+</span><span id="__span-96-3"><a id="__codelineno-96-3" name="__codelineno-96-3" href="#__codelineno-96-3"></a>EC2 public IPv4 ✕
+</span></code></pre></div>
+<p>Resultado:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-97-1"><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a>la EC2 no tiene conectividad pública IPv4 directa
+</span></code></pre></div>
+<hr />
+<h1 id="42-app-e-internet">42. APP e Internet<a class="headerlink" href="#42-app-e-internet" title="Permanent link">&para;</a></h1>
+<p>Packet path:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-98-1"><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a>EC2-APP
+</span><span id="__span-98-2"><a id="__codelineno-98-2" name="__codelineno-98-2" href="#__codelineno-98-2"></a>   ↓
+</span><span id="__span-98-3"><a id="__codelineno-98-3" name="__codelineno-98-3" href="#__codelineno-98-3"></a>SUBNET-APP
+</span><span id="__span-98-4"><a id="__codelineno-98-4" name="__codelineno-98-4" href="#__codelineno-98-4"></a>   ↓
+</span><span id="__span-98-5"><a id="__codelineno-98-5" name="__codelineno-98-5" href="#__codelineno-98-5"></a>RT-APP-PRIVATE
+</span><span id="__span-98-6"><a id="__codelineno-98-6" name="__codelineno-98-6" href="#__codelineno-98-6"></a>   ↓
+</span><span id="__span-98-7"><a id="__codelineno-98-7" name="__codelineno-98-7" href="#__codelineno-98-7"></a>0.0.0.0/0
+</span><span id="__span-98-8"><a id="__codelineno-98-8" name="__codelineno-98-8" href="#__codelineno-98-8"></a>   ↓
+</span><span id="__span-98-9"><a id="__codelineno-98-9" name="__codelineno-98-9" href="#__codelineno-98-9"></a>NAT Gateway
+</span><span id="__span-98-10"><a id="__codelineno-98-10" name="__codelineno-98-10" href="#__codelineno-98-10"></a>   ↓
+</span><span id="__span-98-11"><a id="__codelineno-98-11" name="__codelineno-98-11" href="#__codelineno-98-11"></a>SUBNET-WEB
+</span><span id="__span-98-12"><a id="__codelineno-98-12" name="__codelineno-98-12" href="#__codelineno-98-12"></a>   ↓
+</span><span id="__span-98-13"><a id="__codelineno-98-13" name="__codelineno-98-13" href="#__codelineno-98-13"></a>RT-WEB-PUBLIC
+</span><span id="__span-98-14"><a id="__codelineno-98-14" name="__codelineno-98-14" href="#__codelineno-98-14"></a>   ↓
+</span><span id="__span-98-15"><a id="__codelineno-98-15" name="__codelineno-98-15" href="#__codelineno-98-15"></a>IGW
+</span><span id="__span-98-16"><a id="__codelineno-98-16" name="__codelineno-98-16" href="#__codelineno-98-16"></a>   ↓
+</span><span id="__span-98-17"><a id="__codelineno-98-17" name="__codelineno-98-17" href="#__codelineno-98-17"></a>Internet
+</span></code></pre></div>
+<hr />
+<h1 id="43-diagnostico-nat-gateway">43. Diagnóstico NAT Gateway<a class="headerlink" href="#43-diagnostico-nat-gateway" title="Permanent link">&para;</a></h1>
+<p>Comprobar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-99-1"><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a>1. APP está en SUBNET-APP
+</span><span id="__span-99-2"><a id="__codelineno-99-2" name="__codelineno-99-2" href="#__codelineno-99-2"></a>2. SUBNET-APP → RT-APP-PRIVATE
+</span><span id="__span-99-3"><a id="__codelineno-99-3" name="__codelineno-99-3" href="#__codelineno-99-3"></a>3. 0.0.0.0/0 → NAT
+</span><span id="__span-99-4"><a id="__codelineno-99-4" name="__codelineno-99-4" href="#__codelineno-99-4"></a>4. NAT Gateway = Available
+</span><span id="__span-99-5"><a id="__codelineno-99-5" name="__codelineno-99-5" href="#__codelineno-99-5"></a>5. NAT en subnet pública
+</span><span id="__span-99-6"><a id="__codelineno-99-6" name="__codelineno-99-6" href="#__codelineno-99-6"></a>6. subnet pública → 0.0.0.0/0 → IGW
+</span><span id="__span-99-7"><a id="__codelineno-99-7" name="__codelineno-99-7" href="#__codelineno-99-7"></a>7. IGW asociado
+</span><span id="__span-99-8"><a id="__codelineno-99-8" name="__codelineno-99-8" href="#__codelineno-99-8"></a>8. SG/NACL
+</span><span id="__span-99-9"><a id="__codelineno-99-9" name="__codelineno-99-9" href="#__codelineno-99-9"></a>9. DNS/aplicación
+</span></code></pre></div>
+<hr />
+<h1 id="44-security-groups">44. Security Groups<a class="headerlink" href="#44-security-groups" title="Permanent link">&para;</a></h1>
+<p>Para:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-100-1"><a id="__codelineno-100-1" name="__codelineno-100-1" href="#__codelineno-100-1"></a>WEB → APP:8080
+</span></code></pre></div>
+<p>revisar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-101-1"><a id="__codelineno-101-1" name="__codelineno-101-1" href="#__codelineno-101-1"></a>EC2-WEB → SG-WEB
+</span><span id="__span-101-2"><a id="__codelineno-101-2" name="__codelineno-101-2" href="#__codelineno-101-2"></a>EC2-APP → SG-APP
+</span></code></pre></div>
+<p>y:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-102-1"><a id="__codelineno-102-1" name="__codelineno-102-1" href="#__codelineno-102-1"></a>SG-APP
+</span><span id="__span-102-2"><a id="__codelineno-102-2" name="__codelineno-102-2" href="#__codelineno-102-2"></a>Inbound
+</span><span id="__span-102-3"><a id="__codelineno-102-3" name="__codelineno-102-3" href="#__codelineno-102-3"></a>TCP/8080
+</span><span id="__span-102-4"><a id="__codelineno-102-4" name="__codelineno-102-4" href="#__codelineno-102-4"></a>Source = SG-WEB
+</span></code></pre></div>
+<hr />
+<h1 id="45-referencia-sg">45. Referencia SG<a class="headerlink" href="#45-referencia-sg" title="Permanent link">&para;</a></h1>
+<p>Una regla:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-103-1"><a id="__codelineno-103-1" name="__codelineno-103-1" href="#__codelineno-103-1"></a>Source = SG-WEB
+</span></code></pre></div>
+<p>no significa:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-104-1"><a id="__codelineno-104-1" name="__codelineno-104-1" href="#__codelineno-104-1"></a>todo 10.0.10.0/24
+</span></code></pre></div>
+<p>Expresa:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-105-1"><a id="__codelineno-105-1" name="__codelineno-105-1" href="#__codelineno-105-1"></a>recursos asociados al rol SG-WEB
+</span></code></pre></div>
+<hr />
+<h1 id="46-security-groups-son-stateful">46. Security Groups son stateful<a class="headerlink" href="#46-security-groups-son-stateful" title="Permanent link">&para;</a></h1>
+<p>Si WEB inicia:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-106-1"><a id="__codelineno-106-1" name="__codelineno-106-1" href="#__codelineno-106-1"></a>WEB:ephemeral
+</span><span id="__span-106-2"><a id="__codelineno-106-2" name="__codelineno-106-2" href="#__codelineno-106-2"></a>→ APP:8080
+</span></code></pre></div>
+<p>la respuesta pertenece al estado de la conexión.</p>
+<p>No necesitamos una regla inbound inversa para el puerto efímero de WEB.</p>
+<hr />
+<h1 id="47-nacl">47. NACL<a class="headerlink" href="#47-nacl" title="Permanent link">&para;</a></h1>
+<p>Las Network ACL son:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-107-1"><a id="__codelineno-107-1" name="__codelineno-107-1" href="#__codelineno-107-1"></a>stateless
+</span></code></pre></div>
+<p>Por tanto debemos analizar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-108-1"><a id="__codelineno-108-1" name="__codelineno-108-1" href="#__codelineno-108-1"></a>ida
+</span><span id="__span-108-2"><a id="__codelineno-108-2" name="__codelineno-108-2" href="#__codelineno-108-2"></a>+
+</span><span id="__span-108-3"><a id="__codelineno-108-3" name="__codelineno-108-3" href="#__codelineno-108-3"></a>retorno
+</span></code></pre></div>
+<p>independientemente.</p>
+<hr />
+<h1 id="48-fallo-clasico-nacl">48. Fallo clásico NACL<a class="headerlink" href="#48-fallo-clasico-nacl" title="Permanent link">&para;</a></h1>
+<p>Tenemos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-109-1"><a id="__codelineno-109-1" name="__codelineno-109-1" href="#__codelineno-109-1"></a>WEB → APP:8080
+</span></code></pre></div>
+<p>NACL APP inbound:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-110-1"><a id="__codelineno-110-1" name="__codelineno-110-1" href="#__codelineno-110-1"></a>ALLOW TCP/8080
+</span><span id="__span-110-2"><a id="__codelineno-110-2" name="__codelineno-110-2" href="#__codelineno-110-2"></a>from 10.0.10.0/24
+</span></code></pre></div>
+<p>Pero outbound no permite correctamente el retorno hacia el puerto efímero del cliente.</p>
+<p>Resultado:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-111-1"><a id="__codelineno-111-1" name="__codelineno-111-1" href="#__codelineno-111-1"></a>SG ✓
+</span><span id="__span-111-2"><a id="__codelineno-111-2" name="__codelineno-111-2" href="#__codelineno-111-2"></a>routing ✓
+</span><span id="__span-111-3"><a id="__codelineno-111-3" name="__codelineno-111-3" href="#__codelineno-111-3"></a>service ✓
+</span><span id="__span-111-4"><a id="__codelineno-111-4" name="__codelineno-111-4" href="#__codelineno-111-4"></a>session ✕
+</span></code></pre></div>
+<hr />
+<h1 id="49-diagnostico">49. Diagnóstico<a class="headerlink" href="#49-diagnostico" title="Permanent link">&para;</a></h1>
+<p>Pensar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-112-1"><a id="__codelineno-112-1" name="__codelineno-112-1" href="#__codelineno-112-1"></a>WEB:53124
+</span><span id="__span-112-2"><a id="__codelineno-112-2" name="__codelineno-112-2" href="#__codelineno-112-2"></a>→ APP:8080
+</span></code></pre></div>
+<p>Respuesta:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-113-1"><a id="__codelineno-113-1" name="__codelineno-113-1" href="#__codelineno-113-1"></a>APP:8080
+</span><span id="__span-113-2"><a id="__codelineno-113-2" name="__codelineno-113-2" href="#__codelineno-113-2"></a>→ WEB:53124
+</span></code></pre></div>
+<p>La NACL debe permitir ambos sentidos según su política.</p>
+<hr />
+<h1 id="50-orden-nacl">50. Orden NACL<a class="headerlink" href="#50-orden-nacl" title="Permanent link">&para;</a></h1>
+<p>Ejemplo correcto:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-114-1"><a id="__codelineno-114-1" name="__codelineno-114-1" href="#__codelineno-114-1"></a>90  DENY 10.0.10.50/32
+</span><span id="__span-114-2"><a id="__codelineno-114-2" name="__codelineno-114-2" href="#__codelineno-114-2"></a>100 ALLOW 10.0.10.0/24
+</span></code></pre></div>
+<p>Ejemplo problemático:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-115-1"><a id="__codelineno-115-1" name="__codelineno-115-1" href="#__codelineno-115-1"></a>100 ALLOW 10.0.10.0/24
+</span><span id="__span-115-2"><a id="__codelineno-115-2" name="__codelineno-115-2" href="#__codelineno-115-2"></a>200 DENY 10.0.10.50/32
+</span></code></pre></div>
+<p>Si la primera regla ya coincide:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-116-1"><a id="__codelineno-116-1" name="__codelineno-116-1" href="#__codelineno-116-1"></a>la posterior no corrige la decisión
+</span></code></pre></div>
+<hr />
+<h1 id="51-arbol-rapido-aws">51. Árbol rápido AWS<a class="headerlink" href="#51-arbol-rapido-aws" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span id="__span-117-1"><a id="__codelineno-117-1" name="__codelineno-117-1" href="#__codelineno-117-1"></a>¿EC2 correcta y activa?
+</span><span id="__span-117-2"><a id="__codelineno-117-2" name="__codelineno-117-2" href="#__codelineno-117-2"></a>   │
+</span><span id="__span-117-3"><a id="__codelineno-117-3" name="__codelineno-117-3" href="#__codelineno-117-3"></a>   ├── NO → recurso
+</span><span id="__span-117-4"><a id="__codelineno-117-4" name="__codelineno-117-4" href="#__codelineno-117-4"></a>   │
+</span><span id="__span-117-5"><a id="__codelineno-117-5" name="__codelineno-117-5" href="#__codelineno-117-5"></a>   └── SÍ
+</span><span id="__span-117-6"><a id="__codelineno-117-6" name="__codelineno-117-6" href="#__codelineno-117-6"></a>        ↓
+</span><span id="__span-117-7"><a id="__codelineno-117-7" name="__codelineno-117-7" href="#__codelineno-117-7"></a>¿Subnet correcta?
+</span><span id="__span-117-8"><a id="__codelineno-117-8" name="__codelineno-117-8" href="#__codelineno-117-8"></a>   │
+</span><span id="__span-117-9"><a id="__codelineno-117-9" name="__codelineno-117-9" href="#__codelineno-117-9"></a>   ├── NO → placement
+</span><span id="__span-117-10"><a id="__codelineno-117-10" name="__codelineno-117-10" href="#__codelineno-117-10"></a>   │
+</span><span id="__span-117-11"><a id="__codelineno-117-11" name="__codelineno-117-11" href="#__codelineno-117-11"></a>   └── SÍ
+</span><span id="__span-117-12"><a id="__codelineno-117-12" name="__codelineno-117-12" href="#__codelineno-117-12"></a>        ↓
+</span><span id="__span-117-13"><a id="__codelineno-117-13" name="__codelineno-117-13" href="#__codelineno-117-13"></a>¿Route Table correcta?
+</span><span id="__span-117-14"><a id="__codelineno-117-14" name="__codelineno-117-14" href="#__codelineno-117-14"></a>   │
+</span><span id="__span-117-15"><a id="__codelineno-117-15" name="__codelineno-117-15" href="#__codelineno-117-15"></a>   ├── NO → asociación/routing
+</span><span id="__span-117-16"><a id="__codelineno-117-16" name="__codelineno-117-16" href="#__codelineno-117-16"></a>   │
+</span><span id="__span-117-17"><a id="__codelineno-117-17" name="__codelineno-117-17" href="#__codelineno-117-17"></a>   └── SÍ
+</span><span id="__span-117-18"><a id="__codelineno-117-18" name="__codelineno-117-18" href="#__codelineno-117-18"></a>        ↓
+</span><span id="__span-117-19"><a id="__codelineno-117-19" name="__codelineno-117-19" href="#__codelineno-117-19"></a>¿Existe ruta adecuada?
+</span><span id="__span-117-20"><a id="__codelineno-117-20" name="__codelineno-117-20" href="#__codelineno-117-20"></a>   │
+</span><span id="__span-117-21"><a id="__codelineno-117-21" name="__codelineno-117-21" href="#__codelineno-117-21"></a>   ├── NO → routing
+</span><span id="__span-117-22"><a id="__codelineno-117-22" name="__codelineno-117-22" href="#__codelineno-117-22"></a>   │
+</span><span id="__span-117-23"><a id="__codelineno-117-23" name="__codelineno-117-23" href="#__codelineno-117-23"></a>   └── SÍ
+</span><span id="__span-117-24"><a id="__codelineno-117-24" name="__codelineno-117-24" href="#__codelineno-117-24"></a>        ↓
+</span><span id="__span-117-25"><a id="__codelineno-117-25" name="__codelineno-117-25" href="#__codelineno-117-25"></a>¿Target operativo?
+</span><span id="__span-117-26"><a id="__codelineno-117-26" name="__codelineno-117-26" href="#__codelineno-117-26"></a>   │
+</span><span id="__span-117-27"><a id="__codelineno-117-27" name="__codelineno-117-27" href="#__codelineno-117-27"></a>   ├── NO → IGW/NAT/etc.
+</span><span id="__span-117-28"><a id="__codelineno-117-28" name="__codelineno-117-28" href="#__codelineno-117-28"></a>   │
+</span><span id="__span-117-29"><a id="__codelineno-117-29" name="__codelineno-117-29" href="#__codelineno-117-29"></a>   └── SÍ
+</span><span id="__span-117-30"><a id="__codelineno-117-30" name="__codelineno-117-30" href="#__codelineno-117-30"></a>        ↓
+</span><span id="__span-117-31"><a id="__codelineno-117-31" name="__codelineno-117-31" href="#__codelineno-117-31"></a>¿SG permite?
+</span><span id="__span-117-32"><a id="__codelineno-117-32" name="__codelineno-117-32" href="#__codelineno-117-32"></a>   │
+</span><span id="__span-117-33"><a id="__codelineno-117-33" name="__codelineno-117-33" href="#__codelineno-117-33"></a>   ├── NO → política recurso
+</span><span id="__span-117-34"><a id="__codelineno-117-34" name="__codelineno-117-34" href="#__codelineno-117-34"></a>   │
+</span><span id="__span-117-35"><a id="__codelineno-117-35" name="__codelineno-117-35" href="#__codelineno-117-35"></a>   └── SÍ
+</span><span id="__span-117-36"><a id="__codelineno-117-36" name="__codelineno-117-36" href="#__codelineno-117-36"></a>        ↓
+</span><span id="__span-117-37"><a id="__codelineno-117-37" name="__codelineno-117-37" href="#__codelineno-117-37"></a>¿NACL permite ida y retorno?
+</span><span id="__span-117-38"><a id="__codelineno-117-38" name="__codelineno-117-38" href="#__codelineno-117-38"></a>   │
+</span><span id="__span-117-39"><a id="__codelineno-117-39" name="__codelineno-117-39" href="#__codelineno-117-39"></a>   ├── NO → política subnet
+</span><span id="__span-117-40"><a id="__codelineno-117-40" name="__codelineno-117-40" href="#__codelineno-117-40"></a>   │
+</span><span id="__span-117-41"><a id="__codelineno-117-41" name="__codelineno-117-41" href="#__codelineno-117-41"></a>   └── SÍ
+</span><span id="__span-117-42"><a id="__codelineno-117-42" name="__codelineno-117-42" href="#__codelineno-117-42"></a>        ↓
+</span><span id="__span-117-43"><a id="__codelineno-117-43" name="__codelineno-117-43" href="#__codelineno-117-43"></a>¿Servicio escucha?
+</span><span id="__span-117-44"><a id="__codelineno-117-44" name="__codelineno-117-44" href="#__codelineno-117-44"></a>   │
+</span><span id="__span-117-45"><a id="__codelineno-117-45" name="__codelineno-117-45" href="#__codelineno-117-45"></a>   ├── NO → SO/aplicación
+</span><span id="__span-117-46"><a id="__codelineno-117-46" name="__codelineno-117-46" href="#__codelineno-117-46"></a>   │
+</span><span id="__span-117-47"><a id="__codelineno-117-47" name="__codelineno-117-47" href="#__codelineno-117-47"></a>   └── SÍ → flujo funcional
+</span></code></pre></div>
+<hr />
+<h1 id="52-matriz-de-sintomas">52. Matriz de síntomas<a class="headerlink" href="#52-matriz-de-sintomas" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Síntoma</th>
+<th>Primera comprobación</th>
+<th>Después</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>misma VLAN no comunica</td>
+<td>VLAN/bridge/IP</td>
+<td>ARP/FDB</td>
+</tr>
+<tr>
+<td>VLAN diferentes no comunican</td>
+<td>gateway/routing</td>
+<td>firewall</td>
+</tr>
+<tr>
+<td>WEB→APP:8080 falla</td>
+<td>servicio/routing</td>
+<td>firewall/SG/NACL</td>
+</tr>
+<tr>
+<td>ping falla, curl funciona</td>
+<td>política ICMP</td>
+<td>no corregir TCP</td>
+</tr>
+<tr>
+<td>APP sin Internet on-premise</td>
+<td>gateway/IP externa</td>
+<td>firewall/NAT</td>
+</tr>
+<tr>
+<td>IP externa funciona, nombre no</td>
+<td>DNS</td>
+<td>resolver</td>
+</tr>
+<tr>
+<td>AWS APP sin Internet</td>
+<td>RT privada</td>
+<td>NAT/IGW</td>
+</tr>
+<tr>
+<td>AWS WEB no pública</td>
+<td>public IPv4 + RT</td>
+<td>IGW/SG</td>
+</tr>
+<tr>
+<td>AWS WEB→APP falla</td>
+<td>SG-APP</td>
+<td>NACL/service</td>
+</tr>
+<tr>
+<td>ida parece correcta pero timeout</td>
+<td>retorno</td>
+<td>NACL/state</td>
+</tr>
+<tr>
+<td>DB tiene Internet y no debería</td>
+<td>Route Table</td>
+<td>SG/NACL/egress</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="53-herramientas-on-premise">53. Herramientas on-premise<a class="headerlink" href="#53-herramientas-on-premise" title="Permanent link">&para;</a></h1>
+<h2 id="host-linux">Host Linux<a class="headerlink" href="#host-linux" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-118-1"><a id="__codelineno-118-1" name="__codelineno-118-1" href="#__codelineno-118-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>link
+</span><span id="__span-118-2"><a id="__codelineno-118-2" name="__codelineno-118-2" href="#__codelineno-118-2"></a>ip<span class="w"> </span>-br<span class="w"> </span>addr
+</span><span id="__span-118-3"><a id="__codelineno-118-3" name="__codelineno-118-3" href="#__codelineno-118-3"></a>ip<span class="w"> </span>route
+</span><span id="__span-118-4"><a id="__codelineno-118-4" name="__codelineno-118-4" href="#__codelineno-118-4"></a>ip<span class="w"> </span>route<span class="w"> </span>get
+</span><span id="__span-118-5"><a id="__codelineno-118-5" name="__codelineno-118-5" href="#__codelineno-118-5"></a>ip<span class="w"> </span>neigh
+</span><span id="__span-118-6"><a id="__codelineno-118-6" name="__codelineno-118-6" href="#__codelineno-118-6"></a>ping
+</span><span id="__span-118-7"><a id="__codelineno-118-7" name="__codelineno-118-7" href="#__codelineno-118-7"></a>traceroute
+</span><span id="__span-118-8"><a id="__codelineno-118-8" name="__codelineno-118-8" href="#__codelineno-118-8"></a>tracepath
+</span><span id="__span-118-9"><a id="__codelineno-118-9" name="__codelineno-118-9" href="#__codelineno-118-9"></a>ss
+</span><span id="__span-118-10"><a id="__codelineno-118-10" name="__codelineno-118-10" href="#__codelineno-118-10"></a>nc
+</span><span id="__span-118-11"><a id="__codelineno-118-11" name="__codelineno-118-11" href="#__codelineno-118-11"></a>curl
+</span><span id="__span-118-12"><a id="__codelineno-118-12" name="__codelineno-118-12" href="#__codelineno-118-12"></a>dig
+</span><span id="__span-118-13"><a id="__codelineno-118-13" name="__codelineno-118-13" href="#__codelineno-118-13"></a>nslookup
+</span><span id="__span-118-14"><a id="__codelineno-118-14" name="__codelineno-118-14" href="#__codelineno-118-14"></a>getent
+</span><span id="__span-118-15"><a id="__codelineno-118-15" name="__codelineno-118-15" href="#__codelineno-118-15"></a>tcpdump
+</span></code></pre></div>
+<h2 id="proxmox">Proxmox<a class="headerlink" href="#proxmox" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-119-1"><a id="__codelineno-119-1" name="__codelineno-119-1" href="#__codelineno-119-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>link
+</span><span id="__span-119-2"><a id="__codelineno-119-2" name="__codelineno-119-2" href="#__codelineno-119-2"></a>bridge<span class="w"> </span>link
+</span><span id="__span-119-3"><a id="__codelineno-119-3" name="__codelineno-119-3" href="#__codelineno-119-3"></a>bridge<span class="w"> </span>vlan<span class="w"> </span>show
+</span><span id="__span-119-4"><a id="__codelineno-119-4" name="__codelineno-119-4" href="#__codelineno-119-4"></a>bridge<span class="w"> </span>fdb<span class="w"> </span>show
+</span><span id="__span-119-5"><a id="__codelineno-119-5" name="__codelineno-119-5" href="#__codelineno-119-5"></a>tcpdump
+</span></code></pre></div>
+<h2 id="opnsense">OPNsense<a class="headerlink" href="#opnsense" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-120-1"><a id="__codelineno-120-1" name="__codelineno-120-1" href="#__codelineno-120-1"></a>Interfaces
+</span><span id="__span-120-2"><a id="__codelineno-120-2" name="__codelineno-120-2" href="#__codelineno-120-2"></a>Routing
+</span><span id="__span-120-3"><a id="__codelineno-120-3" name="__codelineno-120-3" href="#__codelineno-120-3"></a>ARP
+</span><span id="__span-120-4"><a id="__codelineno-120-4" name="__codelineno-120-4" href="#__codelineno-120-4"></a>Firewall Rules
+</span><span id="__span-120-5"><a id="__codelineno-120-5" name="__codelineno-120-5" href="#__codelineno-120-5"></a>Firewall Log
+</span><span id="__span-120-6"><a id="__codelineno-120-6" name="__codelineno-120-6" href="#__codelineno-120-6"></a>States
+</span><span id="__span-120-7"><a id="__codelineno-120-7" name="__codelineno-120-7" href="#__codelineno-120-7"></a>Outbound NAT
+</span><span id="__span-120-8"><a id="__codelineno-120-8" name="__codelineno-120-8" href="#__codelineno-120-8"></a>Packet Capture
+</span><span id="__span-120-9"><a id="__codelineno-120-9" name="__codelineno-120-9" href="#__codelineno-120-9"></a>Ping
+</span><span id="__span-120-10"><a id="__codelineno-120-10" name="__codelineno-120-10" href="#__codelineno-120-10"></a>Traceroute
+</span><span id="__span-120-11"><a id="__codelineno-120-11" name="__codelineno-120-11" href="#__codelineno-120-11"></a>DNS diagnostics
+</span></code></pre></div>
+<hr />
+<h1 id="54-herramientas-aws">54. Herramientas AWS<a class="headerlink" href="#54-herramientas-aws" title="Permanent link">&para;</a></h1>
+<p>Dependiendo del entorno y de los servicios habilitados:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-121-1"><a id="__codelineno-121-1" name="__codelineno-121-1" href="#__codelineno-121-1"></a>EC2 network configuration
+</span><span id="__span-121-2"><a id="__codelineno-121-2" name="__codelineno-121-2" href="#__codelineno-121-2"></a>VPC
+</span><span id="__span-121-3"><a id="__codelineno-121-3" name="__codelineno-121-3" href="#__codelineno-121-3"></a>Subnets
+</span><span id="__span-121-4"><a id="__codelineno-121-4" name="__codelineno-121-4" href="#__codelineno-121-4"></a>Route Tables
+</span><span id="__span-121-5"><a id="__codelineno-121-5" name="__codelineno-121-5" href="#__codelineno-121-5"></a>Internet Gateway
+</span><span id="__span-121-6"><a id="__codelineno-121-6" name="__codelineno-121-6" href="#__codelineno-121-6"></a>NAT Gateway
+</span><span id="__span-121-7"><a id="__codelineno-121-7" name="__codelineno-121-7" href="#__codelineno-121-7"></a>Security Groups
+</span><span id="__span-121-8"><a id="__codelineno-121-8" name="__codelineno-121-8" href="#__codelineno-121-8"></a>Network ACL
+</span><span id="__span-121-9"><a id="__codelineno-121-9" name="__codelineno-121-9" href="#__codelineno-121-9"></a>VPC Flow Logs
+</span><span id="__span-121-10"><a id="__codelineno-121-10" name="__codelineno-121-10" href="#__codelineno-121-10"></a>Reachability Analyzer
+</span><span id="__span-121-11"><a id="__codelineno-121-11" name="__codelineno-121-11" href="#__codelineno-121-11"></a>CloudWatch
+</span></code></pre></div>
+<p>No todas son necesarias para cada incidencia.</p>
+<p>La herramienta se selecciona según la hipótesis.</p>
+<hr />
+<h1 id="55-vpc-flow-logs">55. VPC Flow Logs<a class="headerlink" href="#55-vpc-flow-logs" title="Permanent link">&para;</a></h1>
+<p>Cuando estén habilitados, pueden ayudar a observar información del tráfico de red.</p>
+<p>Son especialmente útiles para complementar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-122-1"><a id="__codelineno-122-1" name="__codelineno-122-1" href="#__codelineno-122-1"></a>SG
+</span><span id="__span-122-2"><a id="__codelineno-122-2" name="__codelineno-122-2" href="#__codelineno-122-2"></a>NACL
+</span><span id="__span-122-3"><a id="__codelineno-122-3" name="__codelineno-122-3" href="#__codelineno-122-3"></a>routing
+</span></code></pre></div>
+<p>pero no sustituyen el razonamiento del packet path.</p>
+<hr />
+<h1 id="56-reachability-analyzer">56. Reachability Analyzer<a class="headerlink" href="#56-reachability-analyzer" title="Permanent link">&para;</a></h1>
+<p>Puede utilizarse como herramienta complementaria para analizar la configuración del camino entre recursos.</p>
+<p>Pero el objetivo docente sigue siendo que el alumnado pueda explicar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-123-1"><a id="__codelineno-123-1" name="__codelineno-123-1" href="#__codelineno-123-1"></a>source
+</span><span id="__span-123-2"><a id="__codelineno-123-2" name="__codelineno-123-2" href="#__codelineno-123-2"></a>destination
+</span><span id="__span-123-3"><a id="__codelineno-123-3" name="__codelineno-123-3" href="#__codelineno-123-3"></a>path
+</span><span id="__span-123-4"><a id="__codelineno-123-4" name="__codelineno-123-4" href="#__codelineno-123-4"></a>routing
+</span><span id="__span-123-5"><a id="__codelineno-123-5" name="__codelineno-123-5" href="#__codelineno-123-5"></a>security controls
+</span></code></pre></div>
+<p>sin depender exclusivamente de una herramienta automática.</p>
+<hr />
+<h1 id="57-no-confundir-herramienta-con-diagnostico">57. No confundir herramienta con diagnóstico<a class="headerlink" href="#57-no-confundir-herramienta-con-diagnostico" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span id="__span-124-1"><a id="__codelineno-124-1" name="__codelineno-124-1" href="#__codelineno-124-1"></a>tcpdump
+</span><span id="__span-124-2"><a id="__codelineno-124-2" name="__codelineno-124-2" href="#__codelineno-124-2"></a>Flow Logs
+</span><span id="__span-124-3"><a id="__codelineno-124-3" name="__codelineno-124-3" href="#__codelineno-124-3"></a>Firewall Log
+</span><span id="__span-124-4"><a id="__codelineno-124-4" name="__codelineno-124-4" href="#__codelineno-124-4"></a>Reachability Analyzer
+</span></code></pre></div>
+<p>proporcionan:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-125-1"><a id="__codelineno-125-1" name="__codelineno-125-1" href="#__codelineno-125-1"></a>EVIDENCIAS
+</span></code></pre></div>
+<p>La causa raíz la obtenemos interpretando esas evidencias dentro de la arquitectura.</p>
+<hr />
+<h1 id="58-metodo-de-aislamiento-binario">58. Método de aislamiento binario<a class="headerlink" href="#58-metodo-de-aislamiento-binario" title="Permanent link">&para;</a></h1>
+<p>Cuando el recorrido es largo podemos buscar el punto de ruptura.</p>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-126-1"><a id="__codelineno-126-1" name="__codelineno-126-1" href="#__codelineno-126-1"></a>A ─ B ─ C ─ D ─ E
+</span></code></pre></div>
+<p>Si sabemos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-127-1"><a id="__codelineno-127-1" name="__codelineno-127-1" href="#__codelineno-127-1"></a>A → C ✓
+</span></code></pre></div>
+<p>pero:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-128-1"><a id="__codelineno-128-1" name="__codelineno-128-1" href="#__codelineno-128-1"></a>A → E ✕
+</span></code></pre></div>
+<p>investigamos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-129-1"><a id="__codelineno-129-1" name="__codelineno-129-1" href="#__codelineno-129-1"></a>C → D → E
+</span></code></pre></div>
+<p>No volvemos continuamente a A.</p>
+<hr />
+<h1 id="59-cambiar-una-sola-variable">59. Cambiar una sola variable<a class="headerlink" href="#59-cambiar-una-sola-variable" title="Permanent link">&para;</a></h1>
+<p>Durante troubleshooting:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-130-1"><a id="__codelineno-130-1" name="__codelineno-130-1" href="#__codelineno-130-1"></a>HIPÓTESIS
+</span><span id="__span-130-2"><a id="__codelineno-130-2" name="__codelineno-130-2" href="#__codelineno-130-2"></a>   ↓
+</span><span id="__span-130-3"><a id="__codelineno-130-3" name="__codelineno-130-3" href="#__codelineno-130-3"></a>CAMBIO
+</span><span id="__span-130-4"><a id="__codelineno-130-4" name="__codelineno-130-4" href="#__codelineno-130-4"></a>   ↓
+</span><span id="__span-130-5"><a id="__codelineno-130-5" name="__codelineno-130-5" href="#__codelineno-130-5"></a>PRUEBA
+</span></code></pre></div>
+<p>No:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-131-1"><a id="__codelineno-131-1" name="__codelineno-131-1" href="#__codelineno-131-1"></a>cambiar ruta
+</span><span id="__span-131-2"><a id="__codelineno-131-2" name="__codelineno-131-2" href="#__codelineno-131-2"></a>+
+</span><span id="__span-131-3"><a id="__codelineno-131-3" name="__codelineno-131-3" href="#__codelineno-131-3"></a>firewall
+</span><span id="__span-131-4"><a id="__codelineno-131-4" name="__codelineno-131-4" href="#__codelineno-131-4"></a>+
+</span><span id="__span-131-5"><a id="__codelineno-131-5" name="__codelineno-131-5" href="#__codelineno-131-5"></a>DNS
+</span><span id="__span-131-6"><a id="__codelineno-131-6" name="__codelineno-131-6" href="#__codelineno-131-6"></a>+
+</span><span id="__span-131-7"><a id="__codelineno-131-7" name="__codelineno-131-7" href="#__codelineno-131-7"></a>reiniciar
+</span></code></pre></div>
+<p>porque si funciona después:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-132-1"><a id="__codelineno-132-1" name="__codelineno-132-1" href="#__codelineno-132-1"></a>no sabremos por qué
+</span></code></pre></div>
+<hr />
+<h1 id="60-correccion-minima">60. Corrección mínima<a class="headerlink" href="#60-correccion-minima" title="Permanent link">&para;</a></h1>
+<p>La mejor solución no es:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-133-1"><a id="__codelineno-133-1" name="__codelineno-133-1" href="#__codelineno-133-1"></a>la que devuelve conectividad
+</span></code></pre></div>
+<p>sino:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-134-1"><a id="__codelineno-134-1" name="__codelineno-134-1" href="#__codelineno-134-1"></a>la que corrige la causa raíz
+</span><span id="__span-134-2"><a id="__codelineno-134-2" name="__codelineno-134-2" href="#__codelineno-134-2"></a>sin ampliar innecesariamente
+</span><span id="__span-134-3"><a id="__codelineno-134-3" name="__codelineno-134-3" href="#__codelineno-134-3"></a>la superficie de comunicación
+</span></code></pre></div>
+<hr />
+<h1 id="61-ejemplo">61. Ejemplo<a class="headerlink" href="#61-ejemplo" title="Permanent link">&para;</a></h1>
+<p>Problema:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-135-1"><a id="__codelineno-135-1" name="__codelineno-135-1" href="#__codelineno-135-1"></a>WEB → APP:8080 ✕
+</span></code></pre></div>
+<p>Solución incorrecta:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-136-1"><a id="__codelineno-136-1" name="__codelineno-136-1" href="#__codelineno-136-1"></a>WEB → any → any → PASS
+</span></code></pre></div>
+<p>Solución correcta:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-137-1"><a id="__codelineno-137-1" name="__codelineno-137-1" href="#__codelineno-137-1"></a>WEB → APP → TCP/8080 → PASS
+</span></code></pre></div>
+<p>si esa era la causa.</p>
+<hr />
+<h1 id="62-validar-despues-de-corregir">62. Validar después de corregir<a class="headerlink" href="#62-validar-despues-de-corregir" title="Permanent link">&para;</a></h1>
+<p>Siempre:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-138-1"><a id="__codelineno-138-1" name="__codelineno-138-1" href="#__codelineno-138-1"></a>PRUEBA POSITIVA
+</span><span id="__span-138-2"><a id="__codelineno-138-2" name="__codelineno-138-2" href="#__codelineno-138-2"></a>+
+</span><span id="__span-138-3"><a id="__codelineno-138-3" name="__codelineno-138-3" href="#__codelineno-138-3"></a>PRUEBA NEGATIVA
+</span></code></pre></div>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-139-1"><a id="__codelineno-139-1" name="__codelineno-139-1" href="#__codelineno-139-1"></a>WEB → APP:8080 ✓
+</span><span id="__span-139-2"><a id="__codelineno-139-2" name="__codelineno-139-2" href="#__codelineno-139-2"></a>WEB → DB:5432  ✕
+</span></code></pre></div>
+<p>Si solo comprobamos la positiva podríamos haber creado una regla excesivamente amplia.</p>
+<hr />
+<h1 id="63-causa-raiz-frente-a-sintoma">63. Causa raíz frente a síntoma<a class="headerlink" href="#63-causa-raiz-frente-a-sintoma" title="Permanent link">&para;</a></h1>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-140-1"><a id="__codelineno-140-1" name="__codelineno-140-1" href="#__codelineno-140-1"></a>síntoma:
+</span><span id="__span-140-2"><a id="__codelineno-140-2" name="__codelineno-140-2" href="#__codelineno-140-2"></a>APP no tiene Internet
+</span></code></pre></div>
+<p>No es una causa raíz.</p>
+<p>Posibles causas:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-141-1"><a id="__codelineno-141-1" name="__codelineno-141-1" href="#__codelineno-141-1"></a>gateway incorrecto
+</span><span id="__span-141-2"><a id="__codelineno-141-2" name="__codelineno-141-2" href="#__codelineno-141-2"></a>firewall
+</span><span id="__span-141-3"><a id="__codelineno-141-3" name="__codelineno-141-3" href="#__codelineno-141-3"></a>NAT
+</span><span id="__span-141-4"><a id="__codelineno-141-4" name="__codelineno-141-4" href="#__codelineno-141-4"></a>WAN
+</span><span id="__span-141-5"><a id="__codelineno-141-5" name="__codelineno-141-5" href="#__codelineno-141-5"></a>Route Table
+</span><span id="__span-141-6"><a id="__codelineno-141-6" name="__codelineno-141-6" href="#__codelineno-141-6"></a>NAT Gateway
+</span><span id="__span-141-7"><a id="__codelineno-141-7" name="__codelineno-141-7" href="#__codelineno-141-7"></a>NACL
+</span><span id="__span-141-8"><a id="__codelineno-141-8" name="__codelineno-141-8" href="#__codelineno-141-8"></a>DNS
+</span></code></pre></div>
+<hr />
+<h1 id="64-informe-rca">64. Informe RCA<a class="headerlink" href="#64-informe-rca" title="Permanent link">&para;</a></h1>
+<p>Cada incidencia importante debe documentarse:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Requisito esperado</td>
+<td></td>
+</tr>
+<tr>
+<td>Síntoma</td>
+<td></td>
+</tr>
+<tr>
+<td>Alcance</td>
+<td></td>
+</tr>
+<tr>
+<td>Packet path esperado</td>
+<td></td>
+</tr>
+<tr>
+<td>Hipótesis inicial</td>
+<td></td>
+</tr>
+<tr>
+<td>Primera evidencia</td>
+<td></td>
+</tr>
+<tr>
+<td>Hipótesis descartadas</td>
+<td></td>
+</tr>
+<tr>
+<td>Evidencia decisiva</td>
+<td></td>
+</tr>
+<tr>
+<td>Causa raíz</td>
+<td></td>
+</tr>
+<tr>
+<td>Corrección mínima</td>
+<td></td>
+</tr>
+<tr>
+<td>Prueba positiva</td>
+<td></td>
+</tr>
+<tr>
+<td>Prueba negativa</td>
+<td></td>
+</tr>
+<tr>
+<td>Riesgo residual</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="65-ejemplo-rca">65. Ejemplo RCA<a class="headerlink" href="#65-ejemplo-rca" title="Permanent link">&para;</a></h1>
+<h2 id="sintoma">Síntoma<a class="headerlink" href="#sintoma" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-142-1"><a id="__codelineno-142-1" name="__codelineno-142-1" href="#__codelineno-142-1"></a>WEB no accede a APP:8080
+</span></code></pre></div>
+<h2 id="evidencia-1">Evidencia 1<a class="headerlink" href="#evidencia-1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-143-1"><a id="__codelineno-143-1" name="__codelineno-143-1" href="#__codelineno-143-1"></a>WEB → gateway ✓
+</span></code></pre></div>
+<p>Descartamos parcialmente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-144-1"><a id="__codelineno-144-1" name="__codelineno-144-1" href="#__codelineno-144-1"></a>VLAN10
+</span><span id="__span-144-2"><a id="__codelineno-144-2" name="__codelineno-144-2" href="#__codelineno-144-2"></a>gateway WEB
+</span></code></pre></div>
+<h2 id="evidencia-2">Evidencia 2<a class="headerlink" href="#evidencia-2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-145-1"><a id="__codelineno-145-1" name="__codelineno-145-1" href="#__codelineno-145-1"></a>APP escucha TCP/8080 ✓
+</span></code></pre></div>
+<h2 id="evidencia-3">Evidencia 3<a class="headerlink" href="#evidencia-3" title="Permanent link">&para;</a></h2>
+<p>Firewall Log:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-146-1"><a id="__codelineno-146-1" name="__codelineno-146-1" href="#__codelineno-146-1"></a>BLOCK
+</span><span id="__span-146-2"><a id="__codelineno-146-2" name="__codelineno-146-2" href="#__codelineno-146-2"></a>WEB → APP:8080
+</span></code></pre></div>
+<h2 id="causa-raiz">Causa raíz<a class="headerlink" href="#causa-raiz" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-147-1"><a id="__codelineno-147-1" name="__codelineno-147-1" href="#__codelineno-147-1"></a>regla WEB_to_APP configurada
+</span><span id="__span-147-2"><a id="__codelineno-147-2" name="__codelineno-147-2" href="#__codelineno-147-2"></a>con destino TCP/8081
+</span></code></pre></div>
+<h2 id="correccion">Corrección<a class="headerlink" href="#correccion" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-148-1"><a id="__codelineno-148-1" name="__codelineno-148-1" href="#__codelineno-148-1"></a>8081 → 8080
+</span></code></pre></div>
+<h2 id="validacion-positiva">Validación positiva<a class="headerlink" href="#validacion-positiva" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-149-1"><a id="__codelineno-149-1" name="__codelineno-149-1" href="#__codelineno-149-1"></a>WEB → APP:8080 ✓
+</span></code></pre></div>
+<h2 id="validacion-negativa">Validación negativa<a class="headerlink" href="#validacion-negativa" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-150-1"><a id="__codelineno-150-1" name="__codelineno-150-1" href="#__codelineno-150-1"></a>WEB → DB:5432 ✕
+</span></code></pre></div>
+<hr />
+<h1 id="66-escenarios-rapidos">66. Escenarios rápidos<a class="headerlink" href="#66-escenarios-rapidos" title="Permanent link">&para;</a></h1>
+<h2 id="escenario-a">Escenario A<a class="headerlink" href="#escenario-a" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-151-1"><a id="__codelineno-151-1" name="__codelineno-151-1" href="#__codelineno-151-1"></a>WEB no alcanza APP
+</span><span id="__span-151-2"><a id="__codelineno-151-2" name="__codelineno-151-2" href="#__codelineno-151-2"></a>ip route get muestra 10.10.20.10 dev eth0
+</span></code></pre></div>
+<p>cuando WEB tiene:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-152-1"><a id="__codelineno-152-1" name="__codelineno-152-1" href="#__codelineno-152-1"></a>10.10.10.10/8
+</span></code></pre></div>
+<p>Hipótesis:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-153-1"><a id="__codelineno-153-1" name="__codelineno-153-1" href="#__codelineno-153-1"></a>máscara incorrecta
+</span></code></pre></div>
+<hr />
+<h2 id="escenario-b">Escenario B<a class="headerlink" href="#escenario-b" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-154-1"><a id="__codelineno-154-1" name="__codelineno-154-1" href="#__codelineno-154-1"></a>APP alcanza 1.1.1.1
+</span><span id="__span-154-2"><a id="__codelineno-154-2" name="__codelineno-154-2" href="#__codelineno-154-2"></a>APP no resuelve example.com
+</span></code></pre></div>
+<p>Hipótesis:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-155-1"><a id="__codelineno-155-1" name="__codelineno-155-1" href="#__codelineno-155-1"></a>DNS
+</span></code></pre></div>
+<hr />
+<h2 id="escenario-c">Escenario C<a class="headerlink" href="#escenario-c" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-156-1"><a id="__codelineno-156-1" name="__codelineno-156-1" href="#__codelineno-156-1"></a>AWS APP
+</span><span id="__span-156-2"><a id="__codelineno-156-2" name="__codelineno-156-2" href="#__codelineno-156-2"></a>RT = local + NAT
+</span><span id="__span-156-3"><a id="__codelineno-156-3" name="__codelineno-156-3" href="#__codelineno-156-3"></a>NAT Available
+</span><span id="__span-156-4"><a id="__codelineno-156-4" name="__codelineno-156-4" href="#__codelineno-156-4"></a>pero no Internet
+</span></code></pre></div>
+<p>Siguiente comprobación:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-157-1"><a id="__codelineno-157-1" name="__codelineno-157-1" href="#__codelineno-157-1"></a>subnet de NAT
+</span><span id="__span-157-2"><a id="__codelineno-157-2" name="__codelineno-157-2" href="#__codelineno-157-2"></a>→ route table pública
+</span><span id="__span-157-3"><a id="__codelineno-157-3" name="__codelineno-157-3" href="#__codelineno-157-3"></a>→ IGW
+</span></code></pre></div>
+<hr />
+<h2 id="escenario-d">Escenario D<a class="headerlink" href="#escenario-d" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-158-1"><a id="__codelineno-158-1" name="__codelineno-158-1" href="#__codelineno-158-1"></a>AWS WEB → APP:8080 falla
+</span><span id="__span-158-2"><a id="__codelineno-158-2" name="__codelineno-158-2" href="#__codelineno-158-2"></a>SG-APP correcto
+</span><span id="__span-158-3"><a id="__codelineno-158-3" name="__codelineno-158-3" href="#__codelineno-158-3"></a>service correcto
+</span></code></pre></div>
+<p>Siguiente comprobación:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-159-1"><a id="__codelineno-159-1" name="__codelineno-159-1" href="#__codelineno-159-1"></a>NACL
+</span><span id="__span-159-2"><a id="__codelineno-159-2" name="__codelineno-159-2" href="#__codelineno-159-2"></a>+
+</span><span id="__span-159-3"><a id="__codelineno-159-3" name="__codelineno-159-3" href="#__codelineno-159-3"></a>retorno
+</span></code></pre></div>
+<hr />
+<h2 id="escenario-e">Escenario E<a class="headerlink" href="#escenario-e" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span id="__span-160-1"><a id="__codelineno-160-1" name="__codelineno-160-1" href="#__codelineno-160-1"></a>DB accede a Internet
+</span><span id="__span-160-2"><a id="__codelineno-160-2" name="__codelineno-160-2" href="#__codelineno-160-2"></a>pero el diseño dice que no debería
+</span></code></pre></div>
+<p>No tenemos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-161-1"><a id="__codelineno-161-1" name="__codelineno-161-1" href="#__codelineno-161-1"></a>un éxito
+</span></code></pre></div>
+<p>Tenemos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-162-1"><a id="__codelineno-162-1" name="__codelineno-162-1" href="#__codelineno-162-1"></a>un incidente de política
+</span></code></pre></div>
+<p>Revisar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-163-1"><a id="__codelineno-163-1" name="__codelineno-163-1" href="#__codelineno-163-1"></a>subnet
+</span><span id="__span-163-2"><a id="__codelineno-163-2" name="__codelineno-163-2" href="#__codelineno-163-2"></a>Route Table
+</span><span id="__span-163-3"><a id="__codelineno-163-3" name="__codelineno-163-3" href="#__codelineno-163-3"></a>default route
+</span><span id="__span-163-4"><a id="__codelineno-163-4" name="__codelineno-163-4" href="#__codelineno-163-4"></a>egress
+</span></code></pre></div>
+<hr />
+<h1 id="67-checklist-on-premise">67. Checklist on-premise<a class="headerlink" href="#67-checklist-on-premise" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span id="__span-164-1"><a id="__codelineno-164-1" name="__codelineno-164-1" href="#__codelineno-164-1"></a>□ interfaz UP
+</span><span id="__span-164-2"><a id="__codelineno-164-2" name="__codelineno-164-2" href="#__codelineno-164-2"></a>□ IP correcta
+</span><span id="__span-164-3"><a id="__codelineno-164-3" name="__codelineno-164-3" href="#__codelineno-164-3"></a>□ máscara correcta
+</span><span id="__span-164-4"><a id="__codelineno-164-4" name="__codelineno-164-4" href="#__codelineno-164-4"></a>□ bridge correcto
+</span><span id="__span-164-5"><a id="__codelineno-164-5" name="__codelineno-164-5" href="#__codelineno-164-5"></a>□ VLAN correcta
+</span><span id="__span-164-6"><a id="__codelineno-164-6" name="__codelineno-164-6" href="#__codelineno-164-6"></a>□ VLAN-aware
+</span><span id="__span-164-7"><a id="__codelineno-164-7" name="__codelineno-164-7" href="#__codelineno-164-7"></a>□ ARP correcto
+</span><span id="__span-164-8"><a id="__codelineno-164-8" name="__codelineno-164-8" href="#__codelineno-164-8"></a>□ gateway correcto
+</span><span id="__span-164-9"><a id="__codelineno-164-9" name="__codelineno-164-9" href="#__codelineno-164-9"></a>□ route correcta
+</span><span id="__span-164-10"><a id="__codelineno-164-10" name="__codelineno-164-10" href="#__codelineno-164-10"></a>□ retorno correcto
+</span><span id="__span-164-11"><a id="__codelineno-164-11" name="__codelineno-164-11" href="#__codelineno-164-11"></a>□ firewall correcto
+</span><span id="__span-164-12"><a id="__codelineno-164-12" name="__codelineno-164-12" href="#__codelineno-164-12"></a>□ state correcto
+</span><span id="__span-164-13"><a id="__codelineno-164-13" name="__codelineno-164-13" href="#__codelineno-164-13"></a>□ NAT correcto
+</span><span id="__span-164-14"><a id="__codelineno-164-14" name="__codelineno-164-14" href="#__codelineno-164-14"></a>□ DNS correcto
+</span><span id="__span-164-15"><a id="__codelineno-164-15" name="__codelineno-164-15" href="#__codelineno-164-15"></a>□ servicio activo
+</span><span id="__span-164-16"><a id="__codelineno-164-16" name="__codelineno-164-16" href="#__codelineno-164-16"></a>□ firewall local
+</span></code></pre></div>
+<hr />
+<h1 id="68-checklist-aws">68. Checklist AWS<a class="headerlink" href="#68-checklist-aws" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span id="__span-165-1"><a id="__codelineno-165-1" name="__codelineno-165-1" href="#__codelineno-165-1"></a>□ EC2 correcta
+</span><span id="__span-165-2"><a id="__codelineno-165-2" name="__codelineno-165-2" href="#__codelineno-165-2"></a>□ private IPv4 correcta
+</span><span id="__span-165-3"><a id="__codelineno-165-3" name="__codelineno-165-3" href="#__codelineno-165-3"></a>□ subnet correcta
+</span><span id="__span-165-4"><a id="__codelineno-165-4" name="__codelineno-165-4" href="#__codelineno-165-4"></a>□ Route Table asociada
+</span><span id="__span-165-5"><a id="__codelineno-165-5" name="__codelineno-165-5" href="#__codelineno-165-5"></a>□ ruta correcta
+</span><span id="__span-165-6"><a id="__codelineno-165-6" name="__codelineno-165-6" href="#__codelineno-165-6"></a>□ target correcto
+</span><span id="__span-165-7"><a id="__codelineno-165-7" name="__codelineno-165-7" href="#__codelineno-165-7"></a>□ IGW asociado
+</span><span id="__span-165-8"><a id="__codelineno-165-8" name="__codelineno-165-8" href="#__codelineno-165-8"></a>□ NAT Available
+</span><span id="__span-165-9"><a id="__codelineno-165-9" name="__codelineno-165-9" href="#__codelineno-165-9"></a>□ NAT en public subnet
+</span><span id="__span-165-10"><a id="__codelineno-165-10" name="__codelineno-165-10" href="#__codelineno-165-10"></a>□ public IPv4 cuando proceda
+</span><span id="__span-165-11"><a id="__codelineno-165-11" name="__codelineno-165-11" href="#__codelineno-165-11"></a>□ SG asociado
+</span><span id="__span-165-12"><a id="__codelineno-165-12" name="__codelineno-165-12" href="#__codelineno-165-12"></a>□ SG source/destination/port
+</span><span id="__span-165-13"><a id="__codelineno-165-13" name="__codelineno-165-13" href="#__codelineno-165-13"></a>□ NACL asociada
+</span><span id="__span-165-14"><a id="__codelineno-165-14" name="__codelineno-165-14" href="#__codelineno-165-14"></a>□ NACL inbound
+</span><span id="__span-165-15"><a id="__codelineno-165-15" name="__codelineno-165-15" href="#__codelineno-165-15"></a>□ NACL outbound
+</span><span id="__span-165-16"><a id="__codelineno-165-16" name="__codelineno-165-16" href="#__codelineno-165-16"></a>□ puertos efímeros
+</span><span id="__span-165-17"><a id="__codelineno-165-17" name="__codelineno-165-17" href="#__codelineno-165-17"></a>□ rule ordering
+</span><span id="__span-165-18"><a id="__codelineno-165-18" name="__codelineno-165-18" href="#__codelineno-165-18"></a>□ servicio activo
+</span><span id="__span-165-19"><a id="__codelineno-165-19" name="__codelineno-165-19" href="#__codelineno-165-19"></a>□ firewall del SO
+</span><span id="__span-165-20"><a id="__codelineno-165-20" name="__codelineno-165-20" href="#__codelineno-165-20"></a>□ DNS
+</span></code></pre></div>
+<hr />
+<h1 id="69-regla-final-de-diagnostico">69. Regla final de diagnóstico<a class="headerlink" href="#69-regla-final-de-diagnostico" title="Permanent link">&para;</a></h1>
+<p>Cuando aparezca:</p>
+<blockquote>
+<p><strong>“La red no funciona.”</strong></p>
+</blockquote>
+<p>debemos transformarlo en algo parecido a:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-166-1"><a id="__codelineno-166-1" name="__codelineno-166-1" href="#__codelineno-166-1"></a>TCP SYN
+</span><span id="__span-166-2"><a id="__codelineno-166-2" name="__codelineno-166-2" href="#__codelineno-166-2"></a>10.0.10.25:53124
+</span><span id="__span-166-3"><a id="__codelineno-166-3" name="__codelineno-166-3" href="#__codelineno-166-3"></a>→
+</span><span id="__span-166-4"><a id="__codelineno-166-4" name="__codelineno-166-4" href="#__codelineno-166-4"></a>10.0.20.37:8080
+</span><span id="__span-166-5"><a id="__codelineno-166-5" name="__codelineno-166-5" href="#__codelineno-166-5"></a>
+</span><span id="__span-166-6"><a id="__codelineno-166-6" name="__codelineno-166-6" href="#__codelineno-166-6"></a>sale de WEB
+</span><span id="__span-166-7"><a id="__codelineno-166-7" name="__codelineno-166-7" href="#__codelineno-166-7"></a>✓
+</span><span id="__span-166-8"><a id="__codelineno-166-8" name="__codelineno-166-8" href="#__codelineno-166-8"></a>
+</span><span id="__span-166-9"><a id="__codelineno-166-9" name="__codelineno-166-9" href="#__codelineno-166-9"></a>routing local VPC
+</span><span id="__span-166-10"><a id="__codelineno-166-10" name="__codelineno-166-10" href="#__codelineno-166-10"></a>✓
+</span><span id="__span-166-11"><a id="__codelineno-166-11" name="__codelineno-166-11" href="#__codelineno-166-11"></a>
+</span><span id="__span-166-12"><a id="__codelineno-166-12" name="__codelineno-166-12" href="#__codelineno-166-12"></a>SG-APP
+</span><span id="__span-166-13"><a id="__codelineno-166-13" name="__codelineno-166-13" href="#__codelineno-166-13"></a>✓
+</span><span id="__span-166-14"><a id="__codelineno-166-14" name="__codelineno-166-14" href="#__codelineno-166-14"></a>
+</span><span id="__span-166-15"><a id="__codelineno-166-15" name="__codelineno-166-15" href="#__codelineno-166-15"></a>NACL-APP inbound
+</span><span id="__span-166-16"><a id="__codelineno-166-16" name="__codelineno-166-16" href="#__codelineno-166-16"></a>✓
+</span><span id="__span-166-17"><a id="__codelineno-166-17" name="__codelineno-166-17" href="#__codelineno-166-17"></a>
+</span><span id="__span-166-18"><a id="__codelineno-166-18" name="__codelineno-166-18" href="#__codelineno-166-18"></a>respuesta APP
+</span><span id="__span-166-19"><a id="__codelineno-166-19" name="__codelineno-166-19" href="#__codelineno-166-19"></a>✓
+</span><span id="__span-166-20"><a id="__codelineno-166-20" name="__codelineno-166-20" href="#__codelineno-166-20"></a>
+</span><span id="__span-166-21"><a id="__codelineno-166-21" name="__codelineno-166-21" href="#__codelineno-166-21"></a>NACL-APP outbound
+</span><span id="__span-166-22"><a id="__codelineno-166-22" name="__codelineno-166-22" href="#__codelineno-166-22"></a>✕
+</span><span id="__span-166-23"><a id="__codelineno-166-23" name="__codelineno-166-23" href="#__codelineno-166-23"></a>
+</span><span id="__span-166-24"><a id="__codelineno-166-24" name="__codelineno-166-24" href="#__codelineno-166-24"></a>CAUSA RAÍZ:
+</span><span id="__span-166-25"><a id="__codelineno-166-25" name="__codelineno-166-25" href="#__codelineno-166-25"></a>retorno bloqueado
+</span><span id="__span-166-26"><a id="__codelineno-166-26" name="__codelineno-166-26" href="#__codelineno-166-26"></a>por política stateless
+</span></code></pre></div>
+<p>Eso es troubleshooting.</p>
+<hr />
+<h1 id="70-modelo-mental-definitivo">70. Modelo mental definitivo<a class="headerlink" href="#70-modelo-mental-definitivo" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span id="__span-167-1"><a id="__codelineno-167-1" name="__codelineno-167-1" href="#__codelineno-167-1"></a>ORIGEN
+</span><span id="__span-167-2"><a id="__codelineno-167-2" name="__codelineno-167-2" href="#__codelineno-167-2"></a>   ↓
+</span><span id="__span-167-3"><a id="__codelineno-167-3" name="__codelineno-167-3" href="#__codelineno-167-3"></a>INTERFAZ
+</span><span id="__span-167-4"><a id="__codelineno-167-4" name="__codelineno-167-4" href="#__codelineno-167-4"></a>   ↓
+</span><span id="__span-167-5"><a id="__codelineno-167-5" name="__codelineno-167-5" href="#__codelineno-167-5"></a>DIRECCIONAMIENTO
+</span><span id="__span-167-6"><a id="__codelineno-167-6" name="__codelineno-167-6" href="#__codelineno-167-6"></a>   ↓
+</span><span id="__span-167-7"><a id="__codelineno-167-7" name="__codelineno-167-7" href="#__codelineno-167-7"></a>SEGMENTACIÓN
+</span><span id="__span-167-8"><a id="__codelineno-167-8" name="__codelineno-167-8" href="#__codelineno-167-8"></a>   ↓
+</span><span id="__span-167-9"><a id="__codelineno-167-9" name="__codelineno-167-9" href="#__codelineno-167-9"></a>ROUTING
+</span><span id="__span-167-10"><a id="__codelineno-167-10" name="__codelineno-167-10" href="#__codelineno-167-10"></a>   ↓
+</span><span id="__span-167-11"><a id="__codelineno-167-11" name="__codelineno-167-11" href="#__codelineno-167-11"></a>POLÍTICA
+</span><span id="__span-167-12"><a id="__codelineno-167-12" name="__codelineno-167-12" href="#__codelineno-167-12"></a>   ↓
+</span><span id="__span-167-13"><a id="__codelineno-167-13" name="__codelineno-167-13" href="#__codelineno-167-13"></a>NAT
+</span><span id="__span-167-14"><a id="__codelineno-167-14" name="__codelineno-167-14" href="#__codelineno-167-14"></a>   ↓
+</span><span id="__span-167-15"><a id="__codelineno-167-15" name="__codelineno-167-15" href="#__codelineno-167-15"></a>DESTINO
+</span><span id="__span-167-16"><a id="__codelineno-167-16" name="__codelineno-167-16" href="#__codelineno-167-16"></a>   ↓
+</span><span id="__span-167-17"><a id="__codelineno-167-17" name="__codelineno-167-17" href="#__codelineno-167-17"></a>SERVICIO
+</span><span id="__span-167-18"><a id="__codelineno-167-18" name="__codelineno-167-18" href="#__codelineno-167-18"></a>   ↓
+</span><span id="__span-167-19"><a id="__codelineno-167-19" name="__codelineno-167-19" href="#__codelineno-167-19"></a>RETORNO
+</span></code></pre></div>
+<p>En AWS podemos ampliar:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-168-1"><a id="__codelineno-168-1" name="__codelineno-168-1" href="#__codelineno-168-1"></a>ORIGEN
+</span><span id="__span-168-2"><a id="__codelineno-168-2" name="__codelineno-168-2" href="#__codelineno-168-2"></a>   ↓
+</span><span id="__span-168-3"><a id="__codelineno-168-3" name="__codelineno-168-3" href="#__codelineno-168-3"></a>SUBNET
+</span><span id="__span-168-4"><a id="__codelineno-168-4" name="__codelineno-168-4" href="#__codelineno-168-4"></a>   ↓
+</span><span id="__span-168-5"><a id="__codelineno-168-5" name="__codelineno-168-5" href="#__codelineno-168-5"></a>ROUTE TABLE
+</span><span id="__span-168-6"><a id="__codelineno-168-6" name="__codelineno-168-6" href="#__codelineno-168-6"></a>   ↓
+</span><span id="__span-168-7"><a id="__codelineno-168-7" name="__codelineno-168-7" href="#__codelineno-168-7"></a>TARGET
+</span><span id="__span-168-8"><a id="__codelineno-168-8" name="__codelineno-168-8" href="#__codelineno-168-8"></a>   ↓
+</span><span id="__span-168-9"><a id="__codelineno-168-9" name="__codelineno-168-9" href="#__codelineno-168-9"></a>SG
+</span><span id="__span-168-10"><a id="__codelineno-168-10" name="__codelineno-168-10" href="#__codelineno-168-10"></a>   ↓
+</span><span id="__span-168-11"><a id="__codelineno-168-11" name="__codelineno-168-11" href="#__codelineno-168-11"></a>NACL
+</span><span id="__span-168-12"><a id="__codelineno-168-12" name="__codelineno-168-12" href="#__codelineno-168-12"></a>   ↓
+</span><span id="__span-168-13"><a id="__codelineno-168-13" name="__codelineno-168-13" href="#__codelineno-168-13"></a>DESTINO
+</span><span id="__span-168-14"><a id="__codelineno-168-14" name="__codelineno-168-14" href="#__codelineno-168-14"></a>   ↓
+</span><span id="__span-168-15"><a id="__codelineno-168-15" name="__codelineno-168-15" href="#__codelineno-168-15"></a>RETORNO
+</span></code></pre></div>
+<hr />
+<h1 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h1>
+<p>Un buen administrador de red no memoriza únicamente configuraciones.</p>
+<p>Debe ser capaz de responder:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-169-1"><a id="__codelineno-169-1" name="__codelineno-169-1" href="#__codelineno-169-1"></a>¿qué debería ocurrir?
+</span><span id="__span-169-2"><a id="__codelineno-169-2" name="__codelineno-169-2" href="#__codelineno-169-2"></a>¿por dónde debería pasar?
+</span><span id="__span-169-3"><a id="__codelineno-169-3" name="__codelineno-169-3" href="#__codelineno-169-3"></a>¿qué componente decide?
+</span><span id="__span-169-4"><a id="__codelineno-169-4" name="__codelineno-169-4" href="#__codelineno-169-4"></a>¿qué evidencia tengo?
+</span><span id="__span-169-5"><a id="__codelineno-169-5" name="__codelineno-169-5" href="#__codelineno-169-5"></a>¿dónde desaparece el tráfico?
+</span><span id="__span-169-6"><a id="__codelineno-169-6" name="__codelineno-169-6" href="#__codelineno-169-6"></a>¿por qué?
+</span></code></pre></div>
+<p>Por eso, nuestra metodología durante toda la unidad será:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-170-1"><a id="__codelineno-170-1" name="__codelineno-170-1" href="#__codelineno-170-1"></a>PREDECIR
+</span><span id="__span-170-2"><a id="__codelineno-170-2" name="__codelineno-170-2" href="#__codelineno-170-2"></a>   ↓
+</span><span id="__span-170-3"><a id="__codelineno-170-3" name="__codelineno-170-3" href="#__codelineno-170-3"></a>OBSERVAR
+</span><span id="__span-170-4"><a id="__codelineno-170-4" name="__codelineno-170-4" href="#__codelineno-170-4"></a>   ↓
+</span><span id="__span-170-5"><a id="__codelineno-170-5" name="__codelineno-170-5" href="#__codelineno-170-5"></a>AISLAR
+</span><span id="__span-170-6"><a id="__codelineno-170-6" name="__codelineno-170-6" href="#__codelineno-170-6"></a>   ↓
+</span><span id="__span-170-7"><a id="__codelineno-170-7" name="__codelineno-170-7" href="#__codelineno-170-7"></a>FORMULAR HIPÓTESIS
+</span><span id="__span-170-8"><a id="__codelineno-170-8" name="__codelineno-170-8" href="#__codelineno-170-8"></a>   ↓
+</span><span id="__span-170-9"><a id="__codelineno-170-9" name="__codelineno-170-9" href="#__codelineno-170-9"></a>OBTENER EVIDENCIA
+</span><span id="__span-170-10"><a id="__codelineno-170-10" name="__codelineno-170-10" href="#__codelineno-170-10"></a>   ↓
+</span><span id="__span-170-11"><a id="__codelineno-170-11" name="__codelineno-170-11" href="#__codelineno-170-11"></a>IDENTIFICAR CAUSA RAÍZ
+</span><span id="__span-170-12"><a id="__codelineno-170-12" name="__codelineno-170-12" href="#__codelineno-170-12"></a>   ↓
+</span><span id="__span-170-13"><a id="__codelineno-170-13" name="__codelineno-170-13" href="#__codelineno-170-13"></a>APLICAR CAMBIO MÍNIMO
+</span><span id="__span-170-14"><a id="__codelineno-170-14" name="__codelineno-170-14" href="#__codelineno-170-14"></a>   ↓
+</span><span id="__span-170-15"><a id="__codelineno-170-15" name="__codelineno-170-15" href="#__codelineno-170-15"></a>VALIDAR POSITIVO
+</span><span id="__span-170-16"><a id="__codelineno-170-16" name="__codelineno-170-16" href="#__codelineno-170-16"></a>   ↓
+</span><span id="__span-170-17"><a id="__codelineno-170-17" name="__codelineno-170-17" href="#__codelineno-170-17"></a>VALIDAR NEGATIVO
+</span><span id="__span-170-18"><a id="__codelineno-170-18" name="__codelineno-170-18" href="#__codelineno-170-18"></a>   ↓
+</span><span id="__span-170-19"><a id="__codelineno-170-19" name="__codelineno-170-19" href="#__codelineno-170-19"></a>DOCUMENTAR
+</span></code></pre></div>
+<blockquote>
+<p><strong>Troubleshooting no consiste en conseguir que vuelva a funcionar. Consiste en demostrar por qué dejó de funcionar y corregir exactamente esa causa.</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../09-laboratorios/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Laboratorios">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Laboratorios
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../ud3-vpn-hibrida/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Introducción">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Introducción
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Administración de Redes en la Nube · Material docente
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.prune", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.top", "navigation.footer", "navigation.tracking", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+  
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  <script>
+    (function() {
+      function initSidebarToggle() {
+      const header = document.querySelector('.md-header__inner');
+      if (!header) return;
+
+      let btn = document.getElementById('sidebar-toggle-btn');
+      if (!btn) {
+        btn = document.createElement('button');
+        btn.id = 'sidebar-toggle-btn';
+        btn.textContent = '☰';
+        btn.setAttribute('aria-label', 'Contraer o expandir navegación');
+        btn.setAttribute('type', 'button');
+        header.insertBefore(btn, header.firstElementChild);
+
+        btn.addEventListener('click', function() {
+          const collapsed = document.body.classList.toggle('sidebar-collapsed');
+          localStorage.setItem('sidebar-collapsed', String(collapsed));
+        });
+      }
+
+      if (localStorage.getItem('sidebar-collapsed') === 'true') {
+        document.body.classList.add('sidebar-collapsed');
+      }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSidebarToggle);
+      } else {
+        initSidebarToggle();
+      }
+
+      if (typeof document$ !== 'undefined') {
+        document$.subscribe(initSidebarToggle);
+      }
+    })();
+  </script>
+
+  </body>
+</html>
