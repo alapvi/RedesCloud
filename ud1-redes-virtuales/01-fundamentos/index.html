@@ -703,26 +703,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-cidr" class="md-nav__link">
+  <a href="#4-fundamentos-de-ipv6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. CIDR
+        4. Fundamentos de IPv6
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-fundamentos-de-ipv6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Fundamentos de IPv6
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Fundamentos de IPv6">
+    <nav class="md-nav" aria-label="4. Fundamentos de IPv6">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -771,6 +760,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cidr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. CIDR
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2996,26 +2996,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-cidr" class="md-nav__link">
+  <a href="#4-fundamentos-de-ipv6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. CIDR
+        4. Fundamentos de IPv6
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-fundamentos-de-ipv6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Fundamentos de IPv6
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Fundamentos de IPv6">
+    <nav class="md-nav" aria-label="4. Fundamentos de IPv6">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3064,6 +3053,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cidr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. CIDR
+      
+    </span>
+  </a>
   
 </li>
       
@@ -3237,16 +3237,94 @@
 <div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>192.168.10.25
 </span></code></pre></div>
 <p>Una dirección IP por sí sola no permite conocer a qué red pertenece. Necesitamos el <strong>prefijo CIDR</strong>.</p>
-<h2 id="4-cidr">4. CIDR<a class="headerlink" href="#4-cidr" title="Permanent link">&para;</a></h2>
+<h2 id="4-fundamentos-de-ipv6">4. Fundamentos de IPv6<a class="headerlink" href="#4-fundamentos-de-ipv6" title="Permanent link">&para;</a></h2>
+<p>IPv6 utiliza direcciones de <strong>128 bits</strong> y permite disponer de un espacio de direccionamiento mucho mayor que IPv4. En una infraestructura cloud es habitual trabajar con IPv4, IPv6 o una configuración de <strong>doble pila</strong>.</p>
+<p>Una dirección IPv6 se representa mediante grupos hexadecimales separados por dos puntos:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>2001:db8:1234:1::10/64
+</span></code></pre></div>
+<p>Las reglas básicas de escritura permiten omitir ceros a la izquierda y comprimir una única secuencia de grupos <code>0</code> mediante <code>::</code>.</p>
+<h3 id="tipos-de-direccion-esenciales">Tipos de dirección esenciales<a class="headerlink" href="#tipos-de-direccion-esenciales" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Prefijo o dirección</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Global unicast</td>
+<td>normalmente <code>2000::/3</code></td>
+<td>comunicación enrutable, incluida Internet</td>
+</tr>
+<tr>
+<td>Link-local</td>
+<td><code>fe80::/10</code></td>
+<td>comunicación del enlace y siguiente salto</td>
+</tr>
+<tr>
+<td>Multicast</td>
+<td><code>ff00::/8</code></td>
+<td>comunicación con un grupo de interfaces</td>
+</tr>
+<tr>
+<td>Loopback</td>
+<td><code>::1</code></td>
+<td>referencia a la propia máquina</td>
+</tr>
+<tr>
+<td>Documentación</td>
+<td><code>2001:db8::/32</code></td>
+<td>ejemplos y laboratorios, no Internet real</td>
+</tr>
+</tbody>
+</table>
+<p>En IPv6, el prefijo <code>/64</code> es habitual para una subnet. Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Red:    2001:db8:1234:1::/64
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Host A: 2001:db8:1234:1::10/64
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Host B: 2001:db8:1234:1::20/64
+</span></code></pre></div>
+<h3 id="diferencias-importantes-respecto-a-ipv4">Diferencias importantes respecto a IPv4<a class="headerlink" href="#diferencias-importantes-respecto-a-ipv4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>IPv6 no utiliza broadcast; emplea multicast para muchos descubrimientos.</li>
+<li>ARP se sustituye por <strong>Neighbor Discovery Protocol (NDP)</strong> sobre ICMPv6.</li>
+<li><code>::/0</code> representa la ruta por defecto IPv6.</li>
+<li>Una interfaz puede tener varias direcciones IPv6 simultáneamente, incluida una link-local.</li>
+<li>La conectividad IPv6 depende también de permitir ICMPv6; bloquearlo indiscriminadamente puede romper NDP y el funcionamiento de la red.</li>
+</ul>
+<h3 id="autoconfiguracion-y-doble-pila">Autoconfiguración y doble pila<a class="headerlink" href="#autoconfiguracion-y-doble-pila" title="Permanent link">&para;</a></h3>
+<p>Un host puede obtener su configuración mediante:</p>
+<ul>
+<li><strong>SLAAC</strong>, usando anuncios del router;</li>
+<li><strong>DHCPv6</strong>;</li>
+<li>configuración estática.</li>
+</ul>
+<p>En una migración progresiva es frecuente mantener IPv4 e IPv6 al mismo tiempo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>IPv4: 10.0.1.10/24
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>IPv6: 2001:db8:1234:1::10/64
+</span></code></pre></div>
+<p>Esto se denomina <strong>dual stack</strong>. No significa que una dirección IPv4 se convierta en IPv6: son protocolos independientes y cada uno necesita sus propias rutas y reglas de seguridad.</p>
+<h3 id="comandos-basicos-en-linux">Comandos básicos en Linux<a class="headerlink" href="#comandos-basicos-en-linux" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ip<span class="w"> </span>-6<span class="w"> </span>addr
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ip<span class="w"> </span>-6<span class="w"> </span>route
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>ip<span class="w"> </span>-6<span class="w"> </span>neigh
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>ping<span class="w"> </span>-6<span class="w"> </span><span class="m">2001</span>:db8:1234:1::20
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Alcance de esta unidad</p>
+<p>Los laboratorios principales de la UD1 utilizan IPv4 para concentrarse en los conceptos de subnet, gateway, routing y NAT. IPv6 se introduce aquí para reconocer su direccionamiento y sus diferencias; la configuración avanzada de redes IPv6 queda fuera del alcance de esta unidad.</p>
+</div>
+<h2 id="5-cidr">5. CIDR<a class="headerlink" href="#5-cidr" title="Permanent link">&para;</a></h2>
 <p>CIDR representa una red mediante:</p>
-<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>dirección/prefijo
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>dirección/prefijo
 </span></code></pre></div>
 <p>Ejemplo:</p>
-<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>192.168.10.25/24
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>192.168.10.25/24
 </span></code></pre></div>
 <p>Interpretación:</p>
-<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Host: 192.168.10.25
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Red:  192.168.10.0/24
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Host: 192.168.10.25
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Red:  192.168.10.0/24
 </span></code></pre></div>
 <table>
 <thead>
@@ -3294,84 +3372,6 @@
 </tr>
 </tbody>
 </table>
-<h2 id="5-fundamentos-de-ipv6">5. Fundamentos de IPv6<a class="headerlink" href="#5-fundamentos-de-ipv6" title="Permanent link">&para;</a></h2>
-<p>IPv6 utiliza direcciones de <strong>128 bits</strong> y permite disponer de un espacio de direccionamiento mucho mayor que IPv4. En una infraestructura cloud es habitual trabajar con IPv4, IPv6 o una configuración de <strong>doble pila</strong>.</p>
-<p>Una dirección IPv6 se representa mediante grupos hexadecimales separados por dos puntos:</p>
-<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>2001:db8:1234:1::10/64
-</span></code></pre></div>
-<p>Las reglas básicas de escritura permiten omitir ceros a la izquierda y comprimir una única secuencia de grupos <code>0</code> mediante <code>::</code>.</p>
-<h3 id="tipos-de-direccion-esenciales">Tipos de dirección esenciales<a class="headerlink" href="#tipos-de-direccion-esenciales" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Tipo</th>
-<th>Prefijo o dirección</th>
-<th>Uso</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Global unicast</td>
-<td>normalmente <code>2000::/3</code></td>
-<td>comunicación enrutable, incluida Internet</td>
-</tr>
-<tr>
-<td>Link-local</td>
-<td><code>fe80::/10</code></td>
-<td>comunicación del enlace y siguiente salto</td>
-</tr>
-<tr>
-<td>Multicast</td>
-<td><code>ff00::/8</code></td>
-<td>comunicación con un grupo de interfaces</td>
-</tr>
-<tr>
-<td>Loopback</td>
-<td><code>::1</code></td>
-<td>referencia a la propia máquina</td>
-</tr>
-<tr>
-<td>Documentación</td>
-<td><code>2001:db8::/32</code></td>
-<td>ejemplos y laboratorios, no Internet real</td>
-</tr>
-</tbody>
-</table>
-<p>En IPv6, el prefijo <code>/64</code> es habitual para una subnet. Por ejemplo:</p>
-<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Red:    2001:db8:1234:1::/64
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Host A: 2001:db8:1234:1::10/64
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Host B: 2001:db8:1234:1::20/64
-</span></code></pre></div>
-<h3 id="diferencias-importantes-respecto-a-ipv4">Diferencias importantes respecto a IPv4<a class="headerlink" href="#diferencias-importantes-respecto-a-ipv4" title="Permanent link">&para;</a></h3>
-<ul>
-<li>IPv6 no utiliza broadcast; emplea multicast para muchos descubrimientos.</li>
-<li>ARP se sustituye por <strong>Neighbor Discovery Protocol (NDP)</strong> sobre ICMPv6.</li>
-<li><code>::/0</code> representa la ruta por defecto IPv6.</li>
-<li>Una interfaz puede tener varias direcciones IPv6 simultáneamente, incluida una link-local.</li>
-<li>La conectividad IPv6 depende también de permitir ICMPv6; bloquearlo indiscriminadamente puede romper NDP y el funcionamiento de la red.</li>
-</ul>
-<h3 id="autoconfiguracion-y-doble-pila">Autoconfiguración y doble pila<a class="headerlink" href="#autoconfiguracion-y-doble-pila" title="Permanent link">&para;</a></h3>
-<p>Un host puede obtener su configuración mediante:</p>
-<ul>
-<li><strong>SLAAC</strong>, usando anuncios del router;</li>
-<li><strong>DHCPv6</strong>;</li>
-<li>configuración estática.</li>
-</ul>
-<p>En una migración progresiva es frecuente mantener IPv4 e IPv6 al mismo tiempo:</p>
-<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>IPv4: 10.0.1.10/24
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>IPv6: 2001:db8:1234:1::10/64
-</span></code></pre></div>
-<p>Esto se denomina <strong>dual stack</strong>. No significa que una dirección IPv4 se convierta en IPv6: son protocolos independientes y cada uno necesita sus propias rutas y reglas de seguridad.</p>
-<h3 id="comandos-basicos-en-linux">Comandos básicos en Linux<a class="headerlink" href="#comandos-basicos-en-linux" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ip<span class="w"> </span>-6<span class="w"> </span>addr
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ip<span class="w"> </span>-6<span class="w"> </span>route
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>ip<span class="w"> </span>-6<span class="w"> </span>neigh
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>ping<span class="w"> </span>-6<span class="w"> </span><span class="m">2001</span>:db8:1234:1::20
-</span></code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Alcance de esta unidad</p>
-<p>Los laboratorios principales de la UD1 utilizan IPv4 para concentrarse en los conceptos de subnet, gateway, routing y NAT. IPv6 se introduce aquí para reconocer su direccionamiento y sus diferencias; la configuración avanzada de redes IPv6 queda fuera del alcance de esta unidad.</p>
-</div>
 <h2 id="6-misma-red-o-redes-diferentes">6. Misma red o redes diferentes<a class="headerlink" href="#6-misma-red-o-redes-diferentes" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>192.168.10.10/24
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>192.168.10.20/24
