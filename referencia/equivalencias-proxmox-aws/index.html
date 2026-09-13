@@ -90,7 +90,6 @@
     </div>
     
     
-  
       
 
   
@@ -201,93 +200,6 @@
   
 </header>
     
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Variables
-      const STORAGE_KEY = 'md-sidebar-hidden';
-      let sidebarHidden = localStorage.getItem(STORAGE_KEY) === 'true';
-
-      // Función para crear e insertar botón
-      function setupToggleButton() {
-        const header = document.querySelector('.md-header__inner');
-        
-        if (!header) {
-          return setTimeout(setupToggleButton, 100);
-        }
-
-        // No crear si ya existe
-        if (document.querySelector('.sidebar-toggle-btn')) {
-          return;
-        }
-
-        // Crear botón
-        const btn = document.createElement('button');
-        btn.className = 'sidebar-toggle-btn';
-        btn.setAttribute('type', 'button');
-        btn.setAttribute('title', 'Alternar menú lateral');
-        btn.setAttribute('aria-label', 'Alternar menú lateral');
-        btn.innerHTML = '☰';
-
-        // Insertar al inicio del header
-        header.insertBefore(btn, header.firstChild);
-
-        // Listener del botón
-        btn.addEventListener('click', toggleSidebar);
-
-        // Aplicar estado guardado
-        applyToggleState();
-      }
-
-      // Función para aplicar estado
-      function applyToggleState() {
-        const sidebar = document.querySelector('.md-sidebar--primary');
-        if (!sidebar) return;
-
-        if (sidebarHidden) {
-          sidebar.classList.add('hidden');
-        } else {
-          sidebar.classList.remove('hidden');
-        }
-      }
-
-      // Función toggle
-      function toggleSidebar(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        sidebarHidden = !sidebarHidden;
-        localStorage.setItem(STORAGE_KEY, sidebarHidden ? 'true' : 'false');
-        applyToggleState();
-      }
-
-      // Iniciar setup
-      setupToggleButton();
-
-      // Reintentar en caso de que sea lazy-loaded
-      setTimeout(setupToggleButton, 500);
-    });
-
-    // También ejecutar después de navegación instantánea
-    document.addEventListener('mdChange', function() {
-      const btn = document.querySelector('.sidebar-toggle-btn');
-      if (!btn) {
-        setTimeout(function() {
-          const STORAGE_KEY = 'md-sidebar-hidden';
-          const sidebarHidden = localStorage.getItem(STORAGE_KEY) === 'true';
-          const sidebar = document.querySelector('.md-sidebar--primary');
-          
-          if (sidebar) {
-            if (sidebarHidden) {
-              sidebar.classList.add('hidden');
-            } else {
-              sidebar.classList.remove('hidden');
-            }
-          }
-        }, 100);
-      }
-    });
-  </script>
-
     <div class="md-container" data-md-component="container">
       
       
@@ -2953,8 +2865,32 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.prune", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.top", "navigation.footer", "navigation.tracking", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
+  
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('.md-header__inner');
+      if (!header) return;
+
+      // Click en el ☰ que viene del CSS
+      header.addEventListener('click', function(e) {
+        if (e.target.nodeType === 3 || e.target === header) return; // Si click en el text node del ::before
+        
+        if (e.clientX < 60) { // Area del icono
+          document.body.classList.toggle('sidebar-collapsed');
+          localStorage.setItem('sidebar-collapsed', 
+            document.body.classList.contains('sidebar-collapsed'));
+        }
+      });
+
+      // Restaurar estado
+      if (localStorage.getItem('sidebar-collapsed') === 'true') {
+        document.body.classList.add('sidebar-collapsed');
+      }
+    });
+  </script>
+
   </body>
 </html>
