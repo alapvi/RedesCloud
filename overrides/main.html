@@ -3,134 +3,113 @@
 {% block extra_css %}
   {{ super() }}
   <style>
-    /* Estilos para el toggle del sidebar */
-    .md-header__button.sidebar-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 0.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .md-header__button.sidebar-toggle:hover {
-      opacity: 0.7;
-    }
-
     .md-sidebar--primary {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
 
-    .md-sidebar--primary.closed {
-      transform: translateX(-100%);
+    .md-sidebar--primary.toggled {
+      margin-left: -30.1rem;
+      width: 0 !important;
+      overflow: hidden;
+      display: none;
     }
 
-    .md-main {
-      transition: margin-left 0.3s ease;
+    .md-content {
+      transition: all 0.3s ease !important;
     }
 
-    .md-main.sidebar-closed {
-      margin-left: 0;
+    .sidebar-toggle-btn {
+      display: inline-block !important;
+      width: auto !important;
+      padding: 0.4rem 0.8rem !important;
+      margin-left: 0.5rem !important;
+      border: none !important;
+      background: transparent !important;
+      cursor: pointer !important;
+      font-size: 1.5rem !important;
+      color: inherit !important;
     }
 
-    @media (max-width: 76.1875em) {
-      .md-sidebar--primary.closed {
-        position: absolute;
-        width: 100%;
-        z-index: 10;
-      }
-
-      .md-sidebar--primary:not(.closed) {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 10;
-      }
+    .sidebar-toggle-btn:hover {
+      opacity: 0.7;
     }
   </style>
 {% endblock %}
 
-{% block content %}
+{% block scripts %}
   {{ super() }}
   <script>
-    (function() {
-      'use strict';
-
-      const STORAGE_KEY = 'sidebar-collapsed';
+    // Esperar a que el documento esté completamente cargado
+    function initToggleSidebar() {
+      console.log('[Sidebar Toggle] Iniciando...');
       
-      function initSidebarToggle() {
-        // Obtener elementos
-        const header = document.querySelector('.md-header');
-        const sidebar = document.querySelector('.md-sidebar--primary');
-        const main = document.querySelector('.md-main');
+      const header = document.querySelector('.md-header');
+      const sidebar = document.querySelector('.md-sidebar--primary');
+      
+      if (!header || !sidebar) {
+        console.warn('[Sidebar Toggle] No se encontraron elementos necesarios');
+        setTimeout(initToggleSidebar, 100);
+        return;
+      }
+
+      console.log('[Sidebar Toggle] Elementos encontrados');
+
+      // Crear botón si no existe
+      let btn = document.querySelector('.sidebar-toggle-btn');
+      if (!btn) {
+        btn = document.createElement('button');
+        btn.className = 'sidebar-toggle-btn';
+        btn.innerHTML = '☰';
+        btn.title = 'Alternar menú';
+        btn.type = 'button';
         
-        if (!header || !sidebar || !main) {
-          console.warn('Elementos no encontrados para toggle sidebar');
-          return;
-        }
-
-        // Crear botón toggle
-        const toggle = document.createElement('button');
-        toggle.className = 'md-header__button sidebar-toggle md-icon';
-        toggle.setAttribute('title', 'Alternar menú');
-        toggle.setAttribute('type', 'button');
-        toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
-        
-        // Insertar el botón en el header
-        const headerContent = header.querySelector('.md-header__inner');
-        if (headerContent) {
-          headerContent.appendChild(toggle);
-        }
-
-        // Cargar estado previo
-        const isClosed = localStorage.getItem(STORAGE_KEY) === 'true';
-        if (isClosed) {
-          applyClosed();
-        }
-
-        // Event listener
-        toggle.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          const currentlyClosed = sidebar.classList.contains('closed');
-          if (currentlyClosed) {
-            applyOpen();
-            localStorage.setItem(STORAGE_KEY, 'false');
-          } else {
-            applyClosed();
-            localStorage.setItem(STORAGE_KEY, 'true');
+        // Insertar después del logo
+        const header_inner = header.querySelector('.md-header__inner');
+        if (header_inner) {
+          const logo = header_inner.querySelector('.md-logo');
+          if (logo) {
+            logo.after(btn);
+            console.log('[Sidebar Toggle] Botón insertado');
           }
-        });
-
-        function applyClosed() {
-          sidebar.classList.add('closed');
-          main.classList.add('sidebar-closed');
         }
-
-        function applyOpen() {
-          sidebar.classList.remove('closed');
-          main.classList.remove('sidebar-closed');
-        }
-
-        // Cerrar sidebar en mobile cuando se hace click en un enlace
-        document.querySelectorAll('.md-nav__link, .md-nav__title').forEach(link => {
-          link.addEventListener('click', function() {
-            if (window.innerWidth < 76.1875 * 16) { // Menos de 76.1875em
-              applyClosed();
-              localStorage.setItem(STORAGE_KEY, 'true');
-            }
-          });
-        });
       }
 
-      // Esperar a que el DOM esté listo
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSidebarToggle);
-      } else {
-        initSidebarToggle();
+      // Cargar estado previo
+      const toggled = localStorage.getItem('sidebar-toggled') === 'true';
+      if (toggled) {
+        sidebar.classList.add('toggled');
+        console.log('[Sidebar Toggle] Estado cargado: cerrado');
       }
-    })();
+
+      // Event listener
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isToggled = sidebar.classList.contains('toggled');
+        
+        if (isToggled) {
+          sidebar.classList.remove('toggled');
+          localStorage.setItem('sidebar-toggled', 'false');
+          console.log('[Sidebar Toggle] Abriendo...');
+        } else {
+          sidebar.classList.add('toggled');
+          localStorage.setItem('sidebar-toggled', 'true');
+          console.log('[Sidebar Toggle] Cerrando...');
+        }
+      });
+
+      console.log('[Sidebar Toggle] Inicialización completada');
+    }
+
+    // Iniciar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initToggleSidebar);
+    } else {
+      setTimeout(initToggleSidebar, 100);
+    }
+
+    // También iniciar cuando la página cambia (Material MkDocs instantaneous loading)
+    window.addEventListener('pydata-page', initToggleSidebar);
   </script>
 {% endblock %}
-
