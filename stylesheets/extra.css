@@ -148,6 +148,13 @@ body.sidebar-collapsed .md-sidebar--primary {
     transition: transform 0.2s ease;
   }
 
+  .md-sidebar--primary .md-nav__item--nested > .md-nav__link {
+    pointer-events: auto !important;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+
   .md-sidebar--primary .md-nav__toggle:checked ~ .md-nav__link::after {
     transform: rotate(45deg);
   }
