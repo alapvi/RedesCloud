@@ -569,6 +569,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matriz RA - CE - UD
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -585,6 +603,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modulo-5163-administracion-de-redes-en-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Módulo 5163 · Administración de redes en la nube
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2865,6 +2913,25 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modulo-5163-administracion-de-redes-en-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Módulo 5163 · Administración de redes en la nube
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2932,7 +2999,966 @@
 
 
 <h1 id="matriz-ra-ce-ud">Matriz RA - CE - UD<a class="headerlink" href="#matriz-ra-ce-ud" title="Permanent link">&para;</a></h1>
-<p>Contenido pendiente de desarrollo.</p>
+<h2 id="modulo-5163-administracion-de-redes-en-la-nube">Módulo 5163 · Administración de redes en la nube<a class="headerlink" href="#modulo-5163-administracion-de-redes-en-la-nube" title="Permanent link">&para;</a></h2>
+<p>La organización de las unidades didácticas parte de los <strong>Resultados de Aprendizaje (RA)</strong> y <strong>Criterios de Evaluación (CE)</strong> establecidos para el módulo profesional <strong>5163 · Administración de redes en la nube</strong>.</p>
+<p>El módulo se desarrolla mediante un enfoque progresivo:</p>
+<p><strong>red local y virtualización → nube pública → segmentación y seguridad → conectividad híbrida → interconexión avanzada → publicación de servicios → monitorización y automatización.</strong></p>
+<p>Proxmox se utilizará como entorno <strong>on-premise / nube privada de laboratorio</strong> y AWS como <strong>proveedor de nube pública</strong>, permitiendo trasladar los principios de red entre ambos entornos.</p>
+<hr />
+<h1 id="1-distribucion-general-de-unidades">1. Distribución general de unidades<a class="headerlink" href="#1-distribucion-general-de-unidades" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>UD</th>
+<th>Título</th>
+<th style="text-align: right;">Horas</th>
+<th>RA principales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UD1</strong></td>
+<td>Diseño y despliegue de redes virtuales</td>
+<td style="text-align: right;"><strong>25 h</strong></td>
+<td>RA1, RA2</td>
+</tr>
+<tr>
+<td><strong>UD2</strong></td>
+<td>Segmentación, routing y seguridad de red</td>
+<td style="text-align: right;"><strong>30 h</strong></td>
+<td>RA1, RA2, RA4</td>
+</tr>
+<tr>
+<td><strong>UD3</strong></td>
+<td>VPN y conectividad híbrida</td>
+<td style="text-align: right;"><strong>30 h</strong></td>
+<td>RA1, RA3</td>
+</tr>
+<tr>
+<td><strong>UD4</strong></td>
+<td>Interconexión y routing avanzado</td>
+<td style="text-align: right;"><strong>25 h</strong></td>
+<td>RA1, RA3</td>
+</tr>
+<tr>
+<td><strong>UD5</strong></td>
+<td>Servicios de red y publicación segura</td>
+<td style="text-align: right;"><strong>20 h</strong></td>
+<td>RA1, RA2, RA4</td>
+</tr>
+<tr>
+<td><strong>UD6</strong></td>
+<td>Monitorización, diagnóstico y automatización</td>
+<td style="text-align: right;"><strong>20 h</strong></td>
+<td>RA1, RA4</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>TOTAL</strong></td>
+<td style="text-align: right;"><strong>150 h</strong></td>
+<td><strong>RA1 – RA4</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="2-resultados-de-aprendizaje">2. Resultados de aprendizaje<a class="headerlink" href="#2-resultados-de-aprendizaje" title="Permanent link">&para;</a></h1>
+<h2 id="ra1">RA1<a class="headerlink" href="#ra1" title="Permanent link">&para;</a></h2>
+<p><strong>Aplica procedimientos de despliegue de una infraestructura de red asociada a las aplicaciones de unos sistemas</strong>, configurando la privacidad, ciberseguridad y disponibilidad, para permitir la conectividad entre recursos de la nube y otras instalaciones propias (<em>on premise</em>) o en otras nubes.</p>
+<p>Se desarrolla de forma transversal durante prácticamente todo el módulo.</p>
+<hr />
+<h2 id="ra2">RA2<a class="headerlink" href="#ra2" title="Permanent link">&para;</a></h2>
+<p><strong>Configura recursos de red</strong>, asignando parámetros de balanceo y escalado horizontal y vertical, desde orígenes externos o internos, en condiciones de ciberseguridad, direccionando y enrutando el tráfico a los recursos desplegados en la nube.</p>
+<p>Tiene especial presencia en las UD1, UD2 y UD5.</p>
+<hr />
+<h2 id="ra3">RA3<a class="headerlink" href="#ra3" title="Permanent link">&para;</a></h2>
+<p><strong>Administra redes privadas físicas y virtuales</strong> mediante herramientas de una entidad proveedora de nube y de empresas de dispositivos de conectividad, disponiendo de un entorno híbrido con conexiones privadas, directas y de alta capacidad entre los recursos locales y de nube.</p>
+<p>Constituye el núcleo de las UD3 y UD4.</p>
+<hr />
+<h2 id="ra4">RA4<a class="headerlink" href="#ra4" title="Permanent link">&para;</a></h2>
+<p><strong>Aplica procedimientos de configuración de la seguridad digital de los recursos</strong>, monitorizando sus conexiones, para registrar los accesos e identificar su potencial de riesgo en los sistemas.</p>
+<p>Se trabaja principalmente en las UD2, UD5 y UD6.</p>
+<hr />
+<h1 id="3-matriz-completa-de-criterios-de-evaluacion">3. Matriz completa de criterios de evaluación<a class="headerlink" href="#3-matriz-completa-de-criterios-de-evaluacion" title="Permanent link">&para;</a></h1>
+<h2 id="ra1-infraestructura-de-red">RA1 · Infraestructura de red<a class="headerlink" href="#ra1-infraestructura-de-red" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>CE</th>
+<th>Síntesis del criterio</th>
+<th>UD principal</th>
+<th>Refuerzo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1.a</strong></td>
+<td>Redes virtuales, rangos IP, direccionamiento público/privado, gateways, subredes, firewall y grupos de seguridad</td>
+<td><strong>UD1</strong></td>
+<td>UD2</td>
+</tr>
+<tr>
+<td><strong>1.b</strong></td>
+<td>Reglas de firewall y grupos de seguridad según las conexiones permitidas</td>
+<td><strong>UD2</strong></td>
+<td>UD5, UD6</td>
+</tr>
+<tr>
+<td><strong>1.c</strong></td>
+<td>Resolución de nombres mediante zonas DNS públicas y privadas asociadas a redes virtuales</td>
+<td><strong>UD5</strong></td>
+<td>UD1</td>
+</tr>
+<tr>
+<td><strong>1.d</strong></td>
+<td>Acceso privado mediante proxy, VPN, private endpoints y peering, incluyendo cifrado, autenticación, autorización y supervisión</td>
+<td><strong>UD4</strong></td>
+<td>UD3</td>
+</tr>
+<tr>
+<td><strong>1.e</strong></td>
+<td>Recursos de inspección para registrar y analizar tráfico y resolver problemas</td>
+<td><strong>UD6</strong></td>
+<td>UD2</td>
+</tr>
+<tr>
+<td><strong>1.f</strong></td>
+<td>Enrutamiento y conexión entre sistemas locales y servicios WAN</td>
+<td><strong>UD3</strong></td>
+<td>UD4</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ra2-servicios-y-recursos-de-red">RA2 · Servicios y recursos de red<a class="headerlink" href="#ra2-servicios-y-recursos-de-red" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>CE</th>
+<th>Síntesis del criterio</th>
+<th>UD principal</th>
+<th>Refuerzo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2.a</strong></td>
+<td>Balanceadores de carga para aplicaciones internas y externas y escalado de recursos</td>
+<td><strong>UD5</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>2.b</strong></td>
+<td>DNS, zonas, subzonas y registros internos y externos</td>
+<td><strong>UD5</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>2.c</strong></td>
+<td>Caché perimetral distribuida / CDN, origen, endpoint y protocolos</td>
+<td><strong>UD5</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>2.d</strong></td>
+<td>Traducción de direccionamiento público / NAT</td>
+<td><strong>UD2</strong></td>
+<td>UD1</td>
+</tr>
+<tr>
+<td><strong>2.e</strong></td>
+<td>Direccionamiento público y privado y reserva de direcciones IP estáticas</td>
+<td><strong>UD1</strong></td>
+<td>UD2</td>
+</tr>
+<tr>
+<td><strong>2.f</strong></td>
+<td>Servicios cloud de control perimetral, firewall, routing, gateways, protección, autorización y auditoría</td>
+<td><strong>UD2</strong></td>
+<td>UD5, UD6</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ra3-redes-hibridas-e-interconexion">RA3 · Redes híbridas e interconexión<a class="headerlink" href="#ra3-redes-hibridas-e-interconexion" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>CE</th>
+<th>Síntesis del criterio</th>
+<th>UD principal</th>
+<th>Refuerzo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>3.a</strong></td>
+<td>Interconexión de redes virtuales mediante peering o redes compartidas</td>
+<td><strong>UD4</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>3.b</strong></td>
+<td>VPN entre instalaciones locales y nube o entre diferentes nubes</td>
+<td><strong>UD3</strong></td>
+<td>UD4</td>
+</tr>
+<tr>
+<td><strong>3.c</strong></td>
+<td>Conexiones directas y privadas entre redes locales y proveedores cloud</td>
+<td><strong>UD4</strong></td>
+<td>UD3</td>
+</tr>
+<tr>
+<td><strong>3.d</strong></td>
+<td>Conectividad física y peering público considerando QoS, latencia y coste</td>
+<td><strong>UD4</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>3.e</strong></td>
+<td>Routing dinámico en routers físicos o virtuales</td>
+<td><strong>UD4</strong></td>
+<td>UD3</td>
+</tr>
+<tr>
+<td><strong>3.f</strong></td>
+<td>VPN Site-to-Site y Point-to-Site: autenticación, cifrado y clientes</td>
+<td><strong>UD3</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ra4-seguridad-automatizacion-y-monitorizacion">RA4 · Seguridad, automatización y monitorización<a class="headerlink" href="#ra4-seguridad-automatizacion-y-monitorizacion" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>CE</th>
+<th>Síntesis del criterio</th>
+<th>UD principal</th>
+<th>Refuerzo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>4.a</strong></td>
+<td>Políticas de seguridad y control de comunicaciones por origen y destino</td>
+<td><strong>UD2</strong></td>
+<td>UD6</td>
+</tr>
+<tr>
+<td><strong>4.b</strong></td>
+<td>Firewalls cloud, reglas, políticas e integración con servicios de terceros</td>
+<td><strong>UD5</strong></td>
+<td>UD2</td>
+</tr>
+<tr>
+<td><strong>4.c</strong></td>
+<td>Protección de aplicaciones en capa 7 mediante WAF, IPS u otras herramientas</td>
+<td><strong>UD5</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>4.d</strong></td>
+<td>Autorización, autenticación y auditoría mediante CLI, API, plantillas o programación</td>
+<td><strong>UD6</strong></td>
+<td>UD2</td>
+</tr>
+<tr>
+<td><strong>4.e</strong></td>
+<td>Monitorización, alertas, estado, logs y análisis del tráfico</td>
+<td><strong>UD6</strong></td>
+<td>Todas</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="4-matriz-por-unidad-didactica">4. Matriz por Unidad Didáctica<a class="headerlink" href="#4-matriz-por-unidad-didactica" title="Permanent link">&para;</a></h1>
+<h2 id="ud1-diseno-y-despliegue-de-redes-virtuales">UD1 · Diseño y despliegue de redes virtuales<a class="headerlink" href="#ud1-diseno-y-despliegue-de-redes-virtuales" title="Permanent link">&para;</a></h2>
+<p><strong>Duración:</strong> 25 horas<br />
+<strong>Entornos:</strong> Proxmox + AWS</p>
+<h3 id="ra">RA<a class="headerlink" href="#ra" title="Permanent link">&para;</a></h3>
+<ul>
+<li>RA1</li>
+<li>RA2</li>
+</ul>
+<h3 id="ce-principales">CE principales<a class="headerlink" href="#ce-principales" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>1.a</strong></li>
+<li><strong>2.e</strong></li>
+</ul>
+<h3 id="ce-de-refuerzo">CE de refuerzo<a class="headerlink" href="#ce-de-refuerzo" title="Permanent link">&para;</a></h3>
+<ul>
+<li>1.c</li>
+<li>2.d</li>
+</ul>
+<h3 id="contenidos">Contenidos<a class="headerlink" href="#contenidos" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Conceptos fundamentales de networking.</li>
+<li>IPv4 y CIDR.</li>
+<li>Redes y subredes.</li>
+<li>Direccionamiento público y privado.</li>
+<li>Gateway y tabla de rutas.</li>
+<li>Introducción al routing.</li>
+<li>Interfaces de red.</li>
+<li>Bridges de Proxmox.</li>
+<li>Redes virtuales en Proxmox.</li>
+<li>Introducción a VLAN.</li>
+<li>AWS Regions y Availability Zones.</li>
+<li>Amazon VPC.</li>
+<li>CIDR de una VPC.</li>
+<li>Subred pública.</li>
+<li>Subred privada.</li>
+<li>Internet Gateway.</li>
+<li>Route Tables.</li>
+<li>Direcciones IP públicas y privadas.</li>
+<li>Elastic IP.</li>
+<li>Introducción a Security Groups.</li>
+<li>Equivalencias entre infraestructura Proxmox y AWS.</li>
+</ul>
+<h3 id="arquitectura-base">Arquitectura base<a class="headerlink" href="#arquitectura-base" title="Permanent link">&para;</a></h3>
+<p>La arquitectura AWS inicial estará compuesta por:</p>
+<ul>
+<li>1 VPC.</li>
+<li>1 subnet pública.</li>
+<li>1 subnet privada.</li>
+<li>1 Internet Gateway.</li>
+<li>Tablas de rutas.</li>
+<li>Instancias de prueba.</li>
+</ul>
+<p>Las arquitecturas con varias subredes públicas y privadas se estudiarán posteriormente como evolución hacia escenarios de mayor disponibilidad.</p>
+<hr />
+<h1 id="ud2-segmentacion-routing-y-seguridad-de-red">UD2 · Segmentación, routing y seguridad de red<a class="headerlink" href="#ud2-segmentacion-routing-y-seguridad-de-red" title="Permanent link">&para;</a></h1>
+<p><strong>Duración:</strong> 30 horas<br />
+<strong>Entornos:</strong> Proxmox + AWS</p>
+<h3 id="ra_1">RA<a class="headerlink" href="#ra_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>RA1</li>
+<li>RA2</li>
+<li>RA4</li>
+</ul>
+<h3 id="ce-principales_1">CE principales<a class="headerlink" href="#ce-principales_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>1.b</strong></li>
+<li><strong>2.d</strong></li>
+<li><strong>2.f</strong></li>
+<li><strong>4.a</strong></li>
+</ul>
+<h3 id="ce-de-refuerzo_1">CE de refuerzo<a class="headerlink" href="#ce-de-refuerzo_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>1.a</li>
+<li>1.e</li>
+<li>2.e</li>
+<li>4.b</li>
+</ul>
+<h3 id="contenidos_1">Contenidos<a class="headerlink" href="#contenidos_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Segmentación de redes.</li>
+<li>VLAN.</li>
+<li>Puertos access y trunk.</li>
+<li>IEEE 802.1Q.</li>
+<li>Bridges VLAN-aware.</li>
+<li>Diseño de zonas de seguridad.</li>
+<li>LAN.</li>
+<li>DMZ.</li>
+<li>APP.</li>
+<li>DB.</li>
+<li>Routing inter-VLAN.</li>
+<li>Router/firewall virtual.</li>
+<li>NAT.</li>
+<li>SNAT.</li>
+<li>DNAT.</li>
+<li>Filtrado de tráfico.</li>
+<li>Firewall de Proxmox.</li>
+<li>Security Groups.</li>
+<li>Network ACL.</li>
+<li>Stateful frente a stateless.</li>
+<li>Principio de mínimo privilegio.</li>
+<li>Matrices de conectividad.</li>
+<li>Seguridad por origen, destino, puerto y protocolo.</li>
+</ul>
+<h3 id="arquitectura-de-referencia">Arquitectura de referencia<a class="headerlink" href="#arquitectura-de-referencia" title="Permanent link">&para;</a></h3>
+<p>Ejemplo de política:</p>
+<table>
+<thead>
+<tr>
+<th>Origen</th>
+<th>Destino</th>
+<th>Servicio</th>
+<th>Permitido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internet</td>
+<td>WEB</td>
+<td>HTTPS 443</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>APP</td>
+<td>Cualquiera</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>DB</td>
+<td>Cualquiera</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>WEB</td>
+<td>APP</td>
+<td>TCP 8080</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>WEB</td>
+<td>DB</td>
+<td>TCP 5432</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>APP</td>
+<td>DB</td>
+<td>TCP 5432</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p>El alumnado deberá aprender no solo a conseguir conectividad, sino también a <strong>demostrar que las comunicaciones no autorizadas están bloqueadas</strong>.</p>
+<hr />
+<h1 id="ud3-vpn-y-conectividad-hibrida">UD3 · VPN y conectividad híbrida<a class="headerlink" href="#ud3-vpn-y-conectividad-hibrida" title="Permanent link">&para;</a></h1>
+<p><strong>Duración:</strong> 30 horas<br />
+<strong>Entornos:</strong> Proxmox ↔ AWS</p>
+<h3 id="ra_2">RA<a class="headerlink" href="#ra_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>RA1</li>
+<li>RA3</li>
+</ul>
+<h3 id="ce-principales_2">CE principales<a class="headerlink" href="#ce-principales_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>1.f</strong></li>
+<li><strong>3.b</strong></li>
+<li><strong>3.f</strong></li>
+</ul>
+<h3 id="ce-de-refuerzo_2">CE de refuerzo<a class="headerlink" href="#ce-de-refuerzo_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>1.d</li>
+<li>3.c</li>
+<li>3.e</li>
+</ul>
+<h3 id="contenidos_2">Contenidos<a class="headerlink" href="#contenidos_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Redes híbridas.</li>
+<li>WAN.</li>
+<li>Conceptos VPN.</li>
+<li>IPsec.</li>
+<li>IKE.</li>
+<li>Cifrado.</li>
+<li>Autenticación.</li>
+<li>Túneles.</li>
+<li>Customer Gateway.</li>
+<li>Virtual Private Gateway.</li>
+<li>AWS Site-to-Site VPN.</li>
+<li>Routing estático.</li>
+<li>Introducción a routing dinámico.</li>
+<li>VPN Site-to-Site.</li>
+<li>VPN Point-to-Site / Client VPN.</li>
+<li>Configuración de clientes.</li>
+<li>Proxmox como infraestructura local.</li>
+<li>Router/firewall local.</li>
+<li>AWS como infraestructura cloud.</li>
+<li>Interconexión real Proxmox ↔ AWS.</li>
+<li>Diagnóstico de túneles.</li>
+<li>Captura y análisis de tráfico.</li>
+</ul>
+<h3 id="objetivo-tecnico">Objetivo técnico<a class="headerlink" href="#objetivo-tecnico" title="Permanent link">&para;</a></h3>
+<p>Construir una infraestructura híbrida real:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>LAN / Proxmox
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>      │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>      │
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Router / Firewall
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>      │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>      │ IPsec
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>      ▼
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>════════════════════
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>      Internet
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>════════════════════
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>      │
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>      │ VPN
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>      ▼
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>     AWS
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>      │
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>     VPC
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>      │
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>Subredes privadas
+</span></code></pre></div>
+<hr />
+<h1 id="ud4-interconexion-y-routing-avanzado">UD4 · Interconexión y routing avanzado<a class="headerlink" href="#ud4-interconexion-y-routing-avanzado" title="Permanent link">&para;</a></h1>
+<p><strong>Duración:</strong> 25 horas<br />
+<strong>Entornos:</strong> Proxmox + AWS</p>
+<h3 id="ra_3">RA<a class="headerlink" href="#ra_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>RA1</li>
+<li>RA3</li>
+</ul>
+<h3 id="ce-principales_3">CE principales<a class="headerlink" href="#ce-principales_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>1.d</strong></li>
+<li><strong>3.a</strong></li>
+<li><strong>3.c</strong></li>
+<li><strong>3.d</strong></li>
+<li><strong>3.e</strong></li>
+</ul>
+<h3 id="ce-de-refuerzo_3">CE de refuerzo<a class="headerlink" href="#ce-de-refuerzo_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>1.f</li>
+<li>3.b</li>
+</ul>
+<h3 id="contenidos_3">Contenidos<a class="headerlink" href="#contenidos_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Interconexión de VPC.</li>
+<li>VPC Peering.</li>
+<li>Limitaciones del peering.</li>
+<li>Routing no transitivo.</li>
+<li>Private Endpoints.</li>
+<li>AWS PrivateLink.</li>
+<li>Transit Gateway.</li>
+<li>Arquitecturas hub-and-spoke.</li>
+<li>Routing centralizado.</li>
+<li>BGP.</li>
+<li>ASN.</li>
+<li>Anuncio de prefijos.</li>
+<li>Selección de rutas.</li>
+<li>Routing dinámico.</li>
+<li>AWS Direct Connect.</li>
+<li>Conexiones privadas dedicadas.</li>
+<li>Public y Private VIF.</li>
+<li>QoS.</li>
+<li>Latencia.</li>
+<li>Disponibilidad.</li>
+<li>Costes de conectividad.</li>
+<li>Introducción a entornos multicloud.</li>
+<li>AWS Cloud WAN como ampliación.</li>
+</ul>
+<h3 id="evolucion-de-arquitectura">Evolución de arquitectura<a class="headerlink" href="#evolucion-de-arquitectura" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>VPC-A ──┐
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>        │
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>VPC-B ──┼── Transit Gateway ── VPN / Direct Connect ── On-premise
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        │
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>VPC-C ──┘
+</span></code></pre></div>
+<p>La unidad permite evolucionar desde conexiones punto a punto hacia arquitecturas centralizadas y escalables.</p>
+<hr />
+<h1 id="ud5-servicios-de-red-y-publicacion-segura">UD5 · Servicios de red y publicación segura<a class="headerlink" href="#ud5-servicios-de-red-y-publicacion-segura" title="Permanent link">&para;</a></h1>
+<p><strong>Duración:</strong> 20 horas<br />
+<strong>Entorno principal:</strong> AWS</p>
+<h3 id="ra_4">RA<a class="headerlink" href="#ra_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>RA1</li>
+<li>RA2</li>
+<li>RA4</li>
+</ul>
+<h3 id="ce-principales_4">CE principales<a class="headerlink" href="#ce-principales_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>1.c</strong></li>
+<li><strong>2.a</strong></li>
+<li><strong>2.b</strong></li>
+<li><strong>2.c</strong></li>
+<li><strong>4.b</strong></li>
+<li><strong>4.c</strong></li>
+</ul>
+<h3 id="ce-de-refuerzo_4">CE de refuerzo<a class="headerlink" href="#ce-de-refuerzo_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>1.b</li>
+<li>2.f</li>
+</ul>
+<h3 id="contenidos_4">Contenidos<a class="headerlink" href="#contenidos_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>DNS.</li>
+<li>DNS público y privado.</li>
+<li>Amazon Route 53.</li>
+<li>Hosted Zones.</li>
+<li>Registros DNS.</li>
+<li>Resolución interna.</li>
+<li>Certificados digitales.</li>
+<li>AWS Certificate Manager.</li>
+<li>HTTPS/TLS.</li>
+<li>Application Load Balancer.</li>
+<li>Target Groups.</li>
+<li>Health Checks.</li>
+<li>Balanceo interno y externo.</li>
+<li>Alta disponibilidad.</li>
+<li>CloudFront.</li>
+<li>CDN.</li>
+<li>Edge Locations.</li>
+<li>Caché.</li>
+<li>Orígenes.</li>
+<li>AWS WAF.</li>
+<li>Reglas WAF.</li>
+<li>Protección de aplicaciones web.</li>
+<li>Firewall cloud.</li>
+<li>Protección de capa 7.</li>
+</ul>
+<h3 id="arquitectura-de-referencia_1">Arquitectura de referencia<a class="headerlink" href="#arquitectura-de-referencia_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Internet
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>   │
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>   ▼
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Route 53
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>   │
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>   ▼
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>CloudFront
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>   │
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>   ▼
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>  WAF
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>   │
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>   ▼
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>  ALB
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>   │
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>   ▼
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>WEB / APP
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>   │
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>   ▼
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>   DB
+</span></code></pre></div>
+<p>El objetivo será comprender la cadena completa de publicación de una aplicación y aplicar seguridad en cada nivel.</p>
+<hr />
+<h1 id="ud6-monitorizacion-diagnostico-y-automatizacion">UD6 · Monitorización, diagnóstico y automatización<a class="headerlink" href="#ud6-monitorizacion-diagnostico-y-automatizacion" title="Permanent link">&para;</a></h1>
+<p><strong>Duración:</strong> 20 horas<br />
+<strong>Entornos:</strong> Proxmox + Linux + AWS</p>
+<h3 id="ra_5">RA<a class="headerlink" href="#ra_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>RA1</li>
+<li>RA4</li>
+</ul>
+<h3 id="ce-principales_5">CE principales<a class="headerlink" href="#ce-principales_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>1.e</strong></li>
+<li><strong>4.d</strong></li>
+<li><strong>4.e</strong></li>
+</ul>
+<h3 id="ce-de-refuerzo_5">CE de refuerzo<a class="headerlink" href="#ce-de-refuerzo_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>1.b</li>
+<li>2.f</li>
+<li>4.a</li>
+</ul>
+<h3 id="contenidos_5">Contenidos<a class="headerlink" href="#contenidos_5" title="Permanent link">&para;</a></h3>
+<h4 id="diagnostico-linux">Diagnóstico Linux<a class="headerlink" href="#diagnostico-linux" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>ip addr</code></li>
+<li><code>ip route</code></li>
+<li><code>ping</code></li>
+<li><code>traceroute</code></li>
+<li><code>ss</code></li>
+<li><code>curl</code></li>
+<li><code>dig</code></li>
+<li><code>nslookup</code></li>
+<li><code>tcpdump</code></li>
+</ul>
+<h4 id="aws">AWS<a class="headerlink" href="#aws" title="Permanent link">&para;</a></h4>
+<ul>
+<li>VPC Flow Logs.</li>
+<li>CloudWatch.</li>
+<li>Métricas.</li>
+<li>Logs.</li>
+<li>Alarmas.</li>
+<li>CloudTrail.</li>
+<li>Reachability Analyzer.</li>
+<li>Diagnóstico de Security Groups.</li>
+<li>Diagnóstico de NACL.</li>
+<li>Diagnóstico de Route Tables.</li>
+<li>Diagnóstico de NAT.</li>
+<li>Diagnóstico de DNS.</li>
+<li>Diagnóstico de VPN.</li>
+</ul>
+<h4 id="automatizacion">Automatización<a class="headerlink" href="#automatizacion" title="Permanent link">&para;</a></h4>
+<ul>
+<li>AWS CLI.</li>
+<li>Consultas de recursos.</li>
+<li>Creación y modificación básica de recursos.</li>
+<li>API.</li>
+<li>Scripts.</li>
+<li>Introducción a automatización declarativa.</li>
+<li>Auditoría.</li>
+<li>Autenticación.</li>
+<li>Autorización.</li>
+</ul>
+<h3 id="metodologia-de-troubleshooting">Metodología de troubleshooting<a class="headerlink" href="#metodologia-de-troubleshooting" title="Permanent link">&para;</a></h3>
+<p>El diagnóstico seguirá sistemáticamente el camino del paquete:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Origen
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  │
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  ▼
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Interfaz
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  │
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  ▼
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>Routing
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  │
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  ▼
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>Firewall / SG / NACL
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  │
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>  ▼
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>NAT / Gateway / VPN
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>  │
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>  ▼
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>Routing remoto
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>  │
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>  ▼
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>Firewall remoto
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>  │
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>  ▼
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>Servicio destino
+</span></code></pre></div>
+<p>Se proporcionarán infraestructuras deliberadamente mal configuradas que el alumnado deberá diagnosticar y reparar.</p>
+<hr />
+<h1 id="5-cobertura-global">5. Cobertura global<a class="headerlink" href="#5-cobertura-global" title="Permanent link">&para;</a></h1>
+<p>La siguiente tabla permite comprobar que <strong>los 23 criterios de evaluación oficiales están cubiertos</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>CE</th>
+<th>UD principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.a</td>
+<td>UD1</td>
+</tr>
+<tr>
+<td>1.b</td>
+<td>UD2</td>
+</tr>
+<tr>
+<td>1.c</td>
+<td>UD5</td>
+</tr>
+<tr>
+<td>1.d</td>
+<td>UD4</td>
+</tr>
+<tr>
+<td>1.e</td>
+<td>UD6</td>
+</tr>
+<tr>
+<td>1.f</td>
+<td>UD3</td>
+</tr>
+<tr>
+<td>2.a</td>
+<td>UD5</td>
+</tr>
+<tr>
+<td>2.b</td>
+<td>UD5</td>
+</tr>
+<tr>
+<td>2.c</td>
+<td>UD5</td>
+</tr>
+<tr>
+<td>2.d</td>
+<td>UD2</td>
+</tr>
+<tr>
+<td>2.e</td>
+<td>UD1</td>
+</tr>
+<tr>
+<td>2.f</td>
+<td>UD2</td>
+</tr>
+<tr>
+<td>3.a</td>
+<td>UD4</td>
+</tr>
+<tr>
+<td>3.b</td>
+<td>UD3</td>
+</tr>
+<tr>
+<td>3.c</td>
+<td>UD4</td>
+</tr>
+<tr>
+<td>3.d</td>
+<td>UD4</td>
+</tr>
+<tr>
+<td>3.e</td>
+<td>UD4</td>
+</tr>
+<tr>
+<td>3.f</td>
+<td>UD3</td>
+</tr>
+<tr>
+<td>4.a</td>
+<td>UD2</td>
+</tr>
+<tr>
+<td>4.b</td>
+<td>UD5</td>
+</tr>
+<tr>
+<td>4.c</td>
+<td>UD5</td>
+</tr>
+<tr>
+<td>4.d</td>
+<td>UD6</td>
+</tr>
+<tr>
+<td>4.e</td>
+<td>UD6</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cobertura: 23 / 23 criterios de evaluación.</strong></p>
+<hr />
+<h1 id="6-distribucion-de-criterios-por-unidad">6. Distribución de criterios por unidad<a class="headerlink" href="#6-distribucion-de-criterios-por-unidad" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Unidad</th>
+<th>CE principales</th>
+<th style="text-align: right;">Nº CE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UD1</strong></td>
+<td>1.a, 2.e</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><strong>UD2</strong></td>
+<td>1.b, 2.d, 2.f, 4.a</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><strong>UD3</strong></td>
+<td>1.f, 3.b, 3.f</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><strong>UD4</strong></td>
+<td>1.d, 3.a, 3.c, 3.d, 3.e</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td><strong>UD5</strong></td>
+<td>1.c, 2.a, 2.b, 2.c, 4.b, 4.c</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr>
+<td><strong>UD6</strong></td>
+<td>1.e, 4.d, 4.e</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td></td>
+<td style="text-align: right;"><strong>23</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="7-relacion-tecnologica">7. Relación tecnológica<a class="headerlink" href="#7-relacion-tecnologica" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>On-premise / Proxmox</th>
+<th>AWS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Red virtual</td>
+<td>Linux Bridge / vmbr</td>
+<td>VPC</td>
+</tr>
+<tr>
+<td>Segmentación</td>
+<td>VLAN</td>
+<td>Subnet</td>
+</tr>
+<tr>
+<td>Gateway</td>
+<td>Router virtual</td>
+<td>Internet Gateway / NAT Gateway</td>
+</tr>
+<tr>
+<td>Routing</td>
+<td>Linux/router/firewall</td>
+<td>Route Table</td>
+</tr>
+<tr>
+<td>Firewall</td>
+<td>Proxmox Firewall / nftables</td>
+<td>Security Groups / NACL</td>
+</tr>
+<tr>
+<td>IP pública</td>
+<td>NAT / WAN</td>
+<td>Public IP / Elastic IP</td>
+</tr>
+<tr>
+<td>Red privada</td>
+<td>VLAN interna</td>
+<td>Private Subnet</td>
+</tr>
+<tr>
+<td>VPN</td>
+<td>IPsec</td>
+<td>Site-to-Site VPN</td>
+</tr>
+<tr>
+<td>Routing dinámico</td>
+<td>FRRouting / BGP</td>
+<td>BGP / VPN / Direct Connect</td>
+</tr>
+<tr>
+<td>Interconexión</td>
+<td>Router</td>
+<td>VPC Peering / Transit Gateway</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>DNS local</td>
+<td>Route 53</td>
+</tr>
+<tr>
+<td>Balanceo</td>
+<td>HAProxy / equivalente</td>
+<td>ALB/NLB</td>
+</tr>
+<tr>
+<td>Monitorización</td>
+<td>Logs / tcpdump</td>
+<td>Flow Logs / CloudWatch</td>
+</tr>
+<tr>
+<td>Automatización</td>
+<td>CLI / scripts</td>
+<td>AWS CLI / API</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="8-principio-metodologico">8. Principio metodológico<a class="headerlink" href="#8-principio-metodologico" title="Permanent link">&para;</a></h1>
+<p>La estructura del módulo no pretende enseñar AWS como un conjunto aislado de servicios.</p>
+<p>El objetivo es que el alumnado comprenda primero <strong>el principio de red</strong> y posteriormente identifique cómo se implementa en distintas plataformas.</p>
+<p>Por ello, siempre que sea posible se seguirá el ciclo:</p>
+<blockquote>
+<p><strong>Concepto → implementación on-premise → implementación AWS → comparación → pruebas → troubleshooting</strong></p>
+</blockquote>
+<p>De este modo, tecnologías concretas como Proxmox o AWS se convierten en herramientas para aprender principios transferibles de administración de redes.</p>
+<p><strong>La tecnología cambia; los principios de red permanecen.</strong></p>
 
 
 

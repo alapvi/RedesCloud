@@ -2933,6 +2933,158 @@
 
 <h1 id="evaluacion">Evaluación<a class="headerlink" href="#evaluacion" title="Permanent link">&para;</a></h1>
 <p>Contenido pendiente de desarrollo.</p>
+<h1 id="evaluacion_1">Evaluación<a class="headerlink" href="#evaluacion_1" title="Permanent link">&para;</a></h1>
+<h2 id="principios-generales">Principios generales<a class="headerlink" href="#principios-generales" title="Permanent link">&para;</a></h2>
+<p>La evaluación será <strong>continua, práctica y basada en los Resultados de Aprendizaje y Criterios de Evaluación</strong> establecidos para el módulo.</p>
+<p>Cada actividad evaluable deberá estar relacionada con uno o varios CE.</p>
+<p>La evaluación tendrá en cuenta tanto el resultado final como el procedimiento utilizado.</p>
+<hr />
+<h2 id="que-se-evaluara">Qué se evaluará<a class="headerlink" href="#que-se-evaluara" title="Permanent link">&para;</a></h2>
+<p>Se valorará la capacidad para:</p>
+<ul>
+<li>diseñar una arquitectura;</li>
+<li>configurar recursos;</li>
+<li>aplicar direccionamiento;</li>
+<li>configurar routing;</li>
+<li>segmentar una red;</li>
+<li>aplicar políticas de seguridad;</li>
+<li>establecer conectividad híbrida;</li>
+<li>publicar servicios;</li>
+<li>monitorizar infraestructura;</li>
+<li>diagnosticar incidencias;</li>
+<li>justificar decisiones técnicas;</li>
+<li>documentar el trabajo.</li>
+</ul>
+<hr />
+<h2 id="instrumentos">Instrumentos<a class="headerlink" href="#instrumentos" title="Permanent link">&para;</a></h2>
+<p>Podrán utilizarse:</p>
+<h3 id="practicas-de-laboratorio">Prácticas de laboratorio<a class="headerlink" href="#practicas-de-laboratorio" title="Permanent link">&para;</a></h3>
+<p>Configuración real de infraestructura.</p>
+<h3 id="pruebas-practicas">Pruebas prácticas<a class="headerlink" href="#pruebas-practicas" title="Permanent link">&para;</a></h3>
+<p>Resolución de escenarios sin guía completa.</p>
+<h3 id="pruebas-teorico-practicas">Pruebas teórico-prácticas<a class="headerlink" href="#pruebas-teorico-practicas" title="Permanent link">&para;</a></h3>
+<p>Cuestiones sobre:</p>
+<ul>
+<li>arquitectura;</li>
+<li>direccionamiento;</li>
+<li>routing;</li>
+<li>seguridad;</li>
+<li>interpretación de configuraciones;</li>
+<li>diagnóstico.</li>
+</ul>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
+<p>Resolución de infraestructuras deliberadamente mal configuradas.</p>
+<h3 id="documentacion-tecnica">Documentación técnica<a class="headerlink" href="#documentacion-tecnica" title="Permanent link">&para;</a></h3>
+<p>Diagramas, tablas, capturas relevantes y explicación de decisiones.</p>
+<h3 id="observacion">Observación<a class="headerlink" href="#observacion" title="Permanent link">&para;</a></h3>
+<p>Seguimiento del trabajo realizado durante los laboratorios.</p>
+<hr />
+<h2 id="evidencias">Evidencias<a class="headerlink" href="#evidencias" title="Permanent link">&para;</a></h2>
+<p>Las evidencias podrán incluir:</p>
+<ul>
+<li>configuraciones;</li>
+<li>comandos;</li>
+<li>capturas;</li>
+<li>logs;</li>
+<li>diagramas;</li>
+<li>tablas de routing;</li>
+<li>reglas de firewall;</li>
+<li>resultados de pruebas;</li>
+<li>documentación técnica.</li>
+</ul>
+<p>No será suficiente una captura que únicamente muestre que un recurso existe.</p>
+<p>La evidencia deberá permitir comprobar su correcta configuración.</p>
+<hr />
+<h2 id="validacion-de-conectividad">Validación de conectividad<a class="headerlink" href="#validacion-de-conectividad" title="Permanent link">&para;</a></h2>
+<p>Las prácticas que impliquen comunicación entre sistemas deberán incluir una <strong>matriz de conectividad</strong>.</p>
+<p>Ejemplo:</p>
+<table>
+<thead>
+<tr>
+<th>Origen</th>
+<th>Destino</th>
+<th style="text-align: right;">Puerto</th>
+<th>Resultado esperado</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internet</td>
+<td>WEB</td>
+<td style="text-align: right;">443</td>
+<td>Permitido</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>DB</td>
+<td style="text-align: right;">5432</td>
+<td>Bloqueado</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>WEB</td>
+<td>APP</td>
+<td style="text-align: right;">8080</td>
+<td>Permitido</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>WEB</td>
+<td>DB</td>
+<td style="text-align: right;">5432</td>
+<td>Bloqueado</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>APP</td>
+<td>DB</td>
+<td style="text-align: right;">5432</td>
+<td>Permitido</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p>Se evaluarán tanto las comunicaciones permitidas como las bloqueadas.</p>
+<hr />
+<h2 id="troubleshooting_1">Troubleshooting<a class="headerlink" href="#troubleshooting_1" title="Permanent link">&para;</a></h2>
+<p>Se valorará especialmente el proceso de diagnóstico.</p>
+<p>El alumnado deberá ser capaz de determinar si un fallo se encuentra en:</p>
+<ul>
+<li>direccionamiento;</li>
+<li>interfaz;</li>
+<li>routing;</li>
+<li>firewall;</li>
+<li>Security Group;</li>
+<li>NACL;</li>
+<li>NAT;</li>
+<li>DNS;</li>
+<li>VPN;</li>
+<li>servicio destino.</li>
+</ul>
+<p>Se valorará la utilización de herramientas adecuadas antes de modificar la configuración.</p>
+<hr />
+<h2 id="relacion-con-los-ce">Relación con los CE<a class="headerlink" href="#relacion-con-los-ce" title="Permanent link">&para;</a></h2>
+<p>Cada práctica indicará explícitamente:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>RA evaluado
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>CE evaluados
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Objetivo
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Evidencias requeridas
+</span></code></pre></div>
+<p>Esto permitirá mantener trazabilidad entre currículo, actividades y evaluación.</p>
+<hr />
+<h2 id="recuperacion">Recuperación<a class="headerlink" href="#recuperacion" title="Permanent link">&para;</a></h2>
+<p>La recuperación se realizará preferentemente mediante actividades relacionadas con los <strong>criterios de evaluación no superados</strong>.</p>
+<p>Podrán utilizarse:</p>
+<ul>
+<li>nuevas prácticas;</li>
+<li>corrección de una infraestructura;</li>
+<li>pruebas prácticas;</li>
+<li>ejercicios de troubleshooting;</li>
+<li>actividades específicas de recuperación.</li>
+</ul>
+<p>La recuperación se centrará en demostrar la adquisición del aprendizaje pendiente.</p>
 
 
 
