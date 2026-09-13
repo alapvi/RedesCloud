@@ -90,7 +90,6 @@
     </div>
     
     
-  
       
 
   
@@ -201,86 +200,6 @@
   
 </header>
     
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Crear botón de toggle
-      const header = document.querySelector('.md-header');
-      const toggleBtn = document.createElement('button');
-      toggleBtn.className = 'sidebar-toggle-btn';
-      toggleBtn.setAttribute('aria-label', 'Alternar menú lateral');
-      toggleBtn.innerHTML = '☰';
-      toggleBtn.style.marginLeft = '0.5rem';
-      
-      // Insertar después del logo
-      const logo = header.querySelector('.md-header__button:first-of-type');
-      if (logo) {
-        logo.parentNode.insertBefore(toggleBtn, logo.nextSibling);
-      }
-
-      // Obtener sidebar
-      const sidebar = document.querySelector('.md-sidebar--primary');
-      const content = document.querySelector('.md-container');
-      
-      // Estado del sidebar
-      let sidebarOpen = true;
-      
-      // Cargar estado guardado
-      const savedState = localStorage.getItem('sidebar-state');
-      if (savedState !== null) {
-        sidebarOpen = savedState === 'open';
-      }
-      
-      // Aplicar estado inicial
-      updateSidebar();
-      
-      // Event listener para el botón
-      toggleBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        sidebarOpen = !sidebarOpen;
-        updateSidebar();
-        localStorage.setItem('sidebar-state', sidebarOpen ? 'open' : 'closed');
-      });
-      
-      function updateSidebar() {
-        if (window.innerWidth > 76.1875 * 16) { // 76.1875em en px
-          // Desktop: siempre mostrar pero permitir collapse
-          if (sidebarOpen) {
-            sidebar?.classList.remove('collapsed');
-            toggleBtn.innerHTML = '☰';
-          } else {
-            sidebar?.classList.add('collapsed');
-            toggleBtn.innerHTML = '→';
-          }
-        } else {
-          // Mobile: mostrar/ocultar completamente
-          if (sidebarOpen) {
-            sidebar?.classList.add('show');
-            toggleBtn.innerHTML = '✕';
-          } else {
-            sidebar?.classList.remove('show');
-            toggleBtn.innerHTML = '☰';
-          }
-        }
-      }
-      
-      // Actualizar en resize
-      window.addEventListener('resize', updateSidebar);
-      
-      // Cerrar sidebar al hacer click en un enlace (mobile)
-      const navLinks = document.querySelectorAll('.md-nav__link');
-      navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          if (window.innerWidth <= 76.1875 * 16) {
-            sidebarOpen = false;
-            updateSidebar();
-            localStorage.setItem('sidebar-state', 'closed');
-          }
-        });
-      });
-    });
-  </script>
-
     <div class="md-container" data-md-component="container">
       
       
@@ -3357,6 +3276,7 @@
               
               <article class="md-content__inner md-typeset">
                 
+  
                   
 
 
@@ -3545,6 +3465,87 @@
 
 
                 
+  <script>
+    (function() {
+      'use strict';
+
+      const STORAGE_KEY = 'sidebar-collapsed';
+      
+      function initSidebarToggle() {
+        // Obtener elementos
+        const header = document.querySelector('.md-header');
+        const sidebar = document.querySelector('.md-sidebar--primary');
+        const main = document.querySelector('.md-main');
+        
+        if (!header || !sidebar || !main) {
+          console.warn('Elementos no encontrados para toggle sidebar');
+          return;
+        }
+
+        // Crear botón toggle
+        const toggle = document.createElement('button');
+        toggle.className = 'md-header__button sidebar-toggle md-icon';
+        toggle.setAttribute('title', 'Alternar menú');
+        toggle.setAttribute('type', 'button');
+        toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
+        
+        // Insertar el botón en el header
+        const headerContent = header.querySelector('.md-header__inner');
+        if (headerContent) {
+          headerContent.appendChild(toggle);
+        }
+
+        // Cargar estado previo
+        const isClosed = localStorage.getItem(STORAGE_KEY) === 'true';
+        if (isClosed) {
+          applyClosed();
+        }
+
+        // Event listener
+        toggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const currentlyClosed = sidebar.classList.contains('closed');
+          if (currentlyClosed) {
+            applyOpen();
+            localStorage.setItem(STORAGE_KEY, 'false');
+          } else {
+            applyClosed();
+            localStorage.setItem(STORAGE_KEY, 'true');
+          }
+        });
+
+        function applyClosed() {
+          sidebar.classList.add('closed');
+          main.classList.add('sidebar-closed');
+        }
+
+        function applyOpen() {
+          sidebar.classList.remove('closed');
+          main.classList.remove('sidebar-closed');
+        }
+
+        // Cerrar sidebar en mobile cuando se hace click en un enlace
+        document.querySelectorAll('.md-nav__link, .md-nav__title').forEach(link => {
+          link.addEventListener('click', function() {
+            if (window.innerWidth < 76.1875 * 16) { // Menos de 76.1875em
+              applyClosed();
+              localStorage.setItem(STORAGE_KEY, 'true');
+            }
+          });
+        });
+      }
+
+      // Esperar a que el DOM esté listo
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSidebarToggle);
+      } else {
+        initSidebarToggle();
+      }
+    })();
+  </script>
+
               </article>
             </div>
           
