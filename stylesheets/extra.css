@@ -71,9 +71,26 @@ body.sidebar-collapsed .md-sidebar--primary {
 
 /* Mantener el índice visible en escritorio y portátiles */
 @media screen and (min-width: 64em) {
+  .md-grid {
+    max-width: 100%;
+  }
+
+  .md-sidebar--primary {
+    width: 15rem;
+  }
+
   .md-sidebar--secondary {
     display: block;
     visibility: visible;
+    width: 14rem;
+  }
+
+  .md-content {
+    max-width: none;
+  }
+
+  .md-content__inner {
+    margin: 0 1.5rem;
   }
 }
 
