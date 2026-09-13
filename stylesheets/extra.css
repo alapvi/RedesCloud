@@ -127,5 +127,29 @@ body.sidebar-collapsed .md-sidebar--primary {
   .md-content__inner {
     margin: 0 1.5rem;
   }
+
+  /* El tema genera estos controles, pero algunos estilos los dejan visibles */
+  .md-sidebar--primary .md-nav__toggle:not(:checked) ~ .md-nav {
+    display: none !important;
+  }
+
+  .md-sidebar--primary .md-nav__toggle:checked ~ .md-nav {
+    display: block !important;
+  }
+
+  .md-sidebar--primary .md-nav__item--nested > .md-nav__link::after {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-left: auto;
+    border-right: 0.1rem solid currentColor;
+    border-bottom: 0.1rem solid currentColor;
+    transform: rotate(-45deg);
+    transition: transform 0.2s ease;
+  }
+
+  .md-sidebar--primary .md-nav__toggle:checked ~ .md-nav__link::after {
+    transform: rotate(45deg);
+  }
 }
 
